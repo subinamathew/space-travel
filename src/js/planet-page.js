@@ -370,7 +370,7 @@ function initStatCardPopups() {
 
     if (labelEl) labelEl.textContent = label;
     if (valEl) valEl.textContent = value;
-    if (textEl) textEl.textContent = kidsText;
+    if (textEl) textEl.textContent = kidsText.replace(/\\n/g, '\n');
 
     const cleanLabel = (card.querySelector('.info-label')?.textContent || label).toLowerCase().trim();
     let icon = '💡';

@@ -75,6 +75,9 @@ export function t(key, params = {}) {
     return val !== undefined ? val : key;
   }
 
+  // Normalize any escaped newlines
+  val = val.replace(/\\n/g, '\n');
+
   // Replace {param} placeholders
   return val.replace(/\{(\w+)\}/g, (_, k) => (params[k] !== undefined ? params[k] : `{${k}}`));
 }

@@ -213,7 +213,7 @@
           "label": "Atmosphère",
           "value": "Exosphère",
           "sub": "Traces d'oxygène, sodium, hydrogène",
-          "kids": "Qu'est-ce qu'une exosphère ? Sur Terre, l'exosphère est la couche la plus externe de l'atmosphère (à des centaines de kilomètres d'altitude), où l'air s'amincit dans le vide spatial et où volent les satellites.\\nSur Mercure, il n'y a aucune couche d'air ni ciel bleu : son exosphère commence directement au sol rocheux ! Le Soleil bombarde les roches et libère un mince filet d'atomes (oxygène, sodium, hydrogène) si dispersés qu'ils ne se touchent presque jamais."
+          "kids": "Qu'est-ce qu'une exosphère ? Sur Terre, l'exosphère est la couche la plus externe de l'atmosphère (à des centaines de kilomètres d'altitude), où l'air s'amincit dans le vide spatial et où volent les satellites.\nSur Mercure, il n'y a aucune couche d'air ni ciel bleu : son exosphère commence directement au sol rocheux ! Le Soleil bombarde les roches et libère un mince filet d'atomes (oxygène, sodium, hydrogène) si dispersés qu'ils ne se touchent presque jamais."
         }
       ]
     },
@@ -335,7 +335,7 @@
           "label": "Atmosphère",
           "value": "78 % N₂, 21 % O₂, 1 % Ar",
           "sub": "Couche d'ozone & bouclier magnétique",
-          "kids": "Que signifient ces lettres et pourcentages ? Le symbole (%) signifie des parts sur 100 ! Imagine un bocal contenant 100 billes d'air :\\n• N₂ (78 billes) est l'Azote : un gaz invisible qui remplit le ciel et nourrit les plantes pour les rendre fortes et vertes.\\n• O₂ (21 billes) est l'Oxygène : le gaz magique de la vie que toi, ta famille et les animaux respirez pour vivre !\\n• Ar (1 bille) est l'Argon : un gaz noble timide qui flotte paisiblement.\\nL'atmosphère de la Terre forme un bouclier en plusieurs couches : l'air que nous respirons en bas, la couche d'ozone protectrice au milieu, et l'exosphère tout en haut – la couche la plus externe de l'atmosphère qui touche l'espace et où volent les satellites !"
+          "kids": "Que signifient ces lettres et pourcentages ? Le symbole (%) signifie des parts sur 100 ! Imagine un bocal contenant 100 billes d'air :\n• N₂ (78 billes) est l'Azote : un gaz invisible qui remplit le ciel et nourrit les plantes pour les rendre fortes et vertes.\n• O₂ (21 billes) est l'Oxygène : le gaz magique de la vie que toi, ta famille et les animaux respirez pour vivre !\n• Ar (1 bille) est l'Argon : un gaz noble timide qui flotte paisiblement.\nL'atmosphère de la Terre forme un bouclier en plusieurs couches : l'air que nous respirons en bas, la couche d'ozone protectrice au milieu, et l'exosphère tout en haut – la couche la plus externe de l'atmosphère qui touche l'espace et où volent les satellites !"
         }
       ]
     },
