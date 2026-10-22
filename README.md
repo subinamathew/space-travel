@@ -1,5 +1,7 @@
 # RocketRun — Solar System Tour 🚀🪐
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/df0b00d7-6873-4a27-9269-eb8daee2a50c/deploy-status)](https://app.netlify.com/projects/zachandappa/deploys)
+
 An interactive, animated 3D-styled solar system explorer available at [rocketrun.de](https://rocketrun.de). Tour the planets, discover scientific facts, and experience smooth transitions powered by CSS animations, HTML5 Canvas, and modular modern tooling. Copyright © 2026 rocketrun.de.
 
 ---
@@ -11,7 +13,7 @@ An interactive, animated 3D-styled solar system explorer available at [rocketrun
   - Minimizable header toggle button with cross-page `localStorage` persistence and internal cosmic scrolling.
 - **Settings HUD & Multi-Language i18n**:
   - **Settings HUD**: Positioned below the Galactic HUD with minimize/expand toggle and styled cosmic language selector.
-  - **7 Popular Languages**: English (🇬🇧), German (🇩🇪), French (🇫🇷), Spanish (🇪🇸), Italian (🇮🇹), Japanese (🇯🇵), and Chinese (🇨🇳).
+  - **9 Popular Languages**: English (🇬🇧), German (🇩🇪), French (🇫🇷), Spanish (🇪🇸), Italian (🇮🇹), Japanese (🇯🇵), Chinese (🇨🇳), Malayalam (🇮🇳), and Tamil (🇮🇳).
   - **100% Translation Coverage**: Translates UI, preloader, coordinates, planet greetings/facts, scientific metrics, dynamic gravity calculations, and NASA Kids Mission cards without page reload.
   - **Extensible Architecture**: Modular `src/i18n/<lang>.json` files make adding future translations as simple as creating a single JSON file.
 - **Rewritten NASA Kids Mission Notes**:
