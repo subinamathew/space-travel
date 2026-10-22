@@ -108,6 +108,9 @@ Write modular, defensive, self-documenting code with clear separation of concern
    - *Example*: `#scene:has(:hover) .orbit-carrier { animation-play-state: paused; }` pauses 3D planetary motion without a single line of JS.
 4. **CSS Mathematical Calculations**:
    - Leverage `calc()`, `min()`, `max()`, `clamp()`, and trigonometric CSS functions (`sin()`, `cos()`) to compute ratios, orbital eccentricity scalings, and responsive proportions directly in the stylesheet.
+5. **3D Orbit Direct Manipulation & Dynamic Billboarding**:
+   - In 3D orbit mode, direct DOM manipulation (drag rotation, wheel/pinch zoom) sets CSS variables (`--orbit-rot-x`, `--orbit-rot-z`, `--orbit-zoom`) without cluttering the UI with buttons.
+   - All celestial billboard wraps dynamically counter-rotate via `calc(-1 * var(--orbit-rot-z))` and `calc(-1 * var(--orbit-rot-x))` to perpetually face the viewer.
 
 ---
 

@@ -92,4 +92,15 @@ body {
     opacity: 0;
     pointer-events: none;
   }
+
+  &.real-orbits {
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: none;
+
+    &.is-dragging {
+      cursor: grabbing;
+    }
+  }
 }

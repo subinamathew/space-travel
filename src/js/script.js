@@ -8,6 +8,7 @@ import { initI18n } from './i18n.js';
 import { initCreditsCrawl } from './components/credits.js';
 import { initCookieNotice } from './components/cookie-notice.js';
 import { initFeaturesPage } from './components/features.js';
+import { init3DOrbitInteraction } from './components/orbit-3d.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize i18n translation system
@@ -30,6 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize Settings switches (Moons & 3D Real Orbits) on the solar system view
   initSettingsSwitches();
+
+  // Initialize interactive 3D orbit manipulation (drag to rotate, wheel/pinch to zoom)
+  init3DOrbitInteraction();
 
   // Initialize starfield canvas background
   initStarfield('stars');

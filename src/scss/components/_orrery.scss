@@ -20,16 +20,20 @@
     height: min(96vw, 96vh);
   }
 
+  &.is-manipulating {
+    transition: none !important;
+  }
+
   // Realistic 3D Spatial Ecliptic View
   &.real-orbits {
-    transform: rotateX(58deg) rotateZ(-20deg);
+    transform: scale(var(--orbit-zoom, 1)) rotateX(var(--orbit-rot-x, 58deg)) rotateZ(var(--orbit-rot-z, -20deg));
 
     #sun {
-      transform: translate(-50%, -50%) rotateZ(20deg) rotateX(-58deg);
+      transform: translate(-50%, -50%) rotateZ(calc(-1 * var(--orbit-rot-z, -20deg))) rotateX(calc(-1 * var(--orbit-rot-x, 58deg)));
 
       &:hover,
       &:focus-visible {
-        transform: translate(-50%, -50%) rotateZ(20deg) rotateX(-58deg) scale(1.18);
+        transform: translate(-50%, -50%) rotateZ(calc(-1 * var(--orbit-rot-z, -20deg))) rotateX(calc(-1 * var(--orbit-rot-x, 58deg))) scale(1.18);
       }
     }
 
@@ -52,7 +56,7 @@
 
       .planet-wrap,
       .planet-label {
-        transform: rotateX(var(--orbit-inc-inv, 0deg)) rotateZ(var(--orbit-peri-inv, 0deg)) rotateZ(20deg) rotateX(-58deg);
+        transform: rotateX(var(--orbit-inc-inv, 0deg)) rotateZ(var(--orbit-peri-inv, 0deg)) rotateZ(calc(-1 * var(--orbit-rot-z, -20deg))) rotateX(calc(-1 * var(--orbit-rot-x, 58deg)));
       }
     }
   }
