@@ -68,7 +68,16 @@
     "kids_guide_title": "Guía Científica para Niños",
     "kids_guide_badge": "🚀 Explicación para 5-8 años",
     "tap_kids_explainer": "💡 Toca para explicación infantil",
-    "close_popup": "¡Entendido!"
+    "close_popup": "¡Entendido!",
+    "credits_title": "Créditos y Misión",
+    "credits_btn": "Acerca de y Créditos",
+    "version_label": "Versión de la app",
+    "commit_label": "Commit de Git",
+    "missional_title": "Parte de missional.de",
+    "missional_desc": "Nos enorgullece formar parte de missional.de, una organización sin fines de lucro con sede en el Reino Unido dedicada a fomentar la educación, la curiosidad científica y el asombro cósmico para todos.",
+    "visit_missional": "Visitar missional.de",
+    "data_sources_title": "Datos científicos y fuentes astronómicas",
+    "data_sources_desc": "Los parámetros orbitales, las características físicas planetarias, los ratios gravitacionales y los datos espaciales para niños provienen de NASA Solar System Exploration, JPL, ESA y bases de datos astronómicas verificadas."
   },
   "planets": {
     "sun": {

@@ -1,37 +1,12 @@
 import { BASE_EARTH_SECONDS } from '../data/planets.js';
 
 /**
- * Solve Kepler's Equation M = E - e * sin(E) for Eccentric Anomaly E using Newton-Raphson.
- * @param {number} M Mean anomaly in radians [0, 2PI)
- * @param {number} e Eccentricity [0, 1)
- * @returns {number} E Eccentric anomaly in radians
- */
-function solveKepler(M, e) {
-  const twoPi = Math.PI * 2;
-  M = ((M % twoPi) + twoPi) % twoPi;
-  if (e < 1e-4) return M;
-
-  let E = M;
-  for (let iter = 0; iter < 5; iter++) {
-    const f = E - e * Math.sin(E) - M;
-    const fPrime = 1 - e * Math.cos(E);
-    const delta = f / fPrime;
-    E -= delta;
-    if (Math.abs(delta) < 1e-6) break;
-  }
-  return E;
-}
-
-let orreryAnimState = null;
-
-/**
  * Orrery Scene Orbit & Planet Buttons Builder
- * Computes exact astronomical orbital periods proportional to Earth = 5s base.
+ * Injects orbital ellipse geometry variables and rotating carriers
+ * powered entirely by pure hardware-accelerated CSS animations.
  */
 export function buildOrrery(sceneEl, planets, onPlanetSelect) {
   if (!sceneEl) return;
-
-  const planetTrackers = [];
 
   planets.forEach((p, i) => {
     const o = document.createElement('div');
@@ -43,14 +18,23 @@ export function buildOrrery(sceneEl, planets, onPlanetSelect) {
     const peri = p.perihelionDeg || 0;
     const inc = p.inclinationDeg || 0;
 
-    // Set geometric parameters as CSS variables on each orbit element
+    // Set geometric and timing parameters as CSS variables on each orbit element
+    const periodSeconds = p.periodYears * BASE_EARTH_SECONDS;
+    const delay = -((p.initialPhase || 0) * periodSeconds);
+
     o.style.setProperty('--orbit-a', `${r}vmin`);
     o.style.setProperty('--orbit-b-3d', `${b3d.toFixed(2)}vmin`);
+    o.style.setProperty('--orbit-scale-y', `${(b3d / r).toFixed(4)}`);
     o.style.setProperty('--focal-offset', `${focalOffset.toFixed(2)}vmin`);
     o.style.setProperty('--orbit-peri', `${peri}deg`);
     o.style.setProperty('--orbit-inc', `${inc.toFixed(2)}deg`);
     o.style.setProperty('--orbit-peri-inv', `${(-peri)}deg`);
     o.style.setProperty('--orbit-inc-inv', `${(-inc).toFixed(2)}deg`);
+    o.style.setProperty('--orbit-period', `${periodSeconds.toFixed(2)}s`);
+    o.style.setProperty('--orbit-delay', `${delay.toFixed(2)}s`);
+
+    const carrier = document.createElement('div');
+    carrier.className = 'orbit-carrier';
 
     const b = document.createElement('button');
     b.className = 'planet-btn';
@@ -129,95 +113,10 @@ export function buildOrrery(sceneEl, planets, onPlanetSelect) {
     lbl.textContent = p.name;
     b.appendChild(lbl);
 
-    o.appendChild(b);
+    carrier.appendChild(b);
+    o.appendChild(carrier);
     sceneEl.appendChild(o);
-
-    // Mathematical orbit timing
-    const periodSeconds = p.periodYears * BASE_EARTH_SECONDS;
-    const meanMotion = (2 * Math.PI) / periodSeconds;
-    const initialMeanAnomaly = (p.initialPhase || 0) * 2 * Math.PI;
-
-    planetTrackers.push({
-      btn: b,
-      planet: p,
-      meanMotion,
-      initialMeanAnomaly,
-      eccentricity3d: ecc3d
-    });
   });
-
-  // Start Keplerian Motion Animation Engine
-  startKeplerianEngine(sceneEl, planetTrackers);
-}
-
-/**
- * Realistic Keplerian Simulation Engine
- * Drives planet positions on exact ellipse trajectories with Kepler's 2nd Law speed variations.
- */
-function startKeplerianEngine(sceneEl, trackers) {
-  if (orreryAnimState) {
-    cancelAnimationFrame(orreryAnimState.rafId);
-  }
-
-  let simTime = 0;
-  let lastTime = performance.now();
-  let isPaused = false;
-  let modeBlend = sceneEl.classList.contains('real-orbits') ? 1 : 0;
-
-  // Hover detection for pausing simulation
-  function checkHover(e) {
-    const isTarget = e.target.closest && (e.target.closest('.planet-btn') || e.target.closest('#sun'));
-    isPaused = !!isTarget;
-  }
-
-  sceneEl.addEventListener('pointerover', checkHover);
-  sceneEl.addEventListener('pointerout', (e) => {
-    if (!e.relatedTarget || !sceneEl.contains(e.relatedTarget)) {
-      isPaused = false;
-    } else {
-      checkHover({ target: e.relatedTarget });
-    }
-  });
-
-  function tick(now) {
-    const dt = Math.min((now - lastTime) / 1000, 0.1); // Cap dt to avoid leap on tab switch
-    lastTime = now;
-
-    if (!isPaused) {
-      simTime += dt;
-    }
-
-    const targetBlend = sceneEl.classList.contains('real-orbits') ? 1 : 0;
-    // Smooth transition for eccentricity blend (1.2s transition matches CSS)
-    if (Math.abs(modeBlend - targetBlend) > 0.001) {
-      modeBlend += (targetBlend - modeBlend) * Math.min(dt * 3.5, 0.2);
-    } else {
-      modeBlend = targetBlend;
-    }
-
-    for (let i = 0; i < trackers.length; i++) {
-      const tr = trackers[i];
-      const M = tr.initialMeanAnomaly + tr.meanMotion * simTime;
-      const currentEcc = tr.eccentricity3d * modeBlend;
-      const E = solveKepler(M, currentEcc);
-
-      // Normalized coordinates on the ellipse boundary:
-      // In local coordinates of .orbit:
-      // x = a * cos(E), y = b * sin(E)
-      // Percentage relative to [0, 2a] x [0, 2b] with center at (a, b):
-      const xPercent = 50 + 50 * Math.cos(E);
-      const yPercent = 50 + 50 * Math.sin(E);
-
-      tr.btn.style.left = `${xPercent.toFixed(3)}%`;
-      tr.btn.style.top = `${yPercent.toFixed(3)}%`;
-    }
-
-    orreryAnimState.rafId = requestAnimationFrame(tick);
-  }
-
-  orreryAnimState = {
-    rafId: requestAnimationFrame(tick)
-  };
 }
 
 /**

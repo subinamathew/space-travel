@@ -68,7 +68,16 @@
     "kids_guide_title": "儿童科学指南",
     "kids_guide_badge": "🚀 5-8岁简明讲解",
     "tap_kids_explainer": "💡 点击查看儿童版讲解",
-    "close_popup": "明白了！"
+    "close_popup": "明白了！",
+    "credits_title": "制作致谢与使命",
+    "credits_btn": "关于与致谢",
+    "version_label": "应用版本",
+    "commit_label": "Git 提交",
+    "missional_title": "隶属于 missional.de",
+    "missional_desc": "我们很自豪能够成为 missional.de 的一部分，这是一家总部位于英国的非营利组织，致力于促进教育、科学好奇心以及向所有人传递宇宙的奇迹。",
+    "visit_missional": "访问 missional.de",
+    "data_sources_title": "科学数据与天文学来源",
+    "data_sources_desc": "轨道参数、行星物理特征、重力系数和儿童探索趣味知识均汇编自 NASA 太阳系探索计划、JPL、ESA 以及同行评审的天文学数据库。"
   },
   "planets": {
     "sun": {

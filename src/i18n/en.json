@@ -68,7 +68,16 @@
     "kids_guide_title": "Kids Science Guide",
     "kids_guide_badge": "🚀 5-8 Year Old Explainer",
     "tap_kids_explainer": "💡 Tap for Kids Explainer",
-    "close_popup": "Got it!"
+    "close_popup": "Got it!",
+    "credits_title": "Credits & Mission",
+    "credits_btn": "About & Credits",
+    "version_label": "App Version",
+    "commit_label": "Git Commit",
+    "missional_title": "Part of missional.de",
+    "missional_desc": "We are proud to be part of missional.de, a UK-based non-profit organization dedicated to fostering education, scientific curiosity, and cosmic wonder for everyone.",
+    "visit_missional": "Visit missional.de",
+    "data_sources_title": "Scientific Data & Astronomical Sources",
+    "data_sources_desc": "Orbital parameters, planetary physical characteristics, gravity multipliers, and kids mission facts are curated from NASA Solar System Exploration, JPL, ESA, and peer-reviewed astronomical databases."
   },
   "planets": {
     "sun": {

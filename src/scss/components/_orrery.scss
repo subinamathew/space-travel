@@ -43,7 +43,13 @@
       border-color: rgba(255, 255, 255, 0.16);
     }
 
+    .orbit-carrier {
+      animation-name: orbit-spin-ellipse !important;
+    }
+
     .planet-btn {
+      animation-name: counter-spin-ellipse !important;
+
       .planet-wrap,
       .planet-label {
         transform: rotateX(var(--orbit-inc-inv, 0deg)) rotateZ(var(--orbit-peri-inv, 0deg)) rotateZ(20deg) rotateX(-58deg);
@@ -178,9 +184,60 @@
               border-color 0.4s ease;
 }
 
-// Pause moon systems when mouse comes close to any planet OR the Sun
+/* Rotating orbital carrier — pure CSS hardware animation */
+.orbit-carrier {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: calc(2 * var(--orbit-a, 20vmin));
+  height: calc(2 * var(--orbit-a, 20vmin));
+  margin-top: calc(-1 * var(--orbit-a, 20vmin));
+  margin-left: calc(-1 * var(--orbit-a, 20vmin));
+  border-radius: 50%;
+  transform-style: preserve-3d;
+  pointer-events: none;
+  animation: orbit-spin var(--orbit-period, 10s) linear var(--orbit-delay, 0s) infinite;
+  transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@keyframes orbit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbit-spin-ellipse {
+  from {
+    transform: scaleY(var(--orbit-scale-y, 0.95)) rotate(0deg);
+  }
+  to {
+    transform: scaleY(var(--orbit-scale-y, 0.95)) rotate(360deg);
+  }
+}
+
+@keyframes counter-spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(-360deg);
+  }
+}
+
+@keyframes counter-spin-ellipse {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg) scaleY(calc(1 / var(--orbit-scale-y, 0.95)));
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(-360deg) scaleY(calc(1 / var(--orbit-scale-y, 0.95)));
+  }
+}
+
+// Pause orbits when mouse comes close to any planet OR the Sun
 #scene:has(.planet-btn:hover),
 #scene:has(#sun:hover) {
+  .orbit-carrier,
+  .planet-btn,
   .moon-orbit {
     animation-play-state: paused !important;
   }
@@ -195,13 +252,14 @@
   cursor: pointer;
   outline: none;
   position: absolute;
-  top: 50%;
+  top: 0;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4px;
+  animation: counter-spin var(--orbit-period, 10s) linear var(--orbit-delay, 0s) infinite;
   touch-action: manipulation;
   pointer-events: auto; // Re-enable pointer events for the planet button itself
   z-index: 20;

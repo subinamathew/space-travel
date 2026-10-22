@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title data-i18n="ui.credits_title">Credits & Mission — Solar System Tour</title>
+    <meta name="description" content="App version, Git commit tracking, astronomical data credits, and missional.de non-profit information." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css?v=2.2.0" />
+    <script src="js/script.min.js?v=2.2.0" defer></script>
+</head>
+
+<body class="subpage-body credits-page">
+    <canvas id="stars"></canvas>
+
+    <a id="back-btn" class="visible" href="index.html" aria-label="Back to solar system" data-i18n="ui.back_btn" data-i18n-attr="aria-label:ui.back_btn">← Solar System</a>
+
+    <!-- Top-Right HUD Stack: Language Selector -->
+    <div class="hud-stack">
+        <div id="settings-hud" class="in-stack visible" aria-label="Settings and Language">
+            <div class="hud-header" role="button" tabindex="0" aria-label="Toggle Settings HUD" title="Language Settings" data-i18n-attr="aria-label:ui.toggle_settings,title:ui.toggle_settings">
+                <div class="hud-header-title">
+                    <span>⚙️</span>
+                    <span data-i18n="ui.settings_title">Settings</span>
+                </div>
+            </div>
+            <div class="hud-body" id="settings-hud-body" style="display: flex;">
+                <div class="settings-row">
+                    <label for="lang-select" class="settings-label" data-i18n="ui.language_label">Language:</label>
+                    <select id="lang-select" class="hud-lang-select" aria-label="Select Language">
+                        <option value="en">🇬🇧 English</option>
+                        <option value="de">🇩🇪 Deutsch</option>
+                        <option value="fr">🇫🇷 Français</option>
+                        <option value="es">🇪🇸 Español</option>
+                        <option value="it">🇮🇹 Italiano</option>
+                        <option value="ja">🇯🇵 日本語</option>
+                        <option value="zh">🇨🇳 中文</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Terminal -->
+    <main class="credits-main">
+        <div class="credits-card hero-card">
+            <div class="credits-icon-ring">👥</div>
+            <h1 class="credits-title" data-i18n="ui.credits_title">Credits & Mission</h1>
+            <p class="credits-tagline">Hello Worlds — Interactive Solar System Exploration</p>
+            
+            <div class="version-badges-row">
+                <div class="badge-item">
+                    <span class="badge-label" data-i18n="ui.version_label">App Version</span>
+                    <span class="badge-value app-version-val">v{{APP_VERSION}}</span>
+                </div>
+                <div class="badge-item">
+                    <span class="badge-label" data-i18n="ui.commit_label">Git Commit</span>
+                    <a href="{{COMMIT_URL}}" target="_blank" rel="noopener noreferrer" class="badge-value commit-hash-link" title="View commit on GitHub">
+                        <code>{{GIT_COMMIT}}</code>
+                        <span class="external-icon">↗</span>
+                    </a>
+                </div>
+                <div class="badge-item">
+                    <span class="badge-label">Build Date</span>
+                    <span class="badge-value build-date-val">{{BUILD_DATE}}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Non-Profit Organization Section -->
+        <div class="credits-card mission-card">
+            <div class="card-badge">NON-PROFIT INITIATIVE</div>
+            <h2 class="card-title" data-i18n="ui.missional_title">Part of missional.de</h2>
+            <p class="card-desc" data-i18n="ui.missional_desc">
+                We are proud to be part of missional.de, a UK-based non-profit organization dedicated to fostering education, scientific curiosity, and cosmic wonder for everyone.
+            </p>
+            <div class="card-actions">
+                <a href="https://missional.de" target="_blank" rel="noopener noreferrer" class="btn-primary-action" title="Visit missional.de">
+                    <span>🌐</span>
+                    <span data-i18n="ui.visit_missional">Visit missional.de</span>
+                    <span class="external-icon">↗</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Scientific Data & Astronomical Credits -->
+        <div class="credits-card data-card">
+            <div class="card-badge">ASTRONOMICAL CITATIONS</div>
+            <h2 class="card-title" data-i18n="ui.data_sources_title">Scientific Data & Astronomical Sources</h2>
+            <p class="card-desc" data-i18n="ui.data_sources_desc">
+                Orbital parameters, planetary physical characteristics, gravity multipliers, and kids mission facts are curated from NASA Solar System Exploration, JPL, ESA, and peer-reviewed astronomical databases.
+            </p>
+            <div class="tech-pills">
+                <span class="tech-pill">NASA Solar System</span>
+                <span class="tech-pill">JPL Horizons</span>
+                <span class="tech-pill">ESA Planetary</span>
+                <span class="tech-pill">Pure CSS Kepler Orbits</span>
+                <span class="tech-pill">Google Fonts (Outfit)</span>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

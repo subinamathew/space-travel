@@ -68,7 +68,16 @@
     "kids_guide_title": "Guida Scientifica per Bambini",
     "kids_guide_badge": "🚀 Spiegazione per 5-8 anni",
     "tap_kids_explainer": "💡 Tocca per la spiegazione bimbi",
-    "close_popup": "Capito!"
+    "close_popup": "Capito!",
+    "credits_title": "Crediti e Missione",
+    "credits_btn": "Info e Crediti",
+    "version_label": "Versione dell'app",
+    "commit_label": "Commit Git",
+    "missional_title": "Parte di missional.de",
+    "missional_desc": "Siamo orgogliosi di far parte di missional.de, un'organizzazione non profit con sede nel Regno Unito dedicata a promuovere l'istruzione, la curiosità scientifica e la meraviglia cosmica per tutti.",
+    "visit_missional": "Visita missional.de",
+    "data_sources_title": "Dati scientifici e fonti astronomiche",
+    "data_sources_desc": "I parametri orbitali, le caratteristiche fisiche planetarie, i moltiplicatori di gravità e i fatti per bambini provengono da NASA Solar System Exploration, JPL, ESA e database astronomici verificati."
   },
   "planets": {
     "sun": {

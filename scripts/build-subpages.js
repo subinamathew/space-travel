@@ -1,10 +1,22 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { execSync } from 'child_process';
 import { planets, sunData } from '../src/js/data/planets.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+function getGitCommit() {
+  if (process.env.COMMIT_REF) {
+    return process.env.COMMIT_REF.substring(0, 7);
+  }
+  try {
+    return execSync('git rev-parse --short HEAD').toString().trim();
+  } catch (e) {
+    return 'master';
+  }
+}
 
 // Ensure public and subdirectories exist
 const pubDir = path.resolve(__dirname, '../public');
@@ -63,6 +75,34 @@ if (fs.existsSync(srcI18nDir)) {
   });
   console.log('Copied: src/i18n/ -> public/i18n/');
 }
+
+// 5. Compile src/credits.html -> public/credits.html with Git commit and version
+const pkg = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../package.json'), 'utf8'));
+const appVersion = pkg.version || '1.0.0';
+const gitCommit = getGitCommit();
+const commitUrl = `https://github.com/subinamathew/space-travel/commit/${gitCommit}`;
+const buildDate = new Date().toISOString().split('T')[0];
+
+const srcCredits = path.resolve(__dirname, '../src/credits.html');
+const pubCredits = path.resolve(pubDir, 'credits.html');
+if (fs.existsSync(srcCredits)) {
+  let creditsContent = fs.readFileSync(srcCredits, 'utf8');
+  creditsContent = creditsContent
+    .replace(/\{\{APP_VERSION\}\}/g, appVersion)
+    .replace(/\{\{GIT_COMMIT\}\}/g, gitCommit)
+    .replace(/\{\{COMMIT_URL\}\}/g, commitUrl)
+    .replace(/\{\{BUILD_DATE\}\}/g, buildDate);
+  fs.writeFileSync(pubCredits, creditsContent, 'utf8');
+  console.log(`Generated: public/credits.html (commit: ${gitCommit}, version: ${appVersion})`);
+}
+
+// Write public/version.json
+fs.writeFileSync(
+  path.resolve(pubDir, 'version.json'),
+  JSON.stringify({ version: appVersion, commit: gitCommit, commitUrl, buildDate, time: new Date().toISOString() }, null, 2),
+  'utf8'
+);
+console.log('Generated: public/version.json');
 
 
 
@@ -162,8 +202,19 @@ allBodies.forEach((p, idx) => {
                         <option value="zh">🇨🇳 中文</option>
                     </select>
                 </div>
+                <div class="settings-row settings-credits-row">
+                    <a href="../credits.html" class="settings-credits-link" aria-label="About & Credits" data-i18n-attr="aria-label:ui.credits_btn">
+                        <span class="credits-icon">👥</span>
+                        <span data-i18n="ui.credits_btn">About & Credits</span>
+                    </a>
+                </div>
             </div>
         </div>
+
+        <!-- Quick Access People / Credits Button -->
+        <a href="../credits.html" class="hud-circle-btn hud-people-btn in-stack" aria-label="About & Credits" title="About & Credits" data-i18n-attr="aria-label:ui.credits_btn,title:ui.credits_btn">
+            <span class="hud-people-icon">👥</span>
+        </a>
     </div>
 
     <main class="planet-subpage">
