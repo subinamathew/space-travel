@@ -45,18 +45,21 @@ export function buildOrrery(sceneEl, planets, onPlanetSelect) {
 
     const w = document.createElement('div');
     w.className = 'planet-wrap';
-    if (p.hasRing) {
-      const rng = document.createElement('div');
-      rng.className = 'home-ring';
-      rng.style.width = `${p.size * 2.1}vmin`;
-      rng.style.height = `${p.size * 0.42}vmin`;
-      w.appendChild(rng);
-    }
 
     const s = document.createElement('div');
-    s.className = 'planet-sphere';
-    s.style.width = `${p.size}vmin`;
-    s.style.height = `${p.size}vmin`;
+    if (p.hasRing) {
+      // Saturn's image (960x361) includes the full ring span; scale width so the central globe is ~2.3vmin
+      s.className = 'planet-sphere is-ringed';
+      const ringW = 5.8;
+      const ringH = ringW / (960 / 361);
+      s.style.width = `${ringW}vmin`;
+      s.style.height = `${ringH.toFixed(2)}vmin`;
+      s.style.filter = `drop-shadow(0 0 8px var(--pglow))`;
+    } else {
+      s.className = 'planet-sphere';
+      s.style.width = `${p.size}vmin`;
+      s.style.height = `${p.size}vmin`;
+    }
     s.style.backgroundImage = `url(images/${p.slug}.png)`;
     s.style.backgroundSize = 'contain';
     s.style.backgroundRepeat = 'no-repeat';

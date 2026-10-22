@@ -24,17 +24,17 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 5.5vmin;
-  height: 5.5vmin;
+  width: 6.2vmin;
+  height: 6.2vmin;
   border-radius: 50%;
-  background: radial-gradient(circle at 40% 40%, #fff5aa, #ffcc00 40%, #ff8800);
+  background: radial-gradient(circle at 45% 45%, #ffe066 0%, #ff7700 45%, #d93800 80%, #991b00 100%);
   background-image: url('../images/sun.png');
   background-size: cover;
   background-position: center;
   box-shadow:
-    0 0 18px 6px rgba(255, 200, 0, 0.75),
-    0 0 50px 18px rgba(255, 140, 0, 0.45),
-    0 0 100px 35px rgba(255, 100, 0, 0.18);
+    0 0 22px 8px rgba(255, 120, 0, 0.85),
+    0 0 55px 20px rgba(255, 60, 0, 0.55),
+    0 0 110px 45px rgba(220, 30, 0, 0.35);
   z-index: 25;
   pointer-events: auto;
   cursor: pointer;
@@ -60,16 +60,16 @@
 
   &:hover,
   &:focus-visible {
-    transform: translate(-50%, -50%) scale(1.25);
+    transform: translate(-50%, -50%) scale(1.22);
     box-shadow:
-      0 0 30px 10px rgba(255, 230, 50, 0.95),
-      0 0 75px 25px rgba(255, 160, 0, 0.75),
-      0 0 140px 50px rgba(255, 100, 0, 0.45);
+      0 0 35px 12px rgba(255, 140, 0, 0.95),
+      0 0 85px 30px rgba(255, 70, 0, 0.75),
+      0 0 160px 60px rgba(220, 30, 0, 0.5);
   }
 
   @include mobile {
-    width: 6.5vmin;
-    height: 6.5vmin;
+    width: 7.2vmin;
+    height: 7.2vmin;
   }
 }
 
@@ -146,6 +146,11 @@
     .planet-sphere {
       box-shadow: 0 0 24px var(--pglow), 0 0 48px var(--pglow);
       transform: scale(1.45);
+
+      &.is-ringed {
+        box-shadow: none;
+        filter: drop-shadow(0 0 16px var(--pglow)) drop-shadow(0 0 32px var(--pglow));
+      }
     }
 
     .planet-label {
@@ -175,9 +180,15 @@
   border-radius: 50%;
   background: radial-gradient(circle at 35% 35%, var(--pc1), var(--pc2));
   box-shadow: 0 0 8px var(--pglow);
-  transition: box-shadow $transition-fast, transform $transition-fast;
+  transition: box-shadow $transition-fast, transform $transition-fast, filter $transition-fast;
   position: relative;
   z-index: 1;
+
+  &.is-ringed {
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
 }
 
 .home-ring {

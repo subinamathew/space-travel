@@ -45,8 +45,23 @@ export function initViewer(planets) {
 
     if (pvEl) pvEl.style.background = p.bg;
     if (pvPlanet) {
-      pvPlanet.style.width = `${p.pvSize}px`;
-      pvPlanet.style.height = `${p.pvSize}px`;
+      if (p.hasRing) {
+        const ringW = Math.round(p.pvSize * 2.2);
+        const ringH = Math.round(ringW / (960 / 361));
+        pvPlanet.style.width = `${ringW}px`;
+        pvPlanet.style.height = `${ringH}px`;
+        pvPlanet.style.borderRadius = '0';
+        pvPlanet.style.background = 'none';
+        pvPlanet.style.boxShadow = 'none';
+        pvPlanet.style.filter = `drop-shadow(0 0 40px var(--glow, ${p.glow}))`;
+      } else {
+        pvPlanet.style.width = `${p.pvSize}px`;
+        pvPlanet.style.height = `${p.pvSize}px`;
+        pvPlanet.style.borderRadius = '50%';
+        pvPlanet.style.background = '';
+        pvPlanet.style.boxShadow = '';
+        pvPlanet.style.filter = '';
+      }
       pvPlanet.style.backgroundImage = `url(images/${p.slug}.png)`;
       pvPlanet.style.backgroundSize = 'contain';
       pvPlanet.style.backgroundRepeat = 'no-repeat';
@@ -54,11 +69,7 @@ export function initViewer(planets) {
     }
 
     if (pvRing) {
-      pvRing.classList.toggle('visible', !!p.hasRing);
-      if (p.hasRing) {
-        pvRing.style.width = `${p.pvSize * 1.6}px`;
-        pvRing.style.height = `${p.pvSize * 0.32}px`;
-      }
+      pvRing.classList.remove('visible'); // Photographic image has built-in rings
     }
 
     [pvGreeting, pvName, pvFact].forEach(el => {
