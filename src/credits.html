@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title data-i18n="ui.credits_title">Credits & Mission — Solar System Tour</title>
-    <meta name="description" content="App version, Git commit tracking, astronomical data credits, and missional.de non-profit information." />
+    <meta name="description" content="Created by Zachary David Mathew + Papa. Supported with Gemini Antigravity. App version, Git commit tracking, astronomical credits, and missional.eu non-profit info." />
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css?v=2.2.0" />
@@ -63,6 +63,10 @@
                 
                 <div class="version-badges-row">
                     <div class="badge-item">
+                        <span class="badge-label" data-i18n="ui.author_label">Author</span>
+                        <span class="badge-value author-badge-val" data-i18n="ui.author_names">Zachary David Mathew + Papa</span>
+                    </div>
+                    <div class="badge-item">
                         <span class="badge-label" data-i18n="ui.version_label">App Version</span>
                         <span class="badge-value app-version-val">v{{APP_VERSION}}</span>
                     </div>
@@ -80,23 +84,39 @@
                 </div>
             </div>
 
-            <!-- Card 2: Non-Profit Organization Section -->
+            <!-- Card 2: Creators & Collaboration Section -->
+            <div class="credits-card creators-card">
+                <div class="card-badge">CREATORS & EXPLORERS</div>
+                <h2 class="card-title" data-i18n="ui.author_names">Zachary David Mathew + Papa</h2>
+                <p class="card-desc" data-i18n="ui.creators_desc">
+                    An interactive cosmic exploration created by Zachary David Mathew and Papa, designed to bring the wonders of the solar system to life for young explorers. Built with modern web standards and supported with Gemini Antigravity.
+                </p>
+                <div class="author-support-box">
+                    <div class="support-badge">
+                        <span class="support-icon">✨</span>
+                        <span class="support-title" data-i18n="ui.supported_by">Supported with Gemini Antigravity</span>
+                    </div>
+                    <p class="support-desc">Advanced Agentic AI Pair Programming & Research Architecture</p>
+                </div>
+            </div>
+
+            <!-- Card 3: Non-Profit Organization Section -->
             <div class="credits-card mission-card">
                 <div class="card-badge">NON-PROFIT INITIATIVE</div>
-                <h2 class="card-title" data-i18n="ui.missional_title">Part of missional.de</h2>
+                <h2 class="card-title" data-i18n="ui.missional_title">Part of missional.eu</h2>
                 <p class="card-desc" data-i18n="ui.missional_desc">
-                    We are proud to be part of missional.de, a UK-based non-profit organization dedicated to fostering education, scientific curiosity, and cosmic wonder for everyone.
+                    We are proud to be part of missional.eu, a UK-based non-profit organization dedicated to fostering education, scientific curiosity, and cosmic wonder for everyone.
                 </p>
                 <div class="card-actions">
-                    <a href="https://missional.de" target="_blank" rel="noopener noreferrer" class="btn-primary-action" title="Visit missional.de">
+                    <a href="https://missional.eu" target="_blank" rel="noopener noreferrer" class="btn-primary-action" title="Visit missional.eu">
                         <span>🌐</span>
-                        <span data-i18n="ui.visit_missional">Visit missional.de</span>
+                        <span data-i18n="ui.visit_missional">Visit missional.eu</span>
                         <span class="external-icon">↗</span>
                     </a>
                 </div>
             </div>
 
-            <!-- Card 3: Scientific Data & Astronomical Credits -->
+            <!-- Card 4: Scientific Data & Astronomical Credits -->
             <div class="credits-card data-card">
                 <div class="card-badge">ASTRONOMICAL CITATIONS</div>
                 <h2 class="card-title" data-i18n="ui.data_sources_title">Scientific Data & Astronomical Sources</h2>
@@ -108,6 +128,7 @@
                     <span class="tech-pill">JPL Horizons</span>
                     <span class="tech-pill">ESA Planetary</span>
                     <span class="tech-pill">Pure CSS Kepler Orbits</span>
+                    <span class="tech-pill">Gemini Antigravity</span>
                     <span class="tech-pill">Google Fonts (Outfit)</span>
                 </div>
             </div>

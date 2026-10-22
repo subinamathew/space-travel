@@ -615,6 +615,12 @@
       font-size: 0.95rem;
       font-weight: 700;
       color: #38bdf8;
+
+      &.author-badge-val {
+        color: #fde047;
+        font-size: 0.88rem;
+        text-shadow: 0 0 10px rgba(253, 224, 71, 0.4);
+      }
     }
 
     .commit-hash-link {
@@ -663,6 +669,37 @@
     line-height: 1.6;
     color: rgba(255, 255, 255, 0.85);
     margin-bottom: 1.2rem;
+  }
+
+  .author-support-box {
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.12) 0%, rgba(139, 92, 246, 0.12) 100%);
+    border: 1px solid rgba(147, 197, 253, 0.35);
+    border-radius: 14px;
+    padding: 0.85rem 1.1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin-top: 0.2rem;
+
+    .support-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #93c5fd;
+      font-size: 0.95rem;
+      font-weight: 700;
+
+      .support-icon {
+        font-size: 1.15rem;
+      }
+    }
+
+    .support-desc {
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.65);
+      margin: 0;
+      letter-spacing: 0.02em;
+    }
   }
 
   .card-actions {
