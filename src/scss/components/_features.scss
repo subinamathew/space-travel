@@ -502,9 +502,12 @@
 
 @media screen and (max-width: 768px) {
   .features-top-nav {
-    top: 1rem;
-    left: 1rem;
-    right: 1rem;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    padding-top: 5px;
+    padding-left: 5px;
+    gap: 0.5rem;
   }
 
   .features-container {
