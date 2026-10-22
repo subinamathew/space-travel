@@ -64,7 +64,11 @@
     "feel_boots": "Mondstiefel-Sprungschuhe!",
     "jump_sun": "Die gewaltige Schwerkraft der Sonne macht jeden Sprung unmöglich!",
     "jump_higher": "{ratio}× höher als auf der Erde! Hoch hinaus in den Himmel!",
-    "jump_lower": "Die starke Schwerkraft zieht dich rasch nach unten — nur {ratio}× deines Erdsprungs."
+    "jump_lower": "Die starke Schwerkraft zieht dich rasch nach unten — nur {ratio}× deines Erdsprungs.",
+    "kids_guide_title": "Kinder-Wissenschaftsführer",
+    "kids_guide_badge": "🚀 Für 5–8 Jahre erklärt",
+    "tap_kids_explainer": "💡 Tippen für Kinder-Erklärung",
+    "close_popup": "Verstanden!"
   },
   "planets": {
     "sun": {
@@ -81,42 +85,50 @@
         {
           "label": "Spektralklasse",
           "value": "G2V (Gelber Zwerg)",
-          "sub": "Hauptreihenstern; ~4,6 Mrd. Jahre alt"
+          "sub": "Hauptreihenstern; ~4,6 Mrd. Jahre alt",
+          "kids": "Obwohl man die Sonne einen \"gelben Zwerg\" nennt, ist sie überhaupt nicht winzig! G2V ist ein Sternen-Code, der bedeutet, dass sie ein leuchtender gelber Kraftstern in ihren besten Jahren ist."
         },
         {
           "label": "Oberflächentemperatur",
           "value": "5.500 °C (5.778 K)",
-          "sub": "Oberfläche 55× kochendes Wasser; Kern ist 150.000× heißer als kochendes Wasser (~15 Mio. °C)"
+          "sub": "Oberfläche 55-mal kochendes Wasser; Kern ist 150.000-mal heißer als kochendes Wasser (~15 Mio. °C)",
+          "kids": "Die Oberfläche der Sonne ist 5.500°C heiß—heißer als 55-mal dein heißes Badewasser! Tief im Kern ist sie 150.000-mal heißer als kochendes Wasser (~15 Millionen °C)!"
         },
         {
           "label": "Äquatordurchmesser",
           "value": "1.392.700 km",
-          "sub": "109,2 × Erddurchmesser"
+          "sub": "109,2 × Erddurchmesser",
+          "kids": "Die Sonne ist gigantisch! Wäre sie ein riesiger hohler Wasserball, würden über eine Million Erden wie kleine Murmeln hineinpassen."
         },
         {
           "label": "Masse",
           "value": "1,989 × 10³⁰ kg",
-          "sub": "333.000 × Erde (99,86 % Systemmasse)"
+          "sub": "333.000 × Erde (99,86 % Systemmasse)",
+          "kids": "Die Sonne besitzt 99,86% der gesamten Masse unseres Sonnensystems! Sie ist 333.000-mal schwerer als die Erde und hält alle Planeten mit ihrer Riesenkraft auf ihrer Bahn."
         },
         {
           "label": "Galaktische Geschwindigkeit",
           "value": "220 km/s",
-          "sub": "Milchstraßen-Umlauf: ~230 Mio. Jahre"
+          "sub": "Milchstraßen-Umlauf: ~230 Mio. Jahre",
+          "kids": "Unsere Sonne rast mit 220 Kilometern pro Sekunde um die Milchstraße! Das ist über 700-mal schneller als ein Hochgeschwindigkeitszug."
         },
         {
           "label": "Abstand zur Erde",
           "value": "149.600.000 km",
-          "sub": "1,0 AE (Lichtlaufzeit: 8m 20s)"
+          "sub": "1,0 AE (Lichtlaufzeit: 8m 20s)",
+          "kids": "Die Sonne ist 150 Millionen Kilometer entfernt. Sonnenlicht ist das Schnellste im Universum, braucht aber trotzdem 8 Minuten und 20 Sekunden bis zu deinen Augen auf der Erde!"
         },
         {
           "label": "Rotationsperiode",
           "value": "25,05 Tage (Äquator)",
-          "sub": "34,4 Tage an den Polen (differentielle Rotation)"
+          "sub": "34,4 Tage an den Polen (differentielle Rotation)",
+          "kids": "Die Sonne ist ein wirbelnder Riesenball aus heißem Gas und Plasma. Weil sie nicht aus festem Gestein besteht, dreht sich ihr Äquator in 25 Tagen, ihre Pole aber in 34 Tagen!"
         },
         {
           "label": "Zusammensetzung",
           "value": "73,4 % H₂, 25,0 % He",
-          "sub": "1,6 % schwerere Elemente (C, N, O, Fe)"
+          "sub": "1,6 % schwerere Elemente (C, N, O, Fe)",
+          "kids": "Die Sonne besteht aus Wasserstoff (H₂) und Helium (He). Beide sind leichter als unsere Atemluft! Wasserstoff verbrennt in Kernfusionsfeuern und schenkt der Erde Licht und Wärme."
         }
       ]
     },
@@ -134,42 +146,50 @@
         {
           "label": "Abstand zur Sonne",
           "value": "57,9 Mio. km",
-          "sub": "0,387 AE"
+          "sub": "0,387 AE",
+          "kids": "Merkur ist der sonnennächste Planet! Von dort aus würde die Sonne dreimal so riesig am Himmel leuchten wie von der Erde aus."
         },
         {
           "label": "Umlaufzeit",
           "value": "87,97 Erdtage",
-          "sub": "Schnellster Orbit im Sonnensystem"
+          "sub": "Schnellster Orbit im Sonnensystem",
+          "kids": "Merkur ist der schnellste Flitzer im Weltall! In nur 88 Tagen rast er einmal um die Sonne—du hättest alle 3 Monate Geburtstag!"
         },
         {
           "label": "Tageslänge",
           "value": "175,9 Erdtage",
-          "sub": "Rotation: 58,6 Tage"
+          "sub": "Rotation: 58,6 Tage",
+          "kids": "Merkur dreht sich ganz langsam um sich selbst. Ein einziger Merkurtag dauert 176 Erdtage—das ist länger als sein ganzes Jahr!"
         },
         {
           "label": "Äquatorradius",
           "value": "2.439,7 km",
-          "sub": "0,383 × Erde"
+          "sub": "0,383 × Erde",
+          "kids": "Merkur ist das Baby unter den Planeten—nur wenig größer als unser Mond. Er ist voller Krater von Weltraum-Meteoriten und sieht aus wie ein Golfball."
         },
         {
           "label": "Masse",
           "value": "3,30 × 10²³ kg",
-          "sub": "0,055 × Erde"
+          "sub": "0,055 × Erde",
+          "kids": "Obwohl Merkur klein ist, ist er superschwer, weil in seinem Inneren ein gigantischer Kern aus echtem Eisenmetall steckt!"
         },
         {
           "label": "Oberflächentemperatur",
           "value": "−180 °C bis 430 °C",
-          "sub": "Tag ist 4× heißer als kochendes Wasser; Nacht ist 9× kälter als ein Gefrierfach"
+          "sub": "Tag ist 4-mal heißer als kochendes Wasser; Nacht ist 9-mal kälter als ein Gefrierfach",
+          "kids": "Merkur hat keine Lufthülle! Tagsüber ist es 4-mal heißer als kochendes Wasser, nachts stürzt die Temperatur auf −180°C ab—9-mal kälter als ein Gefrierfach!"
         },
         {
           "label": "Monde & Ringe",
           "value": "0 Monde · 0 Ringe",
-          "sub": "Merkur besitzt keine Monde oder natürlichen Satelliten"
+          "sub": "Merkur besitzt keine Monde oder natürlichen Satelliten",
+          "kids": "Merkur hat 0 Monde und 0 Ringe! Er ist der Sonne so nah, dass ihre gewaltige Schwerkraft jeden Mond sofort wegreißen würde."
         },
         {
           "label": "Atmosphäre",
           "value": "Exosphäre",
-          "sub": "Spuren von Sauerstoff, Natrium, Wasserstoff"
+          "sub": "Spuren von Sauerstoff, Natrium, Wasserstoff",
+          "kids": "Auf Merkur gibt es fast keine Luft zum Atmen, nur einen hauchdünnen Hauch namens Exosphäre aus winzigen Teilchen des Sonnenwinds."
         }
       ]
     },
@@ -187,42 +207,50 @@
         {
           "label": "Abstand zur Sonne",
           "value": "108,2 Mio. km",
-          "sub": "0,723 AE"
+          "sub": "0,723 AE",
+          "kids": "Die Venus ist unser nächster Nachbarplanet. Sie reflektiert so viel Sonnenlicht, dass sie nach dem Mond das hellste Licht am Nachthimmel ist!"
         },
         {
           "label": "Umlaufzeit",
           "value": "224,7 Erdtage",
-          "sub": "0,615 Erdjahr"
+          "sub": "0,615 Erdjahr",
+          "kids": "Die Venus umkreist die Sonne in 225 Erdtagen. Da sie näher an der Sonne ist als die Erde, ist ihr Jahr etwa 4 Monate kürzer als unseres."
         },
         {
           "label": "Tageslänge",
           "value": "243,0 Erdtage",
-          "sub": "Retrograde Rotation (dreht rückwärts)"
+          "sub": "Retrograde Rotation (dreht rückwärts)",
+          "kids": "Die Venus dreht sich rückwärts! Während die Erde gegen den Uhrzeigersinn rotiert, dreht sich Venus im Uhrzeigersinn. Die Sonne geht dort im Westen auf und im Osten unter! Ein Venustag dauert länger als ihr ganzes Jahr!"
         },
         {
           "label": "Äquatorradius",
           "value": "6.051,8 km",
-          "sub": "0,949 × Erde (Erdzwilling)"
+          "sub": "0,949 × Erde (Erdzwilling)",
+          "kids": "Die Venus ist fast genauso groß wie die Erde (etwa 95% der Erdbreite). Forscher nennen sie die Zwillingsschwester der Erde, aber sie ist ein glühend heißer Zwilling."
         },
         {
           "label": "Masse",
           "value": "4,87 × 10²⁴ kg",
-          "sub": "0,815 × Erde"
+          "sub": "0,815 × Erde",
+          "kids": "Die Venus ist fast genauso schwer wie die Erde. Wenn du auf der Venus stehen würdest, würde sich dein Gewicht fast wie zu Hause anfühlen (91%)."
         },
         {
           "label": "Oberflächentemperatur",
           "value": "465 °C (Mittelwert)",
-          "sub": "Fast 5× heißer als kochendes Wasser — schmilzt Blei!"
+          "sub": "Fast 5-mal heißer als kochendes Wasser — schmilzt Blei!",
+          "kids": "Die Venus ist mit 465°C der heißeste Planet im ganzen Sonnensystem—fast 5-mal heißer als kochendes Wasser! Dicke gelbe Wolken stauen die Hitze und bringen Blei zum Schmelzen."
         },
         {
           "label": "Monde & Ringe",
           "value": "0 Monde · 0 Ringe",
-          "sub": "Die Venus besitzt keine Monde oder natürlichen Satelliten"
+          "sub": "Die Venus besitzt keine Monde oder natürlichen Satelliten",
+          "kids": "Die Venus besitzt 0 Monde und 0 Ringe! Genau wie bei Merkur würde die Sonne jeden Begleiter sofort entreißen."
         },
         {
           "label": "Atmosphäre",
           "value": "96,5 % CO₂, 3,5 % N₂",
-          "sub": "Schwefelsäurewolken; 92 bar Druck"
+          "sub": "Schwefelsäurewolken; 92 bar Druck",
+          "kids": "Die Luft auf der Venus besteht aus Kohlendioxid mit Wolken aus echter Batteriesäure (Schwefelsäure)! Der Luftdruck ist 92-mal höher als auf der Erde und würde ein U-Boot plattdrücken."
         }
       ]
     },
@@ -240,42 +268,50 @@
         {
           "label": "Abstand zur Sonne",
           "value": "149,6 Mio. km",
-          "sub": "1,000 AE (Astronomische Einheit)"
+          "sub": "1,000 AE (Astronomische Einheit)",
+          "kids": "Die Erde liegt in der \"Goldlöckchen-Zone\"—genau im richtigen Abstand zur Sonne, damit Wasser flüssig bleibt. Dieser Abstand heißt 1 Astronomische Einheit (AU)!"
         },
         {
           "label": "Umlaufzeit",
           "value": "365,25 Tage",
-          "sub": "1,000 Erdjahr (Referenzwert)"
+          "sub": "1,000 Erdjahr (Referenzwert)",
+          "kids": "Die Erde braucht 365 Tage und 6 Stunden für einen Sonnenumlauf. Die 6 Extrastunden ergeben alle 4 Jahre ein Schaltjahr mit dem 29. Februar!"
         },
         {
           "label": "Tageslänge",
           "value": "23h 56m 04s",
-          "sub": "24,0 Stunden Sonnentag"
+          "sub": "24,0 Stunden Sonnentag",
+          "kids": "Die Erde dreht sich alle 24 Stunden einmal um sich selbst. Wir drehen uns gegen den Uhrzeigersinn, deshalb geht die Sonne morgens im Osten auf und abends im Westen unter!"
         },
         {
           "label": "Äquatorradius",
           "value": "6.371,0 km",
-          "sub": "Basiseinheit: 1,000 R⊕"
+          "sub": "Basiseinheit: 1,000 R⊕",
+          "kids": "Die Erde ist der größte der vier Gesteinsplaneten! Ein Tunnel mitten durch das Zentrum würde über 12.700 Kilometer messen."
         },
         {
           "label": "Masse",
           "value": "5,972 × 10²⁴ kg",
-          "sub": "Basiseinheit: 1,000 M⊕"
+          "sub": "Basiseinheit: 1,000 M⊕",
+          "kids": "Die Erde wiegt etwa 6 Trillionen Tonnen (eine 6 mit 24 Nullen)! Diese Masse schenkt uns die perfekte Schwerkraft, die Ozeane und Luft festhält."
         },
         {
           "label": "Oberflächentemperatur",
           "value": "−88 °C bis 58 °C",
-          "sub": "Mittel: 15 °C — angenehme Zimmertemperatur mit flüssigen Ozeanen"
+          "sub": "Mittel: 15 °C — angenehme Zimmertemperatur mit flüssigen Ozeanen",
+          "kids": "Die Erde hat eine angenehme Durchschnittstemperatur von 15°C (Zimmertemperatur)! Unsere Atmosphäre wärmt uns wie eine kuschelige Decke."
         },
         {
           "label": "Monde & Ringe",
           "value": "1 Mond · 0 Ringe",
-          "sub": "Der einzige natürliche Mond der Erde ist Luna (Der Mond)"
+          "sub": "Der einzige natürliche Mond der Erde ist Luna (Der Mond)",
+          "kids": "Die Erde hat einen treuen Mond! Er sorgt zweimal täglich für Ebbe und Flut in den Meeren und erhellt sanft die Nacht."
         },
         {
           "label": "Atmosphäre",
           "value": "78 % N₂, 21 % O₂, 1 % Ar",
-          "sub": "Schützende Ozonschicht & Magnetfeld"
+          "sub": "Schützende Ozonschicht & Magnetfeld",
+          "kids": "Die Erde hat die einzige atembare Luft im Universum: 21% Sauerstoff für Mensch und Tier, 78% Stickstoff für Pflanzen und eine Ozonschicht gegen Sonnenbrand."
         }
       ]
     },
@@ -293,42 +329,50 @@
         {
           "label": "Abstand zur Sonne",
           "value": "227,9 Mio. km",
-          "sub": "1,524 AE"
+          "sub": "1,524 AE",
+          "kids": "Der Mars ist 1,5-mal weiter von der Sonne entfernt als die Erde und deshalb viel kälter."
         },
         {
           "label": "Umlaufzeit",
           "value": "686,98 Erdtage",
-          "sub": "1,881 Erdjahre"
+          "sub": "1,881 Erdjahre",
+          "kids": "Ein Marsjahr dauert 687 Erdtage—fast zwei ganze Erdenjahre! Frühling, Sommer, Herbst und Winter dauern doppelt so lange wie bei uns."
         },
         {
           "label": "Tageslänge",
           "value": "24h 37m 22s",
-          "sub": "1 Sol (~1,027 Erdtage)"
+          "sub": "1 Sol (~1,027 Erdtage)",
+          "kids": "Ein Marstag heißt \"Sol\" und dauert 24 Stunden und 37 Minuten—fast genau wie ein Erdtag! Roboter auf dem Mars schlafen, wenn die Sonne untergeht."
         },
         {
           "label": "Äquatorradius",
           "value": "3.389,5 km",
-          "sub": "0,532 × Erde"
+          "sub": "0,532 × Erde",
+          "kids": "Der Mars ist etwa halb so breit wie die Erde. Weil er keine Ozeane hat, ist sein trockenes Land genauso groß wie alle Kontinente der Erde zusammen!"
         },
         {
           "label": "Masse",
           "value": "6,42 × 10²³ kg",
-          "sub": "0,107 × Erde"
+          "sub": "0,107 × Erde",
+          "kids": "Der Mars wiegt nur ein Zehntel der Erde. Geringere Schwerkraft bedeutet: Du wiegst nur ein Drittel und kannst 2,6-mal höher hüpfen!"
         },
         {
           "label": "Oberflächentemperatur",
           "value": "−140 °C bis 20 °C",
-          "sub": "Mittel: −63 °C — über 3× kälter als Gefrierschrank-Eis"
+          "sub": "Mittel: −63 °C — über 3-mal kälter als Gefrierschrank-Eis",
+          "kids": "Der Mars ist eine eisige Wüste mit durchschnittlich −63°C—über 3-mal kälter als Gefrierfacheis. Nachts sinkt es sogar auf −140°C."
         },
         {
           "label": "Monde & Ringe",
           "value": "2 Monde · 0 Ringe",
-          "sub": "Die beiden Monde sind Phobos und Deimos"
+          "sub": "Die beiden Monde sind Phobos und Deimos",
+          "kids": "Der Mars hat zwei kleine Kartoffelmonde namens Phobos und Deimos! Phobos flitzt so schnell, dass er zweimal am Tag im Westen auf- und im Osten untergeht."
         },
         {
           "label": "Atmosphäre",
           "value": "95,3 % CO₂, 2,6 % N₂",
-          "sub": "Dünne Atmosphäre (~0,006 bar)"
+          "sub": "Dünne Atmosphäre (~0,006 bar)",
+          "kids": "Die Marsluft ist sehr dünn und besteht aus Kohlendioxid. Riesige rote Staubstürme können den ganzen Planeten monatelang einhüllen!"
         }
       ]
     },
@@ -346,42 +390,50 @@
         {
           "label": "Abstand zur Sonne",
           "value": "778,6 Mio. km",
-          "sub": "5,204 AE"
+          "sub": "5,204 AE",
+          "kids": "Jupiter ist 5-mal weiter von der Sonne entfernt als die Erde. Hier draußen ist das Sonnenlicht 27-mal schwächer und der Weltraum eiskalt."
         },
         {
           "label": "Umlaufzeit",
           "value": "11,86 Erdjahre",
-          "sub": "4.332,6 Erdtage"
+          "sub": "4.332,6 Erdtage",
+          "kids": "Jupiter braucht fast 12 Erdenjahre für eine Sonnenumrundung! Ein Kind wäre fast mit der Grundschule fertig, bevor sein erster Jupiter-Geburtstag ansteht."
         },
         {
           "label": "Tageslänge",
           "value": "9h 55m 30s",
-          "sub": "Schnellste Planetenrotation"
+          "sub": "Schnellste Planetenrotation",
+          "kids": "Jupiter dreht sich am schnellsten von allen Planeten! Ein ganzer Tag dauert weniger als 10 Stunden, wodurch er wie ein zusammengedrückter Ball aussieht."
         },
         {
           "label": "Äquatorradius",
           "value": "69.911 km",
-          "sub": "10,97 × Erde"
+          "sub": "10,97 × Erde",
+          "kids": "Jupiter ist der König der Planeten—11-mal breiter als die Erde! Über 1.300 Erdkugeln würden locker in seinen Bauch passen."
         },
         {
           "label": "Masse",
           "value": "1,898 × 10²⁷ kg",
-          "sub": "317,8 × Erde (2,5× aller Planeten)"
+          "sub": "317,8 × Erde (2,5-mal aller Planeten)",
+          "kids": "Jupiter ist 2,5-mal schwerer als alle anderen 7 Planeten zusammen! Seine Riesenanziehung saugt gefährliche Kometen auf und beschützt die Erde."
         },
         {
           "label": "Wolkendeckentemperatur",
           "value": "−110 °C",
-          "sub": "Wolkendecke −110 °C; tiefer Kern ist 240× heißer als kochendes Wasser (~24.000 °C)"
+          "sub": "Wolkendecke −110 °C; tiefer Kern ist 240-mal heißer als kochendes Wasser (~24.000 °C)",
+          "kids": "Jupiters Wolkendecke hat −110°C, aber im Kern herrschen 24.000°C—heißer als 240-mal kochendes Wasser!"
         },
         {
           "label": "Monde & Ringe",
           "value": "95 Monde · 4 Ringe",
-          "sub": "Die bekanntesten Hauptmonde sind Io, Europa, Ganymed und Kallisto"
+          "sub": "Die bekanntesten Hauptmonde sind Io, Europa, Ganymed und Kallisto",
+          "kids": "Jupiter hat 95 Monde! Die vier größten sind Ganymed (größer als Merkur!), Europa (mit riesigem Warmwasserozean!), Io (mit 400 Vulkanen!) und Kallisto."
         },
         {
           "label": "Atmosphäre",
           "value": "89,8 % H₂, 10,2 % He",
-          "sub": "Spuren von Methan, Ammoniak, Wasserdampf"
+          "sub": "Spuren von Methan, Ammoniak, Wasserdampf",
+          "kids": "Jupiter hat keinen festen Boden—er ist ein Gasriese aus Wasserstoff und Helium! Sein Großer Roter Fleck ist ein Riesensturm, größer als die Erde."
         }
       ]
     },
@@ -399,42 +451,50 @@
         {
           "label": "Abstand zur Sonne",
           "value": "1,434 Mrd. km",
-          "sub": "9,582 AE"
+          "sub": "9,582 AE",
+          "kids": "Saturn ist fast 10-mal weiter von der Sonne entfernt als die Erde! Sonnenlicht braucht 80 Minuten bis zu seinen goldenen Wolken."
         },
         {
           "label": "Umlaufzeit",
           "value": "29,45 Erdjahre",
-          "sub": "10.759,2 Erdtage"
+          "sub": "10.759,2 Erdtage",
+          "kids": "Saturn braucht fast 30 Erdenjahre für eine Sonnenrunde. In deinem ganzen Leben erlebst du nur zwei oder drei Saturnjahre!"
         },
         {
           "label": "Tageslänge",
           "value": "10h 33m 38s",
-          "sub": "Differentielle schnelle Rotation"
+          "sub": "Differentielle schnelle Rotation",
+          "kids": "Obwohl Saturn riesig ist, dreht er sich in nur 10,5 Stunden einmal um sich selbst und wölbt sich am Äquator nach außen."
         },
         {
           "label": "Äquatorradius",
           "value": "58.232 km",
-          "sub": "9,14 × Erde"
+          "sub": "9,14 × Erde",
+          "kids": "Saturn ist 9-mal breiter als die Erde! Samt seinen Ringen misst er 282.000 Kilometer—fast der Abstand von der Erde bis zum Mond!"
         },
         {
           "label": "Masse",
           "value": "5,683 × 10²⁶ kg",
-          "sub": "95,2 × Erde (Dichte: 0,687 g/cm³)"
+          "sub": "95,2 × Erde (Dichte: 0,687 g/cm³)",
+          "kids": "Saturn ist 95-mal schwerer als die Erde, aber leichter als Wasser! In einer gigantischen Badewanne würde Saturn wie ein Badeentchen schwimmen!"
         },
         {
           "label": "Wolkendeckentemperatur",
           "value": "−140 °C",
-          "sub": "Obere Wolken −140 °C (7× kälter als Gefrierfach); Inneres 115× kochendes Wasser"
+          "sub": "Obere Wolken −140 °C (7-mal kälter als Gefrierfach); Inneres 115-mal kochendes Wasser",
+          "kids": "Saturns obere Wolken haben −140°C (7-mal kälter als ein Gefrierfach), doch in seinem gepressten Kern herrschen 11.500°C (115-mal kochendes Wasser)!"
         },
         {
           "label": "Monde & Ringe",
           "value": "146 Monde · 7 Hauptringe",
-          "sub": "Die bekanntesten Hauptmonde sind Titan, Enceladus und Mimas"
+          "sub": "Die bekanntesten Hauptmonde sind Titan, Enceladus und Mimas",
+          "kids": "Saturn ist mit 146 Monden Rekordhalter! Seine magischen Ringe bestehen aus Milliarden glitzernden Eisbrocken von Schneeflocken bis Hausgröße."
         },
         {
           "label": "Atmosphäre",
           "value": "96,3 % H₂, 3,25 % He",
-          "sub": "Spuren von Methan, Ammoniak, Ethan"
+          "sub": "Spuren von Methan, Ammoniak, Ethan",
+          "kids": "Saturn besteht aus leichten Gasen. Seine Winde fegen mit 1.800 km/h über den Planeten—schneller als Überschalljets!"
         }
       ]
     },
@@ -452,42 +512,50 @@
         {
           "label": "Abstand zur Sonne",
           "value": "2,871 Mrd. km",
-          "sub": "19,191 AE"
+          "sub": "19,191 AE",
+          "kids": "Uranus ist 19-mal weiter von der Sonne entfernt als die Erde. Er war 1781 der erste Planet, der mit einem Teleskop entdeckt wurde."
         },
         {
           "label": "Umlaufzeit",
           "value": "84,02 Erdjahre",
-          "sub": "30.685,4 Erdtage"
+          "sub": "30.685,4 Erdtage",
+          "kids": "Uranus braucht 84 Erdenjahre für einen Umlauf! Jede Jahreszeit dauert unglaubliche 21 Erdenjahre lang."
         },
         {
           "label": "Tageslänge",
           "value": "17h 14m 24s",
-          "sub": "97,77° Neigung (rollt seitlich)"
+          "sub": "97,77° Neigung (rollt seitlich)",
+          "kids": "Uranus rollt wie eine Bowlingkugel seitwärts um die Sonne! Mit seiner 98°-Kippung rotiert er rückwärts (im Uhrzeigersinn). Ein Pol hat 42 Jahre Dauer-Sonne, der andere 42 Jahre eiskalte Nacht!"
         },
         {
           "label": "Äquatorradius",
           "value": "25.362 km",
-          "sub": "3,98 × Erde"
+          "sub": "3,98 × Erde",
+          "kids": "Uranus ist 4-mal breiter als die Erde! Vier Erden passen nebeneinander über seinen Äquator, und 63 Erden passen in sein Inneres."
         },
         {
           "label": "Masse",
           "value": "8,681 × 10²⁵ kg",
-          "sub": "14,54 × Erde"
+          "sub": "14,54 × Erde",
+          "kids": "Uranus ist ein Eisriese aus Wasser-, Ammoniak- und Methan-Eis, etwa 14,5-mal schwerer als die Erde."
         },
         {
           "label": "Tiefste Temperatur",
           "value": "−224 °C",
-          "sub": "Tiefstwert −224 °C — 11× kälter als Gefrierfach, kälteste Atmosphäre"
+          "sub": "Tiefstwert −224 °C — 11-mal kälter als Gefrierfach, kälteste Atmosphäre",
+          "kids": "Uranus ist mit −224°C der kälteste Planet im Sonnensystem—11-mal kälter als ein Gefrierfach!"
         },
         {
           "label": "Monde & Ringe",
           "value": "28 Monde · 13 Ringe",
-          "sub": "Die bekanntesten Hauptmonde sind Titania, Oberon, Umbriel, Ariel und Miranda"
+          "sub": "Die bekanntesten Hauptmonde sind Titania, Oberon, Umbriel, Ariel und Miranda",
+          "kids": "Uranus hat 28 Monde, benannt nach Figuren aus William Shakespeares Theaterstücken (wie Titania und Miranda), sowie 13 dunkle Ringe."
         },
         {
           "label": "Atmosphäre",
           "value": "82,5 % H₂, 15,2 % He, 2,3 % CH₄",
-          "sub": "Methan absorbiert Rotlicht für Türkisfarbe"
+          "sub": "Methan absorbiert Rotlicht für Türkisfarbe",
+          "kids": "Uranus leuchtet cyanblau wegen Methangas in seiner Luft. Methan schluckt rotes Sonnenlicht und wirft leuchtendes Blau-Grün zurück."
         }
       ]
     },
@@ -505,42 +573,50 @@
         {
           "label": "Abstand zur Sonne",
           "value": "4,495 Mrd. km",
-          "sub": "30,070 AE"
+          "sub": "30,070 AE",
+          "kids": "Neptun ist der fernste Planet, 30-mal weiter von der Sonne entfernt als die Erde! Sonnenlicht braucht über 4 Stunden dorthin."
         },
         {
           "label": "Umlaufzeit",
           "value": "164,79 Erdjahre",
-          "sub": "60.189,0 Erdtage"
+          "sub": "60.189,0 Erdtage",
+          "kids": "Ein Neptunjahr dauert 165 Erdenjahre! Seit seiner Entdeckung 1846 hat Neptun erst eine einzige Sonnenrunde vollendet."
         },
         {
           "label": "Tageslänge",
           "value": "16h 06m 36s",
-          "sub": "Differentielle Rotation"
+          "sub": "Differentielle Rotation",
+          "kids": "Neptun dreht sich alle 16 Stunden um sich selbst. Weil er aus wirbelndem Gas und Eismatsch besteht, dreht sich die Mitte schneller als die Pole."
         },
         {
           "label": "Äquatorradius",
           "value": "24.622 km",
-          "sub": "3,86 × Erde"
+          "sub": "3,86 × Erde",
+          "kids": "Neptun ist fast 4-mal so breit wie die Erde und fasst 57 Erdkugeln in seinem stürmischen Inneren."
         },
         {
           "label": "Masse",
           "value": "1,024 × 10²⁶ kg",
-          "sub": "17,15 × Erde"
+          "sub": "17,15 × Erde",
+          "kids": "Neptun wiegt das 17-fache der Erde und besitzt einen tiefen Ozean aus heißem, zusammengepresstem Wasser- und Methan-Schlick."
         },
         {
           "label": "Wolkendeckentemperatur",
           "value": "−201 °C",
-          "sub": "Mittel: −201 °C — 10× kälter als Gefrierfach, friert Stickstoff ein"
+          "sub": "Mittel: −201 °C — 10-mal kälter als Gefrierfach, friert Stickstoff ein",
+          "kids": "Neptuns Wolken haben −201°C—10-mal kälter als ein Gefrierfach! Es ist so eisig, dass Stickstoff zu Eiskristallen erstarrt."
         },
         {
           "label": "Monde & Ringe",
           "value": "16 Monde · 5 Ringe",
-          "sub": "Die bekanntesten Hauptmonde sind Triton, Proteus und Nereid"
+          "sub": "Die bekanntesten Hauptmonde sind Triton, Proteus und Nereid",
+          "kids": "Neptun hat 16 Monde, angeführt von Triton. Triton umkreist Neptun rückwärts (im Uhrzeigersinn/retrograd) gegen Neptuns Drehung! Er war ein Zwergplanet, den Neptun eingefangen hat, und schießt echte Eis-Geysire ins All!"
         },
         {
           "label": "Atmosphäre",
           "value": "80,0 % H₂, 19,0 % He, 1,5 % CH₄",
-          "sub": "Tiefes Azurblau mit Großem Dunklen Fleck"
+          "sub": "Tiefes Azurblau mit Großem Dunklen Fleck",
+          "kids": "Auf Neptun toben die schnellsten Winde im Sonnensystem mit über 2.100 km/h—schneller als ein Überschallflugzeug!"
         }
       ]
     }

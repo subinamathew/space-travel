@@ -72,10 +72,11 @@ allBodies.forEach((p, idx) => {
   const cardsHtml = p.stats
     .map(
       (s, sIdx) => `
-        <div class="info-card">
+        <div class="info-card" role="button" tabindex="0" aria-haspopup="dialog" aria-label="${s.label}: ${s.value}. Click for kids science explanation" data-stat-idx="${sIdx}" data-body="${p.slug}" title="Click for kids science explanation">
             <span class="info-label" data-i18n="planets.${p.slug}.stats.${sIdx}.label">${s.label}</span>
             <span class="info-val" data-i18n="planets.${p.slug}.stats.${sIdx}.value">${s.value}</span>
             <span class="info-sub" data-i18n="planets.${p.slug}.stats.${sIdx}.sub">${s.sub}</span>
+            <span class="info-hint-badge" data-i18n="ui.tap_kids_explainer">💡 Tap for Kids Explainer</span>
         </div>`
     )
     .join('');
@@ -295,6 +296,29 @@ allBodies.forEach((p, idx) => {
             </aside>
         </div>
     </main>
+
+    <!-- Kid-Friendly Science Explanation Popup Modal -->
+    <div id="stat-modal-backdrop" class="stat-modal-backdrop" aria-hidden="true">
+        <div id="stat-modal" class="stat-modal" role="dialog" aria-modal="true" aria-labelledby="stat-modal-label">
+            <div class="stat-modal-header">
+                <div class="stat-modal-badge" data-i18n="ui.kids_guide_badge">🚀 5-8 Year Old Explainer</div>
+                <button type="button" class="stat-modal-close" id="stat-modal-close" aria-label="Close dialog">✕</button>
+            </div>
+            <div class="stat-modal-body">
+                <span class="stat-modal-icon" id="stat-modal-icon">🌟</span>
+                <div class="stat-modal-titles">
+                    <h4 class="stat-modal-label" id="stat-modal-label">Surface Temperature</h4>
+                    <div class="stat-modal-val" id="stat-modal-val">5,500°C</div>
+                </div>
+                <div class="stat-modal-explainer-box">
+                    <p class="stat-modal-text" id="stat-modal-text"></p>
+                </div>
+            </div>
+            <div class="stat-modal-footer">
+                <button type="button" class="stat-modal-btn-ok" id="stat-modal-btn-ok" data-i18n="ui.close_popup">Got it!</button>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

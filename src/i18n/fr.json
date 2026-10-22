@@ -64,7 +64,11 @@
     "feel_boots": "des bottes lunaires magiques !",
     "jump_sun": "La gravité colossale du Soleil empêche tout saut !",
     "jump_higher": "{ratio}× plus haut que sur Terre ! Un vol plané dans le ciel !",
-    "jump_lower": "La forte gravité vous attire vite au sol — seulement {ratio}× votre saut terrestre."
+    "jump_lower": "La forte gravité vous attire vite au sol — seulement {ratio}× votre saut terrestre.",
+    "kids_guide_title": "Guide Scientifique Enfants",
+    "kids_guide_badge": "🚀 Expliqué pour les 5-8 ans",
+    "tap_kids_explainer": "💡 Touchez pour l'explication enfants",
+    "close_popup": "Compris !"
   },
   "planets": {
     "sun": {
@@ -81,42 +85,50 @@
         {
           "label": "Classe Spectrale",
           "value": "G2V (Naine Jaune)",
-          "sub": "Étoile de la séquence principale ; ~4,6 Ga"
+          "sub": "Étoile de la séquence principale ; ~4,6 Ga",
+          "kids": "Même si on l'appelle \"naine jaune\", le Soleil n'est pas petit du tout ! G2V est un code d'étoile signifiant qu'il s'agit d'une étoile jaune brillante et puissante au sommet de sa vie."
         },
         {
           "label": "Température de Surface",
           "value": "5 500 °C (5 778 K)",
-          "sub": "Surface 55× l'eau bouillante ; cœur 150 000× plus chaud que l'eau bouillante (~15M°C)"
+          "sub": "Surface 55 fois l'eau bouillante ; cœur 150 000 fois plus chaud que l'eau bouillante (~15M°C)",
+          "kids": "La surface du Soleil atteint 5 500 °C—plus chaude que 55 fois l'eau de ton bain chaud ! Au cœur, il fait 150 000 fois plus chaud que l'eau bouillante (~15 millions de °C) !"
         },
         {
           "label": "Diamètre Équatorial",
           "value": "1 392 700 km",
-          "sub": "109,2 × diamètre terrestre"
+          "sub": "109,2 × diamètre terrestre",
+          "kids": "Le Soleil est gigantesque ! S'il était un ballon de plage géant creux, on pourrait y faire entrer plus d'un million de Terres comme de petites billes."
         },
         {
           "label": "Masse",
           "value": "1,989 × 10³⁰ kg",
-          "sub": "333 000 × Terre (99,86 % du système)"
+          "sub": "333 000 × Terre (99,86 % du système)",
+          "kids": "Le Soleil contient 99,86 % de toute la matière de notre système solaire ! Il est 333 000 fois plus lourd que la Terre et maintient toutes les planètes en orbite grâce à sa super gravité."
         },
         {
           "label": "Vitesse Galactique",
           "value": "220 km/s",
-          "sub": "Période d'orbite galactique : ~230 Ma"
+          "sub": "Période d'orbite galactique : ~230 Ma",
+          "kids": "Notre Soleil file autour de la Voie lactée à 220 kilomètres par seconde ! C'est plus de 700 fois plus rapide qu'un TGV."
         },
         {
           "label": "Distance à la Terre",
           "value": "149 600 000 km",
-          "sub": "1,0 UA (Temps lumière : 8m 20s)"
+          "sub": "1,0 UA (Temps lumière : 8m 20s)",
+          "kids": "Le Soleil est à 150 millions de kilomètres. La lumière est la chose la plus rapide de l'univers, mais elle met quand même 8 minutes et 20 secondes pour arriver jusqu'à tes yeux sur Terre !"
         },
         {
           "label": "Période de Rotation",
           "value": "25,05 jours (Équateur)",
-          "sub": "34,4 jours aux pôles (rotation différentielle)"
+          "sub": "34,4 jours aux pôles (rotation différentielle)",
+          "kids": "Le Soleil est une boule géante de gaz et de plasma brûlants en rotation. Comme il n'est pas solide, son équateur tourne en 25 jours mais ses pôles en 34 jours !"
         },
         {
           "label": "Composition",
           "value": "73,4 % H₂, 25,0 % He",
-          "sub": "1,6 % d'éléments lourds (C, N, O, Fe)"
+          "sub": "1,6 % d'éléments lourds (C, N, O, Fe)",
+          "kids": "Le Soleil est composé d'hydrogène (H₂) et d'hélium (He). Les deux sont plus légers que l'air qu'on respire ! L'hydrogène sert de carburant nucléaire pour nous éclairer et nous chauffer."
         }
       ]
     },
@@ -134,42 +146,50 @@
         {
           "label": "Distance du Soleil",
           "value": "57,9 M km",
-          "sub": "0,387 UA"
+          "sub": "0,387 UA",
+          "kids": "Mercure est la planète la plus proche du Soleil ! Si tu te trouvais dessus, le Soleil apparaîtrait 3 fois plus grand dans le ciel que depuis la Terre."
         },
         {
           "label": "Période Orbitale",
           "value": "87,97 jours terrestres",
-          "sub": "L'orbite la plus rapide du système solaire"
+          "sub": "L'orbite la plus rapide du système solaire",
+          "kids": "Mercure est la championne de vitesse ! Elle fait le tour du Soleil en 88 jours seulement : tu fêterais ton anniversaire tous les 3 mois !"
         },
         {
           "label": "Durée du Jour",
           "value": "175,9 jours terrestres",
-          "sub": "Rotation : 58,6 jours"
+          "sub": "Rotation : 58,6 jours",
+          "kids": "Mercure tourne très lentement sur elle-même. Un seul jour sur Mercure dure 176 jours terrestres—c'est plus long qu'une année entière de Mercure !"
         },
         {
           "label": "Rayon Équatorial",
           "value": "2 439,7 km",
-          "sub": "0,383 × Terre"
+          "sub": "0,383 × Terre",
+          "kids": "Mercure est le bébé des planètes, à peine plus grande que notre Lune. Elle est couverte de cratères d'astéroïdes et ressemble à une balle de golf."
         },
         {
           "label": "Masse",
           "value": "3,30 × 10²³ kg",
-          "sub": "0,055 × Terre"
+          "sub": "0,055 × Terre",
+          "kids": "Même si Mercure est petite, elle est très lourde et dense car elle abrite une énorme boule de fer métallique qui remplit l'essentiel de la planète !"
         },
         {
           "label": "Température de Surface",
           "value": "−180 °C à 430 °C",
-          "sub": "Jour 4× l'eau bouillante ; nuit 9× plus froide qu'un congélateur"
+          "sub": "Jour 4 fois l'eau bouillante ; nuit 9 fois plus froide qu'un congélateur",
+          "kids": "Mercure n'a pas d'atmosphère ! Le jour, il fait 4 fois plus chaud que l'eau bouillante, mais la nuit la température chute à −180 °C, soit 9 fois plus froid qu'un congélateur !"
         },
         {
           "label": "Lunes & Anneaux",
           "value": "0 Lune · 0 Anneau",
-          "sub": "Mercure ne possède aucune lune ni satellite naturel"
+          "sub": "Mercure ne possède aucune lune ni satellite naturel",
+          "kids": "Mercure a 0 lune et 0 anneau ! Elle est si proche du Soleil que sa gravité géante arracherait immédiatement toute lune qui tenterait de tourner autour."
         },
         {
           "label": "Atmosphère",
           "value": "Exosphère",
-          "sub": "Traces d'oxygène, sodium, hydrogène"
+          "sub": "Traces d'oxygène, sodium, hydrogène",
+          "kids": "Il n'y a presque pas d'air sur Mercure, juste une couche ultra-mince appelée exosphère formée de particules soulevées par le vent solaire."
         }
       ]
     },
@@ -187,42 +207,50 @@
         {
           "label": "Distance du Soleil",
           "value": "108,2 M km",
-          "sub": "0,723 UA"
+          "sub": "0,723 UA",
+          "kids": "Vénus est notre plus proche voisine. Elle réfléchit tellement de lumière solaire qu'elle brille plus fort que n'importe quelle étoile dans le ciel du soir !"
         },
         {
           "label": "Période Orbitale",
           "value": "224,7 jours terrestres",
-          "sub": "0,615 année terrestre"
+          "sub": "0,615 année terrestre",
+          "kids": "Vénus fait le tour du Soleil en 225 jours terrestres. Comme elle est plus proche du Soleil que la Terre, son année est environ 4 mois plus courte."
         },
         {
           "label": "Durée du Jour",
           "value": "243,0 jours terrestres",
-          "sub": "Rotation rétrograde (tourne à l'envers)"
+          "sub": "Rotation rétrograde (tourne à l'envers)",
+          "kids": "Vénus tourne à l'envers ! Alors que la Terre tourne dans le sens inverse des aiguilles d'une montre, Vénus tourne dans le sens horaire. Le Soleil s'y lève à l'ouest et se couche à l'est ! Un jour y est plus long qu'une année entière !"
         },
         {
           "label": "Rayon Équatorial",
           "value": "6 051,8 km",
-          "sub": "0,949 × Terre (Jumelle)"
+          "sub": "0,949 × Terre (Jumelle)",
+          "kids": "Vénus a presque la même taille que la Terre (environ 95 % de son diamètre). Les scientifiques l'appellent la jumelle de la Terre, mais c'est une jumelle brûlante comme un four."
         },
         {
           "label": "Masse",
           "value": "4,87 × 10²⁴ kg",
-          "sub": "0,815 × Terre"
+          "sub": "0,815 × Terre",
+          "kids": "Vénus est presque aussi lourde que la Terre. Si tu y marchais, la gravité te semblerait presque normale, te tirant avec 91 % de ton poids habituel."
         },
         {
           "label": "Température de Surface",
           "value": "465 °C (Moyenne)",
-          "sub": "Près de 5× plus chaud que l'eau bouillante — fait fondre le plomb !"
+          "sub": "Près de 5 fois plus chaud que l'eau bouillante — fait fondre le plomb !",
+          "kids": "Vénus est la planète la plus chaude du système solaire à 465 °C—près de 5 fois plus chaud que l'eau bouillante ! D'épais nuages jaunes emprisonnent la chaleur et font fondre le plomb."
         },
         {
           "label": "Lunes & Anneaux",
           "value": "0 Lune · 0 Anneau",
-          "sub": "Vénus ne possède aucune lune ni satellite naturel"
+          "sub": "Vénus ne possède aucune lune ni satellite naturel",
+          "kids": "Vénus a 0 lune et 0 anneau ! Comme pour Mercure, le Soleil arracherait tout satellite en orbite."
         },
         {
           "label": "Atmosphère",
           "value": "96,5 % CO₂, 3,5 % N₂",
-          "sub": "Nuages d'acide sulfurique ; pression de 92 bars"
+          "sub": "Nuages d'acide sulfurique ; pression de 92 bars",
+          "kids": "L'air de Vénus est un épais dioxyde de carbone avec des nuages d'acide de batterie (acide sulfurique) ! La pression y est 92 fois plus forte que sur Terre et écraserait un sous-marin."
         }
       ]
     },
@@ -240,42 +268,50 @@
         {
           "label": "Distance du Soleil",
           "value": "149,6 M km",
-          "sub": "1,000 UA (Unité Astronomique)"
+          "sub": "1,000 UA (Unité Astronomique)",
+          "kids": "La Terre se trouve dans la zone habitable idéale, à bonne distance pour que l'eau reste liquide. Cette distance magique s'appelle 1 UA (Unité Astronomique) !"
         },
         {
           "label": "Période Orbitale",
           "value": "365,25 jours",
-          "sub": "1,000 an terrestre (Référence)"
+          "sub": "1,000 an terrestre (Référence)",
+          "kids": "La Terre met 365 jours et 6 heures pour faire le tour du Soleil. Ces 6 heures en plus créent une année bissextile tous les 4 ans avec un 29 février !"
         },
         {
           "label": "Durée du Jour",
           "value": "23h 56m 04s",
-          "sub": "Jour solaire de 24,0 heures"
+          "sub": "Jour solaire de 24,0 heures",
+          "kids": "La Terre tourne sur elle-même toutes les 24 heures. Nous tournons dans le sens inverse des aiguilles d'une montre, le Soleil se lève donc à l'est et se couche à l'ouest !"
         },
         {
           "label": "Rayon Équatorial",
           "value": "6 371,0 km",
-          "sub": "Unité de base : 1,000 R⊕"
+          "sub": "Unité de base : 1,000 R⊕",
+          "kids": "La Terre est la plus grande des quatre planètes rocheuses. Un tunnel traversant son centre ferait plus de 12 700 kilomètres de long."
         },
         {
           "label": "Masse",
           "value": "5,972 × 10²⁴ kg",
-          "sub": "Unité de base : 1,000 M⊕"
+          "sub": "Unité de base : 1,000 M⊕",
+          "kids": "La Terre pèse 6 sextillions de tonnes (un 6 suivi de 24 zéros) ! Cette masse crée la gravité parfaite pour garder nos océans au sol et l'air autour de nous."
         },
         {
           "label": "Température de Surface",
           "value": "−88 °C à 58 °C",
-          "sub": "Moyenne : 15°C — température ambiante agréable avec océans liquides"
+          "sub": "Moyenne : 15°C — température ambiante agréable avec océans liquides",
+          "kids": "La Terre a une douce température moyenne de 15 °C. Notre atmosphère agit comme une couverture douillette protégeant toutes les formes de vie."
         },
         {
           "label": "Lunes & Anneaux",
           "value": "1 Lune · 0 Anneau",
-          "sub": "L'unique lune naturelle de la Terre est Luna (La Lune)"
+          "sub": "L'unique lune naturelle de la Terre est Luna (La Lune)",
+          "kids": "La Terre a une lune fidèle ! La Lune fait monter et descendre les marées des océans deux fois par jour et éclaire nos nuits d'une douce lumière argentée."
         },
         {
           "label": "Atmosphère",
           "value": "78 % N₂, 21 % O₂, 1 % Ar",
-          "sub": "Couche d'ozone & bouclier magnétique"
+          "sub": "Couche d'ozone & bouclier magnétique",
+          "kids": "La Terre a le seul air respirable de l'univers : 21 % d'oxygène pour respirer, 78 % d'azote pour les plantes et une couche d'ozone contre les coups de soleil."
         }
       ]
     },
@@ -293,42 +329,50 @@
         {
           "label": "Distance du Soleil",
           "value": "227,9 M km",
-          "sub": "1,524 UA"
+          "sub": "1,524 UA",
+          "kids": "Mars est 1,5 fois plus loin du Soleil que la Terre, c'est pourquoi elle est beaucoup plus froide."
         },
         {
           "label": "Période Orbitale",
           "value": "686,98 jours terrestres",
-          "sub": "1,881 an terrestre"
+          "sub": "1,881 an terrestre",
+          "kids": "Une année martienne dure 687 jours terrestres, soit presque deux années sur Terre ! Chaque saison y dure deux fois plus longtemps."
         },
         {
           "label": "Durée du Jour",
           "value": "24h 37m 22s",
-          "sub": "1 Sol (~1,027 jour terrestre)"
+          "sub": "1 Sol (~1,027 jour terrestre)",
+          "kids": "Un jour sur Mars s'appelle un \"Sol\" et dure 24 heures et 37 minutes, presque comme sur Terre ! Les robots explorateurs dorment dès que le soleil martien se couche."
         },
         {
           "label": "Rayon Équatorial",
           "value": "3 389,5 km",
-          "sub": "0,532 × Terre"
+          "sub": "0,532 × Terre",
+          "kids": "Mars est deux fois plus petite que la Terre. Mais sans aucun océan, ses terres émergées font la même surface que tous les continents terrestres réunis !"
         },
         {
           "label": "Masse",
           "value": "6,42 × 10²³ kg",
-          "sub": "0,107 × Terre"
+          "sub": "0,107 × Terre",
+          "kids": "Mars ne pèse qu'un dixième de la Terre. Moins de gravité signifie que tu ne pèses qu'un tiers de ton poids et sautes 2,6 fois plus haut !"
         },
         {
           "label": "Température de Surface",
           "value": "−140 °C à 20 °C",
-          "sub": "Moyenne : −63°C — plus de 3× plus froid que la glace d'un congélateur"
+          "sub": "Moyenne : −63°C — plus de 3 fois plus froid que la glace d'un congélateur",
+          "kids": "Mars est un désert glacial : −63 °C en moyenne, soit 3 fois plus froid que la glace d'un congélateur. La nuit, le thermomètre tombe à −140 °C."
         },
         {
           "label": "Lunes & Anneaux",
           "value": "2 Lunes · 0 Anneau",
-          "sub": "Les deux lunes sont Phobos et Déimos"
+          "sub": "Les deux lunes sont Phobos et Déimos",
+          "kids": "Mars a deux petites lunes en forme de pommes de terre, Phobos et Déimos ! Phobos file si vite qu'elle se lève à l'ouest et se couche à l'est deux fois par jour."
         },
         {
           "label": "Atmosphère",
           "value": "95,3 % CO₂, 2,6 % N₂",
-          "sub": "Atmosphère ténue (~0,006 bar)"
+          "sub": "Atmosphère ténue (~0,006 bar)",
+          "kids": "L'air martien est très mince et chargé de poussière rouge. Des tempêtes géantes peuvent recouvrir toute la planète pendant des mois !"
         }
       ]
     },
@@ -346,42 +390,50 @@
         {
           "label": "Distance du Soleil",
           "value": "778,6 M km",
-          "sub": "5,204 UA"
+          "sub": "5,204 UA",
+          "kids": "Jupiter est 5 fois plus loin du Soleil que la Terre. Ici, la lumière solaire est 27 fois plus faible et l'espace est glacé."
         },
         {
           "label": "Période Orbitale",
           "value": "11,86 ans terrestres",
-          "sub": "4 332,6 jours terrestres"
+          "sub": "4 332,6 jours terrestres",
+          "kids": "Jupiter met près de 12 ans pour faire un seul tour du Soleil ! Un enfant entrerait au collège avant de fêter son premier anniversaire jovien."
         },
         {
           "label": "Durée du Jour",
           "value": "9h 55m 30s",
-          "sub": "Rotation planétaire la plus rapide"
+          "sub": "Rotation planétaire la plus rapide",
+          "kids": "Jupiter est la planète qui tourne le plus vite sur elle-même : moins de 10 heures pour un jour complet ! Cette rotation aplatit ses pôles."
         },
         {
           "label": "Rayon Équatorial",
           "value": "69 911 km",
-          "sub": "10,97 × Terre"
+          "sub": "10,97 × Terre",
+          "kids": "Jupiter est le Roi des planètes, 11 fois plus large que la Terre ! Plus de 1 300 Terres tiendraient à l'intérieur de sa bulle gazeuse."
         },
         {
           "label": "Masse",
           "value": "1,898 × 10²⁷ kg",
-          "sub": "317,8 × Terre (2,5× toutes les planètes)"
+          "sub": "317,8 × Terre (2,5 fois toutes les planètes)",
+          "kids": "Jupiter pèse 2,5 fois plus que toutes les 7 autres planètes réunies ! Sa gravité colossale dévie les comètes dangereuses et protège la Terre."
         },
         {
           "label": "Température au Sommet des Nuages",
           "value": "−110 °C",
-          "sub": "Haut des nuages −110°C ; cœur profond 240× plus chaud que l'eau bouillante (~24 000°C)"
+          "sub": "Haut des nuages −110°C ; cœur profond 240 fois plus chaud que l'eau bouillante (~24 000°C)",
+          "kids": "Le sommet des nuages de Jupiter est à −110 °C, mais son cœur brûle à 24 000 °C—plus chaud que 240 fois l'eau bouillante !"
         },
         {
           "label": "Lunes & Anneaux",
           "value": "95 Lunes · 4 Anneaux",
-          "sub": "Les lunes principales sont Io, Europe, Ganymède et Callisto"
+          "sub": "Les lunes principales sont Io, Europe, Ganymède et Callisto",
+          "kids": "Jupiter a 95 lunes ! Les 4 plus célèbres sont Ganymède (plus grande que Mercure !), Europe (avec un océan chaud sous sa glace !), Io (avec 400 volcans !) et Callisto."
         },
         {
           "label": "Atmosphère",
           "value": "89,8 % H₂, 10,2 % He",
-          "sub": "Traces de méthane, ammoniac, vapeur d'eau"
+          "sub": "Traces de méthane, ammoniac, vapeur d'eau",
+          "kids": "Jupiter n'a aucun sol solide—c'est une bille géante d'hydrogène et d'hélium ! Sa Grande Tache Rouge est un ouragan monstrueux plus gros que la Terre."
         }
       ]
     },
@@ -399,42 +451,50 @@
         {
           "label": "Distance du Soleil",
           "value": "1,434 Md km",
-          "sub": "9,582 UA"
+          "sub": "9,582 UA",
+          "kids": "Saturne est presque 10 fois plus loin du Soleil que la Terre. La lumière du Soleil met 80 minutes à parvenir jusqu'à ses nuages dorés."
         },
         {
           "label": "Période Orbitale",
           "value": "29,45 ans terrestres",
-          "sub": "10 759,2 jours terrestres"
+          "sub": "10 759,2 jours terrestres",
+          "kids": "Saturne met près de 30 années terrestres pour faire le tour du Soleil. Tu ne vivrais que 2 ou 3 années saturniennes durant toute ta vie !"
         },
         {
           "label": "Durée du Jour",
           "value": "10h 33m 38s",
-          "sub": "Rotation différentielle rapide"
+          "sub": "Rotation différentielle rapide",
+          "kids": "Même si Saturne est géante, elle tourne sur elle-même en seulement 10 heures et demie, ce qui fait bomber son équateur."
         },
         {
           "label": "Rayon Équatorial",
           "value": "58 232 km",
-          "sub": "9,14 × Terre"
+          "sub": "9,14 × Terre",
+          "kids": "Saturne est 9 fois plus large que la Terre ! Avec ses splendides anneaux, elle s'étend sur 282 000 kilomètres—presque la distance de la Terre à la Lune !"
         },
         {
           "label": "Masse",
           "value": "5,683 × 10²⁶ kg",
-          "sub": "95,2 × Terre (Densité : 0,687 g/cm³)"
+          "sub": "95,2 × Terre (Densité : 0,687 g/cm³)",
+          "kids": "Saturne est 95 fois plus lourde que la Terre, mais moins dense que l'eau ! Dans une baignoire gigantesque, Saturne flotterait comme un canard en plastique !"
         },
         {
           "label": "Température au Sommet des Nuages",
           "value": "−140 °C",
-          "sub": "Nuages supérieurs −140°C (7× plus froid qu'un congélateur) ; intérieur 115× l'eau bouillante"
+          "sub": "Nuages supérieurs −140°C (7 fois plus froid qu'un congélateur) ; intérieur 115 fois l'eau bouillante",
+          "kids": "Les nuages de Saturne sont à −140 °C (7 fois plus froid qu'un congélateur), mais son cœur comprimé monte à 11 500 °C (115 fois l'eau bouillante) !"
         },
         {
           "label": "Lunes & Anneaux",
           "value": "146 Lunes · 7 Anneaux Principaux",
-          "sub": "Les lunes principales sont Titan, Encelade et Mimas"
+          "sub": "Les lunes principales sont Titan, Encelade et Mimas",
+          "kids": "Saturne est la reine des lunes avec 146 satellites ! Ses anneaux sont faits de milliards de morceaux de glace d'eau pure, du flocon de neige à l'iceberg géant."
         },
         {
           "label": "Atmosphère",
           "value": "96,3 % H₂, 3,25 % He",
-          "sub": "Traces de méthane, ammoniac, éthane"
+          "sub": "Traces de méthane, ammoniac, éthane",
+          "kids": "Saturne est faite de gaz très légers. Ses vents soufflent à 1 800 km/h—plus vite que des avions de chasse supersoniques !"
         }
       ]
     },
@@ -452,42 +512,50 @@
         {
           "label": "Distance du Soleil",
           "value": "2,871 Md km",
-          "sub": "19,191 UA"
+          "sub": "19,191 UA",
+          "kids": "Uranus est 19 fois plus loin du Soleil que la Terre. Elle a été la toute première planète découverte avec un télescope en 1781."
         },
         {
           "label": "Période Orbitale",
           "value": "84,02 ans terrestres",
-          "sub": "30 685,4 jours terrestres"
+          "sub": "30 685,4 jours terrestres",
+          "kids": "Uranus met 84 années terrestres pour faire le tour du Soleil ! Chaque saison y dure 21 longues années terrestres."
         },
         {
           "label": "Durée du Jour",
           "value": "17h 14m 24s",
-          "sub": "Inclinaison 97,77° (roule sur le côté)"
+          "sub": "Inclinaison 97,77° (roule sur le côté)",
+          "kids": "Uranus roule sur le côté comme une boule de bowling avec une inclinaison de 98° ! Sa rotation est rétrograde (dans le sens horaire). Un pôle a 42 ans de soleil continu, puis 42 ans de nuit polaire glaciale !"
         },
         {
           "label": "Rayon Équatorial",
           "value": "25 362 km",
-          "sub": "3,98 × Terre"
+          "sub": "3,98 × Terre",
+          "kids": "Uranus est 4 fois plus large que la Terre. On pourrait aligner 4 Terres le long de son équateur, et 63 Terres tiendraient à l'intérieur."
         },
         {
           "label": "Masse",
           "value": "8,681 × 10²⁵ kg",
-          "sub": "14,54 × Terre"
+          "sub": "14,54 × Terre",
+          "kids": "Uranus est une géante de glaces d'eau, d'ammoniac et de méthane, environ 14,5 fois plus lourde que la Terre."
         },
         {
           "label": "Température la Plus Basse",
           "value": "−224 °C",
-          "sub": "Minimum −224°C — 11× plus froid qu'un congélateur, atmosphère la plus froide"
+          "sub": "Minimum −224°C — 11 fois plus froid qu'un congélateur, atmosphère la plus froide",
+          "kids": "Uranus détient le record de la planète la plus froide du système solaire à −224 °C, soit 11 fois plus froid qu'un congélateur !"
         },
         {
           "label": "Lunes & Anneaux",
           "value": "28 Lunes · 13 Anneaux",
-          "sub": "Les lunes principales sont Titania, Obéron, Umbriel, Ariel et Miranda"
+          "sub": "Les lunes principales sont Titania, Obéron, Umbriel, Ariel et Miranda",
+          "kids": "Uranus a 28 lunes portant des noms tirés des pièces de Shakespeare (comme Titania et Ariel), ainsi que 13 anneaux sombres."
         },
         {
           "label": "Atmosphère",
           "value": "82,5 % H₂, 15,2 % He, 2,3 % CH₄",
-          "sub": "Le méthane absorbe le rouge donnant ce cyan"
+          "sub": "Le méthane absorbe le rouge donnant ce cyan",
+          "kids": "Uranus doit sa superbe couleur bleu cyan au méthane dans ses nuages, qui absorbe la lumière rouge et renvoie un bleu turquoise éclatant."
         }
       ]
     },
@@ -505,42 +573,50 @@
         {
           "label": "Distance du Soleil",
           "value": "4,495 Md km",
-          "sub": "30,070 UA"
+          "sub": "30,070 UA",
+          "kids": "Neptune est la planète la plus lointaine, 30 fois plus loin du Soleil que la Terre ! La lumière solaire met plus de 4 heures pour l'atteindre."
         },
         {
           "label": "Période Orbitale",
           "value": "164,79 ans terrestres",
-          "sub": "60 189,0 jours terrestres"
+          "sub": "60 189,0 jours terrestres",
+          "kids": "Une année sur Neptune dure près de 165 années terrestres ! Depuis sa découverte en 1846, elle n'a accompli qu'un seul tour du Soleil."
         },
         {
           "label": "Durée du Jour",
           "value": "16h 06m 36s",
-          "sub": "Rotation différentielle"
+          "sub": "Rotation différentielle",
+          "kids": "Neptune tourne sur elle-même en 16 heures. Faite de gaz et de bouillie glacée, son équateur tourne plus vite que ses pôles."
         },
         {
           "label": "Rayon Équatorial",
           "value": "24 622 km",
-          "sub": "3,86 × Terre"
+          "sub": "3,86 × Terre",
+          "kids": "Neptune est presque 4 fois plus large que la Terre et pourrait contenir 57 globes terrestres."
         },
         {
           "label": "Masse",
           "value": "1,024 × 10²⁶ kg",
-          "sub": "17,15 × Terre"
+          "sub": "17,15 × Terre",
+          "kids": "Neptune pèse 17 fois la Terre et renferme un immense océan de glaces chaudes comprimées au-dessus d'un noyau de roche et de fer."
         },
         {
           "label": "Température au Sommet des Nuages",
           "value": "−201 °C",
-          "sub": "Moyenne −201°C — 10× plus froid qu'un congélateur, gèle l'azote gazeux"
+          "sub": "Moyenne −201°C — 10 fois plus froid qu'un congélateur, gèle l'azote gazeux",
+          "kids": "Le sommet des nuages de Neptune est à −201 °C, soit 10 fois plus froid qu'un congélateur ! Le froid y gèle même l'azote gazeux."
         },
         {
           "label": "Lunes & Anneaux",
           "value": "16 Lunes · 5 Anneaux",
-          "sub": "Les lunes principales sont Triton, Protée et Néréide"
+          "sub": "Les lunes principales sont Triton, Protée et Néréide",
+          "kids": "Neptune possède 16 lunes, dont le géant glacé Triton. Triton tourne à l'envers (sens rétrograde) par rapport à la rotation de Neptune ! C'était une planète naine capturée qui crache de vrais geysers de glace."
         },
         {
           "label": "Atmosphère",
           "value": "80,0 % H₂, 19,0 % He, 1,5 % CH₄",
-          "sub": "Bleu azur éclatant avec Grande Tache Sombre"
+          "sub": "Bleu azur éclatant avec Grande Tache Sombre",
+          "kids": "Neptune possède les vents les plus violents du système solaire, soufflant à plus de 2 100 km/h avec de superbes nuages bleu azur."
         }
       ]
     }

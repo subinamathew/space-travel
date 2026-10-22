@@ -29,6 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 5. Cosmic Explorer Lab — Gravity & Jump Height Calculator
   initCosmicCalculator();
+
+  // 6. Kid-Friendly Science Stat Card Popups
+  initStatCardPopups();
 });
 
 function initCosmicCalculator() {
@@ -317,3 +320,119 @@ function initCosmicCalculator() {
   updateSubpageDynamicTexts();
   calculate();
 }
+
+/**
+ * Kid-Friendly Science Stat Card Popups Controller
+ * Opens a modal with 5-8 year old explanation when any .info-card is clicked,
+ * and dismisses when clicking anywhere outside, clicking close, or pressing Escape.
+ */
+function initStatCardPopups() {
+  const backdrop = document.getElementById('stat-modal-backdrop');
+  const modal = document.getElementById('stat-modal');
+  const closeBtn = document.getElementById('stat-modal-close');
+  const okBtn = document.getElementById('stat-modal-btn-ok');
+  const labelEl = document.getElementById('stat-modal-label');
+  const valEl = document.getElementById('stat-modal-val');
+  const textEl = document.getElementById('stat-modal-text');
+  const iconEl = document.getElementById('stat-modal-icon');
+
+  if (!backdrop || !modal) return;
+
+  const statIcons = {
+    'spectral class': '⭐',
+    'surface temperature': '🌡️',
+    'cloud-top temperature': '❄️',
+    'lowest temperature': '🥶',
+    'equatorial diameter': '📏',
+    'equatorial radius': '🌐',
+    'mass': '⚖️',
+    'galactic velocity': '🚀',
+    'distance from sun': '☀️',
+    'distance to earth': '🌍',
+    'orbital period': '⏱️',
+    'day length': '🔄',
+    'rotation period': '💫',
+    'moons & rings': '🌕',
+    'composition': '🧪',
+    'atmosphere': '💨'
+  };
+
+  let lastActiveEl = null;
+
+  function openPopup(card) {
+    lastActiveEl = card;
+    const bodySlug = card.dataset.body;
+    const statIdx = card.dataset.statIdx;
+
+    const label = t(`planets.${bodySlug}.stats.${statIdx}.label`) || card.querySelector('.info-label')?.textContent || '';
+    const value = t(`planets.${bodySlug}.stats.${statIdx}.value`) || card.querySelector('.info-val')?.textContent || '';
+    const kidsText = t(`planets.${bodySlug}.stats.${statIdx}.kids`) || '';
+
+    if (labelEl) labelEl.textContent = label;
+    if (valEl) valEl.textContent = value;
+    if (textEl) textEl.textContent = kidsText;
+
+    const cleanLabel = (card.querySelector('.info-label')?.textContent || label).toLowerCase().trim();
+    let icon = '💡';
+    for (const [key, ic] of Object.entries(statIcons)) {
+      if (cleanLabel.includes(key)) {
+        icon = ic;
+        break;
+      }
+    }
+    if (iconEl) iconEl.textContent = icon;
+
+    backdrop.classList.add('is-open');
+    backdrop.setAttribute('aria-hidden', 'false');
+    card.setAttribute('aria-expanded', 'true');
+    document.body.classList.add('modal-open');
+
+    // Focus ok button for accessibility
+    setTimeout(() => {
+      if (okBtn) okBtn.focus();
+    }, 50);
+  }
+
+  function closePopup() {
+    if (!backdrop.classList.contains('is-open')) return;
+    backdrop.classList.remove('is-open');
+    backdrop.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
+
+    if (lastActiveEl) {
+      lastActiveEl.setAttribute('aria-expanded', 'false');
+      lastActiveEl.focus();
+    }
+  }
+
+  // Click outside to dismiss (clicking the backdrop outside the modal dialog)
+  backdrop.addEventListener('click', (e) => {
+    if (e.target === backdrop) {
+      closePopup();
+    }
+  });
+
+  if (closeBtn) closeBtn.addEventListener('click', closePopup);
+  if (okBtn) okBtn.addEventListener('click', closePopup);
+
+  // Keyboard navigation & accessibility (Escape to dismiss)
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && backdrop.classList.contains('is-open')) {
+      e.stopPropagation();
+      closePopup();
+    }
+  });
+
+  // Attach event listeners to all info cards
+  const cards = document.querySelectorAll('.info-card');
+  cards.forEach(card => {
+    card.addEventListener('click', () => openPopup(card));
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openPopup(card);
+      }
+    });
+  });
+}
+
