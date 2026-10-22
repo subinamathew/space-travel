@@ -26,12 +26,7 @@ if (fs.existsSync(srcI18nDir)) {
   });
 }
 
-// Keep public/index.html in sync with root index.html
-const rootIndex = path.resolve(__dirname, '../index.html');
-const pubIndex = path.resolve(__dirname, '../public/index.html');
-if (fs.existsSync(rootIndex)) {
-  fs.copyFileSync(rootIndex, pubIndex);
-}
+
 
 // Celestial bodies in order: Sun -> Mercury -> ... -> Neptune
 const allBodies = [sunData, ...planets];
