@@ -55,6 +55,10 @@ allBodies.forEach((p, idx) => {
     )
     .join('');
 
+  const defaultBodyWeight = (70 * p.gravityRatio).toFixed(p.gravityRatio * 70 >= 100 ? 0 : 1);
+  const defaultEarthJump = 44; // cm for 175cm person
+  const defaultBodyJump = p.gravityRatio >= 20 ? '0' : (defaultEarthJump / p.gravityRatio).toFixed((defaultEarthJump / p.gravityRatio) >= 100 ? 0 : 1);
+
   const htmlContent = `<!DOCTYPE html>
 <html lang="en" style="--c1: ${p.c1}; --c2: ${p.c2}; --glow: ${p.glow};">
 
@@ -130,7 +134,7 @@ allBodies.forEach((p, idx) => {
                     <img
                         src="../images/${p.slug}.png"
                         alt="${p.name}"
-                        class="subpage-planet-img ${p.isSun ? 'is-sun' : ''}"
+                        class="subpage-planet-img ${p.isSun ? 'is-sun' : ''} ${p.hasRing ? 'has-rings' : ''}"
                         width="${p.hasRing ? Math.round(p.pvSize * 1.6) : p.pvSize}"
                         height="${p.pvSize}"
                         loading="lazy"
@@ -161,17 +165,30 @@ allBodies.forEach((p, idx) => {
             </div>
 
             <!-- Floating Cosmic Explorer Lab & NASA Kids Corner -->
-            <aside class="space-calc-sidebar" id="space-calc-sidebar" data-gravity="${p.gravityRatio}" data-body="${p.name}" data-slug="${p.slug}">
-                <div class="calc-header" id="calc-header" role="button" tabindex="0" aria-expanded="true" aria-controls="sidebar-body" aria-label="Toggle Cosmic Explorer Lab" title="Click to minimize or expand" data-i18n-attr="aria-label:ui.toggle_lab">
+            <aside class="space-calc-sidebar is-minimized" id="space-calc-sidebar" data-gravity="${p.gravityRatio}" data-body="${p.name}" data-slug="${p.slug}">
+                <div class="calc-header" id="calc-header" role="button" tabindex="0" aria-expanded="false" aria-controls="sidebar-body" aria-label="Expand Cosmic Explorer Lab" title="Click to minimize or expand" data-i18n-attr="aria-label:ui.expand_lab">
                     <div class="calc-header-left">
                         <span class="calc-icon">🧑‍🚀</span>
                         <div class="calc-header-text">
                             <h3 data-i18n="ui.lab_title">Cosmic Explorer Lab</h3>
-                            <p data-i18n="ui.lab_physics" data-i18n-params='{"gravity":"${(p.gravityRatio).toFixed(2)}"}'>Gravity: ${(p.gravityRatio).toFixed(2)}× Earth &bull; Live Physics</p>
+                            <p class="calc-physics-desc" data-i18n="ui.lab_physics" data-i18n-params='{"gravity":"${(p.gravityRatio).toFixed(2)}"}'>Gravity: ${(p.gravityRatio).toFixed(2)}× Earth &bull; Live Physics</p>
+                            <div class="calc-min-stats" id="calc-min-stats">
+                                <span class="min-stat-chip">
+                                    <span class="min-stat-icon">⚖️</span>
+                                    <span class="min-stat-label" data-i18n="ui.weight_short">Weight:</span>
+                                    <strong id="min-weight-val">${defaultBodyWeight} kg</strong>
+                                </span>
+                                <span class="min-stat-divider">•</span>
+                                <span class="min-stat-chip">
+                                    <span class="min-stat-icon">🦘</span>
+                                    <span class="min-stat-label" data-i18n="ui.jump_short">Jump:</span>
+                                    <strong id="min-jump-val">${defaultBodyJump} cm</strong>
+                                </span>
+                            </div>
                         </div>
                     </div>
-                    <button type="button" class="sidebar-toggle-btn" id="sidebar-toggle-btn" aria-label="Minimize Cosmic Explorer Lab" title="Minimize / Expand" data-i18n-attr="aria-label:ui.minimize_lab">
-                        <span class="toggle-icon">−</span>
+                    <button type="button" class="sidebar-toggle-btn" id="sidebar-toggle-btn" aria-label="Expand Cosmic Explorer Lab" title="Expand Cosmic Explorer Lab" aria-expanded="false" data-i18n-attr="aria-label:ui.expand_lab">
+                        <span class="toggle-icon">+</span>
                     </button>
                 </div>
 

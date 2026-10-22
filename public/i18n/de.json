@@ -36,6 +36,8 @@
     "expand_settings": "Einstellungen erweitern",
     "your_weight": "Dein Gewicht",
     "your_height": "Deine Körpergröße",
+    "weight_short": "Gewicht",
+    "jump_short": "Sprung",
     "weight_placeholder": "Gewicht",
     "height_placeholder": "Größe",
     "preset_kid": "Kind (25kg/55lb)",

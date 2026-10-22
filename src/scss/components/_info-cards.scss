@@ -51,9 +51,14 @@
   max-height: 230px;
   object-fit: contain;
   display: block;
+  border-radius: 50%;
   filter: drop-shadow(0 0 30px var(--glow, rgba(74, 144, 217, 0.55)));
   transition: transform 0.4s ease, filter 0.4s ease;
   animation: planet-float 6s ease-in-out infinite alternate;
+
+  &.has-rings {
+    border-radius: 0;
+  }
 
   &:hover {
     transform: scale(1.05);
@@ -330,20 +335,24 @@
   }
 
   &.is-minimized {
-    padding: 0.65rem 1.15rem;
+    padding: 0.65rem 1rem;
     gap: 0;
-    width: auto;
-    max-width: 320px;
-    border-radius: 999px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+    width: 340px;
+    max-width: calc(100vw - 3rem);
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), 0 0 18px rgba(100, 210, 255, 0.2);
 
     .calc-header {
       padding-bottom: 0;
       border-bottom: none;
     }
 
-    .calc-header-text p {
+    .calc-physics-desc {
       display: none;
+    }
+
+    .calc-min-stats {
+      display: flex;
     }
 
     .sidebar-body {
@@ -421,6 +430,48 @@
     font-size: 0.72rem;
     color: $color-text-subtle;
     letter-spacing: 0.04em;
+  }
+
+  .calc-min-stats {
+    display: none;
+    align-items: center;
+    gap: 6px;
+    margin-top: 4px;
+    flex-wrap: wrap;
+
+    .min-stat-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(100, 210, 255, 0.25);
+      padding: 2px 7px;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      line-height: 1.2;
+    }
+
+    .min-stat-icon {
+      font-size: 0.75rem;
+    }
+
+    .min-stat-label {
+      color: rgba(255, 255, 255, 0.65);
+      font-size: 0.7rem;
+      font-weight: 500;
+    }
+
+    strong {
+      color: #6ee7b7;
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.02em;
+    }
+
+    .min-stat-divider {
+      color: rgba(255, 255, 255, 0.3);
+      font-size: 0.7rem;
+    }
   }
 }
 

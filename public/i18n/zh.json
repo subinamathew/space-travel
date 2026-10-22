@@ -36,6 +36,8 @@
     "expand_settings": "展开设置",
     "your_weight": "你的体重",
     "your_height": "你的身高",
+    "weight_short": "体重",
+    "jump_short": "跳跃",
     "weight_placeholder": "体重",
     "height_placeholder": "身高",
     "preset_kid": "儿童 (25kg)",

@@ -73,7 +73,7 @@
                     <img
                         src="../images/venus.png"
                         alt="Venus"
-                        class="subpage-planet-img "
+                        class="subpage-planet-img  "
                         width="150"
                         height="150"
                         loading="lazy"
@@ -153,17 +153,30 @@
             </div>
 
             <!-- Floating Cosmic Explorer Lab & NASA Kids Corner -->
-            <aside class="space-calc-sidebar" id="space-calc-sidebar" data-gravity="0.91" data-body="Venus" data-slug="venus">
-                <div class="calc-header" id="calc-header" role="button" tabindex="0" aria-expanded="true" aria-controls="sidebar-body" aria-label="Toggle Cosmic Explorer Lab" title="Click to minimize or expand" data-i18n-attr="aria-label:ui.toggle_lab">
+            <aside class="space-calc-sidebar is-minimized" id="space-calc-sidebar" data-gravity="0.91" data-body="Venus" data-slug="venus">
+                <div class="calc-header" id="calc-header" role="button" tabindex="0" aria-expanded="false" aria-controls="sidebar-body" aria-label="Expand Cosmic Explorer Lab" title="Click to minimize or expand" data-i18n-attr="aria-label:ui.expand_lab">
                     <div class="calc-header-left">
                         <span class="calc-icon">🧑‍🚀</span>
                         <div class="calc-header-text">
                             <h3 data-i18n="ui.lab_title">Cosmic Explorer Lab</h3>
-                            <p data-i18n="ui.lab_physics" data-i18n-params='{"gravity":"0.91"}'>Gravity: 0.91× Earth &bull; Live Physics</p>
+                            <p class="calc-physics-desc" data-i18n="ui.lab_physics" data-i18n-params='{"gravity":"0.91"}'>Gravity: 0.91× Earth &bull; Live Physics</p>
+                            <div class="calc-min-stats" id="calc-min-stats">
+                                <span class="min-stat-chip">
+                                    <span class="min-stat-icon">⚖️</span>
+                                    <span class="min-stat-label" data-i18n="ui.weight_short">Weight:</span>
+                                    <strong id="min-weight-val">63.7 kg</strong>
+                                </span>
+                                <span class="min-stat-divider">•</span>
+                                <span class="min-stat-chip">
+                                    <span class="min-stat-icon">🦘</span>
+                                    <span class="min-stat-label" data-i18n="ui.jump_short">Jump:</span>
+                                    <strong id="min-jump-val">48.4 cm</strong>
+                                </span>
+                            </div>
                         </div>
                     </div>
-                    <button type="button" class="sidebar-toggle-btn" id="sidebar-toggle-btn" aria-label="Minimize Cosmic Explorer Lab" title="Minimize / Expand" data-i18n-attr="aria-label:ui.minimize_lab">
-                        <span class="toggle-icon">−</span>
+                    <button type="button" class="sidebar-toggle-btn" id="sidebar-toggle-btn" aria-label="Expand Cosmic Explorer Lab" title="Expand Cosmic Explorer Lab" aria-expanded="false" data-i18n-attr="aria-label:ui.expand_lab">
+                        <span class="toggle-icon">+</span>
                     </button>
                 </div>
 

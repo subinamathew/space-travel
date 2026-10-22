@@ -36,6 +36,8 @@
     "expand_settings": "Agrandir les paramètres",
     "your_weight": "Votre Poids",
     "your_height": "Votre Taille",
+    "weight_short": "Poids",
+    "jump_short": "Saut",
     "weight_placeholder": "Poids",
     "height_placeholder": "Taille",
     "preset_kid": "Enfant (25kg/55lb)",

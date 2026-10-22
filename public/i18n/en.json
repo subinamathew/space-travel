@@ -36,6 +36,8 @@
     "expand_settings": "Expand Settings",
     "your_weight": "Your Weight",
     "your_height": "Your Height",
+    "weight_short": "Weight",
+    "jump_short": "Jump",
     "weight_placeholder": "Weight",
     "height_placeholder": "Height",
     "preset_kid": "Kid (25kg/55lb)",

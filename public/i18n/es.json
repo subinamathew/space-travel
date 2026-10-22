@@ -36,6 +36,8 @@
     "expand_settings": "Expandir Ajustes",
     "your_weight": "Tu Peso",
     "your_height": "Tu Altura",
+    "weight_short": "Peso",
+    "jump_short": "Salto",
     "weight_placeholder": "Peso",
     "height_placeholder": "Altura",
     "preset_kid": "Niño (25kg/55lb)",

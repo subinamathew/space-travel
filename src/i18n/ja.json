@@ -36,6 +36,8 @@
     "expand_settings": "設定を展開",
     "your_weight": "あなたの体重",
     "your_height": "あなたの身長",
+    "weight_short": "体重",
+    "jump_short": "ジャンプ",
     "weight_placeholder": "体重",
     "height_placeholder": "身長",
     "preset_kid": "子ども (25kg)",

@@ -80,10 +80,10 @@ function initCosmicCalculator() {
   if (inputWeight) inputWeight.value = Math.round(weightVal);
   if (inputHeight) inputHeight.value = Math.round(heightVal);
 
-  // Minimizable toggle handling
+  // Minimizable toggle handling (Cosmic Explorer Lab defaults to minimized)
   const toggleBtn = document.getElementById('sidebar-toggle-btn');
   const header = document.getElementById('calc-header');
-  const isMinimizedSaved = localStorage.getItem('space_calc_minimized') === 'true';
+  const isMinimizedSaved = localStorage.getItem('space_calc_minimized') !== 'false';
 
   function setMinimized(minimized) {
     sidebar.classList.toggle('is-minimized', minimized);
@@ -134,9 +134,11 @@ function initCosmicCalculator() {
       labSubtitle.textContent = t('ui.lab_physics', { gravity: gravity.toFixed(2) });
     }
 
+    const minWeightVal = document.getElementById('min-weight-val');
     if (isNaN(rawWeight) || rawWeight <= 0) {
       if (outputWeight) outputWeight.textContent = '—';
       if (outputWeightComp) outputWeightComp.textContent = t('ui.prompt_enter_weight');
+      if (minWeightVal) minWeightVal.textContent = '—';
     } else {
       localStorage.setItem('space_calc_weight', rawWeight);
 
@@ -144,11 +146,15 @@ function initCosmicCalculator() {
       const bodyKg = earthKg * gravity;
       const displayWeight = weightUnit === 'lbs' ? bodyKg * 2.20462 : bodyKg;
 
+      const formattedWeight = displayWeight >= 100 ? displayWeight.toFixed(0) : displayWeight.toFixed(1);
       if (outputWeight) {
-        outputWeight.textContent = displayWeight >= 100 ? displayWeight.toFixed(0) : displayWeight.toFixed(1);
+        outputWeight.textContent = formattedWeight;
       }
       if (outputWeightUnit) {
         outputWeightUnit.textContent = weightUnit;
+      }
+      if (minWeightVal) {
+        minWeightVal.textContent = `${formattedWeight} ${weightUnit}`;
       }
       if (outputWeightComp) {
         if (Math.abs(gravity - 1.0) < 0.02) {
@@ -165,9 +171,11 @@ function initCosmicCalculator() {
       }
     }
 
+    const minJumpVal = document.getElementById('min-jump-val');
     if (isNaN(rawHeight) || rawHeight <= 0) {
       if (outputJump) outputJump.textContent = '—';
       if (outputJumpComp) outputJumpComp.textContent = t('ui.prompt_enter_height');
+      if (minJumpVal) minJumpVal.textContent = '—';
     } else {
       localStorage.setItem('space_calc_height', rawHeight);
 
@@ -182,12 +190,16 @@ function initCosmicCalculator() {
       }
 
       const displayJump = heightUnit === 'in' ? bodyJumpCm / 2.54 : bodyJumpCm;
+      const formattedJump = displayJump <= 0 ? '0' : displayJump >= 100 ? displayJump.toFixed(0) : displayJump.toFixed(1);
 
       if (outputJump) {
-        outputJump.textContent = displayJump <= 0 ? '0' : displayJump >= 100 ? displayJump.toFixed(0) : displayJump.toFixed(1);
+        outputJump.textContent = formattedJump;
       }
       if (outputJumpUnit) {
         outputJumpUnit.textContent = heightUnit;
+      }
+      if (minJumpVal) {
+        minJumpVal.textContent = `${formattedJump} ${heightUnit}`;
       }
       if (outputJumpComp) {
         if (gravity >= 20) {
