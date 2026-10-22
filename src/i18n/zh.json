@@ -115,7 +115,9 @@
     "show_punchline": "揭晓笑点 ✨",
     "choose_astronaut": "宇航员化身",
     "astronaut_male": "👨‍🚀 男宇航员",
-    "astronaut_female": "👩‍🚀 女宇航员"
+    "astronaut_female": "👩‍🚀 女宇航员",
+    "replay_preloader": "启动曲速预加载动画",
+    "replay_preloader_short": "曲速启航"
   },
   "planets": {
     "sun": {

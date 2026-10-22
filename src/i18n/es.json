@@ -115,7 +115,9 @@
     "show_punchline": "Revelar remate ✨",
     "choose_astronaut": "Avatar de explorador",
     "astronaut_male": "👨‍🚀 Hombre",
-    "astronaut_female": "👩‍🚀 Mujer"
+    "astronaut_female": "👩‍🚀 Mujer",
+    "replay_preloader": "Iniciar precargador de velocidad hiperespacial",
+    "replay_preloader_short": "Velocidad Warp"
   },
   "planets": {
     "sun": {

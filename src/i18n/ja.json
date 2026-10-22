@@ -115,7 +115,9 @@
     "show_punchline": "オチを見る ✨",
     "choose_astronaut": "探査員アバター",
     "astronaut_male": "👨‍🚀 男性",
-    "astronaut_female": "👩‍🚀 女性"
+    "astronaut_female": "👩‍🚀 女性",
+    "replay_preloader": "ワープ速度プリローダーを起動",
+    "replay_preloader_short": "ワープ起動"
   },
   "planets": {
     "sun": {

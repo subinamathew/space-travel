@@ -115,7 +115,9 @@
     "show_punchline": "பதிலைக் காட்டு ✨",
     "choose_astronaut": "விண்வெளி வீரர் உருவம்",
     "astronaut_male": "👨‍🚀 ஆண்",
-    "astronaut_female": "👩‍🚀 பெண்"
+    "astronaut_female": "👩‍🚀 பெண்",
+    "replay_preloader": "வார்ப் வேக தொடக்க அனிமேஷனை இயக்கு",
+    "replay_preloader_short": "வார்ப் வேகம்"
   },
   "planets": {
     "sun": {

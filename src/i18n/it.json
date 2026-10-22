@@ -115,7 +115,9 @@
     "show_punchline": "Rivela battuta finale ✨",
     "choose_astronaut": "Avatar esploratore",
     "astronaut_male": "👨‍🚀 Uomo",
-    "astronaut_female": "👩‍🚀 Donna"
+    "astronaut_female": "👩‍🚀 Donna",
+    "replay_preloader": "Avvia preloader velocità di curvatura",
+    "replay_preloader_short": "Velocità Warp"
   },
   "planets": {
     "sun": {

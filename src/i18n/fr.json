@@ -115,7 +115,9 @@
     "show_punchline": "Révéler la chute ✨",
     "choose_astronaut": "Avatar d'explorateur",
     "astronaut_male": "👨‍🚀 Homme",
-    "astronaut_female": "👩‍🚀 Femme"
+    "astronaut_female": "👩‍🚀 Femme",
+    "replay_preloader": "Lancer le préchargeur vitesse supraluminique",
+    "replay_preloader_short": "Vitesse Warp"
   },
   "planets": {
     "sun": {

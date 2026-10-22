@@ -19,12 +19,17 @@ export function initPreloader(onComplete) {
     return;
   }
 
+  // Check if forced via query parameter (e.g. ?warp=1 or ?preloader=1)
+  const urlParams = new URLSearchParams(window.location.search);
+  const forcePreloader = urlParams.has('warp') || urlParams.has('preloader');
+
   // Check if returning from planet subpages, credits, or already viewed in this session
   const referrer = document.referrer || '';
   const isReturning =
-    referrer.includes('/planets/') ||
-    referrer.includes('credits.html') ||
-    sessionStorage.getItem('rocketrun_visited') === 'true';
+    !forcePreloader &&
+    (referrer.includes('/planets/') ||
+      referrer.includes('credits.html') ||
+      sessionStorage.getItem('rocketrun_visited') === 'true');
 
   if (isReturning) {
     sessionStorage.setItem('rocketrun_visited', 'true');
@@ -34,6 +39,13 @@ export function initPreloader(onComplete) {
     if (settingsHud) settingsHud.classList.add('visible');
     if (onComplete) onComplete();
     return;
+  }
+
+  // Clear query parameters in address bar cleanly after launching
+  if (forcePreloader && window.history && window.history.replaceState) {
+    try {
+      window.history.replaceState({}, document.title, window.location.pathname);
+    } catch (e) {}
   }
 
   const ctx = canvas.getContext('2d');

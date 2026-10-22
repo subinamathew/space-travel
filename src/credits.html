@@ -47,8 +47,13 @@
 
     <a id="back-btn" class="visible" href="index.html" aria-label="Back to solar system" data-i18n="ui.back_btn" data-i18n-attr="aria-label:ui.back_btn">← Solar System</a>
 
-    <!-- Top-Right HUD Stack: Language Selector -->
+    <!-- Top-Right HUD Stack: Warp Preloader Launch & Language Selector -->
     <div class="hud-stack">
+        <!-- Replay Warp Speed Preloader Button -->
+        <a href="index.html?warp=1" id="launch-preloader-btn" class="hud-circle-btn hud-rocket-btn in-stack" aria-label="Launch Warp Speed Preloader" title="Launch Warp Speed Preloader" data-i18n-attr="aria-label:ui.replay_preloader,title:ui.replay_preloader">
+            <span class="hud-rocket-icon">🚀</span>
+        </a>
+
         <div id="settings-hud" class="in-stack visible" aria-label="Settings and Language">
             <div class="hud-header" role="button" tabindex="0" aria-label="Toggle Settings HUD" title="Language Settings" data-i18n-attr="aria-label:ui.toggle_settings,title:ui.toggle_settings">
                 <div class="hud-header-title">
@@ -212,6 +217,10 @@
 
     <!-- Floating Crawl Controls Bar -->
     <nav class="crawl-controls-bar" aria-label="Crawl animation controls">
+        <a href="index.html?warp=1" class="crawl-ctrl-btn crawl-warp-btn" id="crawl-warp-btn" aria-label="Launch Warp Speed Preloader" title="Launch Warp Speed Preloader" data-i18n-attr="aria-label:ui.replay_preloader,title:ui.replay_preloader">
+            <span class="ctrl-icon">🚀</span>
+            <span class="ctrl-label" data-i18n="ui.replay_preloader_short">Warp Speed</span>
+        </a>
         <button type="button" class="crawl-ctrl-btn" id="crawl-pause-btn" aria-label="Pause or Resume Crawl">
             <span class="ctrl-icon" id="crawl-pause-icon">⏸</span>
             <span class="ctrl-label" id="crawl-pause-label" data-i18n="ui.crawl_pause">Pause</span>

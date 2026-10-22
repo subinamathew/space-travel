@@ -115,7 +115,9 @@
     "show_punchline": "തമാശയുടെ ട്വിസ്റ്റ് കാണുക ✨",
     "choose_astronaut": "യാത്രികന്റെ അവതാർ",
     "astronaut_male": "👨‍🚀 പുരുഷൻ",
-    "astronaut_female": "👩‍🚀 സ്ത്രീ"
+    "astronaut_female": "👩‍🚀 സ്ത്രീ",
+    "replay_preloader": "വാർപ്പ് സ്പീഡ് ആനിമേഷൻ ആരംഭിക്കുക",
+    "replay_preloader_short": "വാർപ്പ് സ്പീഡ്"
   },
   "planets": {
     "sun": {

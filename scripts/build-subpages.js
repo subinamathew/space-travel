@@ -269,9 +269,13 @@ allBodies.forEach((p, idx) => {
             </div>
         </div>
 
-        <!-- Quick Access People / Credits Button -->
-        <a href="../credits.html" class="hud-circle-btn hud-people-btn in-stack" aria-label="About & Credits" title="About & Credits" data-i18n-attr="aria-label:ui.credits_btn,title:ui.credits_btn">
-            <span class="hud-people-icon">👥</span>
+        <!-- Quick Access RocketRun Credits Button (R🚀R) -->
+        <a href="../credits.html" class="hud-circle-btn hud-credits-btn in-stack" aria-label="About & Credits" title="About & Credits" data-i18n-attr="aria-label:ui.credits_btn,title:ui.credits_btn">
+            <span class="hud-rr-badge" aria-hidden="true">
+                <span class="rr-letter">R</span>
+                <span class="rr-rocket">🚀</span>
+                <span class="rr-letter">R</span>
+            </span>
         </a>
 
         <!-- Cookie & Privacy Settings Button -->

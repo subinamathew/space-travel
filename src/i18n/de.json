@@ -115,7 +115,9 @@
     "show_punchline": "Pointe aufdecken ✨",
     "choose_astronaut": "Entdecker-Avatar",
     "astronaut_male": "👨‍🚀 Männlich",
-    "astronaut_female": "👩‍🚀 Weiblich"
+    "astronaut_female": "👩‍🚀 Weiblich",
+    "replay_preloader": "Warp-Geschwindigkeit Preloader starten",
+    "replay_preloader_short": "Warp-Start"
   },
   "planets": {
     "sun": {

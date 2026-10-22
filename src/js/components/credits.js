@@ -55,6 +55,18 @@ export function initCreditsCrawl() {
     if (modeLabel) modeLabel.textContent = isFlat ? t('ui.crawl_crawl_view') : t('ui.crawl_flat_view');
   });
 
+  // Replay Warp Speed Preloader button in Credits HUD stack & crawl controls
+  const warpBtn = document.getElementById('launch-preloader-btn');
+  const crawlWarpBtn = document.getElementById('crawl-warp-btn');
+  [warpBtn, crawlWarpBtn].forEach(btn => {
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      try {
+        sessionStorage.removeItem('rocketrun_visited');
+      } catch (err) {}
+    });
+  });
+
   // Navigation back to home / solar system
   function goBack() {
     const backBtn = document.getElementById('back-btn');

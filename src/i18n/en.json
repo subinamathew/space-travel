@@ -115,7 +115,9 @@
     "show_punchline": "Reveal Punchline ✨",
     "choose_astronaut": "Explorer Avatar",
     "astronaut_male": "👨‍🚀 Male",
-    "astronaut_female": "👩‍🚀 Female"
+    "astronaut_female": "👩‍🚀 Female",
+    "replay_preloader": "Launch Warp Speed Preloader",
+    "replay_preloader_short": "Warp Speed"
   },
   "planets": {
     "sun": {
