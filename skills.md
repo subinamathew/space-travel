@@ -2,15 +2,16 @@
 name: rocketrun-development-standards
 description: >-
   Core engineering skills, architectural principles, multi-agent contracts,
-  pedagogical standards, and quality guidelines for RocketRun (rocketrun.de).
-  Enforces CSS over JS, conventional commits, lightweight semantic HTML, low
-  cyclomatic complexity (<= 8), procedural asset rendering, strict i18n parity,
-  CI/CD, OpenGraph metadata, and 60fps performance on lower-end devices.
+  pedagogical standards, web security anti-hacking rules, open source licensing,
+  and quality guidelines for RocketRun (rocketrun.de). Enforces CSS over JS,
+  conventional commits, lightweight semantic HTML, low cyclomatic complexity (<= 8),
+  procedural asset rendering, strict i18n parity, enterprise security headers (CSP),
+  MIT attribution licensing, and 60fps performance on lower-end devices.
 ---
 
 # Engineering Skills & Development Guidelines
 
-This document defines the core engineering skills, architectural principles, quality standards, and development rules for the **RocketRun (rocketrun.de)** project. All contributors, agents, and pipelines must adhere to these practices to ensure high performance, maintainability, rock-solid stability, and an optimal experience across all devices.
+This document defines the core engineering skills, architectural principles, quality standards, and development rules for the **RocketRun (rocketrun.de)** project. All contributors, agents, and pipelines must adhere to these practices to ensure high performance, maintainability, rock-solid stability, security, and an optimal experience across all devices.
 
 ---
 
@@ -28,7 +29,9 @@ This document defines the core engineering skills, architectural principles, qua
 10. [Skill 10: Full Internationalization (i18n) & Accessibility (a11y)](#skill-10-full-internationalization-i18n--accessibility-a11y)
 11. [Skill 11: Child Pedagogy & Metaphor Design for Scientific Explanations](#skill-11-child-pedagogy--metaphor-design-for-scientific-explanations)
 12. [Skill 12: Metadata, OpenGraph & Social Sharing Standards](#skill-12-metadata-opengraph--social-sharing-standards)
-13. [Pre-Flight Verification Checklist](#pre-flight-verification-checklist)
+13. [Skill 13: Web Security, Anti-Hacking & Defense-in-Depth](#skill-13-web-security-anti-hacking--defense-in-depth)
+14. [Skill 14: Open Source Licensing, Attribution & Trademark Integrity](#skill-14-open-source-licensing-attribution--trademark-integrity)
+15. [Pre-Flight Verification Checklist](#pre-flight-verification-checklist)
 
 ---
 
@@ -369,6 +372,77 @@ Every public endpoint and generated subpage in **RocketRun** must include compre
 
 ---
 
+## Skill 13: Web Security, Anti-Hacking & Defense-in-Depth
+
+### Core Rule
+**Assume all client-side runtime environments and user inputs are untrusted and actively hostile.** Deploy comprehensive defense-in-depth measures against information disclosure, reconnaissance, Cross-Site Scripting (XSS), clickjacking, tabnabbing, and storage poisoning.
+
+### Security Principles & Rules
+
+1. **Zero Information Leakage of Infrastructure & Deployment Endpoints**:
+   - **Never expose internal deployment infrastructure URLs, CI/CD webhook links, dashboard URLs, or host-specific project IDs inside the client-facing application UI or client-side bundles.**
+   - Badges, build dashboards, and administrative links (e.g. Netlify deploy logs, GitHub Action workflows) belong strictly in the developer repository (`README.md`), never in the production client web views.
+   - Revealing provider-specific project names or deployment hashes exposes the system to targeted reconnaissance, account enumeration, and automated denial-of-service attempts.
+
+2. **Enterprise Content Security Policy (CSP)**:
+   - Configure a strict HTTP Content Security Policy in `netlify.toml`:
+     - `default-src 'self'`: Disallow loading external assets from arbitrary domains.
+     - `script-src 'self'`: Disallow untrusted inline scripts and forbid `eval()`, `new Function()`, and `WebAssembly` compilation unless specifically isolated.
+     - `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com`: Restrict font styles to trusted CDN origins while permitting essential CSS custom property manipulations.
+     - `font-src 'self' https://fonts.gstatic.com`: Restrict downloadable fonts to trusted Google Font CDN origins.
+     - `img-src 'self' data: https://rocketrun.de`: Block rogue image exfiltration channels.
+     - `connect-src 'self'`: Prevent background AJAX/fetch calls from leaking data to unauthorized third-party endpoints.
+     - `frame-ancestors 'none'`: Strictly forbid framing on any domain to prevent clickjacking.
+     - `base-uri 'self'`: Block `<base>` tag hijacking attacks.
+     - `form-action 'self'`: Block unauthorized form data transmission.
+
+3. **Anti-Clickjacking & UI Redressing Defense**:
+   - Never allow RocketRun to be loaded in an `<iframe>` on an adversary's site.
+   - Enforce both `X-Frame-Options: DENY` and CSP `frame-ancestors 'none'` on all endpoints to prevent invisible click-stealing overlays.
+
+4. **Zero Unsafe DOM Injection (`textContent` over `innerHTML`)**:
+   - Dynamic user-facing text, translated strings, planet metrics, and gravity calculations must always be rendered via `.textContent` or `setAttribute()`.
+   - Never pass raw user inputs, URL search parameters, or untrusted translations to `.innerHTML`, `.outerHTML`, or `document.write`.
+
+5. **Reverse Tabnabbing & Window Opener Hijacking Defense**:
+   - Every external hyperlink targeting a new browsing context (`target="_blank"`) must mandate `rel="noopener noreferrer"`.
+   - Without `rel="noopener noreferrer"`, the target site acquires access to the opener document via `window.opener.location`, enabling malicious phishing redirect attacks against users.
+
+6. **MIME Sniffing Prevention & Strict Content Typing**:
+   - Always set `X-Content-Type-Options: nosniff` in server headers to prevent browsers from executing non-script assets (images, stylesheets) as executable code.
+
+7. **Transport Security (HSTS) & Referrer Isolation**:
+   - Enforce HTTPS across all pages: `Strict-Transport-Security: max-age=31536000; includeSubDomains; preload`.
+   - Set `Referrer-Policy: strict-origin-when-cross-origin` to avoid leaking full URL query parameters when users navigate away.
+   - Set `Cross-Origin-Opener-Policy: same-origin` and `Cross-Origin-Resource-Policy: same-origin`.
+
+8. **Hardware & Feature Permissions Lockdown**:
+   - Set `Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=(), display-capture=()` in server headers to completely disable device sensor APIs that could be weaponized if third-party code were ever introduced.
+
+9. **Stateless Client Architecture & Storage Sandboxing**:
+   - Maintain zero backend server attack surface: all planetary orbits, calculations, and animations run purely on the client with zero database credentials, serverless API keys, or cookies.
+   - Validate and guard all data read from `localStorage` (`space_lang`, unit preferences) against unexpected schema mutations.
+
+---
+
+## Skill 14: Open Source Licensing, Attribution & Trademark Integrity
+
+### Core Rule
+RocketRun is an educational, community-friendly initiative. Others are encouraged to learn from, copy, adapt, and build upon its architectural concepts, **provided they visibly and permanently give credit and maintain attribution.**
+
+### Guidelines & Legal Requirements
+1. **MIT License with Mandatory Attribution**:
+   - The project is governed by the `LICENSE` file in the root directory.
+   - Users are permitted to use, modify, copy, and distribute the code, provided that:
+     1. The copyright notice and license notice are preserved in all copies.
+     2. Derivative works, educational forks, or adaptations must display prominent visible attribution:
+        `"RocketRun by Zachary David Mathew + Papa (https://rocketrun.de)"`.
+2. **Trademark & Domain Protection**:
+   - The brand name `"RocketRun"`, domain `rocketrun.de`, and original planetary narratives remain the intellectual property of `rocketrun.de`.
+   - Forks and clones must not claim to be the official `rocketrun.de` service or imply endorsement.
+
+---
+
 ## Pre-Flight Verification Checklist
 
 Before pushing any commit or releasing to production, verify:
@@ -386,6 +460,14 @@ Before pushing any commit or releasing to production, verify:
   - [ ] OpenGraph (`og:title`, `og:image`, `og:url`, `og:site_name`) and Twitter Card tags are present.
   - [ ] Social images are served over absolute HTTPS and optimized for WhatsApp (< 300KB).
   - [ ] Copyright declared as `rocketrun.de`.
+- [ ] **Anti-Hacking & Web Security**:
+  - [ ] Zero internal deployment, dashboard, or pipeline URLs exposed in production HTML or JS bundles.
+  - [ ] Enterprise security headers (`Content-Security-Policy`, `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, `Permissions-Policy`, `HSTS`, `COOP`, `CORP`) active in `netlify.toml`.
+  - [ ] All external `target="_blank"` links include `rel="noopener noreferrer"`.
+  - [ ] All dynamic DOM rendering uses `textContent` with zero unsanitized `innerHTML` injection.
+- [ ] **Licensing & Attribution**:
+  - [ ] Root `LICENSE` present with MIT license and explicit attribution clause.
+  - [ ] `package.json` contains `"license": "MIT"`.
 - [ ] **i18n Parity**: `npm test` passes with 100% parity across all 9 language files.
 - [ ] **Build Validation**: `npm run build` generates all pages and bundles without errors or warnings.
 - [ ] **Mobile & Handheld Test**: Tested on narrow mobile screen (360px–414px) with touch-friendly tap targets (≥ 44px).
