@@ -124,7 +124,7 @@
           "label": "Masse",
           "value": "1,989 × 10³⁰ kg",
           "sub": "333.000 × Erde (99,86 % Systemmasse)",
-          "kids": "Die Sonne besitzt 99,86% der gesamten Masse unseres Sonnensystems! Sie ist 333.000-mal schwerer als die Erde und hält alle Planeten mit ihrer Riesenkraft auf ihrer Bahn."
+          "kids": "Die Sonne hält 99,86 % der gesamten Masse im Sonnensystem! Prozent (%) bedeutet Teile von 100 – wenn alle Planeten, Monde und Asteroiden 10.000 Bausteine wären, wäre die Sonne allein 9.986 davon!"
         },
         {
           "label": "Galaktische Geschwindigkeit",
@@ -148,7 +148,7 @@
           "label": "Zusammensetzung",
           "value": "73,4 % H₂, 25,0 % He",
           "sub": "1,6 % schwerere Elemente (C, N, O, Fe)",
-          "kids": "Die Sonne besteht aus Wasserstoff (H₂) und Helium (He). Beide sind leichter als unsere Atemluft! Wasserstoff verbrennt in Kernfusionsfeuern und schenkt der Erde Licht und Wärme."
+          "kids": "Das Prozentzeichen (%) bedeutet Teile von 100! Wenn du 100 Schaufeln der Sonne nimmst:\n• H₂ (73 Schaufeln) ist Wasserstoff: das leichteste Gas im Universum und Brennstoff des Sonnen-Kernkraftwerks.\n• He (25 Schaufeln) ist Helium: das Schwebe-Gas, das Luftballons zur Decke steigen lässt!\nZusammen erzeugen H₂ und He all das Licht und die Wärme für die Erde."
         }
       ]
     },
@@ -270,7 +270,7 @@
           "label": "Atmosphäre",
           "value": "96,5 % CO₂, 3,5 % N₂",
           "sub": "Schwefelsäurewolken; 92 bar Druck",
-          "kids": "Die Luft auf der Venus besteht aus Kohlendioxid mit Wolken aus echter Batteriesäure (Schwefelsäure)! Der Luftdruck ist 92-mal höher als auf der Erde und würde ein U-Boot plattdrücken."
+          "kids": "Prozent (%) bedeutet Teile von 100 Schaufeln Luft auf der Venus:\n• CO₂ (96,5 Schaufeln) ist Kohlendioxid: das Sprudelgas aus Limonade, das Hitze wie in einem Ofen staut!\n• N₂ (3,5 Schaufeln) ist Stickstoff: dasselbe Gas wie am Erdhimmel.\nEs gibt null O₂ (Sauerstoff) zum Atmen, und Wolken regnen ätzende Batteriesäure!"
         }
       ]
     },
@@ -331,7 +331,7 @@
           "label": "Atmosphäre",
           "value": "78 % N₂, 21 % O₂, 1 % Ar",
           "sub": "Schützende Ozonschicht & Magnetfeld",
-          "kids": "Die Erde hat die einzige atembare Luft im Universum: 21% Sauerstoff für Mensch und Tier, 78% Stickstoff für Pflanzen und eine Ozonschicht gegen Sonnenbrand."
+          "kids": "Was bedeuten diese Buchstaben und Prozentzahlen? Das Prozentzeichen (%) bedeutet Teile von Hundert! Stell dir ein Glas mit 100 Luft-Murmeln vor:\n• N₂ (78 Murmeln) ist Stickstoff: ein unsichtbares, sanftes Gas, das Pflanzen grün und stark macht.\n• O₂ (21 Murmeln) ist Sauerstoff: das lebenswichtige Atemgas, das du, deine Familie und Tiere zum Leben brauchen!\n• Ar (1 Murmel) ist Argon: ein friedliches Edelgas, das einfach ruhig mitschwebt.\nDie Erde hat die einzige natürlich atembare Luft im ganzen Weltall!"
         }
       ]
     },
@@ -392,7 +392,7 @@
           "label": "Atmosphäre",
           "value": "95,3 % CO₂, 2,6 % N₂",
           "sub": "Dünne Atmosphäre (~0,006 bar)",
-          "kids": "Die Marsluft ist sehr dünn und besteht aus Kohlendioxid. Riesige rote Staubstürme können den ganzen Planeten monatelang einhüllen!"
+          "kids": "Prozent (%) bedeutet Anteile an 100 Schaufeln dünner Marsluft:\n• CO₂ (95 Schaufeln) ist Kohlendioxid: das Gas, das wir ausatmen.\n• N₂ (knapp 3 Schaufeln) ist Stickstoff.\nEs gibt fast keinen O₂ (Sauerstoff) zum Atmen, und die Luft ist 100-mal dünner als auf der Erde – Astronauten müssen immer Raumanzüge tragen!"
         }
       ]
     },
@@ -453,7 +453,7 @@
           "label": "Atmosphäre",
           "value": "89,8 % H₂, 10,2 % He",
           "sub": "Spuren von Methan, Ammoniak, Wasserdampf",
-          "kids": "Jupiter hat keinen festen Boden—er ist ein Gasriese aus Wasserstoff und Helium! Sein Großer Roter Fleck ist ein Riesensturm, größer als die Erde."
+          "kids": "Prozent (%) bedeutet Teile von 100 Schaufeln des wirbelnden Jupiter-Himmels:\n• H₂ (90 Schaufeln) ist Wasserstoff: das leichteste Gas im Universum und Sternen-Brennstoff.\n• He (10 Schaufeln) ist Helium: schwebendes Partyballon-Gas!\nJupiter hat keinen festen Boden – nur einen riesigen Wirbelsturmball mit dem Großen Roten Fleck!"
         }
       ]
     },
@@ -514,7 +514,7 @@
           "label": "Atmosphäre",
           "value": "96,3 % H₂, 3,25 % He",
           "sub": "Spuren von Methan, Ammoniak, Ethan",
-          "kids": "Saturn besteht aus leichten Gasen. Seine Winde fegen mit 1.800 km/h über den Planeten—schneller als Überschalljets!"
+          "kids": "Prozent (%) bedeutet Teile von 100 Schaufeln aus Saturns Himmel:\n• H₂ (96 Schaufeln) ist Wasserstoff: federleichter Sternen-Brennstoff.\n• He (3 Schaufeln) ist Helium: Partyballon-Gas!\nWeil diese Gase so leicht sind, ist Saturn leichter als Wasser und könnte in einer Riesenbadewanne schwimmen!"
         }
       ]
     },
@@ -575,7 +575,7 @@
           "label": "Atmosphäre",
           "value": "82,5 % H₂, 15,2 % He, 2,3 % CH₄",
           "sub": "Methan absorbiert Rotlicht für Türkisfarbe",
-          "kids": "Uranus leuchtet cyanblau wegen Methangas in seiner Luft. Methan schluckt rotes Sonnenlicht und wirft leuchtendes Blau-Grün zurück."
+          "kids": "Prozent (%) bedeutet Teile von 100 Schaufeln der eiskalten Atmosphäre:\n• H₂ (82 Schaufeln) ist Wasserstoffgas.\n• He (15 Schaufeln) ist Heliumgas (Ballongas).\n• CH₄ (über 2 Schaufeln) ist Methangas: dasselbe Gas wie bei Kuh-Rülpsern! Methan schluckt rotes Sonnenlicht und wirft wunderschönes cyanblaues Licht zurück."
         }
       ]
     },
@@ -636,7 +636,7 @@
           "label": "Atmosphäre",
           "value": "80,0 % H₂, 19,0 % He, 1,5 % CH₄",
           "sub": "Tiefes Azurblau mit Großem Dunklen Fleck",
-          "kids": "Auf Neptun toben die schnellsten Winde im Sonnensystem mit über 2.100 km/h—schneller als ein Überschallflugzeug!"
+          "kids": "Prozent (%) bedeutet Teile von 100 Schaufeln eisiger Atmosphäre:\n• H₂ (80 Schaufeln) ist Wasserstoffgas.\n• He (19 Schaufeln) ist Heliumgas (Ballongas).\n• CH₄ (1,5 Schaufeln) ist Methangas: dieses Gas schluckt rotes Licht und wirft tiefes, wunderschönes Meeresblau zurück!\nStürme jagen mit über 2.100 km/h durch dieses blaue Gas!"
         }
       ]
     }

@@ -124,7 +124,7 @@
           "label": "Mass",
           "value": "1.989 × 10³⁰ kg",
           "sub": "333,000 × Earth (99.86% system mass)",
-          "kids": "The Sun holds 99.86% of all the stuff in our whole solar system! It is 333,000 times heavier than Earth, using its giant gravitational grip to hold all the planets in orbit."
+          "kids": "The Sun holds 99.86% of all the matter in our whole solar system! Percent (%) means parts out of 100—if all 8 planets, moons, asteroids, and comets were 10,000 building blocks, the Sun alone would be 9,986 of them, leaving just 14 tiny blocks for everything else combined!"
         },
         {
           "label": "Galactic Velocity",
@@ -148,7 +148,7 @@
           "label": "Composition",
           "value": "73.4% H₂, 25.0% He",
           "sub": "1.6% heavier elements (C, N, O, Fe)",
-          "kids": "The Sun is made of Hydrogen (H₂) and Helium (He) gases. Both are lighter than the air we breathe! The hydrogen acts like fuel in a giant nuclear furnace, creating all the light and heat that keeps Earth alive."
+          "kids": "The percent sign (%) means parts out of 100! If you took 100 scoops of the Sun:\n• H₂ (73 scoops) is Hydrogen gas: the lightest, simplest gas in the universe! It catches fire easily and acts like fuel for the Sun’s gigantic nuclear furnace.\n• He (25 scoops) is Helium gas: the second-lightest gas—the very same floaty gas that makes party balloons fly up to the ceiling!\nTogether, H₂ and He generate all the sunshine and warmth keeping Earth alive."
         }
       ]
     },
@@ -270,7 +270,7 @@
           "label": "Atmosphere",
           "value": "96.5% CO₂, 3.5% N₂",
           "sub": "Sulfuric acid clouds; 92 bar pressure",
-          "kids": "The air on Venus is thick carbon dioxide with clouds of real sulfuric battery acid! The air pressure is 92 times heavier than on Earth—it would crush a submarine flat like a soda can."
+          "kids": "Percent (%) means parts out of 100 scoops of Venusian air:\n• CO₂ (96.5 scoops) is Carbon Dioxide: the bubbly gas in soda pop that we breathe out. On Venus, it traps heat like a locked greenhouse oven!\n• N₂ (3.5 scoops) is Nitrogen: the same calm gas in Earth’s sky.\nThere is zero O₂ (oxygen) to breathe, and yellow clouds rain real battery acid!"
         }
       ]
     },
@@ -331,7 +331,7 @@
           "label": "Atmosphere",
           "value": "78% N₂, 21% O₂, 1% Ar",
           "sub": "Protective ozone layer & magnetosphere",
-          "kids": "Earth has the only breathable air in the universe! It has 21% oxygen for people and animals to breathe, 78% nitrogen for plants, and an ozone layer that blocks harmful sunburn rays."
+          "kids": "What do those letters and percent numbers mean? Percent (%) means parts out of 100! Imagine a jar with 100 marbles of air:\n• N₂ (78 marbles) is Nitrogen: an invisible, quiet gas that fills most of our sky and helps plants grow green and strong.\n• O₂ (21 marbles) is Oxygen: the life gas that you, your family, puppies, and birds breathe in with every breath to live!\n• Ar (1 marble) is Argon: a shy, peaceful gas that drifts gently without bothering anyone.\nEarth has the only naturally breathable air in the whole universe!"
         }
       ]
     },
@@ -392,7 +392,7 @@
           "label": "Atmosphere",
           "value": "95.3% CO₂, 2.6% N₂",
           "sub": "Thin atmosphere (~0.006 bar)",
-          "kids": "The air on Mars is very thin carbon dioxide with less than 1% of Earth’s pressure. Giant reddish dust storms can whip up and cover the entire planet for months!"
+          "kids": "Percent (%) means parts out of 100 scoops of thin Martian air:\n• CO₂ (95 scoops) is Carbon Dioxide: the fizzy gas we exhale.\n• N₂ (nearly 3 scoops) is Nitrogen.\nThere is almost no O₂ (oxygen) to breathe, and the air is 100 times thinner than on Earth—astronauts must always wear pressurized spacesuits with oxygen helmets!"
         }
       ]
     },
@@ -453,7 +453,7 @@
           "label": "Atmosphere",
           "value": "89.8% H₂, 10.2% He",
           "sub": "Trace methane, ammonia, water vapor",
-          "kids": "Jupiter has no solid ground—it is a giant swirling ball of Hydrogen and Helium gas! Its Great Red Spot is a monster storm bigger than Earth that has raged for over 350 years."
+          "kids": "Percent (%) means parts out of 100 scoops of Jupiter’s swirling sky:\n• H₂ (90 scoops) is Hydrogen: the lightest gas in the universe, fuel for stars.\n• He (10 scoops) is Helium: floaty balloon gas!\nJupiter has no solid ground to stand on—just a giant swirling ball of gas with a Great Red Spot hurricane bigger than Earth!"
         }
       ]
     },
@@ -514,7 +514,7 @@
           "label": "Atmosphere",
           "value": "96.3% H₂, 3.25% He",
           "sub": "Trace methane, ammonia, ethane",
-          "kids": "Saturn is made of light Hydrogen and Helium gas. Winds in its upper atmosphere scream past at 1,800 kilometers per hour—faster than supersonic jet fighter planes!"
+          "kids": "Percent (%) means parts out of 100 scoops of Saturn’s sky:\n• H₂ (96 scoops) is Hydrogen: super-light star fuel.\n• He (3 scoops) is Helium: party balloon gas!\nBecause these gases are so fluffy and light, Saturn is less dense than water and could float in a giant bathtub! Meanwhile, winds scream past at 1,800 km/h."
         }
       ]
     },
@@ -575,7 +575,7 @@
           "label": "Atmosphere",
           "value": "82.5% H₂, 15.2% He, 2.3% CH₄",
           "sub": "Methane absorbs red light yielding cyan hue",
-          "kids": "Uranus gets its beautiful cyan-blue color from methane gas in its atmosphere. Methane absorbs red light from the Sun and bounces back brilliant aquamarine blue light to our eyes!"
+          "kids": "Percent (%) means parts out of 100 scoops of chilly atmosphere:\n• H₂ (82 scoops) is Hydrogen gas.\n• He (15 scoops) is Helium gas (party balloon gas).\n• CH₄ (over 2 scoops) is Methane gas: the same gas found in cow burps! Methane absorbs red sunlight and reflects brilliant cyan-blue light to our eyes."
         }
       ]
     },
@@ -636,7 +636,7 @@
           "label": "Atmosphere",
           "value": "80.0% H₂, 19.0% He, 1.5% CH₄",
           "sub": "Vivid azure blue with Great Dark Spot",
-          "kids": "Neptune has the wildest, fastest winds in the solar system, howling past at over 2,100 kilometers per hour (faster than a supersonic jet!) with deep azure blue clouds."
+          "kids": "Percent (%) means parts out of 100 scoops of icy atmosphere:\n• H₂ (80 scoops) is Hydrogen gas.\n• He (19 scoops) is Helium gas (party balloon gas).\n• CH₄ (1.5 scoops) is Methane gas: this magical gas swallows red sunlight and reflects deep, gorgeous ocean-blue light!\nWild storms whip through this blue gas at over 2,100 km/h!"
         }
       ]
     }

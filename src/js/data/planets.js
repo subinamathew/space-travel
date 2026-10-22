@@ -28,11 +28,11 @@ export const sunData = {
     { label: 'Spectral Class', value: 'G2V (Yellow Dwarf)', sub: 'Main-sequence star; ~4.6B years old', kids: 'Even though people call the Sun a "yellow dwarf", it is not small at all! G2V is a special star code that means it is a bright, yellow powerhouse star in the best years of its life.' },
     { label: 'Surface Temperature', value: '5,500°C (5,778 K)', sub: 'Surface is 55 times boiling water; core is 150,000 times hotter than boiling water (~15M°C)', kids: 'The surface of the Sun is 5,500°C—hotter than 55 times your hot bath water! Deep inside its core, it is 150,000 times hotter than boiling water (~15 million °C)!' },
     { label: 'Equatorial Diameter', value: '1,392,700 km', sub: '109.2 × Earth diameter', kids: 'The Sun is enormous! If the Sun were a huge hollow beach ball, you could fit more than one million Earths inside it like tiny glass marbles.' },
-    { label: 'Mass', value: '1.989 × 10³⁰ kg', sub: '333,000 × Earth (99.86% system mass)', kids: 'The Sun holds 99.86% of all the stuff in our whole solar system! It is 333,000 times heavier than Earth, using its giant gravitational grip to hold all the planets in orbit.' },
+    { label: 'Mass', value: '1.989 × 10³⁰ kg', sub: '333,000 × Earth (99.86% system mass)', kids: 'The Sun holds 99.86% of all the matter in our whole solar system! Percent (%) means parts out of 100—if all 8 planets, moons, asteroids, and comets were 10,000 building blocks, the Sun alone would be 9,986 of them, leaving just 14 tiny blocks for everything else combined!' },
     { label: 'Galactic Velocity', value: '220 km/s', sub: 'Milky Way orbit period: ~230M years', kids: 'Our Sun zooms around the Milky Way galaxy at 220 kilometers every single second! That is over 700 times faster than a speeding bullet train.' },
     { label: 'Distance to Earth', value: '149,600,000 km', sub: '1.0 AU (Light travel: 8m 20s)', kids: 'The Sun is 150 million kilometers away. Light from the Sun is the fastest traveler in the universe, but it still takes 8 minutes and 20 seconds to reach your eyes on Earth!' },
     { label: 'Rotation Period', value: '25.05 days (Equator)', sub: '34.4 days at poles (differential rotation)', kids: 'The Sun is a giant spinning ball of superhot gas and plasma. Because it is not solid rock, its middle equator spins once in 25 days, but its poles take 34 days!' },
-    { label: 'Composition', value: '73.4% H₂, 25.0% He', sub: '1.6% heavier elements (C, N, O, Fe)', kids: 'The Sun is made of Hydrogen (H₂) and Helium (He) gases. Both are lighter than the air we breathe! The hydrogen acts like fuel in a giant nuclear furnace, creating all the light and heat that keeps Earth alive.' }
+    { label: 'Composition', value: '73.4% H₂, 25.0% He', sub: '1.6% heavier elements (C, N, O, Fe)', kids: 'The percent sign (%) means parts out of 100! If you took 100 scoops of the Sun:\n• H₂ (73 scoops) is Hydrogen gas: the lightest gas in the universe! It catches fire easily and acts like fuel for the Sun’s gigantic nuclear furnace.\n• He (25 scoops) is Helium gas: the second-lightest gas—the very same floaty gas that makes party balloons fly up to the ceiling!\nTogether, H₂ and He generate all the sunshine and warmth keeping Earth alive.' }
   ]
 };
 
@@ -108,7 +108,7 @@ export const planets = [
     { label: 'Mass', value: '4.87 × 10²⁴ kg', sub: '0.815 × Earth', kids: 'Venus is almost as heavy as Earth. If you stood on Venus, gravity would feel almost identical to home, pulling you down with 91% of your normal weight.' },
     { label: 'Surface Temperature', value: '465°C (Average)', sub: 'Nearly 5 times hotter than boiling water — melts lead!', kids: 'Venus is the hottest planet in the entire solar system at 465°C—nearly 5 times hotter than boiling water! Thick yellow clouds trap heat like a giant greenhouse, hot enough to melt metal like lead into puddles.' },
     { label: 'Moons & Rings', value: '0 Moons · 0 Rings', sub: 'Venus has no moons or natural satellites', kids: 'Venus has 0 moons and 0 rings! Just like Mercury, any moon trying to orbit Venus would be pulled apart or stolen by the Sun’s powerful gravity.' },
-    { label: 'Atmosphere', value: '96.5% CO₂, 3.5% N₂', sub: 'Sulfuric acid clouds; 92 bar pressure', kids: 'The air on Venus is thick carbon dioxide with clouds of real sulfuric battery acid! The air pressure is 92 times heavier than on Earth—it would crush a submarine flat like a soda can.' }
+    { label: 'Atmosphere', value: '96.5% CO₂, 3.5% N₂', sub: 'Sulfuric acid clouds; 92 bar pressure', kids: 'Percent (%) means parts out of 100 scoops of air:\n• CO₂ (96.5 scoops) is Carbon Dioxide: the bubbly gas in soda pop that we breathe out. On Venus, it traps heat like a locked greenhouse oven!\n• N₂ (3.5 scoops) is Nitrogen: the same calm gas in Earth’s sky.\nThere is zero O₂ (oxygen) to breathe, and yellow clouds rain real battery acid!' }
   ]
   },
   {
@@ -147,7 +147,7 @@ export const planets = [
     { label: 'Mass', value: '5.972 × 10²⁴ kg', sub: 'Base unit: 1.000 M⊕', kids: 'Earth weighs about 6 sextillion tons (that is a 6 followed by 24 zeros)! That mass gives us the perfect gravity to keep our oceans on the ground and air around us.' },
     { label: 'Surface Temperature', value: '−88°C to 58°C', sub: 'Mean: 15°C — comfortable room heat with liquid oceans', kids: 'Earth has a comfy average temperature of 15°C (room temperature)! Our atmosphere works like a cozy blanket keeping living creatures warm and happy.' },
     { label: 'Moons & Rings', value: '1 Moon · 0 Rings', sub: 'Earth\'s single natural moon is Luna (The Moon)', kids: 'Earth has one loyal moon named Luna! The Moon causes ocean tides to rise and fall twice a day, and lights up our night sky with its gentle silver glow.' },
-    { label: 'Atmosphere', value: '78% N₂, 21% O₂, 1% Ar', sub: 'Protective ozone layer & magnetosphere', kids: 'Earth has the only breathable air in the universe! It has 21% oxygen for people and animals to breathe, 78% nitrogen for plants, and an ozone layer that blocks harmful sunburn rays.' }
+    { label: 'Atmosphere', value: '78% N₂, 21% O₂, 1% Ar', sub: 'Protective ozone layer & magnetosphere', kids: 'What do those letters and percent numbers mean? Percent (%) means parts out of 100! Imagine a jar with 100 marbles of air:\n• N₂ (78 marbles) is Nitrogen: an invisible, quiet gas that fills most of our sky and helps plants grow green and strong.\n• O₂ (21 marbles) is Oxygen: the life gas that you, your family, puppies, and birds breathe in with every breath to live!\n• Ar (1 marble) is Argon: a shy, peaceful gas that drifts gently without bothering anyone.\nEarth has the only naturally breathable air in the whole universe!' }
   ]
   },
   {
@@ -187,7 +187,7 @@ export const planets = [
     { label: 'Mass', value: '6.42 × 10²³ kg', sub: '0.107 × Earth', kids: 'Mars is only 10% as heavy as Earth. Lower weight means lower gravity: you would weigh only one-third of your Earth weight and can jump 2.6 times higher!' },
     { label: 'Surface Temperature', value: '−140°C to 20°C', sub: 'Mean: −63°C — over 3 times colder than kitchen freezer ice', kids: 'Mars is a freezing desert! Its average temperature is −63°C, which is over 3 times colder than kitchen freezer ice. At noon near the equator it can reach 20°C, but drops to −140°C at night.' },
     { label: 'Moons & Rings', value: '2 Moons · 0 Rings', sub: 'The two moons are Phobos and Deimos', kids: 'Mars has two tiny, lumpy moons named Phobos and Deimos! They look like flying space potatoes. Phobos zips around Mars so fast that it rises in the west and sets in the east twice every day.' },
-    { label: 'Atmosphere', value: '95.3% CO₂, 2.6% N₂', sub: 'Thin atmosphere (~0.006 bar)', kids: 'The air on Mars is very thin carbon dioxide with less than 1% of Earth’s pressure. Giant reddish dust storms can whip up and cover the entire planet for months!' }
+    { label: 'Atmosphere', value: '95.3% CO₂, 2.6% N₂', sub: 'Thin atmosphere (~0.006 bar)', kids: 'Percent (%) means parts out of 100 scoops of thin Martian air:\n• CO₂ (95 scoops) is Carbon Dioxide: the fizzy gas we exhale.\n• N₂ (nearly 3 scoops) is Nitrogen.\nThere is almost no O₂ (oxygen) to breathe, and the air is 100 times thinner than on Earth—astronauts must always wear pressurized spacesuits with oxygen helmets!' }
   ]
   },
   {
@@ -229,7 +229,7 @@ export const planets = [
     { label: 'Mass', value: '1.898 × 10²⁷ kg', sub: '317.8 × Earth (2.5× all other planets)', kids: 'Jupiter is heavier than all other 7 planets put together combined, times 2.5! Its giant gravity acts like a space vacuum cleaner, pulling dangerous comets away from Earth.' },
     { label: 'Cloud-Top Temperature', value: '−110°C', sub: 'Cloud tops −110°C; deep core is 240 times hotter than boiling water (~24,000°C)', kids: 'Jupiter’s cloud tops are −110°C, but deep in its core it is 24,000°C—hotter than 240 times boiling water! It gives off more heat into space than it gets from the Sun.' },
     { label: 'Moons & Rings', value: '95 Moons · 4 Rings', sub: 'The major moons are Io, Europa, Ganymede, and Callisto', kids: 'Jupiter has 95 known moons! The four biggest are Ganymede (bigger than planet Mercury!), Europa (with a huge underground ocean of warm water!), Io (with 400 active volcanoes!), and Callisto.' },
-    { label: 'Atmosphere', value: '89.8% H₂, 10.2% He', sub: 'Trace methane, ammonia, water vapor', kids: 'Jupiter has no solid ground—it is a giant swirling ball of Hydrogen and Helium gas! Its Great Red Spot is a monster storm bigger than Earth that has raged for over 350 years.' }
+    { label: 'Atmosphere', value: '89.8% H₂, 10.2% He', sub: 'Trace methane, ammonia, water vapor', kids: 'Percent (%) means parts out of 100 scoops of Jupiter’s swirling sky:\n• H₂ (90 scoops) is Hydrogen: the lightest gas in the universe, fuel for stars.\n• He (10 scoops) is Helium: floaty balloon gas!\nJupiter has no solid ground to stand on—just a giant swirling ball of gas with a Great Red Spot hurricane bigger than Earth!' }
   ]
   },
   {
@@ -271,7 +271,7 @@ export const planets = [
     { label: 'Mass', value: '5.683 × 10²⁶ kg', sub: '95.2 × Earth (Density: 0.687 g/cm³)', kids: 'Saturn is 95 times heavier than Earth, but it is the lightest planet for its size! It is less dense than water, so if you had a gigantic bathtub, Saturn would float like a rubber ducky!' },
     { label: 'Cloud-Top Temperature', value: '−140°C', sub: 'Upper clouds −140°C (7 times colder than a freezer); interior is 115 times boiling water', kids: 'Saturn’s upper clouds are −140°C (7 times colder than a freezer). But deep inside its core, it is crushed so hard that temperatures reach 11,500°C (115 times boiling water)!' },
     { label: 'Moons & Rings', value: '146 Moons · 7 Main Rings', sub: 'The major moons are Titan, Enceladus, and Mimas', kids: 'Saturn has 146 moons—the most in the solar system! Giant moon Titan has lakes of liquid methane. Its dazzling rings are made of billions of chunks of sparkling water ice, from tiny snowflakes to house-sized icebergs!' },
-    { label: 'Atmosphere', value: '96.3% H₂, 3.25% He', sub: 'Trace methane, ammonia, ethane', kids: 'Saturn is made of light Hydrogen and Helium gas. Winds in its upper atmosphere scream past at 1,800 kilometers per hour—faster than supersonic jet fighter planes!' }
+    { label: 'Atmosphere', value: '96.3% H₂, 3.25% He', sub: 'Trace methane, ammonia, ethane', kids: 'Percent (%) means parts out of 100 scoops of Saturn’s sky:\n• H₂ (96 scoops) is Hydrogen: super-light star fuel.\n• He (3 scoops) is Helium: party balloon gas!\nBecause these gases are so fluffy and light, Saturn is less dense than water and could float in a giant bathtub! Meanwhile, winds scream past at 1,800 km/h.' }
   ]
   },
   {
@@ -312,7 +312,7 @@ export const planets = [
     { label: 'Mass', value: '8.681 × 10²⁵ kg', sub: '14.54 × Earth', kids: 'Uranus is an Ice Giant planet about 14.5 times heavier than Earth. Most of its inside is a thick slush of frozen water, ammonia, and methane ices around a rocky core.' },
     { label: 'Lowest Temperature', value: '−224°C', sub: 'Lowest −224°C — 11 times colder than a freezer, coldest atmosphere in solar system', kids: 'Uranus holds the record as the coldest planet in the whole solar system at −224°C! That is 11 times colder than a freezer. It has very little internal heat of its own.' },
     { label: 'Moons & Rings', value: '28 Moons · 13 Rings', sub: 'The major moons are Titania, Oberon, Umbriel, Ariel, and Miranda', kids: 'Uranus has 28 known moons, all named after magical characters from William Shakespeare’s plays (like Miranda and Titania)! It also has 13 dark, charcoal-colored rings.' },
-    { label: 'Atmosphere', value: '82.5% H₂, 15.2% He, 2.3% CH₄', sub: 'Methane absorbs red light yielding cyan hue', kids: 'Uranus gets its beautiful cyan-blue color from methane gas in its atmosphere. Methane absorbs red light from the Sun and bounces back brilliant aquamarine blue light to our eyes!' }
+    { label: 'Atmosphere', value: '82.5% H₂, 15.2% He, 2.3% CH₄', sub: 'Methane absorbs red light yielding cyan hue', kids: 'Percent (%) means parts out of 100 scoops of chilly atmosphere:\n• H₂ (82 scoops) is Hydrogen gas.\n• He (15 scoops) is Helium gas (party balloon gas).\n• CH₄ (over 2 scoops) is Methane gas: the same gas found in cow burps! Methane absorbs red sunlight and reflects brilliant cyan-blue light to our eyes.' }
   ]
   },
   {
@@ -352,7 +352,7 @@ export const planets = [
     { label: 'Mass', value: '1.024 × 10²⁶ kg', sub: '17.15 × Earth', kids: 'Neptune is 17 times heavier than Earth! It is packed with a deep ocean of compressed hot water, ammonia, and methane slush over a rocky iron core.' },
     { label: 'Cloud-Top Temperature', value: '−201°C', sub: 'Mean −201°C — 10 times colder than a freezer, freezes nitrogen gas', kids: 'Neptune’s cloud tops are −201°C, which is 10 times colder than a kitchen freezer. It is so cold that nitrogen gas freezes into solid snow crystals!' },
     { label: 'Moons & Rings', value: '16 Moons · 5 Rings', sub: 'The major moons are Triton, Proteus, and Nereid', kids: 'Neptune has 16 moons, led by giant icy Triton. Triton is extraordinary: it orbits backwards (anticlockwise/retrograde) in the opposite direction of Neptune’s spin! That proves Triton was an icy dwarf planet captured from the Kuiper Belt! Triton even shoots real nitrogen ice volcanoes into space.' },
-    { label: 'Atmosphere', value: '80.0% H₂, 19.0% He, 1.5% CH₄', sub: 'Vivid azure blue with Great Dark Spot', kids: 'Neptune has the wildest, fastest winds in the solar system, howling past at over 2,100 kilometers per hour (faster than a supersonic jet!) with deep azure blue clouds.' }
+    { label: 'Atmosphere', value: '80.0% H₂, 19.0% He, 1.5% CH₄', sub: 'Vivid azure blue with Great Dark Spot', kids: 'Percent (%) means parts out of 100 scoops of icy atmosphere:\n• H₂ (80 scoops) is Hydrogen gas.\n• He (19 scoops) is Helium gas (party balloon gas).\n• CH₄ (1.5 scoops) is Methane gas: this magical gas swallows red sunlight and reflects deep, gorgeous ocean-blue light!\nWild storms whip through this blue gas at over 2,100 km/h!' }
   ]
   }
 ];

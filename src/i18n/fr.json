@@ -124,7 +124,7 @@
           "label": "Masse",
           "value": "1,989 × 10³⁰ kg",
           "sub": "333 000 × Terre (99,86 % du système)",
-          "kids": "Le Soleil contient 99,86 % de toute la matière de notre système solaire ! Il est 333 000 fois plus lourd que la Terre et maintient toutes les planètes en orbite grâce à sa super gravité."
+          "kids": "Le Soleil concentre 99,86 % de toute la matière du système solaire ! Le pourcentage (%) exprime des parts sur 100 : sur 10 000 briques de matière, le Soleil en possède 9 986 à lui seul !"
         },
         {
           "label": "Vitesse Galactique",
@@ -148,7 +148,7 @@
           "label": "Composition",
           "value": "73,4 % H₂, 25,0 % He",
           "sub": "1,6 % d'éléments lourds (C, N, O, Fe)",
-          "kids": "Le Soleil est composé d'hydrogène (H₂) et d'hélium (He). Les deux sont plus légers que l'air qu'on respire ! L'hydrogène sert de carburant nucléaire pour nous éclairer et nous chauffer."
+          "kids": "Le signe pourcentage (%) signifie des parts sur 100 ! Si tu prenais 100 louches du Soleil :\n• H₂ (73 louches) est l'Hydrogène : le gaz le plus léger de l'univers, combustible de son cœur nucléaire.\n• He (25 louches) est l'Hélium : le gaz magique qui fait voler les ballons de fête au plafond !\nEnsemble, H₂ et He produisent toute la lumière et la chaleur nécessaires à la Terre."
         }
       ]
     },
@@ -270,7 +270,7 @@
           "label": "Atmosphère",
           "value": "96,5 % CO₂, 3,5 % N₂",
           "sub": "Nuages d'acide sulfurique ; pression de 92 bars",
-          "kids": "L'air de Vénus est un épais dioxyde de carbone avec des nuages d'acide de batterie (acide sulfurique) ! La pression y est 92 fois plus forte que sur Terre et écraserait un sous-marin."
+          "kids": "Le pourcentage (%) représente des parts sur 100 louches d'air de Vénus :\n• CO₂ (96,5 louches) est le Dioxyde de carbone : le gaz pétillant qui piège la chaleur comme un four fermé !\n• N₂ (3,5 louches) est l'Azote : le même gaz paisible que sur Terre.\nIl n'y a aucun O₂ (oxygène) à respirer, et les nuages jaunes font pleuvoir de l'acide sous une pression écrasante !"
         }
       ]
     },
@@ -331,7 +331,7 @@
           "label": "Atmosphère",
           "value": "78 % N₂, 21 % O₂, 1 % Ar",
           "sub": "Couche d'ozone & bouclier magnétique",
-          "kids": "La Terre a le seul air respirable de l'univers : 21 % d'oxygène pour respirer, 78 % d'azote pour les plantes et une couche d'ozone contre les coups de soleil."
+          "kids": "Que signifient ces lettres et pourcentages ? Le symbole (%) signifie des parts sur 100 ! Imagine un bocal contenant 100 billes d'air :\n• N₂ (78 billes) est l'Azote : un gaz invisible qui remplit le ciel et nourrit les plantes pour les rendre fortes et vertes.\n• O₂ (21 billes) est l'Oxygène : le gaz magique de la vie que toi, ta famille et les animaux respirez pour vivre !\n• Ar (1 bille) est l'Argon : un gaz noble timide qui flotte paisiblement.\nLa Terre possède le seul air naturellement respirable de tout l'univers !"
         }
       ]
     },
@@ -392,7 +392,7 @@
           "label": "Atmosphère",
           "value": "95,3 % CO₂, 2,6 % N₂",
           "sub": "Atmosphère ténue (~0,006 bar)",
-          "kids": "L'air martien est très mince et chargé de poussière rouge. Des tempêtes géantes peuvent recouvrir toute la planète pendant des mois !"
+          "kids": "Le pourcentage (%) représente des parts sur 100 louches du mince air martien :\n• CO₂ (95 louches) est le Dioxyde de carbone : le gaz que nous rejetons en expirant.\n• N₂ (près de 3 louches) est l'Azote.\nIl n'y a presque aucun O₂ (oxygène) à respirer, et l'air est 100 fois plus fin que sur Terre : combinaisons obligatoires !"
         }
       ]
     },
@@ -453,7 +453,7 @@
           "label": "Atmosphère",
           "value": "89,8 % H₂, 10,2 % He",
           "sub": "Traces de méthane, ammoniac, vapeur d'eau",
-          "kids": "Jupiter n'a aucun sol solide—c'est une bille géante d'hydrogène et d'hélium ! Sa Grande Tache Rouge est un ouragan monstrueux plus gros que la Terre."
+          "kids": "Le pourcentage (%) représente des parts sur 100 louches du ciel de Jupiter :\n• H₂ (90 louches) est l'Hydrogène : le gaz le plus léger de l'univers, carburant des étoiles.\n• He (10 louches) est l'Hélium : le gaz flottant des ballons de fête !\nJupiter n'a aucun sol solide : c'est une immense sphère de gaz avec un ouragan plus grand que la Terre entière !"
         }
       ]
     },
@@ -514,7 +514,7 @@
           "label": "Atmosphère",
           "value": "96,3 % H₂, 3,25 % He",
           "sub": "Traces de méthane, ammoniac, éthane",
-          "kids": "Saturne est faite de gaz très légers. Ses vents soufflent à 1 800 km/h—plus vite que des avions de chasse supersoniques !"
+          "kids": "Le pourcentage (%) représente des parts sur 100 louches du ciel de Saturne :\n• H₂ (96 louches) est l'Hydrogène : super-carburant des étoiles.\n• He (3 louches) est l'Hélium : le gaz des ballons gonflables !\nComme ces gaz sont légers, Saturne est moins dense que l'eau et flotterait dans une baignoire géante comme un canard en plastique !"
         }
       ]
     },
@@ -575,7 +575,7 @@
           "label": "Atmosphère",
           "value": "82,5 % H₂, 15,2 % He, 2,3 % CH₄",
           "sub": "Le méthane absorbe le rouge donnant ce cyan",
-          "kids": "Uranus doit sa superbe couleur bleu cyan au méthane dans ses nuages, qui absorbe la lumière rouge et renvoie un bleu turquoise éclatant."
+          "kids": "Le pourcentage (%) représente des parts sur 100 louches d'atmosphère glacée :\n• H₂ (82 louches) est l'Hydrogène.\n• He (15 louches) est l'Hélium (gaz de ballons).\n• CH₄ (plus de 2 louches) est le Méthane : le même gaz que les rots de vaches ! Il absorbe la lumière rouge et renvoie un superbe bleu cyan."
         }
       ]
     },
@@ -636,7 +636,7 @@
           "label": "Atmosphère",
           "value": "80,0 % H₂, 19,0 % He, 1,5 % CH₄",
           "sub": "Bleu azur éclatant avec Grande Tache Sombre",
-          "kids": "Neptune possède les vents les plus violents du système solaire, soufflant à plus de 2 100 km/h avec de superbes nuages bleu azur."
+          "kids": "Le pourcentage (%) représente des parts sur 100 louches d'atmosphère glacée :\n• H₂ (80 louches) est le gaz Hydrogène.\n• He (19 louches) est le gaz Hélium (gaz de ballons).\n• CH₄ (1,5 louche) est le Méthane : il avale la lumière rouge et renvoie un magnifique bleu océan profond sous des tempêtes à plus de 2 100 km/h !"
         }
       ]
     }

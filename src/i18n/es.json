@@ -124,7 +124,7 @@
           "label": "Masa",
           "value": "1,989 × 10³⁰ kg",
           "sub": "333.000 × Tierra (99,86 % del sistema)",
-          "kids": "¡El Sol contiene el 99,86% de toda la materia de nuestro sistema solar! Es 333.000 veces más pesado que la Tierra y su gravedad mantiene a todos los planetas en órbita."
+          "kids": "¡El Sol contiene el 99.86% de toda la materia del sistema solar! El porcentaje (%) significa partes de cada 100: de 10.000 bloques de materia, ¡el Sol es 9.986 de ellos por sí solo!"
         },
         {
           "label": "Velocidad Galáctica",
@@ -148,7 +148,7 @@
           "label": "Composición",
           "value": "73,4 % H₂, 25,0 % He",
           "sub": "1,6 % elementos pesados (C, N, O, Fe)",
-          "kids": "El Sol está hecho de gases de Hidrógeno (H₂) y Helio (He), más ligeros que el aire. El hidrógeno arde en fuegos de fusión nuclear dando calor y vida a la Tierra."
+          "kids": "¡El signo de porcentaje (%) significa partes de 100! Si tomaras 100 cucharadas del Sol:\n• H₂ (73 cucharadas) es gas Hidrógeno: ¡el gas más ligero del universo y combustible del horno nuclear solar!\n• He (25 cucharadas) es gas Helio: el gas flotante que hace que los globos suban al techo.\nJuntos, H₂ y He crean toda la luz y el calor que mantienen viva la Tierra."
         }
       ]
     },
@@ -270,7 +270,7 @@
           "label": "Atmósfera",
           "value": "96,5 % CO₂, 3,5 % N₂",
           "sub": "Nubes de ácido sulfúrico; 92 bares de presión",
-          "kids": "El aire de Venus es espeso dióxido de carbono con nubes de ácido de batería (ácido sulfúrico). La presión es 92 veces más fuerte que en la Tierra."
+          "kids": "Porcentaje (%) significa partes de cada 100 cucharadas de aire en Venus:\n• CO₂ (96.5 cucharadas) es Dióxido de carbono: ¡el gas que atrapa el calor como un horno gigante cerrado!\n• N₂ (3.5 cucharadas) es Nitrógeno: el mismo gas tranquilo del cielo terrestre.\nNo hay nada de O₂ (oxígeno) para respirar, ¡y las nubes amarillas llueven ácido corrosivo!"
         }
       ]
     },
@@ -331,7 +331,7 @@
           "label": "Atmósfera",
           "value": "78 % N₂, 21 % O₂, 1 % Ar",
           "sub": "Capa de ozono y campo magnético protector",
-          "kids": "La Tierra tiene el único aire respirable del universo: 21% de oxígeno para respirar, 78% de nitrógeno para las plantas y capa de ozono protectora."
+          "kids": "¿Qué significan estas letras y porcentajes? El símbolo de porcentaje (%) significa partes de cada 100. Imagina un frasco con 100 canicas de aire:\n• N₂ (78 canicas) es Nitrógeno: un gas invisible y tranquilo que llena la mayor parte del cielo y nutre a las plantas.\n• O₂ (21 canicas) es Oxígeno: ¡el gas vital que tú, tu familia y los cachorros respiran para vivir!\n• Ar (1 canica) es Argón: un gas noble tímido que flota pacíficamente.\n¡La Tierra tiene el único aire naturalmente respirable del universo!"
         }
       ]
     },
@@ -392,7 +392,7 @@
           "label": "Atmósfera",
           "value": "95,3 % CO₂, 2,6 % N₂",
           "sub": "Atmósfera tenue (~0,006 bar)",
-          "kids": "El aire marciano es muy fino con polvo rojo. ¡Enormes tormentas de arena pueden envolver todo el planeta durante meses!"
+          "kids": "Porcentaje (%) significa partes de cada 100 cucharadas del fino aire marciano:\n• CO₂ (95 cucharadas) es Dióxido de carbono: el gas efervescente que exhalamos.\n• N₂ (casi 3 cucharadas) es Nitrógeno.\nCasi no hay O₂ (oxígeno) para respirar, y el aire es 100 veces más fino que en la Tierra: ¡trajes espaciales obligatorios!"
         }
       ]
     },
@@ -453,7 +453,7 @@
           "label": "Atmósfera",
           "value": "89,8 % H₂, 10,2 % He",
           "sub": "Trazas de metano, amoníaco, vapor de agua",
-          "kids": "Júpiter no tiene suelo firme: ¡es una bola gigante de gas! Su Gran Mancha Roja es una tormenta gigante más grande que la Tierra."
+          "kids": "Porcentaje (%) significa partes de cada 100 cucharadas del cielo de Júpiter:\n• H₂ (90 cucharadas) es Hidrógeno: el gas más ligero del universo y combustible estelar.\n• He (10 cucharadas) es Helio: ¡el gas flotante de los globos de fiesta!\nJúpiter no tiene suelo firme: ¡es una bola gigante de gas con un huracán más grande que la Tierra!"
         }
       ]
     },
@@ -514,7 +514,7 @@
           "label": "Atmósfera",
           "value": "96,3 % H₂, 3,25 % He",
           "sub": "Trazas de metano, amoníaco, etano",
-          "kids": "Saturno está hecho de gases ligeros. Sus vientos soplan a 1.800 km/h, ¡más veloces que aviones de combate supersónicos!"
+          "kids": "Porcentaje (%) significa partes de cada 100 cucharadas del cielo de Saturno:\n• H₂ (96 cucharadas) es Hidrógeno: combustible ultraligero de estrellas.\n• He (3 cucharadas) es Helio: ¡gas de globos de fiesta!\nDebido a que estos gases son tan ligeros, Saturno es menos denso que el agua: ¡flotaría como un patito de goma en una bañera gigantesca!"
         }
       ]
     },
@@ -575,7 +575,7 @@
           "label": "Atmósfera",
           "value": "82,5 % H₂, 15,2 % He, 2,3 % CH₄",
           "sub": "El metano absorbe luz roja produciendo el tono cian",
-          "kids": "Urano tiene un hermoso color azul cian gracias al gas metano de sus nubes, que absorbe la luz roja y refleja azul turquesa."
+          "kids": "Porcentaje (%) significa partes de cada 100 cucharadas de atmósfera helada:\n• H₂ (82 cucharadas) es gas Hidrógeno.\n• He (15 cucharadas) es gas Helio (gas de globos).\n• CH₄ (más de 2 cucharadas) es gas Metano: ¡el mismo gas de los eructos de vaca! Absorbe la luz roja y refleja una brillante luz azul cian."
         }
       ]
     },
@@ -636,7 +636,7 @@
           "label": "Atmósfera",
           "value": "80,0 % H₂, 19,0 % He, 1,5 % CH₄",
           "sub": "Azul celeste vivo con Gran Mancha Oscura",
-          "kids": "En Neptuno rugen los vientos más feroces del sistema solar a más de 2.100 km/h con hermosas nubes azul azur."
+          "kids": "Porcentaje (%) significa partes de cada 100 cucharadas de atmósfera helada:\n• H₂ (80 cucharadas) es gas Hidrógeno.\n• He (19 cucharadas) es gas Helio (gas de globos).\n• CH₄ (1.5 cucharadas) es gas Metano: traga la luz roja y refleja un azul marino profundo mientras rugen tormentas a más de 2.100 km/h."
         }
       ]
     }

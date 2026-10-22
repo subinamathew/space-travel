@@ -124,7 +124,7 @@
           "label": "Massa",
           "value": "1,989 × 10³⁰ kg",
           "sub": "333.000 × Terra (99,86% del sistema)",
-          "kids": "Il Sole possiede il 99,86% di tutta la materia del nostro sistema solare! È 333.000 volte più pesante della Terra e tiene tutti i pianeti in orbita."
+          "kids": "Il Sole detiene il 99,86% di tutta la materia del sistema solare! La percentuale (%) indica parti su 100: su 10.000 mattoncini di materia, il Sole da solo ne possiede 9.986!"
         },
         {
           "label": "Velocità Galattica",
@@ -148,7 +148,7 @@
           "label": "Composizione",
           "value": "73,4% H₂, 25,0% He",
           "sub": "1,6% elementi più pesanti (C, N, O, Fe)",
-          "kids": "Il Sole è composto da Idrogeno (H₂) ed Elio (He), più leggeri dell'aria. L'idrogeno brucia nei fuochi di fusione nucleare donando calore e vita alla Terra."
+          "kids": "Il simbolo di percentuale (%) significa parti su 100! Se prendessi 100 cucchiai del Sole:\n• H₂ (73 cucchiai) è il gas Idrogeno: il gas più leggero dell'universo e combustibile del Sole!\n• He (25 cucchiai) è il gas Elio: il gas che fa volare i palloncini delle feste fino al soffitto!\nInsieme, H₂ ed He generano tutta la luce e il calore che mantengono viva la Terra."
         }
       ]
     },
@@ -270,7 +270,7 @@
           "label": "Atmosfera",
           "value": "96,5% CO₂, 3,5% N₂",
           "sub": "Nubi di acido solforico; pressione di 92 bar",
-          "kids": "L'aria su Venere è denso anidride carbonica con nuvole di vero acido da batteria solforico! La pressione è 92 volte più alta della Terra."
+          "kids": "Percentuale (%) significa parti su 100 cucchiai d'aria di Venere:\n• CO₂ (96,5 cucchiai) è l'Anidride carbonica: il gas che intrappola il calore come un forno sigillato!\n• N₂ (3,5 cucchiai) è l'Azoto: lo stesso gas calmo del cielo terrestre.\nNon c'è alcuno O₂ (ossigeno) da respirare, e le nuvole gialle piovono acido corrosivo sotto una pressione schiacciante!"
         }
       ]
     },
@@ -331,7 +331,7 @@
           "label": "Atmosfera",
           "value": "78% N₂, 21% O₂, 1% Ar",
           "sub": "Strato di ozono protettivo e magnetosfera",
-          "kids": "La Terra ha l'unica aria respirabile dell'universo: 21% di ossigeno per respirare, 78% di azoto per le piante e uno strato di ozono protettivo."
+          "kids": "Cosa significano queste lettere e percentuali? Il simbolo di percentuale (%) indica parti su 100! Immagina un barattolo con 100 biglie d'aria:\n• N₂ (78 biglie) è l'Azoto: un gas invisibile che riempie il cielo e aiuta le piante a crescere verdi e forti.\n• O₂ (21 biglie) è l'Ossigeno: il gas della vita che tu, la tua famiglia e i cuccioli respirate per vivere!\n• Ar (1 biglia) è l'Argon: un gas nobile timido e pacifico che galleggia serenamente.\nLa Terra ha l'unica aria naturalmente respirabile di tutto l'universo!"
         }
       ]
     },
@@ -392,7 +392,7 @@
           "label": "Atmosfera",
           "value": "95,3% CO₂, 2,6% N₂",
           "sub": "Atmosfera sottile (~0,006 bar)",
-          "kids": "L'aria su Marte è sottilissima con polvere rossa. Tempeste di sabbia gigantesche possono coprire tutto il pianeta per mesi interi!"
+          "kids": "Percentuale (%) significa parti su 100 cucchiai della sottile aria marziana:\n• CO₂ (95 cucchiai) è l'Anidride carbonica: il gas che espiriamo.\n• N₂ (quasi 3 cucchiai) è l'Azoto.\nNon c'è quasi O₂ (ossigeno) da respirare, e l'aria è 100 volte più sottile che sulla Terra: tute con caschi a ossigeno obbligatorie!"
         }
       ]
     },
@@ -453,7 +453,7 @@
           "label": "Atmosfera",
           "value": "89,8% H₂, 10,2% He",
           "sub": "Tracce di metano, ammoniaca, vapore acqueo",
-          "kids": "Giove non ha terreno solido: è un gigante di idrogeno ed elio! La sua Grande Macchia Rossa è una tempesta mostruosa più grande della Terra."
+          "kids": "Percentuale (%) significa parti su 100 cucchiai del cielo vorticoso di Giove:\n• H₂ (90 cucchiai) è l'Idrogeno: il gas più leggero dell'universo, carburante per le stelle.\n• He (10 cucchiai) è l'Elio: il gas leggero dei palloncini da festa!\nGiove non ha un terreno solido: è una sfera di gas con la Grande Macchia Rossa, un uragano più grande della Terra!"
         }
       ]
     },
@@ -514,7 +514,7 @@
           "label": "Atmosfera",
           "value": "96,3% H₂, 3,25% He",
           "sub": "Tracce di metano, ammoniaca, etano",
-          "kids": "Saturno è fatto di gas leggero. I suoi venti soffiano a 1.800 km/h, più veloci degli aerei da caccia supersonici!"
+          "kids": "Percentuale (%) significa parti su 100 cucchiai del cielo di Saturno:\n• H₂ (96 cucchiai) è l'Idrogeno: carburante stellare leggerissimo.\n• He (3 cucchiai) è l'Elio: gas per i palloncini!\nSaturno è meno denso dell'acqua e galleggerebbe come una papera di gomma in una vasca gigante!"
         }
       ]
     },
@@ -575,7 +575,7 @@
           "label": "Atmosfera",
           "value": "82,5% H₂, 15,2% He, 2,3% CH₄",
           "sub": "Il metano assorbe la luce rossa donando il colore ciano",
-          "kids": "Urano vanta uno splendido colore azzurro ciano grazie al gas metano, che cattura la luce rossa e riflette un magnifico blu turchese."
+          "kids": "Percentuale (%) significa parti su 100 cucchiai dell'atmosfera gelida:\n• H₂ (82 cucchiai) è il gas Idrogeno.\n• He (15 cucchiai) è il gas Elio (gas dei palloncini).\n• CH₄ (oltre 2 cucchiai) è il gas Metano: lo stesso gas dei rutti delle mucche! Assorbe la luce rossa e riflette un brillante azzurro ciano."
         }
       ]
     },
@@ -636,7 +636,7 @@
           "label": "Atmosfera",
           "value": "80,0% H₂, 19,0% He, 1,5% CH₄",
           "sub": "Blu azzurro intenso con Grande Macchia Scura",
-          "kids": "Su Nettuno soffiano i venti più furiosi del sistema solare a oltre 2.100 km/h tra splendide nubi blu cobalto."
+          "kids": "Percentuale (%) significa parti su 100 cucchiai di atmosfera ghiacciata:\n• H₂ (80 cucchiai) è il gas Idrogeno.\n• He (19 cucchiai) è il gas Elio (gas dei palloncini).\n• CH₄ (1,5 cucchiai) è il gas Metano: inghiotte la luce rossa e riflette un meraviglioso blu oceano mentre infuriano tempeste a 2.100 km/h!"
         }
       ]
     }
