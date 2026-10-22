@@ -15,7 +15,8 @@ This document defines the core engineering skills, architectural principles, qua
 7. [Skill 7: Automated Testing & Verification](#skill-7-automated-testing--verification)
 8. [Skill 8: Low-End Hardware & Handheld Performance Optimization](#skill-8-low-end-hardware--handheld-performance-optimization)
 9. [Skill 9: Full Internationalization (i18n) & Accessibility (a11y)](#skill-9-full-internationalization-i18n--accessibility-a11y)
-10. [Pre-Flight Verification Checklist](#pre-flight-verification-checklist)
+10. [Skill 10: Child Pedagogy & Metaphor Design for Scientific Explanations](#skill-10-child-pedagogy--metaphor-design-for-scientific-explanations)
+11. [Pre-Flight Verification Checklist](#pre-flight-verification-checklist)
 
 ---
 
@@ -235,6 +236,65 @@ Educational content must be universally accessible worldwide regardless of langu
 
 ---
 
+## Skill 10: Child Pedagogy & Metaphor Design for Scientific Explanations
+
+### Core Rule
+Astronomical facts, chemical formulas, and mathematical metrics must be rendered **crystal clear, evocative, and intuitive for young minds aged 5 to 8** without diluting scientific precision. Always bridge abstract mathematical or chemical notation into sensory, tangible everyday experiences.
+
+### Pedagogical Guidelines & Standards
+
+1. **The "100 Marbles / 100 Scoops" Rule for Percentages (`%`)**:
+   - Children in early elementary grades have not yet mastered abstract fractions or ratios.
+   - **Never leave `%` unexplained** in child-facing popups or mission notes.
+   - Ground every percentage in a concrete count:
+     - *"Percent (%) means parts out of 100! Imagine a jar filled with 100 marbles of air..."*
+     - *"If you took 100 scoops of the planet's atmosphere / Sun's matter..."*
+     - For extreme ratios (e.g., the Sun holding `99.86%` of system mass): *"If all 8 planets, moons, and asteroids were 10,000 toy building blocks, the Sun alone would be 9,986 blocks, leaving just 14 tiny blocks for everything else combined!"*
+
+2. **Chemical Formula Decryption & Characterization**:
+   - Letter-subscript codes (`N₂`, `O₂`, `Ar`, `CO₂`, `H₂`, `He`, `CH₄`, `H₂SO₄`) look like alien hieroglyphs to a child unless deciphered immediately into familiar sensory metaphors:
+     - **`N₂` (Nitrogen)**: *"An invisible, calm gas that fills most of our blue sky and helps trees and plants grow green and strong."*
+     - **`O₂` (Oxygen)**: *"The magical life breath that you, your family, puppies, and birds breathe in with every breath to live!"*
+     - **`CO₂` (Carbon Dioxide)**: *"The tickly fizzy gas in soda pop that we breathe out; on Venus, it locks in heat like a closed oven door!"*
+     - **`H₂` (Hydrogen)**: *"The lightest, simplest gas in the universe! It catches fire easily and acts like fuel for the Sun's giant nuclear engine."*
+     - **`He` (Helium)**: *"The floaty gas that makes birthday party balloons fly up to the ceiling!"*
+     - **`CH₄` (Methane)**: *"Cow-burp gas / natural gas that acts like a blue sunglasses filter, swallowing red sunlight and bouncing back bright cyan and azure blue."*
+     - **`Ar` (Argon)**: *"A shy, peaceful noble gas that drifts quietly without bothering anyone."*
+     - **`H₂SO₄` (Sulfuric Acid)**: *"Clouds raining real corrosive battery acid that would melt metal into puddles."*
+
+3. **Multiplication Phrasing Standard ("times" NOT "×" or "x")**:
+   - Never write shorthand math expressions like `9x`, `9×`, `55x`, or `150000x`.
+   - Write out complete, evocative comparative sentences:
+     - *"55 times hotter than your hot bath water"*
+     - *"150,000 times hotter than boiling water"*
+     - *"9 times colder than a kitchen freezer ice cube"*
+     - *"11 times colder than a freezer"*
+
+4. **Kinesthetic, Gravitational & Movement Metaphors**:
+   - **Jump Heights**: Compare jumps to familiar physical hurdles:
+     - Mars (0.38g): *"You can leap right over a parked car with a single bounce!"*
+     - Moon (0.16g): *"You could soar over a house roof like an astronaut superhero!"*
+     - Sun (28g): *"Colossal gravity pulls you down flat like toast—jump height is zero inches!"*
+   - **Planetary Density & Buoyancy**:
+     - Saturn: *"So light and fluffy that if you had a bathtub big enough, the whole planet would float like a rubber ducky!"*
+   - **Planetary Surface Appearance**:
+     - Mercury: *"Covered in space meteorite craters, looking like a giant dusty golf ball."*
+     - Mars: *"A rust-red desert with giant sand dunes and robot rovers rolling across it right now."*
+
+5. **Orbital Motion, Tilts & Retrograde Spins**:
+   - **Backwards Spin (Retrograde Rotation)**:
+     - Venus: *"Venus spins backwards! The Sun rises in the west and sets in the east, and one daytime is longer than its whole year!"*
+     - Triton: *"Orbits backwards in the opposite direction of Neptune's spin, proving it was a captured dwarf planet shooting active nitrogen ice volcanoes into space!"*
+   - **Sideways Roll (Axial Tilt)**:
+     - Uranus: *"Rolls on its side around the Sun like a giant bowling ball!"*
+
+6. **Typography, Formatting & DOM Safety**:
+   - Format multi-gas breakdowns with clean bullet lists (`•`) to facilitate shared reading between parents and young explorers.
+   - Enforce `white-space: pre-line;` in CSS on all explainer text containers to ensure natural line breaking while safely populating text via `textContent` (zero `innerHTML` injection risk).
+   - Require 100% translation parity across all 7 supported languages (`en`, `de`, `fr`, `es`, `it`, `ja`, `zh`) with culturally natural idioms.
+
+---
+
 ## Pre-Flight Verification Checklist
 
 Before pushing any commit or releasing to production, verify:
@@ -243,6 +303,10 @@ Before pushing any commit or releasing to production, verify:
 - [ ] **CSS First**: Visual effects, animations, and transitions use pure CSS rather than JavaScript interval loops.
 - [ ] **DOM Size**: Page structure is lean, semantic, and contains no unnecessary wrapper divs.
 - [ ] **Complexity**: Functions are small, guard clauses are used, and cyclomatic complexity is low.
+- [ ] **Kid Explainer Pedagogy**:
+  - [ ] Every `%` symbol is grounded in concrete counts (*"parts out of 100"* / *"100 scoops"* / *"100 marbles"*).
+  - [ ] All chemical abbreviations (`N₂`, `O₂`, `CO₂`, `H₂`, `He`, `CH₄`) are deciphered into everyday metaphors.
+  - [ ] Multiplication uses written-out *"times"* rather than *"×"* or *"x"*.
 - [ ] **i18n Parity**: `npm test` passes with 100% parity across all 7 language files.
 - [ ] **Build Validation**: `npm run build` generates all pages and bundles without errors or warnings.
 - [ ] **Mobile & Handheld Test**: Tested on narrow mobile screen (360px–414px) with touch-friendly tap targets (≥ 44px).
