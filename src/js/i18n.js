@@ -108,7 +108,7 @@ export function applyTranslations() {
     }
 
     const translated = t(key, params);
-    if (translated !== undefined) {
+    if (translated !== undefined && translated !== key) {
       // Check if translation contains HTML (like &bull; or <strong>)
       if (typeof translated === 'string' && (translated.includes('<') || translated.includes('&'))) {
         el.innerHTML = translated;
@@ -137,7 +137,7 @@ export function applyTranslations() {
       const [attr, key] = pair.split(':').map(s => s.trim());
       if (attr && key) {
         const translated = t(key, params);
-        if (translated !== undefined) {
+        if (translated !== undefined && translated !== key) {
           el.setAttribute(attr, translated);
         }
       }

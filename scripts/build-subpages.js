@@ -11,6 +11,12 @@ const pubDir = path.resolve(__dirname, '../public');
 if (!fs.existsSync(pubDir)) {
   fs.mkdirSync(pubDir, { recursive: true });
 }
+for (const sub of ['css', 'js', 'planets', 'images', 'i18n']) {
+  const dir = path.resolve(pubDir, sub);
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir, { recursive: true });
+  }
+}
 
 // 1. Copy src/index.html -> public/index.html
 const srcIndex = path.resolve(__dirname, '../src/index.html');
@@ -102,8 +108,8 @@ allBodies.forEach((p, idx) => {
     <meta name="description" content="Explore ${p.name}: scientific metrics, physical properties, gravity calculator, and NASA kids facts." data-i18n-attr="content:ui.subpage_meta_desc" data-i18n-params='{"name":"${p.name}"}' />
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="../css/style.css" />
-    <script src="../js/planet.min.js" defer></script>
+    <link rel="stylesheet" href="../css/style.css?v=2.2.0" />
+    <script src="../js/planet.min.js?v=2.2.0" defer></script>
 </head>
 
 <body class="subpage-body" style="background: ${p.bg};">

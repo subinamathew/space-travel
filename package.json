@@ -15,6 +15,10 @@
     "watch:js": "esbuild src/js/script.js --bundle --minify --outfile=public/js/script.min.js --watch",
     "dev": "npm run build && node -e \"console.log('Build complete. Watching for changes...');\""
   },
+  "dependencies": {
+    "esbuild": "^0.25.0",
+    "sass": "^1.85.0"
+  },
   "devDependencies": {
     "esbuild": "^0.25.0",
     "sass": "^1.85.0"
