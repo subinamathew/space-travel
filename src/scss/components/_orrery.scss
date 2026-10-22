@@ -35,16 +35,18 @@
 
     .orbit {
       // Individual planetary orbital plane inclination and eccentricity focal offset
-      transform: rotateX(var(--orbit-inc, 0deg)) translateX(var(--focal-offset, 0px));
-      border-color: rgba(255, 255, 255, 0.13);
+      width: calc(2 * var(--orbit-a));
+      height: calc(2 * var(--orbit-b-3d));
+      margin-top: calc(-1 * var(--orbit-b-3d));
+      margin-left: calc(-1 * var(--orbit-a));
+      transform: rotateZ(var(--orbit-peri, 0deg)) rotateX(var(--orbit-inc, 0deg)) translateX(calc(-1 * var(--focal-offset, 0px)));
+      border-color: rgba(255, 255, 255, 0.16);
     }
 
     .planet-btn {
-      .planet-wrap {
-        transform: rotateX(-58deg) rotateZ(20deg);
-      }
+      .planet-wrap,
       .planet-label {
-        transform: rotateX(-58deg) rotateZ(20deg);
+        transform: rotateX(var(--orbit-inc-inv, 0deg)) rotateZ(var(--orbit-peri-inv, 0deg)) rotateZ(20deg) rotateX(-58deg);
       }
     }
   }
@@ -155,31 +157,30 @@
   }
 }
 
-/* CSS orbit animation — pure CSS, no JS timers */
+/* Planetary orbit rings */
 .orbit {
   position: absolute;
   top: 50%;
   left: 50%;
+  width: calc(2 * var(--orbit-a, 20vmin));
+  height: calc(2 * var(--orbit-a, 20vmin));
+  margin-top: calc(-1 * var(--orbit-a, 20vmin));
+  margin-left: calc(-1 * var(--orbit-a, 20vmin));
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  animation: orbit-spin 10s linear 0s infinite;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   overflow: visible;
   pointer-events: none; // Prevent outer orbits from blocking clicks to inner planets
   transform-style: preserve-3d;
-  transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.4s ease;
+  transition: width 1.2s cubic-bezier(0.25, 1, 0.5, 1),
+              height 1.2s cubic-bezier(0.25, 1, 0.5, 1),
+              margin 1.2s cubic-bezier(0.25, 1, 0.5, 1),
+              transform 1.2s cubic-bezier(0.25, 1, 0.5, 1),
+              border-color 0.4s ease;
 }
 
-@keyframes orbit-spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-// Pause orbits when mouse comes close to any planet OR the Sun
+// Pause moon systems when mouse comes close to any planet OR the Sun
 #scene:has(.planet-btn:hover),
 #scene:has(#sun:hover) {
-  .orbit,
-  .planet-btn,
   .moon-orbit {
     animation-play-state: paused !important;
   }
@@ -194,17 +195,17 @@
   cursor: pointer;
   outline: none;
   position: absolute;
-  top: 0;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 4px;
-  animation: counter-spin 10s linear 0s infinite;
   touch-action: manipulation;
   pointer-events: auto; // Re-enable pointer events for the planet button itself
   z-index: 20;
+  transform-style: preserve-3d;
 
   // Proximity zone: triggers pause and hover as soon as mouse comes within ~30-45px of the planet
   &::before {
@@ -245,20 +246,13 @@
   }
 }
 
-@keyframes counter-spin {
-  from {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  to {
-    transform: translate(-50%, -50%) rotate(-360deg);
-  }
-}
-
 .planet-wrap {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  transform-style: preserve-3d;
+  transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .planet-sphere {
@@ -292,7 +286,8 @@
   text-transform: uppercase;
   color: $color-text-subtle;
   white-space: nowrap;
-  transition: color 0.2s;
+  transform-style: preserve-3d;
+  transition: color 0.2s, transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
   font-family: $font-family-base;
 
   @include mobile {
