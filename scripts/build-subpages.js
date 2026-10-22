@@ -99,7 +99,16 @@ if (fs.existsSync(srcCredits)) {
 // Write public/version.json
 fs.writeFileSync(
   path.resolve(pubDir, 'version.json'),
-  JSON.stringify({ version: appVersion, commit: gitCommit, commitUrl, buildDate, time: new Date().toISOString() }, null, 2),
+  JSON.stringify({
+    appName: 'RocketRun',
+    domain: 'rocketrun.de',
+    copyright: '© 2026 rocketrun.de',
+    version: appVersion,
+    commit: gitCommit,
+    commitUrl,
+    buildDate,
+    time: new Date().toISOString()
+  }, null, 2),
   'utf8'
 );
 console.log('Generated: public/version.json');
@@ -144,8 +153,37 @@ allBodies.forEach((p, idx) => {
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <title data-i18n="ui.subpage_title" data-i18n-params='{"name":"${p.name}"}'>${p.name} — Solar System Exploration</title>
-    <meta name="description" content="Explore ${p.name}: scientific metrics, physical properties, gravity calculator, and NASA kids facts." data-i18n-attr="content:ui.subpage_meta_desc" data-i18n-params='{"name":"${p.name}"}' />
+    <title data-i18n="ui.subpage_title" data-i18n-params='{"name":"${p.name}"}'>${p.name} — RocketRun Solar System Exploration</title>
+    <meta name="description" content="Explore ${p.name} on RocketRun: scientific metrics, physical properties, gravity calculator, and NASA kids facts." data-i18n-attr="content:ui.subpage_meta_desc" data-i18n-params='{"name":"${p.name}"}' />
+    <meta name="author" content="Zachary David Mathew + Papa" />
+    <meta name="copyright" content="rocketrun.de" />
+    <meta name="application-name" content="RocketRun" />
+    <meta name="theme-color" content="#030712" />
+    <link rel="canonical" href="https://rocketrun.de/planets/${p.slug}.html" />
+
+    <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="RocketRun" />
+    <meta property="og:url" content="https://rocketrun.de/planets/${p.slug}.html" />
+    <meta property="og:title" content="${p.name} — RocketRun Solar System Exploration" />
+    <meta property="og:description" content="Explore ${p.name} on RocketRun (rocketrun.de): real orbital physics, planetary atmosphere, gravity calculator, and kids mission facts." />
+    <meta property="og:image" content="https://rocketrun.de/images/${p.slug}.png" />
+    <meta property="og:image:secure_url" content="https://rocketrun.de/images/${p.slug}.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="${p.name} — RocketRun Solar System Exploration" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@rocketrun_de" />
+    <meta name="twitter:creator" content="@rocketrun_de" />
+    <meta name="twitter:title" content="${p.name} — RocketRun Solar System Exploration" />
+    <meta name="twitter:description" content="Explore ${p.name} on RocketRun (rocketrun.de): real orbital physics, planetary atmosphere, gravity calculator, and kids mission facts." />
+    <meta name="twitter:image" content="https://rocketrun.de/images/${p.slug}.png" />
+    <meta name="twitter:image:alt" content="${p.name} — RocketRun Solar System Exploration" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../css/style.css?v=2.2.0" />

@@ -1,7 +1,8 @@
 {
-  "name": "space-travel",
+  "name": "rocketrun",
   "version": "1.0.0",
-  "description": "Solar System Tour interactive web app",
+  "description": "RocketRun — Interactive Solar System Tour (rocketrun.de)",
+  "homepage": "https://rocketrun.de",
   "main": "src/js/script.js",
   "type": "module",
   "scripts": {

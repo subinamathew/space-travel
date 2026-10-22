@@ -1,6 +1,6 @@
-# Hello Worlds — Solar System Tour 🚀🪐
+# RocketRun — Solar System Tour 🚀🪐
 
-An interactive, animated 3D-styled solar system explorer. Tour the planets, discover scientific facts, and experience smooth transitions powered by CSS animations, HTML5 Canvas, and modular modern tooling.
+An interactive, animated 3D-styled solar system explorer available at [rocketrun.de](https://rocketrun.de). Tour the planets, discover scientific facts, and experience smooth transitions powered by CSS animations, HTML5 Canvas, and modular modern tooling. Copyright © 2026 rocketrun.de.
 
 ---
 

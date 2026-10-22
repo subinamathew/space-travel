@@ -1,6 +1,6 @@
 {
   "ui": {
-    "site_title": "Hello Worlds — 太陽系ツアー",
+    "site_title": "RocketRun — 太陽系ツアー",
     "site_description": "太陽系を巡る旅 — 惑星をクリックして探索しよう！",
     "warp_status": "ワープドライブ作動",
     "sector_name": "天の川銀河 • オリオン腕",
@@ -19,7 +19,7 @@
     "explore_sun_title": "太陽（Sol）を探索",
     "explore_sun_aria": "太陽を探索",
     "hint": "惑星や太陽をクリックして探査 • ホバーで軌道を一時停止",
-    "subpage_title": "{name} — 太陽系探査",
+    "subpage_title": "{name} — RocketRun 太陽系探査",
     "subpage_meta_desc": "{name}の科学データ、物理的特性、重力計算機、NASAキッズの豆知識をチェックしよう。",
     "specs_heading": "科学的データ",
     "planet_nav_aria": "惑星ナビゲーション",
@@ -69,7 +69,7 @@
     "kids_guide_badge": "🚀 5〜8才向け解説",
     "tap_kids_explainer": "💡 タップしてキッズ解説を見る",
     "close_popup": "わかった！",
-    "credits_title": "クレジットとミッション",
+    "credits_title": "クレジットと使命 — RocketRun",
     "credits_btn": "概要とクレジット",
     "version_label": "アプリバージョン",
     "commit_label": "Git コミット",
@@ -83,12 +83,16 @@
     "visit_missional": "missional.eu を訪れる",
     "data_sources_title": "科学データと天文学の情報源",
     "data_sources_desc": "軌道パラメータ、惑星の物理的特性、重力比、子供向けミッションの事実は、NASA太陽系探査、JPL、ESA、および査読済みの天文学データベースから収集されています。",
-    "crawl_leadin": "遠い昔、まさにこの銀河系で…",
+    "crawl_leadin": "宇宙の驚異を駆け抜けるロケットの旅...",
     "crawl_pause": "一時停止",
     "crawl_resume": "再開",
     "crawl_restart": "リスタート",
-    "crawl_flat_view": "通常表示",
-    "crawl_crawl_view": "3D スクロール"
+    "crawl_flat_view": "静止表示",
+    "crawl_crawl_view": "上向きスクロール",
+    "copyright": "© 2026 rocketrun.de. 全著作権所有。",
+    "domain_label": "rocketrun.de",
+    "visit_rocketrun": "rocketrun.de を訪れる",
+    "rocketrun_tagline": "RocketRun — インタラクティブな太陽系探査"
   },
   "planets": {
     "sun": {

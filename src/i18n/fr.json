@@ -1,6 +1,6 @@
 {
   "ui": {
-    "site_title": "Hello Worlds — Visite du Système Solaire",
+    "site_title": "RocketRun — Visite du Système Solaire",
     "site_description": "Visitez le système solaire — cliquez sur une planète pour l'explorer !",
     "warp_status": "PROPULSION WARP ACTIVÉE",
     "sector_name": "Voie Lactée • Bras d'Orion",
@@ -19,7 +19,7 @@
     "explore_sun_title": "Explorer le Soleil (Sol)",
     "explore_sun_aria": "Explorer le Soleil",
     "hint": "Cliquez sur une planète ou le Soleil pour explorer • Survoler pour mettre l'orbite en pause",
-    "subpage_title": "{name} — Exploration du Système Solaire",
+    "subpage_title": "{name} — Exploration du Système Solaire RocketRun",
     "subpage_meta_desc": "Explorez {name} : données scientifiques, propriétés physiques, simulateur de gravité et faits NASA Kids.",
     "specs_heading": "Spécifications Scientifiques",
     "planet_nav_aria": "Navigation planétaire",
@@ -69,7 +69,7 @@
     "kids_guide_badge": "🚀 Expliqué pour les 5-8 ans",
     "tap_kids_explainer": "💡 Touchez pour l'explication enfants",
     "close_popup": "Compris !",
-    "credits_title": "Crédits et Mission",
+    "credits_title": "Crédits et Mission — RocketRun",
     "credits_btn": "À propos & Crédits",
     "version_label": "Version de l'application",
     "commit_label": "Commit Git",
@@ -83,12 +83,16 @@
     "visit_missional": "Visiter missional.eu",
     "data_sources_title": "Données scientifiques et sources astronomiques",
     "data_sources_desc": "Les paramètres orbitaux, les caractéristiques physiques des planètes, les ratios gravitationnels et les faits pour les enfants proviennent de NASA Solar System Exploration, du JPL, de l'ESA et de bases de données astronomiques vérifiées.",
-    "crawl_leadin": "Il y a bien longtemps, dans une galaxie juste ici...",
+    "crawl_leadin": "En route vers les merveilles du cosmos...",
     "crawl_pause": "Pause",
     "crawl_resume": "Reprendre",
     "crawl_restart": "Recommencer",
-    "crawl_flat_view": "Vue plate",
-    "crawl_crawl_view": "Défilement 3D"
+    "crawl_flat_view": "Vue Statique",
+    "crawl_crawl_view": "Défilement vers le haut",
+    "copyright": "© 2026 rocketrun.de. Tous droits réservés.",
+    "domain_label": "rocketrun.de",
+    "visit_rocketrun": "Visiter rocketrun.de",
+    "rocketrun_tagline": "RocketRun — Exploration Interactive du Système Solaire"
   },
   "planets": {
     "sun": {

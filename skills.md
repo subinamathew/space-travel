@@ -1,6 +1,6 @@
 # Engineering Skills & Development Guidelines
 
-This document defines the core engineering skills, architectural principles, quality standards, and development rules for the **Hello Worlds (Space Travel)** project. All contributors, agents, and pipelines must adhere to these practices to ensure high performance, maintainability, rock-solid stability, and an optimal experience across all devices.
+This document defines the core engineering skills, architectural principles, quality standards, and development rules for the **RocketRun (rocketrun.de)** project. All contributors, agents, and pipelines must adhere to these practices to ensure high performance, maintainability, rock-solid stability, and an optimal experience across all devices.
 
 ---
 
@@ -16,7 +16,8 @@ This document defines the core engineering skills, architectural principles, qua
 8. [Skill 8: Low-End Hardware & Handheld Performance Optimization](#skill-8-low-end-hardware--handheld-performance-optimization)
 9. [Skill 9: Full Internationalization (i18n) & Accessibility (a11y)](#skill-9-full-internationalization-i18n--accessibility-a11y)
 10. [Skill 10: Child Pedagogy & Metaphor Design for Scientific Explanations](#skill-10-child-pedagogy--metaphor-design-for-scientific-explanations)
-11. [Pre-Flight Verification Checklist](#pre-flight-verification-checklist)
+11. [Skill 11: Metadata, OpenGraph & Social Sharing Standards](#skill-11-metadata-opengraph--social-sharing-standards)
+12. [Pre-Flight Verification Checklist](#pre-flight-verification-checklist)
 
 ---
 
@@ -301,6 +302,42 @@ Astronomical facts, chemical formulas, and mathematical metrics must be rendered
 
 ---
 
+## Skill 11: Metadata, OpenGraph & Social Sharing Standards
+
+### Core Rule
+Every public endpoint and generated subpage in **RocketRun** must include comprehensive, valid, and rich metadata optimized for **Facebook, Twitter/X, WhatsApp, LinkedIn, Discord, and Telegram**. The official canonical domain is **`https://rocketrun.de`**, and all content is copyrighted under **`rocketrun.de`**.
+
+### Standard Metadata Requirements
+1. **Canonical URLs & Absolute Paths**:
+   - Every page must declare its canonical URL: `<link rel="canonical" href="https://rocketrun.de/path" />`.
+   - Never use relative paths for `og:image` or `og:url`. Social scrapers (especially WhatsApp and Facebook) strictly ignore relative URLs.
+
+2. **OpenGraph Protocol**:
+   - `og:site_name`: Must be `RocketRun`.
+   - `og:type`: `website` for root/credits; `article` for celestial subpages.
+   - `og:title`: Concise, brand-aligned title (e.g., `RocketRun — Solar System Tour` or `${name} — RocketRun Solar System Exploration`).
+   - `og:description`: Engaging summary highlighting interactive 3D physics, planetary science, and NASA kids missions.
+   - `og:image`: High-contrast, transparent or deep-space PNG (e.g., `https://rocketrun.de/images/earth.png` or `https://rocketrun.de/images/${slug}.png`).
+   - `og:image:width`: `1200`, `og:image:height`: `630`, `og:image:type`: `image/png`.
+   - `og:locale`: `en_US` with alternate locales (`de_DE`, `fr_FR`, `es_ES`, `it_IT`, `ja_JP`, `zh_CN`).
+
+3. **Twitter / X Card**:
+   - `twitter:card`: `summary_large_image`.
+   - `twitter:site` & `twitter:creator`: `@rocketrun_de`.
+   - `twitter:title` and `twitter:description` matching OpenGraph.
+   - `twitter:image`: Absolute HTTPS URL matching `og:image`.
+
+4. **WhatsApp Specifics**:
+   - WhatsApp unfurls rich cards exclusively when `og:title`, `og:description`, and `og:image` are present and served over HTTPS.
+   - Target images must be optimized under 300KB (maximum 1MB) with a clean 1.91:1 or 1:1 aspect ratio to ensure instant card rendering on cellular networks.
+
+5. **Copyright & Authorship**:
+   - `<meta name="author" content="Zachary David Mathew + Papa" />`
+   - `<meta name="copyright" content="rocketrun.de" />`
+   - Visible and i18n-backed copyright in app footers and credits: `© 2026 rocketrun.de. All rights reserved.`
+
+---
+
 ## Pre-Flight Verification Checklist
 
 Before pushing any commit or releasing to production, verify:
@@ -313,6 +350,11 @@ Before pushing any commit or releasing to production, verify:
   - [ ] Every `%` symbol is grounded in concrete counts (*"parts out of 100"* / *"100 scoops"* / *"100 marbles"*).
   - [ ] All chemical abbreviations (`N₂`, `O₂`, `CO₂`, `H₂`, `He`, `CH₄`) are deciphered into everyday metaphors.
   - [ ] Multiplication uses written-out *"times"* rather than *"×"* or *"x"*.
+- [ ] **Social & Metadata**:
+  - [ ] Canonical URL points to `https://rocketrun.de/...`.
+  - [ ] OpenGraph (`og:title`, `og:image`, `og:url`, `og:site_name`) and Twitter Card tags are present.
+  - [ ] Social images are served over absolute HTTPS and optimized for WhatsApp (< 300KB).
+  - [ ] Copyright declared as `rocketrun.de`.
 - [ ] **i18n Parity**: `npm test` passes with 100% parity across all 7 language files.
 - [ ] **Build Validation**: `npm run build` generates all pages and bundles without errors or warnings.
 - [ ] **Mobile & Handheld Test**: Tested on narrow mobile screen (360px–414px) with touch-friendly tap targets (≥ 44px).

@@ -1,6 +1,6 @@
 {
   "ui": {
-    "site_title": "Hello Worlds — 太阳系之旅",
+    "site_title": "RocketRun — 太阳系之旅",
     "site_description": "畅游太阳系 — 点击任意行星开启探索！",
     "warp_status": "曲率引擎已启动",
     "sector_name": "银河系 • 猎户臂",
@@ -19,7 +19,7 @@
     "explore_sun_title": "探索太阳 (Sol)",
     "explore_sun_aria": "探索太阳",
     "hint": "点击任意行星或太阳以着陆探险 • 悬停暂停公转",
-    "subpage_title": "{name} — 太阳系深空探索",
+    "subpage_title": "{name} — RocketRun 太阳系探索",
     "subpage_meta_desc": "探索{name}：科学参数、物理特性、引力测算器与 NASA 儿童趣味知识。",
     "specs_heading": "科学探测数据",
     "planet_nav_aria": "行星导航",
@@ -69,7 +69,7 @@
     "kids_guide_badge": "🚀 5-8岁简明讲解",
     "tap_kids_explainer": "💡 点击查看儿童版讲解",
     "close_popup": "明白了！",
-    "credits_title": "制作致谢与使命",
+    "credits_title": "制作致谢与使命 — RocketRun",
     "credits_btn": "关于与致谢",
     "version_label": "应用版本",
     "commit_label": "Git 提交",
@@ -83,12 +83,16 @@
     "visit_missional": "访问 missional.eu",
     "data_sources_title": "科学数据与天文学来源",
     "data_sources_desc": "轨道参数、行星物理特征、重力系数和儿童探索趣味知识均汇编自 NASA 太阳系探索计划、JPL、ESA 以及同行评审的天文学数据库。",
-    "crawl_leadin": "很久以前，就在我们身处的这个星系中……",
+    "crawl_leadin": "火箭穿梭于宇宙的奇迹之中...",
     "crawl_pause": "暂停",
     "crawl_resume": "继续",
     "crawl_restart": "重新开始",
-    "crawl_flat_view": "常规视图",
-    "crawl_crawl_view": "3D 滚动"
+    "crawl_flat_view": "静态视图",
+    "crawl_crawl_view": "向上滚动",
+    "copyright": "© 2026 rocketrun.de. 保留所有权利。",
+    "domain_label": "rocketrun.de",
+    "visit_rocketrun": "访问 rocketrun.de",
+    "rocketrun_tagline": "RocketRun — 互动太阳系探索"
   },
   "planets": {
     "sun": {

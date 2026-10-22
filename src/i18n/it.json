@@ -1,6 +1,6 @@
 {
   "ui": {
-    "site_title": "Hello Worlds — Tour del Sistema Solare",
+    "site_title": "RocketRun — Tour del Sistema Solare",
     "site_description": "Esplora il sistema solare — clicca su un pianeta per visitarlo!",
     "warp_status": "MOTORE A CURVATURA ATTIVO",
     "sector_name": "Via Lattea • Braccio di Orione",
@@ -19,7 +19,7 @@
     "explore_sun_title": "Esplora il Sole (Sol)",
     "explore_sun_aria": "Esplora il Sole",
     "hint": "Clicca su un pianeta o sul Sole per esplorare • Passa sopra per mettere in pausa l'orbita",
-    "subpage_title": "{name} — Esplorazione del Sistema Solare",
+    "subpage_title": "{name} — Esplorazione del Sistema Solare RocketRun",
     "subpage_meta_desc": "Esplora {name}: dati scientifici, proprietà fisiche, calcolatore di gravità e curiosità NASA Kids.",
     "specs_heading": "Dati Scientifici",
     "planet_nav_aria": "Navigazione planetaria",
@@ -69,7 +69,7 @@
     "kids_guide_badge": "🚀 Spiegazione per 5-8 anni",
     "tap_kids_explainer": "💡 Tocca per la spiegazione bimbi",
     "close_popup": "Capito!",
-    "credits_title": "Crediti e Missione",
+    "credits_title": "Crediti e Missione — RocketRun",
     "credits_btn": "Info e Crediti",
     "version_label": "Versione dell'app",
     "commit_label": "Commit Git",
@@ -83,12 +83,16 @@
     "visit_missional": "Visita missional.eu",
     "data_sources_title": "Dati scientifici e fonti astronomiche",
     "data_sources_desc": "I parametri orbitali, le caratteristiche fisiche planetarie, i moltiplicatori di gravità e i fatti per bambini provengono da NASA Solar System Exploration, JPL, ESA e database astronomici verificati.",
-    "crawl_leadin": "Tanto tempo fa, in una galassia proprio qui...",
+    "crawl_leadin": "In viaggio attraverso le meraviglie cosmiche...",
     "crawl_pause": "Pausa",
     "crawl_resume": "Riprendi",
     "crawl_restart": "Riavvia",
-    "crawl_flat_view": "Vista classica",
-    "crawl_crawl_view": "Scorrimento 3D"
+    "crawl_flat_view": "Vista Statica",
+    "crawl_crawl_view": "Scorri verso l'alto",
+    "copyright": "© 2026 rocketrun.de. Tutti i diritti riservati.",
+    "domain_label": "rocketrun.de",
+    "visit_rocketrun": "Visita rocketrun.de",
+    "rocketrun_tagline": "RocketRun — Esplorazione Interattiva del Sistema Solare"
   },
   "planets": {
     "sun": {
