@@ -1,0 +1,542 @@
+{
+  "ui": {
+    "site_title": "Hello Worlds — Visite du Système Solaire",
+    "site_description": "Visitez le système solaire — cliquez sur une planète pour l'explorer !",
+    "warp_status": "PROPULSION WARP ACTIVÉE",
+    "sector_name": "Voie Lactée • Bras d'Orion",
+    "sector_full": "Secteur : Voie Lactée • Bras d'Orion",
+    "galactic_coords_label": "Coordonnées Galactiques :",
+    "galactic_coords_val": "AD 17h 45.6m, Déc -29°00′",
+    "core_distance_label": "Distance au Centre :",
+    "core_distance_val": "26 000 Années-Lumière",
+    "settings_title": "Paramètres",
+    "language_label": "Langue :",
+    "back_btn": "← Système Solaire",
+    "explore_sun_title": "Explorer le Soleil (Sol)",
+    "explore_sun_aria": "Explorer le Soleil",
+    "hint": "Cliquez sur une planète pour visiter • Survolez pour figer l'orbite • ←→ pour naviguer",
+    "subpage_title": "{name} — Exploration du Système Solaire",
+    "subpage_meta_desc": "Explorez {name} : données scientifiques, propriétés physiques, simulateur de gravité et faits NASA Kids.",
+    "specs_heading": "Spécifications Scientifiques",
+    "planet_nav_aria": "Navigation planétaire",
+    "selector_aria": "Sélecteur d'astre céleste",
+    "prev_aria": "Précédent : {name}",
+    "next_aria": "Suivant : {name}",
+    "counter": "{current} / {total}",
+    "lab_title": "Laboratoire Cosmique",
+    "lab_physics": "Gravité : {gravity}× Terre • Physique en Direct",
+    "toggle_lab": "Réduire / agrandir le laboratoire",
+    "minimize_lab": "Réduire le laboratoire",
+    "expand_lab": "Agrandir le laboratoire",
+    "toggle_hud": "Réduire / agrandir le HUD galactique",
+    "minimize_hud": "Réduire le HUD galactique",
+    "expand_hud": "Agrandir le HUD galactique",
+    "toggle_settings": "Réduire / agrandir les paramètres",
+    "minimize_settings": "Réduire les paramètres",
+    "expand_settings": "Agrandir les paramètres",
+    "your_weight": "Votre Poids",
+    "your_height": "Votre Taille",
+    "weight_placeholder": "Poids",
+    "height_placeholder": "Taille",
+    "preset_kid": "Enfant (25kg/55lb)",
+    "preset_teen": "Ado (50kg/110lb)",
+    "preset_adult": "Adulte (70kg/154lb)",
+    "preset_7yr": "7 ans (120cm)",
+    "preset_10yr": "10 ans (138cm)",
+    "preset_adult_h": "Adulte (170cm)",
+    "weight_on": "Poids sur {name}",
+    "jump_on": "Saut vertical sur {name}",
+    "prompt_enter_weight": "Entrez votre poids pour calculer.",
+    "prompt_enter_height": "Entrez votre taille pour calculer le saut.",
+    "feel_same": "Identique à votre poids terrestre !",
+    "feel_heavier": "+{pct}% plus lourd — comme {feel}",
+    "feel_lighter": "-{pct}% plus léger — comme {feel}",
+    "feel_car": "une voiture géante sur vos épaules !",
+    "feel_boulders": "un sac rempli de rochers !",
+    "feel_gear": "une lourde combinaison spatiale d'hiver !",
+    "feel_feather": "une plume toute légère !",
+    "feel_boots": "des bottes lunaires magiques !",
+    "jump_sun": "La gravité colossale du Soleil empêche tout saut !",
+    "jump_higher": "{ratio}× plus haut que sur Terre ! Un vol plané dans le ciel !",
+    "jump_lower": "La forte gravité vous attire vite au sol — seulement {ratio}× votre saut terrestre."
+  },
+  "planets": {
+    "sun": {
+      "name": "Le Soleil (Sol)",
+      "greeting": "Bonjour, Étoile Dorée !",
+      "fact": "L'étoile naine jaune au cœur de notre système solaire. Elle concentre 99,86 % de toute la masse du système, engendrant lumière et vie par fusion nucléaire.",
+      "kids": {
+        "badge": "🚀 Mission NASA Kids",
+        "title": "La Méga Centrale Énergétique !",
+        "jump": "Hauteur de saut : 0 centimètre ! La gravité y est 28 fois plus forte que sur Terre : vous seriez collé comme du pain grillé.",
+        "fact": "Un million de Terres pourraient tenir à l'intérieur du Soleil ! Il rassemble 99,8 % de toute la matière de notre système solaire."
+      },
+      "stats": [
+        {
+          "label": "Classe Spectrale",
+          "value": "G2V (Naine Jaune)",
+          "sub": "Étoile de la séquence principale ; ~4,6 Ga"
+        },
+        {
+          "label": "Température de Surface",
+          "value": "5 500 °C (5 778 K)",
+          "sub": "Température au cœur : ~15 000 000 °C"
+        },
+        {
+          "label": "Diamètre Équatorial",
+          "value": "1 392 700 km",
+          "sub": "109,2 × diamètre terrestre"
+        },
+        {
+          "label": "Masse",
+          "value": "1,989 × 10³⁰ kg",
+          "sub": "333 000 × Terre (99,86 % du système)"
+        },
+        {
+          "label": "Vitesse Galactique",
+          "value": "220 km/s",
+          "sub": "Période d'orbite galactique : ~230 Ma"
+        },
+        {
+          "label": "Distance à la Terre",
+          "value": "149 600 000 km",
+          "sub": "1,0 UA (Temps lumière : 8m 20s)"
+        },
+        {
+          "label": "Période de Rotation",
+          "value": "25,05 jours (Équateur)",
+          "sub": "34,4 jours aux pôles (rotation différentielle)"
+        },
+        {
+          "label": "Composition",
+          "value": "73,4 % H₂, 25,0 % He",
+          "sub": "1,6 % d'éléments lourds (C, N, O, Fe)"
+        }
+      ]
+    },
+    "mercury": {
+      "name": "Mercure",
+      "greeting": "Bonjour, Monde Brûlant !",
+      "fact": "La plus petite planète — une journée y dure plus longtemps qu'une année, avec des écarts de −180 °C à 430 °C.",
+      "kids": {
+        "badge": "🚀 Mission NASA Kids",
+        "title": "Le Terrain de Jeu en Bottes Lunaires !",
+        "jump": "Vous sautez près de 3 fois plus haut que sur Terre ! Un petit bond vous propulse largement au-dessus de votre lit.",
+        "fact": "Une année sur Mercure file à toute allure (88 jours), mais un seul jour de soleil dure plus longtemps qu'une année entière !"
+      },
+      "stats": [
+        {
+          "label": "Distance du Soleil",
+          "value": "57,9 M km",
+          "sub": "0,387 UA"
+        },
+        {
+          "label": "Période Orbitale",
+          "value": "87,97 jours terrestres",
+          "sub": "L'orbite la plus rapide du système solaire"
+        },
+        {
+          "label": "Durée du Jour",
+          "value": "175,9 jours terrestres",
+          "sub": "Rotation : 58,6 jours"
+        },
+        {
+          "label": "Rayon Équatorial",
+          "value": "2 439,7 km",
+          "sub": "0,383 × Terre"
+        },
+        {
+          "label": "Masse",
+          "value": "3,30 × 10²³ kg",
+          "sub": "0,055 × Terre"
+        },
+        {
+          "label": "Température de Surface",
+          "value": "−180 °C à 430 °C",
+          "sub": "Fluctuation thermique extrême"
+        },
+        {
+          "label": "Lunes & Anneaux",
+          "value": "0 Lune · 0 Anneau",
+          "sub": "Monde tellurique solitaire"
+        },
+        {
+          "label": "Atmosphère",
+          "value": "Exosphère",
+          "sub": "Traces d'oxygène, sodium, hydrogène"
+        }
+      ]
+    },
+    "venus": {
+      "name": "Vénus",
+      "greeting": "Bonjour, Jumelle Infernale !",
+      "fact": "Un effet de serre féroce fait de Vénus la planète la plus chaude à 465 °C — plus torride que Mercure bien que plus éloignée du Soleil.",
+      "kids": {
+        "badge": "🚀 Mission NASA Kids",
+        "title": "Le Four du Système Solaire !",
+        "jump": "Vous sautez presque comme sur Terre, mais l'air est jaune, suffocant et assez chaud pour faire fondre une petite voiture en métal !",
+        "fact": "Vénus tourne à l'envers comparée à la Terre : le Soleil s'y lève à l'ouest et se couche à l'est."
+      },
+      "stats": [
+        {
+          "label": "Distance du Soleil",
+          "value": "108,2 M km",
+          "sub": "0,723 UA"
+        },
+        {
+          "label": "Période Orbitale",
+          "value": "224,7 jours terrestres",
+          "sub": "0,615 année terrestre"
+        },
+        {
+          "label": "Durée du Jour",
+          "value": "243,0 jours terrestres",
+          "sub": "Rotation rétrograde (tourne à l'envers)"
+        },
+        {
+          "label": "Rayon Équatorial",
+          "value": "6 051,8 km",
+          "sub": "0,949 × Terre (Jumelle)"
+        },
+        {
+          "label": "Masse",
+          "value": "4,87 × 10²⁴ kg",
+          "sub": "0,815 × Terre"
+        },
+        {
+          "label": "Température de Surface",
+          "value": "465 °C (Moyenne)",
+          "sub": "Surface la plus brûlante du système"
+        },
+        {
+          "label": "Lunes & Anneaux",
+          "value": "0 Lune · 0 Anneau",
+          "sub": "Aucun satellite naturel"
+        },
+        {
+          "label": "Atmosphère",
+          "value": "96,5 % CO₂, 3,5 % N₂",
+          "sub": "Nuages d'acide sulfurique ; pression de 92 bars"
+        }
+      ]
+    },
+    "earth": {
+      "name": "Terre",
+      "greeting": "Bonjour, Monde Natal !",
+      "fact": "Le seul monde connu abritant la vie. Notre petite bille bleue est recouverte à 71 % d'océans, enveloppée d'une atmosphère protectrice.",
+      "kids": {
+        "badge": "🚀 Mission NASA Kids",
+        "title": "L'Oasis Parfaite !",
+        "jump": "Votre terrain de jeu préféré ! Une gravité idéale pour marquer des buts, faire du vélo et sauter dans les flaques.",
+        "fact": "La Terre est la seule planète connue avec de l'air respirable, des océans d'eau liquide, un ciel bleu et des animaux vivants !"
+      },
+      "stats": [
+        {
+          "label": "Distance du Soleil",
+          "value": "149,6 M km",
+          "sub": "1,000 UA (Unité Astronomique)"
+        },
+        {
+          "label": "Période Orbitale",
+          "value": "365,25 jours",
+          "sub": "1,000 an terrestre (Référence)"
+        },
+        {
+          "label": "Durée du Jour",
+          "value": "23h 56m 04s",
+          "sub": "Jour solaire de 24,0 heures"
+        },
+        {
+          "label": "Rayon Équatorial",
+          "value": "6 371,0 km",
+          "sub": "Unité de base : 1,000 R⊕"
+        },
+        {
+          "label": "Masse",
+          "value": "5,972 × 10²⁴ kg",
+          "sub": "Unité de base : 1,000 M⊕"
+        },
+        {
+          "label": "Température de Surface",
+          "value": "−88 °C à 58 °C",
+          "sub": "Moyenne : 15 °C (Zone habitable)"
+        },
+        {
+          "label": "Lunes & Anneaux",
+          "value": "1 Lune · 0 Anneau",
+          "sub": "Lune (Orbite à 384 400 km)"
+        },
+        {
+          "label": "Atmosphère",
+          "value": "78 % N₂, 21 % O₂, 1 % Ar",
+          "sub": "Couche d'ozone & bouclier magnétique"
+        }
+      ]
+    },
+    "mars": {
+      "name": "Mars",
+      "greeting": "Bonjour, Planète Rouge !",
+      "fact": "Elle abrite Olympus Mons — le plus haut volcan du système solaire, culminant à 21 km. Sa teinte rouille provient de poussières d'oxyde de fer.",
+      "kids": {
+        "badge": "🚀 Mission NASA Kids",
+        "title": "Le Monde des Super-Sauts !",
+        "jump": "Vous sautez 2,6 fois plus haut que sur Terre ! D'un seul bond vigoureux, vous enjambez une voiture garée.",
+        "fact": "Sur Mars, des robots explorateurs comme Curiosity et Perseverance roulent actuellement sur les dunes de sable rouge !"
+      },
+      "stats": [
+        {
+          "label": "Distance du Soleil",
+          "value": "227,9 M km",
+          "sub": "1,524 UA"
+        },
+        {
+          "label": "Période Orbitale",
+          "value": "686,98 jours terrestres",
+          "sub": "1,881 an terrestre"
+        },
+        {
+          "label": "Durée du Jour",
+          "value": "24h 37m 22s",
+          "sub": "1 Sol (~1,027 jour terrestre)"
+        },
+        {
+          "label": "Rayon Équatorial",
+          "value": "3 389,5 km",
+          "sub": "0,532 × Terre"
+        },
+        {
+          "label": "Masse",
+          "value": "6,42 × 10²³ kg",
+          "sub": "0,107 × Terre"
+        },
+        {
+          "label": "Température de Surface",
+          "value": "−140 °C à 20 °C",
+          "sub": "Moyenne : −63 °C"
+        },
+        {
+          "label": "Lunes & Anneaux",
+          "value": "2 Lunes · 0 Anneau",
+          "sub": "Phobos et Déimos"
+        },
+        {
+          "label": "Atmosphère",
+          "value": "95,3 % CO₂, 2,6 % N₂",
+          "sub": "Atmosphère ténue (~0,006 bar)"
+        }
+      ]
+    },
+    "jupiter": {
+      "name": "Jupiter",
+      "greeting": "Bonjour, Roi des Géants !",
+      "fact": "Tellement gigantesque que toutes les autres planètes réunies pourraient y entrer. Sa Grande Tache Rouge tempête depuis plus de 350 ans.",
+      "kids": {
+        "badge": "🚀 Mission NASA Kids",
+        "title": "Le Roi des Poids Lourds !",
+        "jump": "Vos sauts sont divisés par deux ! Courir ici donne l'impression de porter de lourdes bottes de fonte.",
+        "fact": "Jupiter est si immense que 1 300 Terres pourraient y loger, et sa Tache Rouge est un ouragan plus vaste que la Terre !"
+      },
+      "stats": [
+        {
+          "label": "Distance du Soleil",
+          "value": "778,6 M km",
+          "sub": "5,204 UA"
+        },
+        {
+          "label": "Période Orbitale",
+          "value": "11,86 ans terrestres",
+          "sub": "4 332,6 jours terrestres"
+        },
+        {
+          "label": "Durée du Jour",
+          "value": "9h 55m 30s",
+          "sub": "Rotation planétaire la plus rapide"
+        },
+        {
+          "label": "Rayon Équatorial",
+          "value": "69 911 km",
+          "sub": "10,97 × Terre"
+        },
+        {
+          "label": "Masse",
+          "value": "1,898 × 10²⁷ kg",
+          "sub": "317,8 × Terre (2,5× toutes les planètes)"
+        },
+        {
+          "label": "Température au Sommet des Nuages",
+          "value": "−110 °C",
+          "sub": "Cœur atteignant ~24 000 °C"
+        },
+        {
+          "label": "Lunes & Anneaux",
+          "value": "95 Lunes · 4 Anneaux",
+          "sub": "Io, Europe, Ganymède, Callisto"
+        },
+        {
+          "label": "Atmosphère",
+          "value": "89,8 % H₂, 10,2 % He",
+          "sub": "Traces de méthane, ammoniac, vapeur d'eau"
+        }
+      ]
+    },
+    "saturn": {
+      "name": "Saturne",
+      "greeting": "Bonjour, Beauté aux Anneaux !",
+      "fact": "Ses anneaux spectaculaires s'étendent sur 282 000 km. Sa densité est si faible qu'elle flotterait sur l'eau !",
+      "kids": {
+        "badge": "🚀 Mission NASA Kids",
+        "title": "Le Jouet de Bain de l'Univers !",
+        "jump": "Votre poids et vos bonds ressemblent à ceux sur Terre, mais il n'y a pas de sol solide—juste des nuages et de la glace.",
+        "fact": "Saturne est si légère et mousseuse que dans une baignoire géante, elle flotterait comme un canard en plastique !"
+      },
+      "stats": [
+        {
+          "label": "Distance du Soleil",
+          "value": "1,434 Md km",
+          "sub": "9,582 UA"
+        },
+        {
+          "label": "Période Orbitale",
+          "value": "29,45 ans terrestres",
+          "sub": "10 759,2 jours terrestres"
+        },
+        {
+          "label": "Durée du Jour",
+          "value": "10h 33m 38s",
+          "sub": "Rotation différentielle rapide"
+        },
+        {
+          "label": "Rayon Équatorial",
+          "value": "58 232 km",
+          "sub": "9,14 × Terre"
+        },
+        {
+          "label": "Masse",
+          "value": "5,683 × 10²⁶ kg",
+          "sub": "95,2 × Terre (Densité : 0,687 g/cm³)"
+        },
+        {
+          "label": "Température au Sommet des Nuages",
+          "value": "−140 °C",
+          "sub": "Moyenne des nuages supérieurs"
+        },
+        {
+          "label": "Lunes & Anneaux",
+          "value": "146 Lunes · 7 Anneaux Principaux",
+          "sub": "Titan, Encelade ; anneaux sur 282 000 km"
+        },
+        {
+          "label": "Atmosphère",
+          "value": "96,3 % H₂, 3,25 % He",
+          "sub": "Traces de méthane, ammoniac, éthane"
+        }
+      ]
+    },
+    "uranus": {
+      "name": "Uranus",
+      "greeting": "Bonjour, Géante Glacée !",
+      "fact": "Uranus possède une inclinaison d'axe de 98° — elle roule sur le côté autour du Soleil. Sa couleur cyan provient du gaz méthane.",
+      "kids": {
+        "badge": "🚀 Mission NASA Kids",
+        "title": "Le Monde des Galipettes !",
+        "jump": "Vous sautez 12 % plus haut avec un ressort supplémentaire, flottant doucement à travers des nuages turquoise givrés.",
+        "fact": "Uranus roule sur le côté comme une boule de bowling et c'est la planète la plus glaciale du système à −224 °C !"
+      },
+      "stats": [
+        {
+          "label": "Distance du Soleil",
+          "value": "2,871 Md km",
+          "sub": "19,191 UA"
+        },
+        {
+          "label": "Période Orbitale",
+          "value": "84,02 ans terrestres",
+          "sub": "30 685,4 jours terrestres"
+        },
+        {
+          "label": "Durée du Jour",
+          "value": "17h 14m 24s",
+          "sub": "Inclinaison 97,77° (roule sur le côté)"
+        },
+        {
+          "label": "Rayon Équatorial",
+          "value": "25 362 km",
+          "sub": "3,98 × Terre"
+        },
+        {
+          "label": "Masse",
+          "value": "8,681 × 10²⁵ kg",
+          "sub": "14,54 × Terre"
+        },
+        {
+          "label": "Température la Plus Basse",
+          "value": "−224 °C",
+          "sub": "Atmosphère planétaire la plus froide"
+        },
+        {
+          "label": "Lunes & Anneaux",
+          "value": "28 Lunes · 13 Anneaux",
+          "sub": "Titania, Obéron, Umbriel, Ariel, Miranda"
+        },
+        {
+          "label": "Atmosphère",
+          "value": "82,5 % H₂, 15,2 % He, 2,3 % CH₄",
+          "sub": "Le méthane absorbe le rouge donnant ce cyan"
+        }
+      ]
+    },
+    "neptune": {
+      "name": "Neptune",
+      "greeting": "Bonjour, Monde Venteux !",
+      "fact": "La planète la plus venteuse — les tempêtes y soufflent à 2 100 km/h. Une orbite complète du Soleil prend 165 ans terrestres.",
+      "kids": {
+        "badge": "🚀 Mission NASA Kids",
+        "title": "Le Géant aux Vents Supersoniques !",
+        "jump": "Vous vous sentez à peine plus lourd que sur Terre, comme marcher face à un grand vent avec un épais manteau d'hiver.",
+        "fact": "Neptune connaît les vents les plus furieux du système solaire : ils hurlent à plus de 2 000 km/h, plus vite qu'un avion à réaction !"
+      },
+      "stats": [
+        {
+          "label": "Distance du Soleil",
+          "value": "4,495 Md km",
+          "sub": "30,070 UA"
+        },
+        {
+          "label": "Période Orbitale",
+          "value": "164,79 ans terrestres",
+          "sub": "60 189,0 jours terrestres"
+        },
+        {
+          "label": "Durée du Jour",
+          "value": "16h 06m 36s",
+          "sub": "Rotation différentielle"
+        },
+        {
+          "label": "Rayon Équatorial",
+          "value": "24 622 km",
+          "sub": "3,86 × Terre"
+        },
+        {
+          "label": "Masse",
+          "value": "1,024 × 10²⁶ kg",
+          "sub": "17,15 × Terre"
+        },
+        {
+          "label": "Température au Sommet des Nuages",
+          "value": "−201 °C",
+          "sub": "Vents supersoniques jusqu'à 2 160 km/h"
+        },
+        {
+          "label": "Lunes & Anneaux",
+          "value": "16 Lunes · 5 Anneaux",
+          "sub": "Triton (lune cryovolcanique rétrograde)"
+        },
+        {
+          "label": "Atmosphère",
+          "value": "80,0 % H₂, 19,0 % He, 1,5 % CH₄",
+          "sub": "Bleu azur éclatant avec Grande Tache Sombre"
+        }
+      ]
+    }
+  }
+}

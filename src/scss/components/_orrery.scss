@@ -1,0 +1,210 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/breakpoints' as *;
+
+/* ---- ORRERY ---- */
+#scene {
+  position: relative;
+  width: min(100vw, 100vh);
+  height: min(100vw, 100vh);
+  overflow: visible;
+
+  @include mobile {
+    width: min(94vw, 94vh);
+    height: min(94vw, 94vh);
+  }
+
+  @include tablet {
+    width: min(96vw, 96vh);
+    height: min(96vw, 96vh);
+  }
+}
+
+#sun {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 5.5vmin;
+  height: 5.5vmin;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%, #fff5aa, #ffcc00 40%, #ff8800);
+  background-image: url('../images/sun.png');
+  background-size: cover;
+  background-position: center;
+  box-shadow:
+    0 0 18px 6px rgba(255, 200, 0, 0.75),
+    0 0 50px 18px rgba(255, 140, 0, 0.45),
+    0 0 100px 35px rgba(255, 100, 0, 0.18);
+  z-index: 25;
+  pointer-events: auto;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  display: block;
+  touch-action: manipulation;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  // Proximity touch & hover hit-box for the Sun
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: clamp(54px, 8vmin, 80px);
+    height: clamp(54px, 8vmin, 80px);
+    border-radius: 50%;
+    pointer-events: auto;
+  }
+
+  &:hover,
+  &:focus-visible {
+    transform: translate(-50%, -50%) scale(1.25);
+    box-shadow:
+      0 0 30px 10px rgba(255, 230, 50, 0.95),
+      0 0 75px 25px rgba(255, 160, 0, 0.75),
+      0 0 140px 50px rgba(255, 100, 0, 0.45);
+  }
+
+  @include mobile {
+    width: 6.5vmin;
+    height: 6.5vmin;
+  }
+}
+
+/* CSS orbit animation — pure CSS, no JS timers */
+.orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  animation: orbit-spin 10s linear 0s infinite;
+  overflow: visible;
+  pointer-events: none; // Prevent outer orbits from blocking clicks to inner planets
+}
+
+@keyframes orbit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// Pause orbits when mouse comes close to any planet OR the Sun
+#scene:has(.planet-btn:hover),
+#scene:has(#sun:hover) {
+  .orbit,
+  .planet-btn {
+    animation-play-state: paused !important;
+  }
+}
+
+.planet-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  outline: none;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  animation: counter-spin 10s linear 0s infinite;
+  touch-action: manipulation;
+  pointer-events: auto; // Re-enable pointer events for the planet button itself
+  z-index: 20;
+
+  // Proximity zone: triggers pause and hover as soon as mouse comes within ~30-45px of the planet
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: clamp(54px, 8vmin, 80px);
+    height: clamp(54px, 8vmin, 80px);
+    border-radius: 50%;
+    pointer-events: auto;
+    z-index: 0;
+  }
+
+  @include mobile {
+    // Increase hit area for touchscreen tapping
+    padding: 6px;
+    gap: 3px;
+  }
+
+  &:hover,
+  &:focus-visible {
+    .planet-sphere {
+      box-shadow: 0 0 24px var(--pglow), 0 0 48px var(--pglow);
+      transform: scale(1.45);
+    }
+
+    .planet-label {
+      color: rgba(255, 255, 255, 0.95);
+      text-shadow: 0 0 8px var(--pglow);
+    }
+  }
+}
+
+@keyframes counter-spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(-360deg);
+  }
+}
+
+.planet-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.planet-sphere {
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, var(--pc1), var(--pc2));
+  box-shadow: 0 0 8px var(--pglow);
+  transition: box-shadow $transition-fast, transform $transition-fast;
+  position: relative;
+  z-index: 1;
+}
+
+.home-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1.5px solid rgba(200, 160, 90, 0.65);
+  transform: rotateX(70deg);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.planet-label {
+  font-size: clamp(0.42rem, 0.75vmin, 0.62rem);
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: $color-text-subtle;
+  white-space: nowrap;
+  transition: color 0.2s;
+  font-family: $font-family-base;
+
+  @include mobile {
+    font-size: clamp(0.45rem, 1.8vmin, 0.65rem);
+    letter-spacing: 0.05em;
+  }
+
+  @include tablet {
+    font-size: clamp(0.42rem, 1vmin, 0.62rem);
+  }
+}

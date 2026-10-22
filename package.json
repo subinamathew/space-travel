@@ -1,0 +1,22 @@
+{
+  "name": "space-travel",
+  "version": "1.0.0",
+  "description": "Solar System Tour interactive web app",
+  "main": "src/js/script.js",
+  "type": "module",
+  "scripts": {
+    "build:css": "sass src/scss/main.scss public/css/style.css --style=compressed --no-source-map",
+    "build:js": "esbuild src/js/script.js --bundle --minify --charset=utf8 --outfile=public/js/script.min.js",
+    "build:planet-js": "esbuild src/js/planet-page.js --bundle --minify --charset=utf8 --outfile=public/js/planet.min.js",
+    "build:pages": "node scripts/build-subpages.js",
+    "build": "npm run build:css && npm run build:js && npm run build:planet-js && npm run build:pages",
+    "test": "node scripts/test-i18n.js",
+    "watch:css": "sass --watch src/scss:public/css --style=compressed",
+    "watch:js": "esbuild src/js/script.js --bundle --minify --outfile=public/js/script.min.js --watch",
+    "dev": "npm run build && node -e \"console.log('Build complete. Watching for changes...');\""
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0",
+    "sass": "^1.85.0"
+  }
+}

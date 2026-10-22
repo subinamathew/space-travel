@@ -1,0 +1,175 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/breakpoints' as *;
+
+/* ---- BACK BUTTON ---- */
+#back-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: $color-text;
+  font-family: $font-family-base;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  padding: 0.45rem 1.1rem;
+  border-radius: 999px;
+  cursor: pointer;
+  outline: none;
+  position: fixed;
+  top: 1.4rem;
+  left: 1.4rem;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-10px);
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease,
+    background 0.2s,
+    box-shadow 0.2s;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  &.visible {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 0 20px var(--glow);
+  }
+
+  @include mobile {
+    top: 1rem;
+    left: 1rem;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.78rem;
+  }
+}
+
+/* ---- CAROUSEL CONTROLS & NAVIGATION ---- */
+#pv-nav {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  align-items: center;
+
+  @include mobile {
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+  }
+}
+
+.nav-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: $color-text;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  cursor: pointer;
+  outline: none;
+  transition:
+    background $transition-fast,
+    transform 0.2s,
+    box-shadow $transition-fast;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  touch-action: manipulation;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.18);
+    transform: scale(1.1);
+    box-shadow: 0 0 20px var(--glow);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  @include mobile {
+    width: 46px;
+    height: 46px;
+    font-size: 1.2rem;
+  }
+}
+
+#pv-counter {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: $color-text-subtle;
+  min-width: 50px;
+  text-align: center;
+
+  @include mobile {
+    font-size: 0.75rem;
+    min-width: 44px;
+  }
+}
+
+#pv-dots {
+  display: flex;
+  gap: 8px;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  @include mobile {
+    gap: 6px;
+    margin-top: 1rem;
+  }
+}
+
+.dot {
+  background: rgba(255, 255, 255, 0.25);
+  border: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  outline: none;
+  transition:
+    background 0.3s,
+    transform 0.3s;
+  touch-action: manipulation;
+
+  &.active {
+    background: var(--glow);
+    transform: scale(1.5);
+    box-shadow: 0 0 8px var(--glow);
+  }
+
+  @include mobile {
+    width: 7px;
+    height: 7px;
+  }
+}
+
+#hint {
+  position: fixed;
+  bottom: 0.8rem;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: $color-text-hint;
+  pointer-events: none;
+  font-family: $font-family-base;
+  transition: opacity 0.4s ease;
+
+  @include mobile {
+    bottom: 0.5rem;
+    font-size: 0.62rem;
+    padding: 0 0.5rem;
+  }
+}

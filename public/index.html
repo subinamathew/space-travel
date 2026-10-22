@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Hello Worlds — Solar System Tour</title>
+    <meta name="description" content="Tour the solar system — click any planet to visit!" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/script.min.js" defer></script>
+</head>
+
+<body class="home-page">
+    <div id="preloader" role="status" aria-label="Engaging warp drive">
+        <canvas id="warp-canvas"></canvas>
+        <div class="preloader-overlay">
+            <div class="warp-center-ring"></div>
+            <p class="warp-status">WARP DRIVE ENGAGED</p>
+            <div class="warp-notice" id="warp-notice">
+                <span class="coord-sector">🌌 Sector: Milky Way Galaxy &bull; Orion Arm</span>
+                <div class="coord-details">
+                    <span>Galactic Coordinates: <strong class="coord-highlight">RA 17h 45.6m, Dec -29°00′</strong></span>
+                    <span>Core Distance: <strong class="coord-highlight">26,000 Light-Years</strong></span>
+                </div>
+            </div>
+            <div class="warp-bar"><div class="warp-bar-fill"></div></div>
+        </div>
+    </div>
+    <div id="galaxy-hud" aria-label="Galactic location">
+        <div class="hud-header" role="button" tabindex="0" aria-label="Toggle Galactic HUD" title="Minimize / Expand HUD">
+            <div class="hud-header-title">
+                <span>🌌</span>
+                <span>Sector: Milky Way Galaxy &bull; Orion Arm</span>
+            </div>
+            <button type="button" class="hud-toggle-btn" id="hud-toggle-btn" aria-label="Minimize Galactic HUD" title="Minimize / Expand HUD">
+                <span class="hud-toggle-icon">−</span>
+            </button>
+        </div>
+        <div class="hud-body" id="hud-body">
+            <div class="hud-row">
+                <span>Galactic Coordinates: <strong>RA 17h 45.6m, Dec -29°00′</strong></span>
+            </div>
+            <div class="hud-row">
+                <span>Core Distance: <strong>26,000 Light-Years</strong></span>
+            </div>
+        </div>
+    </div>
+    <canvas id="stars"></canvas>
+    <div id="solar-system">
+        <div id="scene">
+            <a id="sun" href="planets/sun.html" title="Explore The Sun (Sol)" aria-label="Explore The Sun"></a>
+        </div>
+    </div>
+    <div id="planet-view">
+        <div id="pv-wrap">
+            <div id="pv-ring"></div>
+            <div id="pv-planet"></div>
+        </div>
+        <div id="pv-card">
+            <h1 id="pv-greeting"></h1>
+            <p id="pv-name"></p>
+            <p id="pv-fact"></p>
+        </div>
+        <div id="pv-nav">
+            <button class="nav-btn" id="btn-prev" aria-label="Previous planet">←</button>
+            <span id="pv-counter"></span>
+            <button class="nav-btn" id="btn-next" aria-label="Next planet">→</button>
+        </div>
+        <div id="pv-dots" role="tablist" aria-label="Planet selector"></div>
+    </div>
+    <button id="back-btn" aria-label="Back to solar system">← Solar System</button>
+    <p id="hint">Click a planet to visit &nbsp;&bull;&nbsp; Hover to pause orbit &nbsp;&bull;&nbsp; ←→ to browse when visiting</p>
+</body>
+
+</html>
