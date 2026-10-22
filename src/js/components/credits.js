@@ -54,4 +54,66 @@ export function initCreditsCrawl() {
     if (pauseLabel) pauseLabel.textContent = isPaused ? t('ui.crawl_resume') : t('ui.crawl_pause');
     if (modeLabel) modeLabel.textContent = isFlat ? t('ui.crawl_crawl_view') : t('ui.crawl_flat_view');
   });
+
+  // Navigation back to home / solar system
+  function goBack() {
+    const backBtn = document.getElementById('back-btn');
+    if (backBtn && backBtn.getAttribute('href')) {
+      window.location.href = backBtn.getAttribute('href');
+    } else {
+      window.location.href = 'index.html';
+    }
+  }
+
+  // 1. Desktop: Escape key to navigate back
+  window.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      goBack();
+    }
+  });
+
+  // 2. Tablet & Mobile: Swipe right to navigate back
+  let touchStartX = 0;
+  let touchStartY = 0;
+  let touchStartTime = 0;
+
+  window.addEventListener(
+    'touchstart',
+    e => {
+      if (e.touches && e.touches.length === 1) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+        touchStartTime = performance.now();
+      }
+    },
+    { passive: true }
+  );
+
+  window.addEventListener(
+    'touchend',
+    e => {
+      if (!touchStartX || !touchStartTime) return;
+      if (e.changedTouches && e.changedTouches.length === 1) {
+        const touchEndX = e.changedTouches[0].clientX;
+        const touchEndY = e.changedTouches[0].clientY;
+        const deltaX = touchEndX - touchStartX;
+        const deltaY = touchEndY - touchStartY;
+        const deltaTime = performance.now() - touchStartTime;
+
+        // Reset tracking
+        touchStartX = 0;
+        touchStartY = 0;
+        touchStartTime = 0;
+
+        // Swipe right criteria: deltaX > 55px, deltaTime < 700ms, and deltaX > 1.3 * |deltaY|
+        const isRightSwipe = deltaX > 55 && deltaTime < 700 && Math.abs(deltaX) > Math.abs(deltaY) * 1.3;
+
+        if (isRightSwipe) {
+          goBack();
+        }
+      }
+    },
+    { passive: true }
+  );
 }
