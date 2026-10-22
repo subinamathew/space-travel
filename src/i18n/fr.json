@@ -77,7 +77,13 @@
     "missional_desc": "Nous sommes fiers de faire partie de missional.de, une organisation à but non lucratif basée au Royaume-Uni dédiée à promouvoir l'éducation, la curiosité scientifique et l'émerveillement cosmique pour tous.",
     "visit_missional": "Visiter missional.de",
     "data_sources_title": "Données scientifiques et sources astronomiques",
-    "data_sources_desc": "Les paramètres orbitaux, les caractéristiques physiques des planètes, les ratios gravitationnels et les faits pour les enfants proviennent de NASA Solar System Exploration, du JPL, de l'ESA et de bases de données astronomiques vérifiées."
+    "data_sources_desc": "Les paramètres orbitaux, les caractéristiques physiques des planètes, les ratios gravitationnels et les faits pour les enfants proviennent de NASA Solar System Exploration, du JPL, de l'ESA et de bases de données astronomiques vérifiées.",
+    "crawl_leadin": "Il y a bien longtemps, dans une galaxie juste ici...",
+    "crawl_pause": "Pause",
+    "crawl_resume": "Reprendre",
+    "crawl_restart": "Recommencer",
+    "crawl_flat_view": "Vue plate",
+    "crawl_crawl_view": "Défilement 3D"
   },
   "planets": {
     "sun": {

@@ -77,7 +77,13 @@
     "missional_desc": "We are proud to be part of missional.de, a UK-based non-profit organization dedicated to fostering education, scientific curiosity, and cosmic wonder for everyone.",
     "visit_missional": "Visit missional.de",
     "data_sources_title": "Scientific Data & Astronomical Sources",
-    "data_sources_desc": "Orbital parameters, planetary physical characteristics, gravity multipliers, and kids mission facts are curated from NASA Solar System Exploration, JPL, ESA, and peer-reviewed astronomical databases."
+    "data_sources_desc": "Orbital parameters, planetary physical characteristics, gravity multipliers, and kids mission facts are curated from NASA Solar System Exploration, JPL, ESA, and peer-reviewed astronomical databases.",
+    "crawl_leadin": "A long time ago in a galaxy right here...",
+    "crawl_pause": "Pause",
+    "crawl_resume": "Resume",
+    "crawl_restart": "Restart",
+    "crawl_flat_view": "Flat View",
+    "crawl_crawl_view": "3D Crawl"
   },
   "planets": {
     "sun": {

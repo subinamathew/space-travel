@@ -5,6 +5,7 @@ import { initViewer } from './components/viewer.js';
 import { initPreloader } from './components/preloader.js';
 import { initHuds } from './components/hud.js';
 import { initI18n } from './i18n.js';
+import { initCreditsCrawl } from './components/credits.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize i18n translation system
@@ -15,6 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize Galactic & Settings HUD controllers
   initHuds();
+
+  // Initialize Star Wars Credits Crawl (if on credits page)
+  initCreditsCrawl();
 
   // Initialize Settings switches (Moons & 3D Real Orbits) on the solar system view
   initSettingsSwitches();
@@ -31,3 +35,4 @@ document.addEventListener('DOMContentLoaded', () => {
     viewer.showPlanet(idx);
   });
 });
+

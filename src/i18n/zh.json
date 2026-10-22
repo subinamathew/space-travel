@@ -77,7 +77,13 @@
     "missional_desc": "我们很自豪能够成为 missional.de 的一部分，这是一家总部位于英国的非营利组织，致力于促进教育、科学好奇心以及向所有人传递宇宙的奇迹。",
     "visit_missional": "访问 missional.de",
     "data_sources_title": "科学数据与天文学来源",
-    "data_sources_desc": "轨道参数、行星物理特征、重力系数和儿童探索趣味知识均汇编自 NASA 太阳系探索计划、JPL、ESA 以及同行评审的天文学数据库。"
+    "data_sources_desc": "轨道参数、行星物理特征、重力系数和儿童探索趣味知识均汇编自 NASA 太阳系探索计划、JPL、ESA 以及同行评审的天文学数据库。",
+    "crawl_leadin": "很久以前，就在我们身处的这个星系中……",
+    "crawl_pause": "暂停",
+    "crawl_resume": "继续",
+    "crawl_restart": "重新开始",
+    "crawl_flat_view": "常规视图",
+    "crawl_crawl_view": "3D 滚动"
   },
   "planets": {
     "sun": {

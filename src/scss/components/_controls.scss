@@ -321,36 +321,228 @@
   }
 }
 
-/* ---- CREDITS & MISSION PAGE ---- */
+/* ---- STAR WARS 3D CREDITS CRAWL ---- */
 .credits-page {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
+  overflow: hidden;
+  background: #020510;
+  margin: 0;
+  padding: 0;
+
+  &.credits-flat-mode {
+    overflow-y: auto;
+  }
+}
+
+.star-wars-stage {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  perspective: 380px;
+  perspective-origin: 50% 100%;
+  overflow: hidden;
+  z-index: 10;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 0) 96%);
+  mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 35%, rgba(0, 0, 0, 0) 96%);
+  transition: perspective 0.6s ease;
+
+  &.flat-view {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    min-height: 100vh;
+    perspective: none;
+    overflow-y: auto;
+    pointer-events: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+    padding: 5.5rem 1.25rem 6.5rem;
+
+    .star-wars-crawl {
+      position: relative;
+      top: 0;
+      transform: none;
+      animation: none;
+      margin: 0 auto;
+      pointer-events: auto;
+    }
+  }
+
+  &.is-paused {
+    .star-wars-crawl {
+      animation-play-state: paused !important;
+    }
+  }
+}
+
+.star-wars-crawl {
+  position: absolute;
+  top: 100%;
+  width: min(92vw, 680px);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  transform-origin: 50% 100%;
+  transform: rotateX(25deg);
+  animation: star-wars-crawl-anim 65s linear infinite;
+  pointer-events: auto;
+  padding-bottom: 25vh;
+
+  &:hover {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes star-wars-crawl-anim {
+  0% {
+    top: 100%;
+    transform: rotateX(25deg) translateY(0);
+    opacity: 1;
+  }
+  92% {
+    opacity: 1;
+  }
+  100% {
+    top: -120%;
+    transform: rotateX(25deg) translateY(-2400px);
+    opacity: 0;
+  }
+}
+
+/* Crawl Intro / Star Wars Style Logo */
+.crawl-intro {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  min-height: 100vh;
-  padding: 5rem 1.5rem 3rem;
-  background: radial-gradient(ellipse at 50% 15%, #06152d 0%, #020510 75%);
-  overflow-y: auto;
+  text-align: center;
+  gap: 1.2rem;
+  margin-bottom: 1rem;
 }
 
-.credits-main {
-  width: 100%;
-  max-width: 680px;
+.crawl-leadin {
+  font-size: clamp(1.1rem, 2.8vw, 1.45rem);
+  font-weight: 600;
+  color: #48cae4;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 12px rgba(72, 202, 228, 0.6);
+  margin: 0;
+}
+
+.crawl-logo {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  position: relative;
-  z-index: 10;
+  align-items: center;
+  gap: 0.35rem;
+
+  .crawl-logo-main {
+    font-size: clamp(2.4rem, 6.5vw, 4rem);
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: #ffbe0b;
+    text-shadow: 0 0 20px rgba(255, 190, 11, 0.65), 0 0 40px rgba(255, 190, 11, 0.35);
+    line-height: 1;
+  }
+
+  .crawl-logo-sub {
+    font-size: clamp(0.95rem, 2.2vw, 1.3rem);
+    font-weight: 700;
+    letter-spacing: 0.32em;
+    color: #fde047;
+    text-shadow: 0 0 14px rgba(253, 224, 71, 0.5);
+    text-transform: uppercase;
+  }
 }
 
+.crawl-outro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.8rem;
+  margin-top: 1rem;
+  padding-bottom: 2rem;
+
+  .crawl-outro-text {
+    font-size: 1.15rem;
+    font-weight: 600;
+    font-style: italic;
+    color: #93c5fd;
+    text-shadow: 0 0 10px rgba(147, 197, 253, 0.5);
+  }
+
+  .crawl-outro-spark {
+    font-size: 1.8rem;
+    letter-spacing: 0.5rem;
+  }
+}
+
+/* Floating Controls Bar (Bottom Center) */
+.crawl-controls-bar {
+  position: fixed;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(3, 16, 32, 0.88);
+  border: 1px solid rgba(100, 210, 255, 0.35);
+  border-radius: 999px;
+  padding: 0.45rem 0.85rem;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), 0 0 20px rgba(56, 189, 248, 0.2);
+  z-index: 50;
+
+  .crawl-ctrl-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 999px;
+    color: #e2f1ff;
+    font-family: inherit;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.35rem 0.85rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: background 0.2s, border-color 0.2s, transform 0.2s, color 0.2s;
+
+    &:hover,
+    &:focus-visible {
+      background: rgba(56, 189, 248, 0.25);
+      border-color: #38bdf8;
+      color: #fff;
+      transform: translateY(-1px);
+      outline: none;
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+
+    .ctrl-icon {
+      font-size: 0.88rem;
+      line-height: 1;
+    }
+  }
+}
+
+/* Credits Cards */
 .credits-card {
-  background: linear-gradient(145deg, rgba(12, 24, 48, 0.85) 0%, rgba(4, 12, 28, 0.92) 100%);
-  border: 1px solid rgba(100, 210, 255, 0.25);
+  background: linear-gradient(145deg, rgba(12, 24, 48, 0.9) 0%, rgba(4, 12, 28, 0.94) 100%);
+  border: 1px solid rgba(100, 210, 255, 0.3);
   border-radius: 20px;
   padding: 1.8rem;
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(56, 189, 248, 0.1);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(56, 189, 248, 0.15);
   display: flex;
   flex-direction: column;
   position: relative;
@@ -521,3 +713,23 @@
     padding: 4px 12px;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .star-wars-stage {
+    position: relative;
+    inset: auto;
+    perspective: none;
+    overflow-y: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+    padding: 5rem 1.25rem;
+
+    .star-wars-crawl {
+      position: relative;
+      top: 0;
+      transform: none;
+      animation: none;
+    }
+  }
+}
+
