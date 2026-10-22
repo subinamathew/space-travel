@@ -21,13 +21,14 @@ This document defines the core engineering skills, architectural principles, qua
 3. [Skill 3: CSS Over JavaScript (Declarative Compositor-First)](#skill-3-css-over-javascript-declarative-compositor-first)
 4. [Skill 4: Lightweight HTML & Minimal DOM Footprint](#skill-4-lightweight-html--minimal-dom-footprint)
 5. [Skill 5: Manageable Cyclomatic Complexity & Clean Logic](#skill-5-manageable-cyclomatic-complexity--clean-logic)
-6. [Skill 6: Robust CI/CD (Continuous Integration & Delivery)](#skill-6-robust-cicd-continuous-integration--delivery)
-7. [Skill 7: Automated Testing & Verification](#skill-7-automated-testing--verification)
-8. [Skill 8: Low-End Hardware & Handheld Performance Optimization](#skill-8-low-end-hardware--handheld-performance-optimization)
-9. [Skill 9: Full Internationalization (i18n) & Accessibility (a11y)](#skill-9-full-internationalization-i18n--accessibility-a11y)
-10. [Skill 10: Child Pedagogy & Metaphor Design for Scientific Explanations](#skill-10-child-pedagogy--metaphor-design-for-scientific-explanations)
-11. [Skill 11: Metadata, OpenGraph & Social Sharing Standards](#skill-11-metadata-opengraph--social-sharing-standards)
-12. [Pre-Flight Verification Checklist](#pre-flight-verification-checklist)
+6. [Skill 6: Asset Handling, Zero External Assets & Tooling Constraints](#skill-6-asset-handling-zero-external-assets--tooling-constraints)
+7. [Skill 7: Robust CI/CD (Continuous Integration & Delivery)](#skill-7-robust-cicd-continuous-integration--delivery)
+8. [Skill 8: Automated Testing & Verification](#skill-8-automated-testing--verification)
+9. [Skill 9: Low-End Hardware & Handheld Performance Optimization](#skill-9-low-end-hardware--handheld-performance-optimization)
+10. [Skill 10: Full Internationalization (i18n) & Accessibility (a11y)](#skill-10-full-internationalization-i18n--accessibility-a11y)
+11. [Skill 11: Child Pedagogy & Metaphor Design for Scientific Explanations](#skill-11-child-pedagogy--metaphor-design-for-scientific-explanations)
+12. [Skill 12: Metadata, OpenGraph & Social Sharing Standards](#skill-12-metadata-opengraph--social-sharing-standards)
+13. [Pre-Flight Verification Checklist](#pre-flight-verification-checklist)
 
 ---
 
@@ -216,7 +217,7 @@ Code changes to core logic, data models, or translations must be accompanied by 
 1. **Zero-Dependency Fast Tests**:
    - Keep unit tests fast (< 1 second runtime) so they can run on every pre-commit hook and CI run.
 2. **100% i18n Parity Enforcement**:
-   - Any addition of a UI string or planet metric must be mirrored in all 7 supported languages (`en`, `de`, `fr`, `es`, `it`, `ja`, `zh`).
+   - Any addition of a UI string or planet metric must be mirrored in all 9 supported languages (`en`, `de`, `fr`, `es`, `it`, `ja`, `zh`, `ml`, `ta`).
    - Run `node scripts/test-i18n.js` to assert that no key is missing, misspelled, or orphaned.
 3. **Visual & Behavioral Verification**:
    - Test UI components across narrow viewports (360px mobile), tablet viewports (768px), and desktop viewports (1440px+).
@@ -328,7 +329,7 @@ Astronomical facts, chemical formulas, and mathematical metrics must be rendered
 7. **Typography, Formatting & DOM Safety**:
    - Format multi-gas breakdowns with clean bullet lists (`•`) to facilitate shared reading between parents and young explorers.
    - Enforce `white-space: pre-line;` in CSS on all explainer text containers to ensure natural line breaking while safely populating text via `textContent` (zero `innerHTML` injection risk).
-   - Require 100% translation parity across all 7 supported languages (`en`, `de`, `fr`, `es`, `it`, `ja`, `zh`) with culturally natural idioms.
+   - Require 100% translation parity across all 9 supported languages (`en`, `de`, `fr`, `es`, `it`, `ja`, `zh`, `ml`, `ta`) with culturally natural idioms.
 
 ---
 
@@ -349,7 +350,7 @@ Every public endpoint and generated subpage in **RocketRun** must include compre
    - `og:description`: Engaging summary highlighting interactive 3D physics, planetary science, and NASA kids missions.
    - `og:image`: High-contrast, transparent or deep-space PNG (e.g., `https://rocketrun.de/images/earth.png` or `https://rocketrun.de/images/${slug}.png`).
    - `og:image:width`: `1200`, `og:image:height`: `630`, `og:image:type`: `image/png`.
-   - `og:locale`: `en_US` with alternate locales (`de_DE`, `fr_FR`, `es_ES`, `it_IT`, `ja_JP`, `zh_CN`).
+   - `og:locale`: `en_US` with alternate locales (`de_DE`, `fr_FR`, `es_ES`, `it_IT`, `ja_JP`, `zh_CN`, `ml_IN`, `ta_IN`).
 
 3. **Twitter / X Card**:
    - `twitter:card`: `summary_large_image`.
@@ -385,7 +386,7 @@ Before pushing any commit or releasing to production, verify:
   - [ ] OpenGraph (`og:title`, `og:image`, `og:url`, `og:site_name`) and Twitter Card tags are present.
   - [ ] Social images are served over absolute HTTPS and optimized for WhatsApp (< 300KB).
   - [ ] Copyright declared as `rocketrun.de`.
-- [ ] **i18n Parity**: `npm test` passes with 100% parity across all 7 language files.
+- [ ] **i18n Parity**: `npm test` passes with 100% parity across all 9 language files.
 - [ ] **Build Validation**: `npm run build` generates all pages and bundles without errors or warnings.
 - [ ] **Mobile & Handheld Test**: Tested on narrow mobile screen (360px–414px) with touch-friendly tap targets (≥ 44px).
 - [ ] **Reduced Motion**: Verified that `@media (prefers-reduced-motion: reduce)` disables heavy 3D motion cleanly.
