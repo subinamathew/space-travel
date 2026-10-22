@@ -660,43 +660,43 @@ export const translationsKids = {
 export const uiAdditions = {
   en: {
     kids_guide_title: "Kids Science Guide",
-    kids_guide_badge: "🚀 5-8 Year Old Explainer",
+    kids_guide_badge: "🚀 Explainer",
     tap_kids_explainer: "💡 Tap for Kids Explainer",
     close_popup: "Got it!"
   },
   de: {
     kids_guide_title: "Kinder-Wissenschaftsführer",
-    kids_guide_badge: "🚀 Für 5–8 Jahre erklärt",
+    kids_guide_badge: "🚀 Erklärung",
     tap_kids_explainer: "💡 Tippen für Kinder-Erklärung",
     close_popup: "Verstanden!"
   },
   fr: {
     kids_guide_title: "Guide Scientifique Enfants",
-    kids_guide_badge: "🚀 Expliqué pour les 5-8 ans",
+    kids_guide_badge: "🚀 Explication",
     tap_kids_explainer: "💡 Touchez pour l'explication enfants",
     close_popup: "Compris !"
   },
   es: {
     kids_guide_title: "Guía Científica para Niños",
-    kids_guide_badge: "🚀 Explicación para 5-8 años",
+    kids_guide_badge: "🚀 Explicación",
     tap_kids_explainer: "💡 Toca para explicación infantil",
     close_popup: "¡Entendido!"
   },
   it: {
     kids_guide_title: "Guida Scientifica per Bambini",
-    kids_guide_badge: "🚀 Spiegazione per 5-8 anni",
+    kids_guide_badge: "🚀 Spiegazione",
     tap_kids_explainer: "💡 Tocca per la spiegazione bimbi",
     close_popup: "Capito!"
   },
   ja: {
     kids_guide_title: "キッズ科学ガイド",
-    kids_guide_badge: "🚀 5〜8才向け解説",
+    kids_guide_badge: "🚀 解説",
     tap_kids_explainer: "💡 タップしてキッズ解説を見る",
     close_popup: "わかった！"
   },
   zh: {
     kids_guide_title: "儿童科学指南",
-    kids_guide_badge: "🚀 5-8岁简明讲解",
+    kids_guide_badge: "🚀 简明讲解",
     tap_kids_explainer: "💡 点击查看儿童版讲解",
     close_popup: "明白了！"
   }

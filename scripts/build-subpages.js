@@ -396,7 +396,7 @@ allBodies.forEach((p, idx) => {
     <div id="stat-modal-backdrop" class="stat-modal-backdrop" aria-hidden="true">
         <div id="stat-modal" class="stat-modal" role="dialog" aria-modal="true" aria-labelledby="stat-modal-label">
             <div class="stat-modal-header">
-                <div class="stat-modal-badge" data-i18n="ui.kids_guide_badge">🚀 5-8 Year Old Explainer</div>
+                <div class="stat-modal-badge" data-i18n="ui.kids_guide_badge">🚀 Explainer</div>
                 <button type="button" class="stat-modal-close" id="stat-modal-close" aria-label="Close dialog">✕</button>
             </div>
             <div class="stat-modal-body">
