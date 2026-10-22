@@ -51,7 +51,7 @@ allBodies.forEach((p, idx) => {
   const dotsHtml = allBodies
     .map(
       (other, i) => `
-        <a class="tab-link ${other.isSun ? 'sun-tab' : ''} ${i === idx ? 'active' : ''}" href="${other.slug}.html" title="${other.name}" aria-label="${other.name}"></a>`
+        <a class="tab-link ${i === idx ? 'active' : ''}" href="${other.slug}.html" title="${other.name}" aria-label="${other.name}"></a>`
     )
     .join('');
 

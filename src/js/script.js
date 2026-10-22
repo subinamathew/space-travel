@@ -1,6 +1,6 @@
 import { planets } from './data/planets.js';
 import { initStarfield } from './components/starfield.js';
-import { buildOrrery } from './components/orrery.js';
+import { buildOrrery, initSettingsSwitches } from './components/orrery.js';
 import { initViewer } from './components/viewer.js';
 import { initPreloader } from './components/preloader.js';
 import { initHuds } from './components/hud.js';
@@ -15,6 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize Galactic & Settings HUD controllers
   initHuds();
+
+  // Initialize Settings switches (Moons & 3D Real Orbits) on the solar system view
+  initSettingsSwitches();
 
   // Initialize starfield canvas background
   initStarfield('stars');

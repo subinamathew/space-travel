@@ -82,6 +82,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  perspective: 1400px;
+  transform-style: preserve-3d;
   transition: opacity $transition-base;
 
   &.fade-out {

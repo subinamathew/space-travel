@@ -52,6 +52,9 @@ export const planets = [
     initialPhase: 0.15,
     pvSize: 110,
     gravityRatio: 0.38,
+    inclinationDeg: 7.0,
+    eccentricity: 0.2056,
+    moons: [],
     kidsNote: {
       badge: '🚀 NASA Kids Mission',
       title: 'Moon-Boots Playground!',
@@ -84,6 +87,9 @@ export const planets = [
     initialPhase: 0.45,
     pvSize: 150,
     gravityRatio: 0.91,
+    inclinationDeg: 3.39,
+    eccentricity: 0.0068,
+    moons: [],
     kidsNote: {
       badge: '🚀 NASA Kids Mission',
       title: 'The Solar System’s Oven!',
@@ -116,6 +122,11 @@ export const planets = [
     initialPhase: 0.70,
     pvSize: 158,
     gravityRatio: 1.0,
+    inclinationDeg: 0.0,
+    eccentricity: 0.0167,
+    moons: [
+      { name: 'Moon', r: 2.8, size: 0.34, speed: 2.8, color: '#e2e8f0', glow: 'rgba(255,255,255,0.7)' }
+    ],
     kidsNote: {
       badge: '🚀 NASA Kids Mission',
       title: 'The Just-Right Oasis!',
@@ -148,6 +159,12 @@ export const planets = [
     initialPhase: 0.30,
     pvSize: 128,
     gravityRatio: 0.38,
+    inclinationDeg: 1.85,
+    eccentricity: 0.0934,
+    moons: [
+      { name: 'Phobos', r: 2.0, size: 0.22, speed: 1.6, color: '#d4c4b5', glow: 'rgba(212,196,181,0.6)' },
+      { name: 'Deimos', r: 2.8, size: 0.18, speed: 3.2, color: '#b8aba0', glow: 'rgba(184,171,160,0.5)' }
+    ],
     kidsNote: {
       badge: '🚀 NASA Kids Mission',
       title: 'High-Jump Superhero World!',
@@ -180,6 +197,14 @@ export const planets = [
     initialPhase: 0.85,
     pvSize: 220,
     gravityRatio: 2.53,
+    inclinationDeg: 1.30,
+    eccentricity: 0.0484,
+    moons: [
+      { name: 'Io', r: 4.6, size: 0.32, speed: 1.8, color: '#fcd34d', glow: 'rgba(252,211,77,0.7)' },
+      { name: 'Europa', r: 5.6, size: 0.28, speed: 2.6, color: '#e0f2fe', glow: 'rgba(224,242,254,0.7)' },
+      { name: 'Ganymede', r: 6.7, size: 0.40, speed: 3.8, color: '#d1d5db', glow: 'rgba(209,213,219,0.7)' },
+      { name: 'Callisto', r: 7.8, size: 0.36, speed: 5.2, color: '#9ca3af', glow: 'rgba(156,163,175,0.6)' }
+    ],
     kidsNote: {
       badge: '🚀 NASA Kids Mission',
       title: 'King of the Heavyweights!',
@@ -213,6 +238,13 @@ export const planets = [
     hasRing: true,
     pvSize: 195,
     gravityRatio: 1.07,
+    inclinationDeg: 2.49,
+    eccentricity: 0.0565,
+    moons: [
+      { name: 'Mimas', r: 6.2, size: 0.22, speed: 2.2, color: '#e5e7eb', glow: 'rgba(229,231,235,0.6)' },
+      { name: 'Enceladus', r: 7.2, size: 0.26, speed: 3.2, color: '#f8fafc', glow: 'rgba(248,250,252,0.8)' },
+      { name: 'Titan', r: 8.5, size: 0.44, speed: 5.0, color: '#fbbf24', glow: 'rgba(251,191,36,0.8)' }
+    ],
     kidsNote: {
       badge: '🚀 NASA Kids Mission',
       title: 'The Great Cosmic Bath Toy!',
@@ -234,17 +266,24 @@ export const planets = [
     slug: 'uranus',
     name: 'Uranus',
     greeting: 'Hello, Ice Giant!',
-    fact: 'Uranus has a 98° axial tilt — it rolls around the Sun on its side. Its blue-green hue comes from methane gas.',
-    c1: '#7de8e8',
-    c2: '#1a6060',
-    glow: '#7de8e8',
-    bg: 'radial-gradient(ellipse at 60% 20%, #001a1a 0%, #020510 70%)',
+    fact: 'Uranus has a 98° axial tilt — it rolls around the Sun on its side. Its rich blue-cyan hue comes from methane gas.',
+    c1: '#4cc9f0',
+    c2: '#1d4ed8',
+    glow: '#38bdf8',
+    bg: 'radial-gradient(ellipse at 60% 20%, #031c36 0%, #020510 70%)',
     orbitR: 42.5,
     size: 1.9,
     periodYears: 84.0168,
     initialPhase: 0.20,
     pvSize: 172,
     gravityRatio: 0.89,
+    inclinationDeg: 0.77,
+    eccentricity: 0.0472,
+    moons: [
+      { name: 'Miranda', r: 3.0, size: 0.22, speed: 2.0, color: '#cbd5e1', glow: 'rgba(203,213,225,0.6)' },
+      { name: 'Ariel', r: 3.9, size: 0.28, speed: 3.0, color: '#e2e8f0', glow: 'rgba(226,232,240,0.6)' },
+      { name: 'Titania', r: 4.8, size: 0.35, speed: 4.2, color: '#f1f5f9', glow: 'rgba(241,245,249,0.7)' }
+    ],
     kidsNote: {
       badge: '🚀 NASA Kids Mission',
       title: 'The Sideways Somersault World!',
@@ -277,6 +316,12 @@ export const planets = [
     initialPhase: 0.60,
     pvSize: 162,
     gravityRatio: 1.14,
+    inclinationDeg: 1.77,
+    eccentricity: 0.0086,
+    moons: [
+      { name: 'Proteus', r: 3.0, size: 0.22, speed: 2.2, color: '#94a3b8', glow: 'rgba(148,163,184,0.6)' },
+      { name: 'Triton', r: 4.1, size: 0.35, speed: 3.6, color: '#bae6fd', glow: 'rgba(186,230,253,0.7)', isRetrograde: true }
+    ],
     kidsNote: {
       badge: '🚀 NASA Kids Mission',
       title: 'The Supersonic Storm Giant!',

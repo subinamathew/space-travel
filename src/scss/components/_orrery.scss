@@ -7,6 +7,8 @@
   width: min(100vw, 100vh);
   height: min(100vw, 100vh);
   overflow: visible;
+  transform-style: preserve-3d;
+  transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
 
   @include mobile {
     width: min(94vw, 94vh);
@@ -16,6 +18,35 @@
   @include tablet {
     width: min(96vw, 96vh);
     height: min(96vw, 96vh);
+  }
+
+  // Realistic 3D Spatial Ecliptic View
+  &.real-orbits {
+    transform: rotateX(58deg) rotateZ(-20deg);
+
+    #sun {
+      transform: translate(-50%, -50%) rotateZ(20deg) rotateX(-58deg);
+
+      &:hover,
+      &:focus-visible {
+        transform: translate(-50%, -50%) rotateZ(20deg) rotateX(-58deg) scale(1.18);
+      }
+    }
+
+    .orbit {
+      // Individual planetary orbital plane inclination and eccentricity focal offset
+      transform: rotateX(var(--orbit-inc, 0deg)) translateX(var(--focal-offset, 0px));
+      border-color: rgba(255, 255, 255, 0.13);
+    }
+
+    .planet-btn {
+      .planet-wrap {
+        transform: rotateX(-58deg) rotateZ(20deg);
+      }
+      .planet-label {
+        transform: rotateX(-58deg) rotateZ(20deg);
+      }
+    }
   }
 }
 
@@ -134,6 +165,8 @@
   animation: orbit-spin 10s linear 0s infinite;
   overflow: visible;
   pointer-events: none; // Prevent outer orbits from blocking clicks to inner planets
+  transform-style: preserve-3d;
+  transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), border-color 0.4s ease;
 }
 
 @keyframes orbit-spin {
@@ -146,7 +179,8 @@
 #scene:has(.planet-btn:hover),
 #scene:has(#sun:hover) {
   .orbit,
-  .planet-btn {
+  .planet-btn,
+  .moon-orbit {
     animation-play-state: paused !important;
   }
 }
@@ -268,5 +302,66 @@
 
   @include tablet {
     font-size: clamp(0.42rem, 1vmin, 0.62rem);
+  }
+}
+
+/* ---- PLANETARY MOON SYSTEM ---- */
+.moon-system {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+  z-index: 5;
+}
+
+#solar-system.show-moons .moon-system,
+#scene.show-moons .moon-system {
+  opacity: 1;
+  visibility: visible;
+}
+
+.moon-orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px dashed rgba(255, 255, 255, 0.22);
+  pointer-events: none;
+  animation: moon-spin 4s linear infinite;
+
+  &.is-retrograde {
+    animation-direction: reverse;
+  }
+}
+
+@keyframes moon-spin {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.moon {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: auto;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translate(-50%, -50%) scale(1.6);
+    box-shadow: 0 0 8px #ffffff !important;
   }
 }
