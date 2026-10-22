@@ -244,6 +244,8 @@ allBodies.forEach((p, idx) => {
                         <option value="it">🇮🇹 Italiano</option>
                         <option value="ja">🇯🇵 日本語</option>
                         <option value="zh">🇨🇳 中文</option>
+                        <option value="ml">🇮🇳 മലയാളം</option>
+                        <option value="ta">🇮🇳 தமிழ்</option>
                     </select>
                 </div>
                 <div class="settings-row settings-credits-row">

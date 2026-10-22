@@ -28,6 +28,8 @@ console.log('DE title:', translations.de.ui.site_title);
 console.log('FR title:', translations.fr.ui.site_title);
 console.log('JA title:', translations.ja.ui.site_title);
 console.log('ZH title:', translations.zh.ui.site_title);
+console.log('ML title:', translations.ml.ui.site_title);
+console.log('TA title:', translations.ta.ui.site_title);
 
 // Test 2: Parameter interpolation
 console.log('\n[Test 2: Parameter Interpolation]');
@@ -35,6 +37,8 @@ console.log('EN weight on Mars:', t('ui.weight_on', { name: 'Mars' }));
 console.log('DE weight on Mars:', translations.de.ui.weight_on.replace('{name}', 'Mars'));
 console.log('JA weight on Mars:', translations.ja.ui.weight_on.replace('{name}', '火星'));
 console.log('ZH weight on Mars:', translations.zh.ui.weight_on.replace('{name}', '火星'));
+console.log('ML weight on Mars:', translations.ml.ui.weight_on.replace('{name}', 'ചൊവ്വ'));
+console.log('TA weight on Mars:', translations.ta.ui.weight_on.replace('{name}', 'செவ்வாய்'));
 
 // Test 3: Planet specific metrics
 console.log('\n[Test 3: Planet Metrics & Kids Mission]');
@@ -42,15 +46,18 @@ console.log('Mars name (EN):', t('planets.mars.name'));
 console.log('Mars name (DE):', translations.de.planets.mars.name);
 console.log('Mars name (JA):', translations.ja.planets.mars.name);
 console.log('Mars kids jump (ZH):', translations.zh.planets.mars.kids.jump);
+console.log('Mars kids jump (ML):', translations.ml.planets.mars.kids.jump);
+console.log('Mars kids jump (TA):', translations.ta.planets.mars.kids.jump);
 console.log('Sun mass (FR):', translations.fr.planets.sun.stats[3].label, '=', translations.fr.planets.sun.stats[3].value);
 
-// Test 4: Key parity check
-console.log('\n[Test 4: Translation Parity Across All 7 Languages]');
+// Test 4: Key parity check across all supported languages
+const otherLanguages = supportedLanguages.map(l => l.code).filter(c => c !== 'en');
+console.log(`\n[Test 4: Translation Parity Across All ${supportedLanguages.length} Languages]`);
 const enUiKeys = Object.keys(translations.en.ui);
 const enPlanets = Object.keys(translations.en.planets);
 
 let allValid = true;
-for (const lang of ['de', 'fr', 'es', 'it', 'ja', 'zh']) {
+for (const lang of otherLanguages) {
   const missingUi = enUiKeys.filter(k => translations[lang].ui[k] === undefined);
   const missingPlanets = enPlanets.filter(k => translations[lang].planets[k] === undefined);
   if (missingUi.length > 0) {
@@ -64,7 +71,7 @@ for (const lang of ['de', 'fr', 'es', 'it', 'ja', 'zh']) {
 }
 
 if (allValid) {
-  console.log('PERFECT PARITY: All 7 languages have 100% of the UI keys and celestial bodies!');
+  console.log(`PERFECT PARITY: All ${supportedLanguages.length} languages have 100% of the UI keys and celestial bodies!`);
 } else {
   process.exit(1);
 }
