@@ -221,14 +221,18 @@
     pointer-events: auto;
   }
 
-  @include mobile {
-    top: auto;
-    bottom: 2.2rem;
-    right: 50%;
-    transform: translateX(50%);
-    width: calc(100% - 2rem);
-    max-width: 360px;
-    align-items: center;
+  @media screen and (max-width: 1023px) {
+    top: 0.85rem;
+    bottom: auto;
+    right: 0.85rem;
+    left: auto;
+    transform: none;
+    width: auto;
+    max-width: calc(100vw - 1.7rem);
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-end;
+    gap: 0.6rem;
   }
 }
 
@@ -348,19 +352,32 @@
     }
   }
 
-  @include mobile {
-    width: 100%;
-    padding: 0.5rem 0.85rem;
-    text-align: center;
-
-    .hud-header {
-      justify-content: center;
-    }
-  }
 }
 
-#galaxy-hud:not(.in-stack) {
-  top: 1.4rem;
+#galaxy-hud {
+  &:not(.in-stack) {
+    top: 1.4rem;
+  }
+
+  @media screen and (max-width: 1023px) {
+    max-width: calc(100vw - 75px);
+    padding: 0.42rem 0.85rem;
+    border-radius: 999px;
+
+    &.is-minimized {
+      padding: 0.38rem 0.75rem;
+      border-radius: 999px;
+    }
+
+    .hud-header {
+      font-size: 0.68rem;
+      gap: 6px;
+    }
+
+    .hud-body {
+      margin-top: 4px;
+    }
+  }
 }
 
 #settings-hud {
@@ -460,6 +477,125 @@
     input:focus-visible + .slider {
       outline: 2px solid #38bdf8;
       outline-offset: 2px;
+    }
+  }
+
+  /* Mobile & Tablet: Render Settings as an Icon Button */
+  @media screen and (max-width: 1023px) {
+    &.is-minimized {
+      width: 38px;
+      height: 38px;
+      min-width: 38px;
+      min-height: 38px;
+      padding: 0 !important;
+      border-radius: 50% !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      background: rgba(3, 16, 32, 0.88) !important;
+      border: 1px solid rgba(100, 210, 255, 0.4) !important;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45), 0 0 12px rgba(50, 150, 255, 0.25) !important;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+
+      &:hover, &:active {
+        transform: scale(1.08);
+        border-color: var(--glow, #4a90d9);
+        box-shadow: 0 0 16px var(--glow, #4a90d9);
+      }
+
+      .hud-header {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+      }
+
+      .hud-header-title {
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        span:first-child {
+          font-size: 1.25rem;
+          line-height: 1;
+          filter: drop-shadow(0 0 4px rgba(100, 210, 255, 0.5));
+        }
+
+        [data-i18n="ui.settings_title"] {
+          display: none !important;
+        }
+      }
+
+      .hud-toggle-btn {
+        display: none !important;
+      }
+
+      .hud-body {
+        display: none !important;
+      }
+    }
+
+    &:not(.is-minimized) {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 290px;
+      max-width: calc(100vw - 1.7rem);
+      padding: 0.85rem 1.15rem;
+      border-radius: 16px;
+      background: rgba(3, 16, 32, 0.96);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(100, 210, 255, 0.45);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.75), 0 0 25px rgba(50, 150, 255, 0.35);
+      z-index: 60;
+
+      .hud-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 0.6rem;
+        padding-bottom: 0.45rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+        .hud-header-title {
+          span:first-child {
+            font-size: 1.05rem;
+          }
+
+          [data-i18n="ui.settings_title"] {
+            display: inline !important;
+            font-size: 0.78rem;
+            letter-spacing: 0.12em;
+            font-weight: 700;
+            color: #9fe6ff;
+          }
+        }
+
+        .hud-toggle-btn {
+          display: inline-flex !important;
+        }
+      }
+
+      .hud-body {
+        display: flex !important;
+      }
+    }
+  }
+}
+
+/* Subpages in mobile and tablet do not display Galaxy HUD or Settings HUD */
+.subpage-body {
+  @media screen and (max-width: 1023px) {
+    .hud-stack,
+    #galaxy-hud,
+    #settings-hud {
+      display: none !important;
     }
   }
 }

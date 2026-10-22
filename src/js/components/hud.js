@@ -23,7 +23,15 @@ function setupCollapsibleHud(hudId, btnId, iconClass, storageKey, labelName) {
   const toggleBtn = document.getElementById(btnId);
   const header = hud.querySelector('.hud-header');
 
-  const isMinimizedSaved = localStorage.getItem(storageKey) === 'true';
+  const isMobileOrTablet = window.innerWidth <= 1023;
+  const savedVal = localStorage.getItem(storageKey);
+  let isMinimizedSaved;
+  if (hudId === 'settings-hud' && isMobileOrTablet) {
+    const mobileSaved = localStorage.getItem('space_settings_mobile_open');
+    isMinimizedSaved = mobileSaved === 'true' ? false : true;
+  } else {
+    isMinimizedSaved = savedVal === 'true';
+  }
 
   function setMinimized(minimized) {
     hud.classList.toggle('is-minimized', minimized);
@@ -34,7 +42,11 @@ function setupCollapsibleHud(hudId, btnId, iconClass, storageKey, labelName) {
       const icon = toggleBtn.querySelector(`.${iconClass}`) || toggleBtn.querySelector('.hud-toggle-icon');
       if (icon) icon.textContent = minimized ? '+' : '−';
     }
-    localStorage.setItem(storageKey, minimized ? 'true' : 'false');
+    if (window.innerWidth <= 1023 && hudId === 'settings-hud') {
+      localStorage.setItem('space_settings_mobile_open', String(!minimized));
+    } else {
+      localStorage.setItem(storageKey, minimized ? 'true' : 'false');
+    }
   }
 
   setMinimized(isMinimizedSaved);
@@ -48,7 +60,10 @@ function setupCollapsibleHud(hudId, btnId, iconClass, storageKey, labelName) {
   }
 
   if (header) {
-    header.addEventListener('click', () => {
+    header.addEventListener('click', e => {
+      if (e.target && (e.target.closest(`#${btnId}`) || e.target.id === btnId)) {
+        return;
+      }
       const current = hud.classList.contains('is-minimized');
       setMinimized(!current);
     });
@@ -57,6 +72,17 @@ function setupCollapsibleHud(hudId, btnId, iconClass, storageKey, labelName) {
         e.preventDefault();
         const current = hud.classList.contains('is-minimized');
         setMinimized(!current);
+      }
+    });
+  }
+
+  // On mobile/tablet, close settings HUD when tapping outside
+  if (hudId === 'settings-hud') {
+    document.addEventListener('click', e => {
+      if (window.innerWidth <= 1023 && !hud.classList.contains('is-minimized')) {
+        if (!hud.contains(e.target)) {
+          setMinimized(true);
+        }
       }
     });
   }
