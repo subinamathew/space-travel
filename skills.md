@@ -449,6 +449,23 @@ RocketRun is an educational, community-friendly initiative. Others are encourage
 
 ---
 
+## Skill 15: GDPR-Compliant Local Storage, Data Erasure & Accessible Features Standard
+
+### Core Rule
+RocketRun respects user privacy to the highest standard: zero trackers, zero advertisement cookies, and total user sovereignty over local storage with one-click data erasure. All features must adhere to the December 2026 Accessibility Standard.
+
+### Guidelines & Requirements
+1. **Zero-Tracking Storage Transparency**:
+   - Only strictly necessary client-side storage is utilized (`space_lang`, `space_calc_*`, `space_show_moons`, `space_real_orbits`).
+   - A discreet cookie icon (`🍪`) in the HUD stack must allow users to view, manage, or dismiss storage preferences at any time.
+2. **Right to Erasure / Data Purging**:
+   - Provide an instant "Clear Stored Data" action that expires any cookies and removes all application `localStorage` keys without page destruction.
+3. **December 2026 Accessibility Suite**:
+   - WCAG 2.2 Level AA / AAA compliance across contrast, keyboard navigation, focus indicators, and touch targets (≥ 44×44px).
+   - Polite screen reader telemetry via `aria-live` and vestibular protection via `prefers-reduced-motion`.
+
+---
+
 ## Pre-Flight Verification Checklist
 
 Before pushing any commit or releasing to production, verify:

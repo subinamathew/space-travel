@@ -96,6 +96,20 @@ if (fs.existsSync(srcCredits)) {
   console.log(`Generated: public/credits.html (commit: ${gitCommit}, version: ${appVersion})`);
 }
 
+// 5b. Compile src/features.html -> public/features.html with Git commit and version
+const srcFeatures = path.resolve(__dirname, '../src/features.html');
+const pubFeatures = path.resolve(pubDir, 'features.html');
+if (fs.existsSync(srcFeatures)) {
+  let featuresContent = fs.readFileSync(srcFeatures, 'utf8');
+  featuresContent = featuresContent
+    .replace(/\{\{APP_VERSION\}\}/g, appVersion)
+    .replace(/\{\{GIT_COMMIT\}\}/g, gitCommit)
+    .replace(/\{\{COMMIT_URL\}\}/g, commitUrl)
+    .replace(/\{\{BUILD_DATE\}\}/g, buildDate);
+  fs.writeFileSync(pubFeatures, featuresContent, 'utf8');
+  console.log(`Generated: public/features.html (commit: ${gitCommit}, version: ${appVersion})`);
+}
+
 // Write public/version.json
 fs.writeFileSync(
   path.resolve(pubDir, 'version.json'),
@@ -252,12 +266,6 @@ allBodies.forEach((p, idx) => {
                         <option value="ta">🇮🇳 தமிழ்</option>
                     </select>
                 </div>
-                <div class="settings-row settings-credits-row">
-                    <a href="../credits.html" class="settings-credits-link" aria-label="About & Credits" data-i18n-attr="aria-label:ui.credits_btn">
-                        <span class="credits-icon">👥</span>
-                        <span data-i18n="ui.credits_btn">About & Credits</span>
-                    </a>
-                </div>
             </div>
         </div>
 
@@ -265,6 +273,11 @@ allBodies.forEach((p, idx) => {
         <a href="../credits.html" class="hud-circle-btn hud-people-btn in-stack" aria-label="About & Credits" title="About & Credits" data-i18n-attr="aria-label:ui.credits_btn,title:ui.credits_btn">
             <span class="hud-people-icon">👥</span>
         </a>
+
+        <!-- Cookie & Privacy Settings Button -->
+        <button type="button" id="cookie-btn" class="hud-circle-btn hud-cookie-btn in-stack" aria-label="Cookie & Storage Preferences" title="Cookie & Storage Preferences" data-i18n-attr="aria-label:ui.cookie_btn_aria,title:ui.cookie_btn_title">
+            <span class="hud-cookie-icon">🍪</span>
+        </button>
     </div>
 
     <main class="planet-subpage">

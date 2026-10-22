@@ -38,8 +38,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="css/style.css?v=3.1.0" />
-    <script src="js/script.min.js?v=3.1.0" defer></script>
+    <link rel="stylesheet" href="css/style.css?v=3.1.1" />
+    <script src="js/script.min.js?v=3.1.1" defer></script>
 </head>
 
 <body class="subpage-body credits-page">
@@ -67,10 +67,17 @@
                         <option value="it">🇮🇹 Italiano</option>
                         <option value="ja">🇯🇵 日本語</option>
                         <option value="zh">🇨🇳 中文</option>
+                        <option value="ml">🇮🇳 മലയാളം</option>
+                        <option value="ta">🇮🇳 தமிழ்</option>
                     </select>
                 </div>
             </div>
         </div>
+
+        <!-- Cookie & Privacy Settings Button -->
+        <button type="button" id="cookie-btn" class="hud-circle-btn hud-cookie-btn in-stack" aria-label="Cookie & Storage Preferences" title="Cookie & Storage Preferences" data-i18n-attr="aria-label:ui.cookie_btn_aria,title:ui.cookie_btn_title">
+            <span class="hud-cookie-icon">🍪</span>
+        </button>
     </div>
 
     <!-- 3D Star Wars Perspective Stage -->
@@ -162,7 +169,23 @@
                 </div>
             </div>
 
-            <!-- Card 4: Scientific Data & Astronomical Credits -->
+            <!-- Card 5: Features, Accessibility & Cosmic Jokes Section -->
+            <div class="credits-card features-spotlight-card">
+                <div class="card-badge">EXPLORATION & ROADMAP</div>
+                <h2 class="card-title" data-i18n="ui.features_title">Features, Accessibility & Cosmic Jokes</h2>
+                <p class="card-desc" data-i18n="ui.features_subtitle">
+                    Discover our December 2026 Accessibility compliance suite, deep planetary astrophysics, and kid-friendly interactive space jokes.
+                </p>
+                <div class="card-actions">
+                    <a href="features.html" class="btn-primary-action" title="Explore Features & Jokes">
+                        <span>🚀</span>
+                        <span data-i18n="ui.features_btn">Explore Features & Jokes</span>
+                        <span class="external-icon">→</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 6: Scientific Data & Astronomical Credits -->
             <div class="credits-card data-card">
                 <div class="card-badge">ASTRONOMICAL CITATIONS</div>
                 <h2 class="card-title" data-i18n="ui.data_sources_title">Scientific Data & Astronomical Sources</h2>

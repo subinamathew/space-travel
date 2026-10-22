@@ -96,7 +96,23 @@
     "current_time_label": "地球标准时间:",
     "pause_orbits_aria": "暂停轨道运转",
     "resume_orbits_aria": "恢复轨道运转",
-    "pause_orbits_title": "暂停 / 恢复轨道"
+    "pause_orbits_title": "暂停 / 恢复轨道",
+    "cookie_btn_title": "Cookie 与存储偏好",
+    "cookie_btn_aria": "Cookie 和隐私设置",
+    "cookie_title": "隐私与本地存储",
+    "cookie_desc": "RocketRun 绝不使用追踪或广告 Cookie。我们仅使用严格必需的浏览器本地存储，用以记住您选择的语言、计算单位和星系运行偏好。",
+    "cookie_accept": "明白了 / 接受",
+    "cookie_clear": "清除已存数据",
+    "cookie_cleared_msg": "已清除所有本地数据与 Cookie！",
+    "cookie_close_aria": "关闭 Cookie 提示",
+    "features_btn": "功能与笑话",
+    "features_title": "功能特色、无障碍与太空笑话",
+    "features_subtitle": "2026年12月无障碍标准、深空行星科学与宇宙幽默",
+    "accessibility_title": "无障碍标准（2026年12月）",
+    "deep_dive_title": "深空行星科学与探索秘闻",
+    "jokes_title": "宇宙太空笑话",
+    "another_joke_btn": "🎲 再讲一个太空笑话！",
+    "show_punchline": "揭晓笑点 ✨"
   },
   "planets": {
     "sun": {

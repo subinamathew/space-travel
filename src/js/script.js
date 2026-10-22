@@ -6,10 +6,15 @@ import { initPreloader } from './components/preloader.js';
 import { initHuds } from './components/hud.js';
 import { initI18n } from './i18n.js';
 import { initCreditsCrawl } from './components/credits.js';
+import { initCookieNotice } from './components/cookie-notice.js';
+import { initFeaturesPage } from './components/features.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize i18n translation system
   initI18n();
+
+  // Initialize GDPR-compliant cookie notice & data erasure
+  initCookieNotice();
 
   // Start warp preloader
   initPreloader();
@@ -19,6 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize Star Wars Credits Crawl (if on credits page)
   initCreditsCrawl();
+
+  // Initialize Features & Space Jokes (if on features page)
+  initFeaturesPage();
 
   // Initialize Settings switches (Moons & 3D Real Orbits) on the solar system view
   initSettingsSwitches();

@@ -96,7 +96,23 @@
     "current_time_label": "Erdzeit:",
     "pause_orbits_aria": "Umlaufbahnen anhalten",
     "resume_orbits_aria": "Umlaufbahnen fortsetzen",
-    "pause_orbits_title": "Orbits anhalten / fortsetzen"
+    "pause_orbits_title": "Orbits anhalten / fortsetzen",
+    "cookie_btn_title": "Cookie- & Speichereinstellungen",
+    "cookie_btn_aria": "Cookie- und Datenschutzeinstellungen",
+    "cookie_title": "Datenschutz & Lokaler Speicher",
+    "cookie_desc": "RocketRun verwendet keinerlei Tracking- oder Werbe-Cookies. Wir nutzen ausschließlich technisch notwendigen lokalen Speicher für Sprache, Einheiten und Orrery-Einstellungen.",
+    "cookie_accept": "Verstanden / Akzeptieren",
+    "cookie_clear": "Gespeicherte Daten löschen",
+    "cookie_cleared_msg": "Alle lokalen Daten und Cookies wurden gelöscht!",
+    "cookie_close_aria": "Cookie-Hinweis schließen",
+    "features_btn": "Features & Witze",
+    "features_title": "Funktionen, Barrierefreiheit & Weltraumwitze",
+    "features_subtitle": "Barrierefreiheitsstandard Dezember 2026, Planetenforschung & kosmischer Humor",
+    "accessibility_title": "Barrierefreiheitsstandards (Dez. 2026)",
+    "deep_dive_title": "Planetare Wissenschaft & Fakten",
+    "jokes_title": "Kosmische Weltraumwitze",
+    "another_joke_btn": "🎲 Noch einen Witz erzählen!",
+    "show_punchline": "Pointe aufdecken ✨"
   },
   "planets": {
     "sun": {

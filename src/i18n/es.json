@@ -96,7 +96,23 @@
     "current_time_label": "Hora Terrestre:",
     "pause_orbits_aria": "Pausar movimiento orbital",
     "resume_orbits_aria": "Reanudar movimiento orbital",
-    "pause_orbits_title": "Pausar / Reanudar órbitas"
+    "pause_orbits_title": "Pausar / Reanudar órbitas",
+    "cookie_btn_title": "Preferencias de cookies y almacenamiento",
+    "cookie_btn_aria": "Ajustes de cookies y privacidad",
+    "cookie_title": "Privacidad y Almacenamiento Local",
+    "cookie_desc": "RocketRun no utiliza cookies de seguimiento ni publicidad. Solo empleamos almacenamiento local estrictamente necesario para recordar tu idioma, unidades y preferencias del planetario.",
+    "cookie_accept": "Entendido / Aceptar",
+    "cookie_clear": "Borrar datos almacenados",
+    "cookie_cleared_msg": "¡Se han borrado todos los datos locales y las cookies!",
+    "cookie_close_aria": "Cerrar aviso de cookies",
+    "features_btn": "Funciones y Chistes",
+    "features_title": "Funciones, Accesibilidad y Chistes Cósmicos",
+    "features_subtitle": "Estándar de accesibilidad de diciembre de 2026, ciencia planetaria y humor espacial",
+    "accessibility_title": "Estándares de Accesibilidad (Dic. 2026)",
+    "deep_dive_title": "Ciencia Planetaria y Curiosidades",
+    "jokes_title": "Chistes Espaciales Cósmicos",
+    "another_joke_btn": "🎲 ¡Cuéntame otro chiste!",
+    "show_punchline": "Revelar remate ✨"
   },
   "planets": {
     "sun": {

@@ -1,10 +1,14 @@
 import { initStarfield } from './components/starfield.js';
 import { initHuds } from './components/hud.js';
 import { initI18n, t } from './i18n.js';
+import { initCookieNotice } from './components/cookie-notice.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Initialize i18n translation system
   initI18n();
+
+  // 1b. Initialize GDPR-compliant cookie notice & data erasure
+  initCookieNotice();
 
   // 2. Initialize starfield canvas background
   initStarfield('stars');

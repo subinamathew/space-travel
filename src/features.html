@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title data-i18n="ui.features_title">Features, Accessibility & Cosmic Jokes — RocketRun</title>
+    <meta name="description" content="Explore RocketRun's December 2026 Accessibility standards, in-depth planetary astrophysics, and kid-friendly interactive cosmic space jokes." />
+    <meta name="author" content="Zachary David Mathew + Papa" />
+    <meta name="copyright" content="rocketrun.de" />
+    <meta name="application-name" content="RocketRun" />
+    <meta name="theme-color" content="#030712" />
+    <link rel="canonical" href="https://rocketrun.de/features.html" />
+
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="RocketRun" />
+    <meta property="og:url" content="https://rocketrun.de/features.html" />
+    <meta property="og:title" content="Features, Accessibility & Cosmic Jokes — RocketRun" />
+    <meta property="og:description" content="December 2026 Accessibility standards, deep planetary astrophysics, and kid-friendly cosmic space jokes." />
+    <meta property="og:image" content="https://rocketrun.de/images/earth.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css?v={{APP_VERSION}}" />
+    <script src="js/script.min.js?v={{APP_VERSION}}" defer></script>
+</head>
+
+<body class="subpage-body features-page">
+    <canvas id="stars"></canvas>
+
+    <!-- Top Navigation Links -->
+    <div class="features-top-nav">
+        <a id="back-btn" class="visible" href="credits.html" aria-label="Back to credits" data-i18n-attr="aria-label:ui.credits_btn">← Credits</a>
+        <a class="features-solar-link" href="index.html" aria-label="Solar System" data-i18n="ui.back_btn" data-i18n-attr="aria-label:ui.back_btn">☀️ Solar System</a>
+    </div>
+
+    <!-- Top-Right HUD Stack: Settings & Cookie Icon -->
+    <div class="hud-stack">
+        <div id="settings-hud" class="in-stack visible" aria-label="Settings and Language">
+            <div class="hud-header" role="button" tabindex="0" aria-label="Toggle Settings HUD" title="Language Settings" data-i18n-attr="aria-label:ui.toggle_settings,title:ui.toggle_settings">
+                <div class="hud-header-title">
+                    <span>⚙️</span>
+                    <span data-i18n="ui.settings_title">Settings</span>
+                </div>
+            </div>
+            <div class="hud-body" id="settings-hud-body" style="display: flex;">
+                <div class="settings-row">
+                    <label for="lang-select" class="settings-label" data-i18n="ui.language_label">Language:</label>
+                    <select id="lang-select" class="hud-lang-select" aria-label="Select Language">
+                        <option value="en">🇬🇧 English</option>
+                        <option value="de">🇩🇪 Deutsch</option>
+                        <option value="fr">🇫🇷 Français</option>
+                        <option value="es">🇪🇸 Español</option>
+                        <option value="it">🇮🇹 Italiano</option>
+                        <option value="ja">🇯🇵 日本語</option>
+                        <option value="zh">🇨🇳 中文</option>
+                        <option value="ml">🇮🇳 മലയാളം</option>
+                        <option value="ta">🇮🇳 தமிழ்</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cookie & Privacy Settings Button -->
+        <button type="button" id="cookie-btn" class="hud-circle-btn hud-cookie-btn in-stack" aria-label="Cookie & Storage Preferences" title="Cookie & Storage Preferences" data-i18n-attr="aria-label:ui.cookie_btn_aria,title:ui.cookie_btn_title">
+            <span class="hud-cookie-icon">🍪</span>
+        </button>
+    </div>
+
+    <!-- Main Features Stage -->
+    <main class="features-container">
+        <!-- Hero Header -->
+        <header class="features-hero">
+            <div class="features-badge-pill">ROCKETRUN ATLAS & ACCESSIBILITY</div>
+            <h1 class="features-title" data-i18n="ui.features_title">Features, Accessibility & Cosmic Jokes</h1>
+            <p class="features-subtitle" data-i18n="ui.features_subtitle">
+                December 2026 Accessibility Standard, Deep Planetary Science & Space Humor
+            </p>
+        </header>
+
+        <!-- SECTION 1: Accessibility Features (December 2026 Standard) -->
+        <section class="features-section" id="accessibility-section" aria-labelledby="a11y-heading">
+            <div class="section-badge-bar">
+                <span class="section-badge">STANDARD DEC 2026</span>
+                <span class="wcag-pill">WCAG 2.2 AA / AAA Compliant</span>
+            </div>
+            <h2 id="a11y-heading" class="section-title" data-i18n="ui.accessibility_title">Accessibility Standards (Dec 2026)</h2>
+            <p class="section-intro">
+                RocketRun is engineered from the ground up to ensure every curious mind, classroom explorer, and astronomer can experience our solar system without barrier.
+            </p>
+
+            <div class="features-grid a11y-grid">
+                <article class="feature-card">
+                    <div class="card-icon">⌨️</div>
+                    <h3 class="card-heading">Universal Keyboard Navigation</h3>
+                    <p class="card-text">
+                        Complete focus management and keyboard shortcuts: <code>Space</code> or <code>p</code> pauses orbital motion, <code>1</code>–<code>9</code> triggers instant interplanetary transit, <code>ArrowLeft</code>/<code>ArrowRight</code> navigates adjacent worlds, and <code>Esc</code> dismisses all dialogs.
+                    </p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="card-icon">👁️</div>
+                    <h3 class="card-heading">Visual Ergonomics & Night Dimming</h3>
+                    <p class="card-text">
+                        High-contrast text exceeding 7:1 against cosmic voids. Automatic mobile/tablet solar dimming (18:00–07:00) scales the Sun between 5% and 20% dimmer to reduce circadian retinal fatigue during evening exploration.
+                    </p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="card-icon">🦻</div>
+                    <h3 class="card-heading">Polite Screen Reader Telemetry</h3>
+                    <p class="card-text">
+                        Assistive speech and braille technologies receive live telemetry broadcasts via <code>aria-live="polite"</code> regions. Orbital velocity, mass metrics, and Earth clock updates are conveyed without speech synthesizer buffer clogging.
+                    </p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="card-icon">👆</div>
+                    <h3 class="card-heading">Motor Accessibility (≥ 44×44px Targets)</h3>
+                    <p class="card-text">
+                        All interactive switches, buttons, and close controls strictly observe minimum 44×44px hit-box bounding boxes to support young children, motor-impaired users, and touch-screen devices.
+                    </p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="card-icon">🌀</div>
+                    <h3 class="card-heading">Vestibular & Reduced Motion</h3>
+                    <p class="card-text">
+                        Strictly obeys <code>@media (prefers-reduced-motion: reduce)</code>. Automatically neutralizes high-speed orbital spins, warp preloader jumps, and Star Wars crawl tilts, replacing them with static, calm views.
+                    </p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="card-icon">🌐</div>
+                    <h3 class="card-heading">9-Language Native Typography</h3>
+                    <p class="card-text">
+                        Full translation key parity across English, German, French, Spanish, Italian, Japanese, Chinese, Malayalam, and Tamil, honoring regional script rendering and typographic rhythm.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <!-- SECTION 2: Deep Planetary Science & Lore -->
+        <section class="features-section" id="deep-dive-section" aria-labelledby="lore-heading">
+            <div class="section-badge-bar">
+                <span class="section-badge">ASTROPHYSICAL ATLAS</span>
+                <span class="wcag-pill">Curated from NASA & JPL</span>
+            </div>
+            <h2 id="lore-heading" class="section-title" data-i18n="ui.deep_dive_title">Planetary Science & Lore</h2>
+            <p class="section-intro">
+                Beyond standard school metrics, delve into the extraordinary physical curiosities of our celestial neighborhood.
+            </p>
+
+            <div class="features-grid planet-lore-grid">
+                <!-- Sun -->
+                <article class="lore-card lore-sun">
+                    <div class="lore-card-header">
+                        <span class="lore-planet-symbol">☀️</span>
+                        <h3 class="lore-planet-name">The Sun (Sol)</h3>
+                    </div>
+                    <h4 class="lore-topic">The Coronal Heating Mystery</h4>
+                    <p class="lore-desc">
+                        The visible surface of the Sun (photosphere) sits at ~5,500°C, yet the outer corona inexplicably surges to 1,000,000°C to 3,000,000°C! Scientists hypothesize magnetic nanoflares and Alfvén waves constantly pump magnetic energy into the solar atmosphere.
+                    </p>
+                </article>
+
+                <!-- Mercury -->
+                <article class="lore-card lore-mercury">
+                    <div class="lore-card-header">
+                        <span class="lore-planet-symbol">☿️</span>
+                        <h3 class="lore-planet-name">Mercury</h3>
+                    </div>
+                    <h4 class="lore-topic">3:2 Spin-Orbit Resonance & Polar Ice</h4>
+                    <p class="lore-desc">
+                        Mercury spins exactly three times on its axis for every two orbits around the Sun. Because of this lock, a single solar day (sunrise to sunrise) lasts 176 Earth days! Permanently shadowed craters at its poles harbor billions of tons of water ice shielded from blistering 430°C sunlight.
+                    </p>
+                </article>
+
+                <!-- Venus -->
+                <article class="lore-card lore-venus">
+                    <div class="lore-card-header">
+                        <span class="lore-planet-symbol">♀️</span>
+                        <h3 class="lore-planet-name">Venus</h3>
+                    </div>
+                    <h4 class="lore-topic">Runaway Greenhouse & Backward Spin</h4>
+                    <p class="lore-desc">
+                        With an atmosphere 96.5% carbon dioxide generating 92 bars of pressure (equal to being 900 meters under Earth’s ocean), Venus suffers a runaway greenhouse effect reaching 465°C. Venus also spins clockwise in retrograde—the Sun rises in the west!
+                    </p>
+                </article>
+
+                <!-- Earth -->
+                <article class="lore-card lore-earth">
+                    <div class="lore-card-header">
+                        <span class="lore-planet-symbol">🌍</span>
+                        <h3 class="lore-planet-name">Earth</h3>
+                    </div>
+                    <h4 class="lore-topic">The Protective Geodynamo</h4>
+                    <p class="lore-desc">
+                        Earth's molten iron outer core generates a powerful magnetosphere that deflects dangerous ionizing solar wind. Combined with active plate tectonics that balance atmospheric carbon, Earth maintains the only known stable surface oceans in the cosmos.
+                    </p>
+                </article>
+
+                <!-- Mars -->
+                <article class="lore-card lore-mars">
+                    <div class="lore-card-header">
+                        <span class="lore-planet-symbol">♂️</span>
+                        <h3 class="lore-planet-name">Mars</h3>
+                    </div>
+                    <h4 class="lore-topic">Colossal Geology: Olympus Mons</h4>
+                    <p class="lore-desc">
+                        Mars hosts Olympus Mons, a shield volcano that reaches 21.9 km above datum—nearly three times the height of Mt. Everest! Its canyon system, Valles Marineris, is 4,000 km long, 200 km wide, and up to 7 km deep, dwarfing the Grand Canyon.
+                    </p>
+                </article>
+
+                <!-- Jupiter -->
+                <article class="lore-card lore-jupiter">
+                    <div class="lore-card-header">
+                        <span class="lore-planet-symbol">♃</span>
+                        <h3 class="lore-planet-name">Jupiter</h3>
+                    </div>
+                    <h4 class="lore-topic">Metallic Hydrogen & Anticyclones</h4>
+                    <p class="lore-desc">
+                        Deep inside Jupiter, pressures exceed 2 million atmospheres, forcing hydrogen into a shimmering liquid metal ocean that conducts electricity and powers a magnetosphere 20,000 times stronger than Earth’s. The Great Red Spot is an anticyclone larger than Earth itself.
+                    </p>
+                </article>
+
+                <!-- Saturn -->
+                <article class="lore-card lore-saturn">
+                    <div class="lore-card-header">
+                        <span class="lore-planet-symbol">🪐</span>
+                        <h3 class="lore-planet-name">Saturn</h3>
+                    </div>
+                    <h4 class="lore-topic">Floating Density & Hexagonal Jet Stream</h4>
+                    <p class="lore-desc">
+                        Saturn's average density is 0.687 g/cm³—less dense than water! If you found a bathtub large enough, Saturn would float. Its majestic rings span 282,000 km yet average just 10 meters thick, while a bizarre geometric hexagon storm rotates at its north pole.
+                    </p>
+                </article>
+
+                <!-- Uranus -->
+                <article class="lore-card lore-uranus">
+                    <div class="lore-card-header">
+                        <span class="lore-planet-symbol">♅</span>
+                        <h3 class="lore-planet-name">Uranus</h3>
+                    </div>
+                    <h4 class="lore-topic">The Sideways Rolling World</h4>
+                    <p class="lore-desc">
+                        Uranus has an axial tilt of 97.77°, likely caused by a massive protoplanetary collision billions of years ago. It rolls around the Sun like a ball, plunging each pole into 42 years of continuous darkness followed by 42 years of unsetting sunlight.
+                    </p>
+                </article>
+
+                <!-- Neptune -->
+                <article class="lore-card lore-neptune">
+                    <div class="lore-card-header">
+                        <span class="lore-planet-symbol">♆</span>
+                        <h3 class="lore-planet-name">Neptune</h3>
+                    </div>
+                    <h4 class="lore-topic">Supersonic Winds & Cryovolcanic Triton</h4>
+                    <p class="lore-desc">
+                        Neptune is the windiest planet, where methane storms whip through the atmosphere at supersonic speeds exceeding 2,100 km/h (1,300 mph). Its largest moon, Triton, was captured from the Kuiper Belt and spews plumes of liquid nitrogen from active cryogeysers.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <!-- SECTION 3: Cosmic Space Jokes & Humor -->
+        <section class="features-section" id="jokes-section" aria-labelledby="jokes-heading">
+            <div class="section-badge-bar">
+                <span class="section-badge">COSMIC HUMOR</span>
+                <span class="wcag-pill">100% Kid & Explorer Friendly</span>
+            </div>
+            <h2 id="jokes-heading" class="section-title" data-i18n="ui.jokes_title">Cosmic Space Jokes</h2>
+            <p class="section-intro">
+                Why be serious in an infinite universe? Enjoy our curated space jokes and test them on your fellow rocket crew!
+            </p>
+
+            <!-- Interactive Joke Generator Card -->
+            <div class="interactive-joke-box">
+                <div class="joke-box-top">
+                    <span class="joke-box-icon">🚀 💬</span>
+                    <button type="button" id="random-joke-btn" class="joke-roll-btn" data-i18n="ui.another_joke_btn">
+                        🎲 Tell Me Another Joke!
+                    </button>
+                </div>
+                <div class="joke-display-area">
+                    <p class="joke-setup" id="random-joke-setup">Why did the Sun go to school?</p>
+                    <div class="joke-punchline-wrap">
+                        <p class="joke-punchline" id="random-joke-punchline">To get brighter! ☀️🎓</p>
+                        <button type="button" id="reveal-punchline-btn" class="joke-reveal-btn" data-i18n="ui.show_punchline">
+                            Reveal Punchline ✨
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Static Jokes Grid -->
+            <div class="features-grid jokes-grid">
+                <article class="static-joke-card">
+                    <p class="card-joke-setup">How do you organize a space party?</p>
+                    <p class="joke-punchline">You planet! 🪐🎉</p>
+                    <button type="button" class="joke-reveal-btn">Reveal ✨</button>
+                </article>
+
+                <article class="static-joke-card">
+                    <p class="card-joke-setup">Why couldn't the astronaut book a room on the Moon?</p>
+                    <p class="joke-punchline">Because it was full! 🌕🏨</p>
+                    <button type="button" class="joke-reveal-btn">Reveal ✨</button>
+                </article>
+
+                <article class="static-joke-card">
+                    <p class="card-joke-setup">What kind of music do planets listen to?</p>
+                    <p class="joke-punchline">Nep-tunes! 🎶🌊</p>
+                    <button type="button" class="joke-reveal-btn">Reveal ✨</button>
+                </article>
+
+                <article class="static-joke-card">
+                    <p class="card-joke-setup">Why did Mickey Mouse go to outer space?</p>
+                    <p class="joke-punchline">To find Pluto! 🚀🐕</p>
+                    <button type="button" class="joke-reveal-btn">Reveal ✨</button>
+                </article>
+
+                <article class="static-joke-card">
+                    <p class="card-joke-setup">How does the solar system hold up its pants?</p>
+                    <p class="joke-punchline">With an asteroid belt! ☄️👖</p>
+                    <button type="button" class="joke-reveal-btn">Reveal ✨</button>
+                </article>
+
+                <article class="static-joke-card">
+                    <p class="card-joke-setup">What is an astronaut’s favorite key on the keyboard?</p>
+                    <p class="joke-punchline">The Space bar! ⌨️🧑‍🚀</p>
+                    <button type="button" class="joke-reveal-btn">Reveal ✨</button>
+                </article>
+
+                <article class="static-joke-card">
+                    <p class="card-joke-setup">Why did the alien sit on the computer?</p>
+                    <p class="joke-punchline">To keep an eye on the space bar! 👽💻</p>
+                    <button type="button" class="joke-reveal-btn">Reveal ✨</button>
+                </article>
+
+                <article class="static-joke-card">
+                    <p class="card-joke-setup">Why did Venus break up with Mars?</p>
+                    <p class="joke-punchline">She needed some space! 💔🚀</p>
+                    <button type="button" class="joke-reveal-btn">Reveal ✨</button>
+                </article>
+
+                <article class="static-joke-card">
+                    <p class="card-joke-setup">What do stars eat for breakfast?</p>
+                    <p class="joke-punchline">Quarks and milk! 🥣⭐</p>
+                    <button type="button" class="joke-reveal-btn">Reveal ✨</button>
+                </article>
+
+                <article class="static-joke-card">
+                    <p class="card-joke-setup">How do astronauts eat soup in zero gravity?</p>
+                    <p class="joke-punchline">With a flying saucer! 🛸🥣</p>
+                    <button type="button" class="joke-reveal-btn">Reveal ✨</button>
+                </article>
+
+                <article class="static-joke-card">
+                    <p class="card-joke-setup">What was the first animal to travel into outer space?</p>
+                    <p class="joke-punchline">The cow that jumped over the moon! 🐄🌙</p>
+                    <button type="button" class="joke-reveal-btn">Reveal ✨</button>
+                </article>
+
+                <article class="static-joke-card">
+                    <p class="card-joke-setup">What did Mars say to Saturn?</p>
+                    <p class="joke-punchline">Give me a ring sometime! 🪐📞</p>
+                    <button type="button" class="joke-reveal-btn">Reveal ✨</button>
+                </article>
+            </div>
+        </section>
+
+        <!-- Back to Solar System Footer Call to Action -->
+        <footer class="features-footer">
+            <a href="index.html" class="btn-primary-action features-home-btn" title="Return to Solar System Orrery">
+                <span>🚀</span>
+                <span data-i18n="ui.back_btn">← Back to Solar System</span>
+            </a>
+            <p class="features-copy">© 2026 rocketrun.de · Part of missional.eu</p>
+        </footer>
+    </main>
+</body>
+
+</html>

@@ -96,7 +96,23 @@
     "current_time_label": "Heure Terrestre :",
     "pause_orbits_aria": "Mettre les orbites en pause",
     "resume_orbits_aria": "Reprendre les orbites",
-    "pause_orbits_title": "Pause / Reprise des orbites"
+    "pause_orbits_title": "Pause / Reprise des orbites",
+    "cookie_btn_title": "Préférences de cookies et stockage",
+    "cookie_btn_aria": "Paramètres des cookies et confidentialité",
+    "cookie_title": "Confidentialité & Stockage local",
+    "cookie_desc": "RocketRun n'utilise aucun cookie de suivi ou publicitaire. Nous utilisons uniquement un stockage local strictement nécessaire pour mémoriser votre langue, vos unités et vos réglages.",
+    "cookie_accept": "Compris / Accepter",
+    "cookie_clear": "Effacer les données stockées",
+    "cookie_cleared_msg": "Toutes les données locales et les cookies ont été effacés !",
+    "cookie_close_aria": "Fermer la notice des cookies",
+    "features_btn": "Fonctionnalités & Blagues",
+    "features_title": "Fonctionnalités, Accessibilité & Blagues Cosmiques",
+    "features_subtitle": "Norme d'accessibilité de décembre 2026, science planétaire & humour spatial",
+    "accessibility_title": "Normes d'accessibilité (Déc. 2026)",
+    "deep_dive_title": "Sciences planétaires & Connaissances",
+    "jokes_title": "Blagues spatiales cosmiques",
+    "another_joke_btn": "🎲 Raconte-moi une autre blague !",
+    "show_punchline": "Révéler la chute ✨"
   },
   "planets": {
     "sun": {

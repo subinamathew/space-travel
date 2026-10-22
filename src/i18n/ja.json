@@ -96,7 +96,23 @@
     "current_time_label": "地球標準時:",
     "pause_orbits_aria": "公転軌道を一時停止",
     "resume_orbits_aria": "公転軌道を再開",
-    "pause_orbits_title": "軌道の一時停止 / 再開"
+    "pause_orbits_title": "軌道の一時停止 / 再開",
+    "cookie_btn_title": "クッキーと保存データ設定",
+    "cookie_btn_aria": "クッキーおよびプライバシー設定",
+    "cookie_title": "プライバシーとローカルストレージ",
+    "cookie_desc": "RocketRunは広告やトラッキング用クッキーを一切使用しません。言語選択、計算単位、天体シミュレーション設定を記憶するための必要最小限のローカルストレージのみを使用しています。",
+    "cookie_accept": "了解 / 同意",
+    "cookie_clear": "保存データを消去",
+    "cookie_cleared_msg": "すべてのローカルデータとクッキーを消去しました！",
+    "cookie_close_aria": "クッキー通知を閉じる",
+    "features_btn": "機能とジョーク",
+    "features_title": "機能、アクセシビリティ＆宇宙のジョーク",
+    "features_subtitle": "2026年12月アクセシビリティ標準、惑星科学＆コズミック・ユーモア",
+    "accessibility_title": "アクセシビリティ基準（2026年12月）",
+    "deep_dive_title": "惑星の深層科学とトリビア",
+    "jokes_title": "宇宙のジョーク集",
+    "another_joke_btn": "🎲 別のジョークを見る！",
+    "show_punchline": "オチを見る ✨"
   },
   "planets": {
     "sun": {
