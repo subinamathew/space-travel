@@ -1,3 +1,13 @@
+---
+name: rocketrun-development-standards
+description: >-
+  Core engineering skills, architectural principles, multi-agent contracts,
+  pedagogical standards, and quality guidelines for RocketRun (rocketrun.de).
+  Enforces CSS over JS, conventional commits, lightweight semantic HTML, low
+  cyclomatic complexity (<= 8), procedural asset rendering, strict i18n parity,
+  CI/CD, OpenGraph metadata, and 60fps performance on lower-end devices.
+---
+
 # Engineering Skills & Development Guidelines
 
 This document defines the core engineering skills, architectural principles, quality standards, and development rules for the **RocketRun (rocketrun.de)** project. All contributors, agents, and pipelines must adhere to these practices to ensure high performance, maintainability, rock-solid stability, and an optimal experience across all devices.
@@ -116,6 +126,9 @@ HTML documents must remain lightweight, semantic, and streamable. Avoid bloated 
 4. **Lean Asset Inlining**:
    - Avoid embedding massive base64 image strings or heavy inline SVGs into HTML documents.
    - Keep icons lightweight, vectorized, and externalized with appropriate browser caching.
+5. **Deterministic Structural UI Anchors**:
+   - UI views, modals, and screen transitions must bind to deterministic element IDs (e.g., `#start-screen`, `#orbit-view`, `#dialog-overlay`, `#rocketrun-sidebar`).
+   - Text must scale gracefully and never clip or overlap container boundaries.
 
 ---
 
@@ -154,10 +167,27 @@ Functions must remain short, focused, and understandable. Maintain a **Cyclomati
    - Replace complex `switch` or multi-case `else if` chains with concise lookup tables or `Map` structures.
 4. **Pure Utility Functions**:
    - Keep mathematical calculations (e.g., gravity multipliers, orbital period transformations, jump heights) pure and side-effect free so they are trivial to test.
+5. **Decoupled Global State Contract (`window.RocketRun`)**:
+   - Coordinate cross-feature state via an explicit global bridge (`window.RocketRun`) using state enums (`STANDBY`, `TARGETED`, `LAUNCHING`, `TRANSIT`, `ARRIVED`).
+   - Dispatch custom event `window.dispatchEvent(new CustomEvent('rocketrun:statechange', { detail: { state, from, to } }))` rather than tightly coupling module imports.
 
 ---
 
-## Skill 6: Robust CI/CD (Continuous Integration & Delivery)
+## Skill 6: Asset Handling, Zero External Assets & Tooling Constraints
+
+### Core Rule
+Keep the application self-contained, lightweight, and resilient to network partitions.
+
+### Guidelines
+1. **Zero External Heavy Assets**:
+   - Do not load external raster images or asset bundles.
+   - Procedurally render space visuals, rocket crafts, and planetary features using inline SVGs, CSS shapes/gradients, or lightweight canvas math.
+2. **Tooling Sandboxing**:
+   - Rely strictly on the configured local toolchain and npm scripts. Do not introduce arbitrary command-line dependencies that are not declared in the project environment.
+
+---
+
+## Skill 7: Robust CI/CD (Continuous Integration & Delivery)
 
 ### Core Rule
 Every deployment must be reproducible, automated, and strictly verified. If a test fails or a build step produces an error, deployment must halt immediately.
@@ -177,7 +207,7 @@ Every deployment must be reproducible, automated, and strictly verified. If a te
 
 ---
 
-## Skill 7: Automated Testing & Verification
+## Skill 8: Automated Testing & Verification
 
 ### Core Rule
 Code changes to core logic, data models, or translations must be accompanied by automated verification.
@@ -194,7 +224,7 @@ Code changes to core logic, data models, or translations must be accompanied by 
 
 ---
 
-## Skill 8: Low-End Hardware & Handheld Performance Optimization
+## Skill 9: Low-End Hardware & Handheld Performance Optimization
 
 ### Core Rule
 The application must run smoothly (target 60fps) on budget smartphones, older tablets, and low-spec laptops with integrated GPUs.
@@ -219,7 +249,7 @@ The application must run smoothly (target 60fps) on budget smartphones, older ta
 
 ---
 
-## Skill 9: Full Internationalization (i18n) & Accessibility (a11y)
+## Skill 10: Full Internationalization (i18n) & Accessibility (a11y)
 
 ### Core Rule
 Educational content must be universally accessible worldwide regardless of language, physical capability, or reading level.
@@ -237,7 +267,7 @@ Educational content must be universally accessible worldwide regardless of langu
 
 ---
 
-## Skill 10: Child Pedagogy & Metaphor Design for Scientific Explanations
+## Skill 11: Child Pedagogy & Metaphor Design for Scientific Explanations
 
 ### Core Rule
 Astronomical facts, chemical formulas, and mathematical metrics must be rendered **crystal clear, evocative, and intuitive for young minds aged 5 to 8** without diluting scientific precision. Always bridge abstract mathematical or chemical notation into sensory, tangible everyday experiences.
@@ -302,7 +332,7 @@ Astronomical facts, chemical formulas, and mathematical metrics must be rendered
 
 ---
 
-## Skill 11: Metadata, OpenGraph & Social Sharing Standards
+## Skill 12: Metadata, OpenGraph & Social Sharing Standards
 
 ### Core Rule
 Every public endpoint and generated subpage in **RocketRun** must include comprehensive, valid, and rich metadata optimized for **Facebook, Twitter/X, WhatsApp, LinkedIn, Discord, and Telegram**. The official canonical domain is **`https://rocketrun.de`**, and all content is copyrighted under **`rocketrun.de`**.
@@ -349,7 +379,7 @@ Before pushing any commit or releasing to production, verify:
 - [ ] **Kid Explainer Pedagogy**:
   - [ ] Every `%` symbol is grounded in concrete counts (*"parts out of 100"* / *"100 scoops"* / *"100 marbles"*).
   - [ ] All chemical abbreviations (`N₂`, `O₂`, `CO₂`, `H₂`, `He`, `CH₄`) are deciphered into everyday metaphors.
-  - [ ] Multiplication uses written-out *"times"* rather than *"×"* or *"x"*.
+  - [ ] Multiplication uses written-out *"times"* rather than *"x"*.
 - [ ] **Social & Metadata**:
   - [ ] Canonical URL points to `https://rocketrun.de/...`.
   - [ ] OpenGraph (`og:title`, `og:image`, `og:url`, `og:site_name`) and Twitter Card tags are present.

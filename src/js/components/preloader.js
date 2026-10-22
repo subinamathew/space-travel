@@ -19,6 +19,23 @@ export function initPreloader(onComplete) {
     return;
   }
 
+  // Check if returning from planet subpages, credits, or already viewed in this session
+  const referrer = document.referrer || '';
+  const isReturning =
+    referrer.includes('/planets/') ||
+    referrer.includes('credits.html') ||
+    sessionStorage.getItem('rocketrun_visited') === 'true';
+
+  if (isReturning) {
+    sessionStorage.setItem('rocketrun_visited', 'true');
+    preloaderEl.style.display = 'none';
+    preloaderEl.classList.add('loaded');
+    if (galaxyHud) galaxyHud.classList.add('visible');
+    if (settingsHud) settingsHud.classList.add('visible');
+    if (onComplete) onComplete();
+    return;
+  }
+
   const ctx = canvas.getContext('2d');
   let width = (canvas.width = window.innerWidth);
   let height = (canvas.height = window.innerHeight);
@@ -74,6 +91,7 @@ export function initPreloader(onComplete) {
   function finish() {
     if (isDone) return;
     isDone = true;
+    sessionStorage.setItem('rocketrun_visited', 'true');
 
     triggerArrival();
 

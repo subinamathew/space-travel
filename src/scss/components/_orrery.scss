@@ -177,10 +177,8 @@
   overflow: visible;
   pointer-events: none; // Prevent outer orbits from blocking clicks to inner planets
   transform-style: preserve-3d;
-  transition: width 1.2s cubic-bezier(0.25, 1, 0.5, 1),
-              height 1.2s cubic-bezier(0.25, 1, 0.5, 1),
-              margin 1.2s cubic-bezier(0.25, 1, 0.5, 1),
-              transform 1.2s cubic-bezier(0.25, 1, 0.5, 1),
+  will-change: transform;
+  transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1),
               border-color 0.4s ease;
 }
 
@@ -196,6 +194,7 @@
   border-radius: 50%;
   transform-style: preserve-3d;
   pointer-events: none;
+  will-change: transform;
   animation: orbit-spin var(--orbit-period, 10s) linear var(--orbit-delay, 0s) infinite;
   transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
 }
@@ -264,6 +263,7 @@
   pointer-events: auto; // Re-enable pointer events for the planet button itself
   z-index: 20;
   transform-style: preserve-3d;
+  will-change: transform;
 
   // Proximity zone: triggers pause and hover as soon as mouse comes within ~30-45px of the planet
   &::before {

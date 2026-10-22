@@ -33,8 +33,16 @@ for (const sub of ['css', 'js', 'planets', 'images', 'i18n']) {
 // 1. Copy src/index.html -> public/index.html
 const srcIndex = path.resolve(__dirname, '../src/index.html');
 const pubIndex = path.resolve(pubDir, 'index.html');
+const pkg = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../package.json'), 'utf8'));
+const appVersion = pkg.version || '2.0.0';
+const gitCommit = getGitCommit();
+const commitUrl = `https://github.com/subinamathew/space-travel/commit/${gitCommit}`;
+const buildDate = new Date().toISOString().split('T')[0];
+
 if (fs.existsSync(srcIndex)) {
-  fs.copyFileSync(srcIndex, pubIndex);
+  let indexContent = fs.readFileSync(srcIndex, 'utf8');
+  indexContent = indexContent.replace(/<span class="credits-tag">v[0-9.]+<\/span>/g, `<span class="credits-tag">v${appVersion}</span>`);
+  fs.writeFileSync(pubIndex, indexContent, 'utf8');
   console.log('Copied: src/index.html -> public/index.html');
 }
 
@@ -77,12 +85,6 @@ if (fs.existsSync(srcI18nDir)) {
 }
 
 // 5. Compile src/credits.html -> public/credits.html with Git commit and version
-const pkg = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../package.json'), 'utf8'));
-const appVersion = pkg.version || '1.0.0';
-const gitCommit = getGitCommit();
-const commitUrl = `https://github.com/subinamathew/space-travel/commit/${gitCommit}`;
-const buildDate = new Date().toISOString().split('T')[0];
-
 const srcCredits = path.resolve(__dirname, '../src/credits.html');
 const pubCredits = path.resolve(pubDir, 'credits.html');
 if (fs.existsSync(srcCredits)) {
@@ -113,7 +115,8 @@ fs.writeFileSync(
 );
 console.log('Generated: public/version.json');
 
-
+// Load Single Source of Truth for English stats and copy
+const enI18n = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../src/i18n/en.json'), 'utf8'));
 
 // Celestial bodies in order: Sun -> Mercury -> ... -> Neptune
 const allBodies = [sunData, ...planets];
@@ -124,7 +127,11 @@ allBodies.forEach((p, idx) => {
   const prevBody = allBodies[prevIdx];
   const nextBody = allBodies[nextIdx];
 
-  const cardsHtml = p.stats
+  const bodyI18n = enI18n.planets[p.slug] || {};
+  const stats = bodyI18n.stats || [];
+  const kidsNote = bodyI18n.kids || { badge: '🚀 Explainer', title: '', jump: '', fact: '' };
+
+  const cardsHtml = stats
     .map(
       (s, sIdx) => `
         <div class="info-card" role="button" tabindex="0" aria-haspopup="dialog" aria-label="${s.label}: ${s.value}. Click for kids science explanation" data-stat-idx="${sIdx}" data-body="${p.slug}" title="Click for kids science explanation">
@@ -184,7 +191,8 @@ allBodies.forEach((p, idx) => {
     <meta name="twitter:image" content="https://rocketrun.de/images/${p.slug}.png" />
     <meta name="twitter:image:alt" content="${p.name} — RocketRun Solar System Exploration" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../css/style.css?v=${appVersion}" />
     <script src="../js/planet.min.js?v=${appVersion}" defer></script>
@@ -382,10 +390,10 @@ allBodies.forEach((p, idx) => {
                     </div>
 
                     <div class="kids-corner">
-                        <span class="kids-badge" data-i18n="planets.${p.slug}.kids.badge">${p.kidsNote.badge}</span>
-                        <h4 class="kids-title" data-i18n="planets.${p.slug}.kids.title">${p.kidsNote.title}</h4>
-                        <p class="kids-item">🦘 <strong>Super Jump:</strong> <span data-i18n="planets.${p.slug}.kids.jump">${p.kidsNote.jump}</span></p>
-                        <p class="kids-item">💡 <strong>Cosmic Wonder:</strong> <span data-i18n="planets.${p.slug}.kids.fact">${p.kidsNote.fact}</span></p>
+                        <span class="kids-badge" data-i18n="planets.${p.slug}.kids.badge">${kidsNote.badge}</span>
+                        <h4 class="kids-title" data-i18n="planets.${p.slug}.kids.title">${kidsNote.title}</h4>
+                        <p class="kids-item">🦘 <strong>Super Jump:</strong> <span data-i18n="planets.${p.slug}.kids.jump">${kidsNote.jump}</span></p>
+                        <p class="kids-item">💡 <strong>Cosmic Wonder:</strong> <span data-i18n="planets.${p.slug}.kids.fact">${kidsNote.fact}</span></p>
                     </div>
                 </div>
             </aside>

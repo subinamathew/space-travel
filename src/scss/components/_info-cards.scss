@@ -185,11 +185,12 @@
   position: relative;
   overflow: hidden;
   user-select: none;
+  contain: layout style;
   transition:
     transform 0.25s ease,
     border-color 0.25s ease,
     box-shadow 0.25s ease,
-    background 0.25s ease;
+    background-color 0.25s ease;
 
   &:hover,
   &:focus-visible {
@@ -346,7 +347,7 @@
   display: flex;
   flex-direction: column;
   gap: 1.15rem;
-  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.25s ease, border-color 0.25s ease, background-color 0.25s ease, padding 0.25s ease;
 
   &::-webkit-scrollbar {
     width: 5px;
@@ -611,7 +612,7 @@
   line-height: 1;
   cursor: pointer;
   outline: none;
-  transition: all 0.25s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
   flex-shrink: 0;
 
   .toggle-icon {
@@ -670,7 +671,7 @@
   border-radius: 999px;
   cursor: pointer;
   outline: none;
-  transition: all 0.2s;
+  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 
   &.active {
     background: var(--glow);
@@ -728,7 +729,7 @@
     padding: 3px 8px;
     border-radius: 6px;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 
     &:hover,
     &.active {

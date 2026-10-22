@@ -1,25 +1,15 @@
 /**
  * i18n Internationalization Subsystem
- * Bundles multi-language dictionaries with live reactive DOM translation,
- * localStorage persistence, parameter interpolation, and custom change events.
+ * Bundles English as synchronous zero-latency fallback,
+ * with dynamic on-demand loading and caching for additional languages.
+ * Provides live reactive DOM translation, localStorage persistence,
+ * parameter interpolation, and custom change events.
  */
 
 import en from '../i18n/en.json' with { type: 'json' };
-import de from '../i18n/de.json' with { type: 'json' };
-import fr from '../i18n/fr.json' with { type: 'json' };
-import es from '../i18n/es.json' with { type: 'json' };
-import it from '../i18n/it.json' with { type: 'json' };
-import ja from '../i18n/ja.json' with { type: 'json' };
-import zh from '../i18n/zh.json' with { type: 'json' };
 
 export const translations = {
-  en,
-  de,
-  fr,
-  es,
-  it,
-  ja,
-  zh
+  en
 };
 
 export const supportedLanguages = [
@@ -35,11 +25,35 @@ export const supportedLanguages = [
 let currentLang = 'en';
 
 export function getLanguage() {
-  const saved = localStorage.getItem('space_lang');
-  if (saved && translations[saved]) return saved;
-  const browserLang = (navigator.language || 'en').split('-')[0].toLowerCase();
-  if (translations[browserLang]) return browserLang;
+  const saved = typeof localStorage !== 'undefined' ? localStorage.getItem('space_lang') : null;
+  if (saved && supportedLanguages.some(l => l.code === saved)) return saved;
+  const browserLang = typeof navigator !== 'undefined' && navigator.language ? navigator.language.split('-')[0].toLowerCase() : 'en';
+  if (supportedLanguages.some(l => l.code === browserLang)) return browserLang;
   return 'en';
+}
+
+function getI18nPath(lang) {
+  if (typeof window === 'undefined') return `${lang}.json`;
+  const isSubpage = window.location.pathname.includes('/planets/');
+  return (isSubpage ? '../i18n/' : 'i18n/') + `${lang}.json`;
+}
+
+/**
+ * Fetch and memory-cache language dictionary dynamically
+ */
+export async function loadLanguage(lang) {
+  if (translations[lang]) return translations[lang];
+  try {
+    const res = await fetch(getI18nPath(lang));
+    if (res.ok) {
+      const data = await res.json();
+      translations[lang] = data;
+      return data;
+    }
+  } catch (err) {
+    console.warn(`[i18n] Could not load ${lang}, falling back to English:`, err);
+  }
+  return translations.en;
 }
 
 /**
@@ -80,6 +94,8 @@ function resolveKey(obj, path) {
  * - [data-i18n-attr="attr1:key1,attr2:key2"]: translates attributes like placeholder, title, aria-label
  */
 export function applyTranslations() {
+  if (typeof document === 'undefined') return;
+
   document.documentElement.setAttribute('lang', currentLang);
 
   // Sync any language selector dropdown
@@ -96,20 +112,16 @@ export function applyTranslations() {
     const key = el.getAttribute('data-i18n');
     if (!key) return;
 
-    // Optional params can be passed via data-i18n-params='{"name":"Mars"}'
     let params = {};
     const rawParams = el.getAttribute('data-i18n-params');
     if (rawParams) {
       try {
         params = JSON.parse(rawParams);
-      } catch (e) {
-        // ignore
-      }
+      } catch (e) {}
     }
 
     const translated = t(key, params);
     if (translated !== undefined && translated !== key) {
-      // Check if translation contains HTML (like &bull; or <strong>)
       if (typeof translated === 'string' && (translated.includes('<') || translated.includes('&'))) {
         el.innerHTML = translated;
       } else {
@@ -145,32 +157,43 @@ export function applyTranslations() {
   });
 
   // Dispatch event so live JavaScript controllers (calculator, viewer, orrery) can update
-  window.dispatchEvent(new CustomEvent('space:langchange', { detail: { lang: currentLang } }));
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new CustomEvent('space:langchange', { detail: { lang: currentLang } }));
+  }
 }
 
 /**
  * Switch active language and update DOM
  */
-export function setLanguage(lang) {
-  if (!translations[lang]) return;
+export async function setLanguage(lang) {
   currentLang = lang;
-  localStorage.setItem('space_lang', lang);
+  if (typeof localStorage !== 'undefined') {
+    localStorage.setItem('space_lang', lang);
+  }
+  if (lang !== 'en' && !translations[lang]) {
+    await loadLanguage(lang);
+  }
   applyTranslations();
 }
 
 /**
  * Initialize i18n subsystem
  */
-export function initI18n() {
+export async function initI18n() {
   currentLang = getLanguage();
 
-  // Attach change listeners to any language dropdown
-  document.addEventListener('change', e => {
-    if (e.target && (e.target.id === 'lang-select' || e.target.classList.contains('hud-lang-select'))) {
-      setLanguage(e.target.value);
-    }
-  });
+  if (typeof document !== 'undefined') {
+    document.addEventListener('change', e => {
+      if (e.target && (e.target.id === 'lang-select' || e.target.classList.contains('hud-lang-select'))) {
+        setLanguage(e.target.value);
+      }
+    });
+  }
 
-  // Apply translations immediately
+  // Load language if not english
+  if (currentLang !== 'en' && !translations[currentLang]) {
+    await loadLanguage(currentLang);
+  }
+
   applyTranslations();
 }

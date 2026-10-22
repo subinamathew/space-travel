@@ -6,7 +6,17 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Import our i18n module
-import { t, setLanguage, getLanguage, translations } from '../src/js/i18n.js';
+import { t, setLanguage, getLanguage, translations, supportedLanguages } from '../src/js/i18n.js';
+
+// In Node.js testing environment, load all supported language files from src/i18n
+const i18nDir = path.resolve(__dirname, '../src/i18n');
+for (const langObj of supportedLanguages) {
+  const code = langObj.code;
+  if (!translations[code]) {
+    const file = path.join(i18nDir, `${code}.json`);
+    translations[code] = JSON.parse(fs.readFileSync(file, 'utf8'));
+  }
+}
 
 console.log('--- Testing i18n Module ---');
 console.log('Available languages:', Object.keys(translations));
