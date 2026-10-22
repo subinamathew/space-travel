@@ -86,7 +86,7 @@
         {
           "label": "Temperatura Superficiale",
           "value": "5.500 °C (5.778 K)",
-          "sub": "Temperatura del nucleo: ~15.000.000 °C"
+          "sub": "Superficie 55× l'acqua bollente; nucleo 150.000× più caldo dell'acqua bollente (~15M°C)"
         },
         {
           "label": "Diametro Equatoriale",
@@ -159,12 +159,12 @@
         {
           "label": "Temperatura Superficiale",
           "value": "−180 °C a 430 °C",
-          "sub": "Escursione termica estrema"
+          "sub": "Il giorno è 4× l'acqua bollente; la notte è 9× più fredda di un congelatore"
         },
         {
           "label": "Lune & Anelli",
           "value": "0 Lune · 0 Anelli",
-          "sub": "Pianeta roccioso solitario"
+          "sub": "Le lune sono: nessuna (0 lune)"
         },
         {
           "label": "Atmosfera",
@@ -212,12 +212,12 @@
         {
           "label": "Temperatura Superficiale",
           "value": "465 °C (Media)",
-          "sub": "Superficie più calda del sistema solare"
+          "sub": "Quasi 5× più caldo dell'acqua bollente — fonde il piombo!"
         },
         {
           "label": "Lune & Anelli",
           "value": "0 Lune · 0 Anelli",
-          "sub": "Nessun satellite naturale"
+          "sub": "Le lune sono: nessuna (0 lune)"
         },
         {
           "label": "Atmosfera",
@@ -265,12 +265,12 @@
         {
           "label": "Temperatura Superficiale",
           "value": "−88 °C a 58 °C",
-          "sub": "Media: 15 °C (Zona abitabile)"
+          "sub": "Media: 15°C — temperatura ambiente confortevole con oceani liquidi"
         },
         {
           "label": "Lune & Anelli",
           "value": "1 Luna · 0 Anelli",
-          "sub": "Luna (Orbita a 384.400 km)"
+          "sub": "La luna è: Luna (La Luna)"
         },
         {
           "label": "Atmosfera",
@@ -318,12 +318,12 @@
         {
           "label": "Temperatura Superficiale",
           "value": "−140 °C a 20 °C",
-          "sub": "Media: −63 °C"
+          "sub": "Media: −63°C — oltre 3× più freddo del ghiaccio del congelatore"
         },
         {
           "label": "Lune & Anelli",
           "value": "2 Lune · 0 Anelli",
-          "sub": "Phobos e Deimos"
+          "sub": "Le lune sono: Phobos e Deimos"
         },
         {
           "label": "Atmosfera",
@@ -371,12 +371,12 @@
         {
           "label": "Temperatura Nubi",
           "value": "−110 °C",
-          "sub": "Nucleo fino a ~24.000 °C"
+          "sub": "Nubi a −110°C; il nucleo profondo è 240× più caldo dell'acqua bollente (~24.000°C)"
         },
         {
           "label": "Lune & Anelli",
           "value": "95 Lune · 4 Anelli",
-          "sub": "Io, Europa, Ganimede, Callisto"
+          "sub": "Le lune principali sono: Io, Europa, Ganimede, Callisto"
         },
         {
           "label": "Atmosfera",
@@ -424,12 +424,12 @@
         {
           "label": "Temperatura Nubi",
           "value": "−140 °C",
-          "sub": "Media dello strato superiore"
+          "sub": "Nubi superiori −140°C (7× più freddo di un congelatore); interno 115× l'acqua bollente"
         },
         {
           "label": "Lune & Anelli",
           "value": "146 Lune · 7 Anelli Principali",
-          "sub": "Titano, Encelado; anelli estesi per 282.000 km"
+          "sub": "Le lune principali sono: Titano, Encelado, Mimas"
         },
         {
           "label": "Atmosfera",
@@ -477,12 +477,12 @@
         {
           "label": "Temperatura Più Bassa",
           "value": "−224 °C",
-          "sub": "Atmosfera planetaria più fredda"
+          "sub": "Minima −224°C — 11× più freddo di un congelatore, atmosfera più fredda"
         },
         {
           "label": "Lune & Anelli",
           "value": "28 Lune · 13 Anelli",
-          "sub": "Titania, Oberon, Umbriel, Ariel, Miranda"
+          "sub": "Le lune principali sono: Titania, Oberon, Umbriel, Ariel, Miranda"
         },
         {
           "label": "Atmosfera",
@@ -530,12 +530,12 @@
         {
           "label": "Temperatura Nubi",
           "value": "−201 °C",
-          "sub": "Venti supersonici fino a 2.160 km/h"
+          "sub": "Media −201°C — 10× più freddo di un congelatore, congela l'azoto gassoso"
         },
         {
           "label": "Lune & Anelli",
           "value": "16 Lune · 5 Anelli",
-          "sub": "Tritone (luna criovulcanica retrograda)"
+          "sub": "Le lune principali sono: Tritone, Proteo, Nereide"
         },
         {
           "label": "Atmosfera",

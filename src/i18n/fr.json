@@ -86,7 +86,7 @@
         {
           "label": "Température de Surface",
           "value": "5 500 °C (5 778 K)",
-          "sub": "Température au cœur : ~15 000 000 °C"
+          "sub": "Surface 55× l'eau bouillante ; cœur 150 000× plus chaud que l'eau bouillante (~15M°C)"
         },
         {
           "label": "Diamètre Équatorial",
@@ -159,12 +159,12 @@
         {
           "label": "Température de Surface",
           "value": "−180 °C à 430 °C",
-          "sub": "Fluctuation thermique extrême"
+          "sub": "Jour 4× l'eau bouillante ; nuit 9× plus froide qu'un congélateur"
         },
         {
           "label": "Lunes & Anneaux",
           "value": "0 Lune · 0 Anneau",
-          "sub": "Monde tellurique solitaire"
+          "sub": "Les lunes sont : aucune (0 lune)"
         },
         {
           "label": "Atmosphère",
@@ -212,12 +212,12 @@
         {
           "label": "Température de Surface",
           "value": "465 °C (Moyenne)",
-          "sub": "Surface la plus brûlante du système"
+          "sub": "Près de 5× plus chaud que l'eau bouillante — fait fondre le plomb !"
         },
         {
           "label": "Lunes & Anneaux",
           "value": "0 Lune · 0 Anneau",
-          "sub": "Aucun satellite naturel"
+          "sub": "Les lunes sont : aucune (0 lune)"
         },
         {
           "label": "Atmosphère",
@@ -265,12 +265,12 @@
         {
           "label": "Température de Surface",
           "value": "−88 °C à 58 °C",
-          "sub": "Moyenne : 15 °C (Zone habitable)"
+          "sub": "Moyenne : 15°C — température ambiante agréable avec océans liquides"
         },
         {
           "label": "Lunes & Anneaux",
           "value": "1 Lune · 0 Anneau",
-          "sub": "Lune (Orbite à 384 400 km)"
+          "sub": "La lune est : Luna (La Lune)"
         },
         {
           "label": "Atmosphère",
@@ -318,12 +318,12 @@
         {
           "label": "Température de Surface",
           "value": "−140 °C à 20 °C",
-          "sub": "Moyenne : −63 °C"
+          "sub": "Moyenne : −63°C — plus de 3× plus froid que la glace d'un congélateur"
         },
         {
           "label": "Lunes & Anneaux",
           "value": "2 Lunes · 0 Anneau",
-          "sub": "Phobos et Déimos"
+          "sub": "Les lunes sont : Phobos et Déimos"
         },
         {
           "label": "Atmosphère",
@@ -371,12 +371,12 @@
         {
           "label": "Température au Sommet des Nuages",
           "value": "−110 °C",
-          "sub": "Cœur atteignant ~24 000 °C"
+          "sub": "Haut des nuages −110°C ; cœur profond 240× plus chaud que l'eau bouillante (~24 000°C)"
         },
         {
           "label": "Lunes & Anneaux",
           "value": "95 Lunes · 4 Anneaux",
-          "sub": "Io, Europe, Ganymède, Callisto"
+          "sub": "Les lunes principales sont : Io, Europe, Ganymède, Callisto"
         },
         {
           "label": "Atmosphère",
@@ -424,12 +424,12 @@
         {
           "label": "Température au Sommet des Nuages",
           "value": "−140 °C",
-          "sub": "Moyenne des nuages supérieurs"
+          "sub": "Nuages supérieurs −140°C (7× plus froid qu'un congélateur) ; intérieur 115× l'eau bouillante"
         },
         {
           "label": "Lunes & Anneaux",
           "value": "146 Lunes · 7 Anneaux Principaux",
-          "sub": "Titan, Encelade ; anneaux sur 282 000 km"
+          "sub": "Les lunes principales sont : Titan, Encelade, Mimas"
         },
         {
           "label": "Atmosphère",
@@ -477,12 +477,12 @@
         {
           "label": "Température la Plus Basse",
           "value": "−224 °C",
-          "sub": "Atmosphère planétaire la plus froide"
+          "sub": "Minimum −224°C — 11× plus froid qu'un congélateur, atmosphère la plus froide"
         },
         {
           "label": "Lunes & Anneaux",
           "value": "28 Lunes · 13 Anneaux",
-          "sub": "Titania, Obéron, Umbriel, Ariel, Miranda"
+          "sub": "Les lunes principales sont : Titania, Obéron, Umbriel, Ariel, Miranda"
         },
         {
           "label": "Atmosphère",
@@ -530,12 +530,12 @@
         {
           "label": "Température au Sommet des Nuages",
           "value": "−201 °C",
-          "sub": "Vents supersoniques jusqu'à 2 160 km/h"
+          "sub": "Moyenne −201°C — 10× plus froid qu'un congélateur, gèle l'azote gazeux"
         },
         {
           "label": "Lunes & Anneaux",
           "value": "16 Lunes · 5 Anneaux",
-          "sub": "Triton (lune cryovolcanique rétrograde)"
+          "sub": "Les lunes principales sont : Triton, Protée, Néréide"
         },
         {
           "label": "Atmosphère",

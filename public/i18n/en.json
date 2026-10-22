@@ -86,7 +86,7 @@
         {
           "label": "Surface Temperature",
           "value": "5,500°C (5,778 K)",
-          "sub": "Core temperature: ~15,000,000°C"
+          "sub": "Surface is 55× boiling water; core is 150,000× hotter than boiling water (~15M°C)"
         },
         {
           "label": "Equatorial Diameter",
@@ -159,12 +159,12 @@
         {
           "label": "Surface Temperature",
           "value": "−180°C to 430°C",
-          "sub": "Extreme diurnal fluctuation"
+          "sub": "Day is 4× boiling water; night is 9× colder than a freezer"
         },
         {
           "label": "Moons & Rings",
           "value": "0 Moons · 0 Rings",
-          "sub": "Unaccompanied terrestrial"
+          "sub": "The moons are: none (0 moons)"
         },
         {
           "label": "Atmosphere",
@@ -212,12 +212,12 @@
         {
           "label": "Surface Temperature",
           "value": "465°C (Average)",
-          "sub": "Hottest surface in solar system"
+          "sub": "Nearly 5× hotter than boiling water — melts lead!"
         },
         {
           "label": "Moons & Rings",
           "value": "0 Moons · 0 Rings",
-          "sub": "No natural satellites"
+          "sub": "The moons are: none (0 moons)"
         },
         {
           "label": "Atmosphere",
@@ -265,12 +265,12 @@
         {
           "label": "Surface Temperature",
           "value": "−88°C to 58°C",
-          "sub": "Mean: 15°C (Habitable Zone)"
+          "sub": "Mean: 15°C — comfortable room heat with liquid oceans"
         },
         {
           "label": "Moons & Rings",
           "value": "1 Moon · 0 Rings",
-          "sub": "Luna (384,400 km orbit)"
+          "sub": "The moon is: Luna (The Moon)"
         },
         {
           "label": "Atmosphere",
@@ -318,12 +318,12 @@
         {
           "label": "Surface Temperature",
           "value": "−140°C to 20°C",
-          "sub": "Mean: −63°C"
+          "sub": "Mean: −63°C — over 3× colder than kitchen freezer ice"
         },
         {
           "label": "Moons & Rings",
           "value": "2 Moons · 0 Rings",
-          "sub": "Phobos and Deimos"
+          "sub": "The moons are: Phobos and Deimos"
         },
         {
           "label": "Atmosphere",
@@ -371,12 +371,12 @@
         {
           "label": "Cloud-Top Temperature",
           "value": "−110°C",
-          "sub": "Core reaches ~24,000°C"
+          "sub": "Cloud tops −110°C; deep core is 240× hotter than boiling water (~24,000°C)"
         },
         {
           "label": "Moons & Rings",
           "value": "95 Moons · 4 Rings",
-          "sub": "Io, Europa, Ganymede, Callisto"
+          "sub": "The major moons are: Io, Europa, Ganymede, Callisto"
         },
         {
           "label": "Atmosphere",
@@ -424,12 +424,12 @@
         {
           "label": "Cloud-Top Temperature",
           "value": "−140°C",
-          "sub": "Mean upper cloud layer"
+          "sub": "Upper clouds −140°C (7× colder than a freezer); interior is 115× boiling water"
         },
         {
           "label": "Moons & Rings",
           "value": "146 Moons · 7 Main Rings",
-          "sub": "Titan, Enceladus; 282,000 km ring system"
+          "sub": "The major moons are: Titan, Enceladus, Mimas"
         },
         {
           "label": "Atmosphere",
@@ -477,12 +477,12 @@
         {
           "label": "Lowest Temperature",
           "value": "−224°C",
-          "sub": "Coldest planetary atmosphere"
+          "sub": "Lowest −224°C — 11× colder than a freezer, coldest atmosphere in solar system"
         },
         {
           "label": "Moons & Rings",
           "value": "28 Moons · 13 Rings",
-          "sub": "Titania, Oberon, Umbriel, Ariel, Miranda"
+          "sub": "The major moons are: Titania, Oberon, Umbriel, Ariel, Miranda"
         },
         {
           "label": "Atmosphere",
@@ -530,12 +530,12 @@
         {
           "label": "Cloud-Top Temperature",
           "value": "−201°C",
-          "sub": "Supersonic winds up to 2,160 km/h"
+          "sub": "Mean −201°C — 10× colder than a freezer, freezes nitrogen gas"
         },
         {
           "label": "Moons & Rings",
           "value": "16 Moons · 5 Rings",
-          "sub": "Triton (retrograde cryovolcanic moon)"
+          "sub": "The major moons are: Triton, Proteus, Nereid"
         },
         {
           "label": "Atmosphere",

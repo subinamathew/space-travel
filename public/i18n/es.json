@@ -86,7 +86,7 @@
         {
           "label": "Temperatura Superficial",
           "value": "5.500 °C (5.778 K)",
-          "sub": "Temperatura del núcleo: ~15.000.000 °C"
+          "sub": "Superficie 55× el agua hirviendo; el núcleo es 150.000× más caliente que el agua hirviendo (~15M°C)"
         },
         {
           "label": "Diámetro Ecuatorial",
@@ -159,12 +159,12 @@
         {
           "label": "Temperatura Superficial",
           "value": "−180 °C a 430 °C",
-          "sub": "Fluctuación térmica extrema"
+          "sub": "El día es 4× el agua hirviendo; la noche es 9× más fría que un congelador"
         },
         {
           "label": "Lunas y Anillos",
           "value": "0 Lunas · 0 Anillos",
-          "sub": "Planeta rocoso solitario"
+          "sub": "Las lunas son: ninguna (0 lunas)"
         },
         {
           "label": "Atmósfera",
@@ -212,12 +212,12 @@
         {
           "label": "Temperatura Superficial",
           "value": "465 °C (Promedio)",
-          "sub": "Superficie más caliente del sistema"
+          "sub": "Casi 5× más caliente que el agua hirviendo: ¡funde el plomo!"
         },
         {
           "label": "Lunas y Anillos",
           "value": "0 Lunas · 0 Anillos",
-          "sub": "Sin satélites naturales"
+          "sub": "Las lunas son: ninguna (0 lunas)"
         },
         {
           "label": "Atmósfera",
@@ -265,12 +265,12 @@
         {
           "label": "Temperatura Superficial",
           "value": "−88 °C a 58 °C",
-          "sub": "Media: 15 °C (Zona habitable)"
+          "sub": "Media: 15°C — temperatura ambiente confortable con océanos líquidos"
         },
         {
           "label": "Lunas y Anillos",
           "value": "1 Luna · 0 Anillos",
-          "sub": "La Luna (Órbita a 384.400 km)"
+          "sub": "La luna es: Luna (La Luna)"
         },
         {
           "label": "Atmósfera",
@@ -318,12 +318,12 @@
         {
           "label": "Temperatura Superficial",
           "value": "−140 °C a 20 °C",
-          "sub": "Media: −63 °C"
+          "sub": "Media: −63°C — más de 3× más frío que el hielo del congelador"
         },
         {
           "label": "Lunas y Anillos",
           "value": "2 Lunas · 0 Anillos",
-          "sub": "Fobos y Deimos"
+          "sub": "Las lunas son: Fobos y Deimos"
         },
         {
           "label": "Atmósfera",
@@ -371,12 +371,12 @@
         {
           "label": "Temperatura en Nubes",
           "value": "−110 °C",
-          "sub": "Núcleo alcanza ~24.000 °C"
+          "sub": "Nubes superiores −110°C; el núcleo profundo es 240× más caliente que el agua hirviendo (~24.000°C)"
         },
         {
           "label": "Lunas y Anillos",
           "value": "95 Lunas · 4 Anillos",
-          "sub": "Ío, Europa, Ganimedes, Calisto"
+          "sub": "Las lunas principales son: Ío, Europa, Ganimedes, Calisto"
         },
         {
           "label": "Atmósfera",
@@ -424,12 +424,12 @@
         {
           "label": "Temperatura en Nubes",
           "value": "−140 °C",
-          "sub": "Media de la capa superior de nubes"
+          "sub": "Nubes altas −140°C (7× más frío que un congelador); interior 115× el agua hirviendo"
         },
         {
           "label": "Lunas y Anillos",
           "value": "146 Lunas · 7 Anillos Principales",
-          "sub": "Titán, Encélado; sistema de 282.000 km"
+          "sub": "Las lunas principales son: Titán, Encélado, Mimas"
         },
         {
           "label": "Atmósfera",
@@ -477,12 +477,12 @@
         {
           "label": "Temperatura Más Baja",
           "value": "−224 °C",
-          "sub": "Atmósfera planetaria más fría"
+          "sub": "Mínima −224°C — 11× más frío que un congelador, la atmósfera más fría"
         },
         {
           "label": "Lunas y Anillos",
           "value": "28 Lunas · 13 Anillos",
-          "sub": "Titania, Oberón, Umbriel, Ariel, Miranda"
+          "sub": "Las lunas principales son: Titania, Oberón, Umbriel, Ariel, Miranda"
         },
         {
           "label": "Atmósfera",
@@ -530,12 +530,12 @@
         {
           "label": "Temperatura en Nubes",
           "value": "−201 °C",
-          "sub": "Vientos supersónicos de hasta 2.160 km/h"
+          "sub": "Media −201°C — 10× más frío que un congelador, congela el nitrógeno gas"
         },
         {
           "label": "Lunas y Anillos",
           "value": "16 Lunas · 5 Anillos",
-          "sub": "Tritón (luna criovolcánica retrógrada)"
+          "sub": "Las lunas principales son: Tritón, Proteo, Nereida"
         },
         {
           "label": "Atmósfera",

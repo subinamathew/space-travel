@@ -86,7 +86,7 @@
         {
           "label": "Oberflächentemperatur",
           "value": "5.500 °C (5.778 K)",
-          "sub": "Kerntemperatur: ~15.000.000 °C"
+          "sub": "Oberfläche 55× kochendes Wasser; Kern ist 150.000× heißer als kochendes Wasser (~15 Mio. °C)"
         },
         {
           "label": "Äquatordurchmesser",
@@ -159,12 +159,12 @@
         {
           "label": "Oberflächentemperatur",
           "value": "−180 °C bis 430 °C",
-          "sub": "Extreme Temperaturunterschiede"
+          "sub": "Tag ist 4× heißer als kochendes Wasser; Nacht ist 9× kälter als ein Gefrierfach"
         },
         {
           "label": "Monde & Ringe",
           "value": "0 Monde · 0 Ringe",
-          "sub": "Einsamer Gesteinsplanet"
+          "sub": "Die Monde sind: keine (0 Monde)"
         },
         {
           "label": "Atmosphäre",
@@ -212,12 +212,12 @@
         {
           "label": "Oberflächentemperatur",
           "value": "465 °C (Mittelwert)",
-          "sub": "Heißeste Oberfläche im Sonnensystem"
+          "sub": "Fast 5× heißer als kochendes Wasser — schmilzt Blei!"
         },
         {
           "label": "Monde & Ringe",
           "value": "0 Monde · 0 Ringe",
-          "sub": "Keine natürlichen Satelliten"
+          "sub": "Die Monde sind: keine (0 Monde)"
         },
         {
           "label": "Atmosphäre",
@@ -265,12 +265,12 @@
         {
           "label": "Oberflächentemperatur",
           "value": "−88 °C bis 58 °C",
-          "sub": "Mittel: 15 °C (Habitable Zone)"
+          "sub": "Mittel: 15 °C — angenehme Zimmertemperatur mit flüssigen Ozeanen"
         },
         {
           "label": "Monde & Ringe",
           "value": "1 Mond · 0 Ringe",
-          "sub": "Mond / Luna (384.400 km Bahn)"
+          "sub": "Der Mond ist: Luna (Der Mond)"
         },
         {
           "label": "Atmosphäre",
@@ -318,12 +318,12 @@
         {
           "label": "Oberflächentemperatur",
           "value": "−140 °C bis 20 °C",
-          "sub": "Mittel: −63 °C"
+          "sub": "Mittel: −63 °C — über 3× kälter als Gefrierschrank-Eis"
         },
         {
           "label": "Monde & Ringe",
           "value": "2 Monde · 0 Ringe",
-          "sub": "Phobos und Deimos"
+          "sub": "Die Monde sind: Phobos und Deimos"
         },
         {
           "label": "Atmosphäre",
@@ -371,12 +371,12 @@
         {
           "label": "Wolkendeckentemperatur",
           "value": "−110 °C",
-          "sub": "Kern erreicht ~24.000 °C"
+          "sub": "Wolkendecke −110 °C; tiefer Kern ist 240× heißer als kochendes Wasser (~24.000 °C)"
         },
         {
           "label": "Monde & Ringe",
           "value": "95 Monde · 4 Ringe",
-          "sub": "Io, Europa, Ganymed, Kallisto"
+          "sub": "Die Hauptmonde sind: Io, Europa, Ganymed, Kallisto"
         },
         {
           "label": "Atmosphäre",
@@ -424,12 +424,12 @@
         {
           "label": "Wolkendeckentemperatur",
           "value": "−140 °C",
-          "sub": "Mittlere obere Wolkenschicht"
+          "sub": "Obere Wolken −140 °C (7× kälter als Gefrierfach); Inneres 115× kochendes Wasser"
         },
         {
           "label": "Monde & Ringe",
           "value": "146 Monde · 7 Hauptringe",
-          "sub": "Titan, Enceladus; 282.000 km Ringsystem"
+          "sub": "Die Hauptmonde sind: Titan, Enceladus, Mimas"
         },
         {
           "label": "Atmosphäre",
@@ -477,12 +477,12 @@
         {
           "label": "Tiefste Temperatur",
           "value": "−224 °C",
-          "sub": "Kälteste Planetenatmosphäre"
+          "sub": "Tiefstwert −224 °C — 11× kälter als Gefrierfach, kälteste Atmosphäre"
         },
         {
           "label": "Monde & Ringe",
           "value": "28 Monde · 13 Ringe",
-          "sub": "Titania, Oberon, Umbriel, Ariel, Miranda"
+          "sub": "Die Hauptmonde sind: Titania, Oberon, Umbriel, Ariel, Miranda"
         },
         {
           "label": "Atmosphäre",
@@ -530,12 +530,12 @@
         {
           "label": "Wolkendeckentemperatur",
           "value": "−201 °C",
-          "sub": "Überschallwinde bis zu 2.160 km/h"
+          "sub": "Mittel: −201 °C — 10× kälter als Gefrierfach, friert Stickstoff ein"
         },
         {
           "label": "Monde & Ringe",
           "value": "16 Monde · 5 Ringe",
-          "sub": "Triton (retrograder Eisvulkanmond)"
+          "sub": "Die Hauptmonde sind: Triton, Proteus, Nereid"
         },
         {
           "label": "Atmosphäre",
