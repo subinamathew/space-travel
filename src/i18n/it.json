@@ -112,7 +112,10 @@
     "deep_dive_title": "Scienza Planetaria e Curiosità",
     "jokes_title": "Battute Spaziali Cosmiche",
     "another_joke_btn": "🎲 Raccontami un'altra battuta!",
-    "show_punchline": "Rivela battuta finale ✨"
+    "show_punchline": "Rivela battuta finale ✨",
+    "choose_astronaut": "Avatar esploratore",
+    "astronaut_male": "👨‍🚀 Uomo",
+    "astronaut_female": "👩‍🚀 Donna"
   },
   "planets": {
     "sun": {

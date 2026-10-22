@@ -112,7 +112,10 @@
     "deep_dive_title": "கோள்களின் அறிவியல் & உண்மைகள்",
     "jokes_title": "விண்வெளி நகைச்சுவைகள்",
     "another_joke_btn": "🎲 மற்றொரு நகைச்சுவை கூறு!",
-    "show_punchline": "பதிலைக் காட்டு ✨"
+    "show_punchline": "பதிலைக் காட்டு ✨",
+    "choose_astronaut": "விண்வெளி வீரர் உருவம்",
+    "astronaut_male": "👨‍🚀 ஆண்",
+    "astronaut_female": "👩‍🚀 பெண்"
   },
   "planets": {
     "sun": {

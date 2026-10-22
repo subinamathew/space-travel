@@ -112,7 +112,10 @@
     "deep_dive_title": "深空行星科学与探索秘闻",
     "jokes_title": "宇宙太空笑话",
     "another_joke_btn": "🎲 再讲一个太空笑话！",
-    "show_punchline": "揭晓笑点 ✨"
+    "show_punchline": "揭晓笑点 ✨",
+    "choose_astronaut": "宇航员化身",
+    "astronaut_male": "👨‍🚀 男宇航员",
+    "astronaut_female": "👩‍🚀 女宇航员"
   },
   "planets": {
     "sun": {

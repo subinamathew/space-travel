@@ -112,7 +112,10 @@
     "deep_dive_title": "惑星の深層科学とトリビア",
     "jokes_title": "宇宙のジョーク集",
     "another_joke_btn": "🎲 別のジョークを見る！",
-    "show_punchline": "オチを見る ✨"
+    "show_punchline": "オチを見る ✨",
+    "choose_astronaut": "探査員アバター",
+    "astronaut_male": "👨‍🚀 男性",
+    "astronaut_female": "👩‍🚀 女性"
   },
   "planets": {
     "sun": {

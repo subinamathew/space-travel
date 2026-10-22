@@ -321,7 +321,7 @@ allBodies.forEach((p, idx) => {
             <aside class="space-calc-sidebar is-minimized" id="space-calc-sidebar" data-gravity="${p.gravityRatio}" data-body="${p.name}" data-slug="${p.slug}">
                 <div class="calc-header" id="calc-header" role="button" tabindex="0" aria-expanded="false" aria-controls="sidebar-body" aria-label="Expand Cosmic Explorer Lab" title="Click to minimize or expand" data-i18n-attr="aria-label:ui.expand_lab">
                     <div class="calc-header-left">
-                        <span class="calc-icon">🧑‍🚀</span>
+                        <span class="calc-icon" id="calc-astronaut-icon" role="button" tabindex="0" aria-label="Toggle astronaut avatar" title="Click to switch astronaut avatar">👨‍🚀</span>
                         <div class="calc-header-text">
                             <h3 data-i18n="ui.lab_title">Cosmic Explorer Lab</h3>
                             <p class="calc-physics-desc" data-i18n="ui.lab_physics" data-i18n-params='{"gravity":"${(p.gravityRatio).toFixed(2)}"}'>Gravity: ${(p.gravityRatio).toFixed(2)}× Earth &bull; Live Physics</p>
@@ -347,6 +347,16 @@ allBodies.forEach((p, idx) => {
 
                 <div class="sidebar-body" id="sidebar-body">
                     <form class="calc-form" onsubmit="return false;">
+                        <div class="calc-field calc-field-avatar">
+                            <div class="field-label-row">
+                                <label data-i18n="ui.choose_astronaut">Explorer Avatar</label>
+                                <div class="unit-toggle avatar-toggle" id="avatar-toggle" role="radiogroup" aria-label="Choose astronaut avatar">
+                                    <button type="button" class="unit-btn avatar-btn active" data-avatar="male" data-i18n="ui.astronaut_male">👨‍🚀 Male</button>
+                                    <button type="button" class="unit-btn avatar-btn" data-avatar="female" data-i18n="ui.astronaut_female">👩‍🚀 Female</button>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="calc-field">
                             <div class="field-label-row">
                                 <label for="input-weight" data-i18n="ui.your_weight">Your Weight</label>

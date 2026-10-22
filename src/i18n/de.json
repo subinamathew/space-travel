@@ -112,7 +112,10 @@
     "deep_dive_title": "Planetare Wissenschaft & Fakten",
     "jokes_title": "Kosmische Weltraumwitze",
     "another_joke_btn": "🎲 Noch einen Witz erzählen!",
-    "show_punchline": "Pointe aufdecken ✨"
+    "show_punchline": "Pointe aufdecken ✨",
+    "choose_astronaut": "Entdecker-Avatar",
+    "astronaut_male": "👨‍🚀 Männlich",
+    "astronaut_female": "👩‍🚀 Weiblich"
   },
   "planets": {
     "sun": {

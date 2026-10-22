@@ -112,7 +112,10 @@
     "deep_dive_title": "Planetary Science & Lore",
     "jokes_title": "Cosmic Space Jokes",
     "another_joke_btn": "🎲 Tell Me Another Joke!",
-    "show_punchline": "Reveal Punchline ✨"
+    "show_punchline": "Reveal Punchline ✨",
+    "choose_astronaut": "Explorer Avatar",
+    "astronaut_male": "👨‍🚀 Male",
+    "astronaut_female": "👩‍🚀 Female"
   },
   "planets": {
     "sun": {

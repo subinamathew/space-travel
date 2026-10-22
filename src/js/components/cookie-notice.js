@@ -123,7 +123,8 @@ export function clearAllCookiesAndStorage() {
       'space_calc_height',
       'space_calc_weight_unit',
       'space_calc_height_unit',
-      'space_calc_minimized'
+      'space_calc_minimized',
+      'space_calc_astronaut'
     ];
     keysToRemove.forEach(k => {
       try {

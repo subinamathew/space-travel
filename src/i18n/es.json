@@ -112,7 +112,10 @@
     "deep_dive_title": "Ciencia Planetaria y Curiosidades",
     "jokes_title": "Chistes Espaciales Cósmicos",
     "another_joke_btn": "🎲 ¡Cuéntame otro chiste!",
-    "show_punchline": "Revelar remate ✨"
+    "show_punchline": "Revelar remate ✨",
+    "choose_astronaut": "Avatar de explorador",
+    "astronaut_male": "👨‍🚀 Hombre",
+    "astronaut_female": "👩‍🚀 Mujer"
   },
   "planets": {
     "sun": {

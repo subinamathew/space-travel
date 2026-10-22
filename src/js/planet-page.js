@@ -87,6 +87,49 @@ function initCosmicCalculator() {
   if (inputWeight) inputWeight.value = Math.round(weightVal);
   if (inputHeight) inputHeight.value = Math.round(heightVal);
 
+  // Astronaut Avatar selection (male 👨‍🚀 or female 👩‍🚀)
+  const astronautIcon = document.getElementById('calc-astronaut-icon');
+  const avatarToggle = document.getElementById('avatar-toggle');
+  let currentAvatar = localStorage.getItem('space_calc_astronaut') || 'male';
+
+  function setAvatar(avatar) {
+    currentAvatar = avatar === 'female' ? 'female' : 'male';
+    localStorage.setItem('space_calc_astronaut', currentAvatar);
+    if (astronautIcon) {
+      astronautIcon.textContent = currentAvatar === 'female' ? '👩‍🚀' : '👨‍🚀';
+    }
+    if (avatarToggle) {
+      const btns = avatarToggle.querySelectorAll('.avatar-btn');
+      btns.forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.avatar === currentAvatar);
+      });
+    }
+  }
+
+  setAvatar(currentAvatar);
+
+  if (avatarToggle) {
+    avatarToggle.addEventListener('click', e => {
+      const btn = e.target.closest('.avatar-btn');
+      if (!btn) return;
+      setAvatar(btn.dataset.avatar);
+    });
+  }
+
+  if (astronautIcon) {
+    astronautIcon.addEventListener('click', e => {
+      e.stopPropagation();
+      setAvatar(currentAvatar === 'male' ? 'female' : 'male');
+    });
+    astronautIcon.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        e.stopPropagation();
+        setAvatar(currentAvatar === 'male' ? 'female' : 'male');
+      }
+    });
+  }
+
   // Minimizable toggle handling (Cosmic Explorer Lab defaults to minimized)
   const toggleBtn = document.getElementById('sidebar-toggle-btn');
   const header = document.getElementById('calc-header');

@@ -112,7 +112,10 @@
     "deep_dive_title": "Sciences planétaires & Connaissances",
     "jokes_title": "Blagues spatiales cosmiques",
     "another_joke_btn": "🎲 Raconte-moi une autre blague !",
-    "show_punchline": "Révéler la chute ✨"
+    "show_punchline": "Révéler la chute ✨",
+    "choose_astronaut": "Avatar d'explorateur",
+    "astronaut_male": "👨‍🚀 Homme",
+    "astronaut_female": "👩‍🚀 Femme"
   },
   "planets": {
     "sun": {
