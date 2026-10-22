@@ -44,6 +44,150 @@
   max-width: 90vw;
 }
 
+/* Star Wars Style Brand Flash */
+.starwars-brand-flash {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 1rem;
+  pointer-events: none;
+  animation: starwars-brand-flash-anim 2.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.starwars-flash-burst {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(260px, 60vmin, 520px);
+  height: clamp(120px, 30vmin, 240px);
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(255, 232, 31, 0.5) 0%, rgba(255, 190, 11, 0.22) 45%, rgba(255, 120, 0, 0) 75%);
+  filter: blur(20px);
+  pointer-events: none;
+  z-index: 1;
+  animation: starwars-burst-glow 2.5s ease-out forwards;
+}
+
+.starwars-flash-title {
+  position: relative;
+  z-index: 2;
+  font-family: $font-family-base;
+  font-size: clamp(2.4rem, 7.5vw, 4.6rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.18em;
+  color: #ffe81f;
+  text-transform: uppercase;
+  -webkit-text-stroke: 1.5px #ffe81f;
+  text-shadow:
+    0 0 16px rgba(255, 232, 31, 0.95),
+    0 0 32px rgba(255, 190, 11, 0.8),
+    0 0 60px rgba(255, 160, 0, 0.55),
+    0 0 100px rgba(255, 130, 0, 0.35);
+  filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.85));
+
+  @include mobile {
+    letter-spacing: 0.12em;
+    -webkit-text-stroke: 1px #ffe81f;
+  }
+}
+
+.starwars-flash-sub {
+  position: relative;
+  z-index: 2;
+  font-family: $font-family-base;
+  font-size: clamp(0.7rem, 2vmin, 0.95rem);
+  font-weight: 700;
+  letter-spacing: 0.42em;
+  color: #d8eeff;
+  text-transform: uppercase;
+  text-shadow: 0 0 12px rgba(100, 200, 255, 0.85);
+  margin-top: 0.45rem;
+
+  @include mobile {
+    letter-spacing: 0.26em;
+  }
+}
+
+@keyframes starwars-brand-flash-anim {
+  0% {
+    opacity: 0;
+    transform: scale(3.2);
+    filter: brightness(4) blur(12px);
+  }
+  10% {
+    opacity: 1;
+    transform: scale(1.15);
+    filter: brightness(2.8) blur(0px);
+  }
+  20% {
+    opacity: 1;
+    transform: scale(1);
+    filter: brightness(1.2);
+  }
+  28% {
+    opacity: 1;
+    transform: scale(1.05);
+    filter: brightness(1.8);
+  }
+  38% {
+    opacity: 1;
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(0.95);
+  }
+  88% {
+    opacity: 0.6;
+    transform: scale(0.85);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.65);
+    filter: blur(4px);
+  }
+}
+
+@keyframes starwars-burst-glow {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.4);
+  }
+  12% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.4);
+  }
+  35% {
+    opacity: 0.85;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+  75% {
+    opacity: 0.5;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.6);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .starwars-brand-flash {
+    animation: none !important;
+    opacity: 1;
+    transform: none !important;
+    filter: none !important;
+  }
+  .starwars-flash-burst {
+    display: none;
+  }
+}
+
 .warp-center-ring {
   width: clamp(60px, 12vmin, 90px);
   height: clamp(60px, 12vmin, 90px);
