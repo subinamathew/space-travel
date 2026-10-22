@@ -6,14 +6,45 @@ import { planets, sunData } from '../src/js/data/planets.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const outputDir = path.resolve(__dirname, '../public/planets');
+// Ensure public and subdirectories exist
+const pubDir = path.resolve(__dirname, '../public');
+if (!fs.existsSync(pubDir)) {
+  fs.mkdirSync(pubDir, { recursive: true });
+}
+
+// 1. Copy src/index.html -> public/index.html
+const srcIndex = path.resolve(__dirname, '../src/index.html');
+const pubIndex = path.resolve(pubDir, 'index.html');
+if (fs.existsSync(srcIndex)) {
+  fs.copyFileSync(srcIndex, pubIndex);
+  console.log('Copied: src/index.html -> public/index.html');
+}
+
+// 2. Copy images/ -> public/images/
+const srcImagesDir = path.resolve(__dirname, '../images');
+const pubImagesDir = path.resolve(pubDir, 'images');
+if (fs.existsSync(srcImagesDir)) {
+  if (!fs.existsSync(pubImagesDir)) {
+    fs.mkdirSync(pubImagesDir, { recursive: true });
+  }
+  const imgFiles = fs.readdirSync(srcImagesDir);
+  imgFiles.forEach(file => {
+    if (file.endsWith('.png') || file.endsWith('.jpg') || file.endsWith('.svg') || file.endsWith('.webp')) {
+      fs.copyFileSync(path.join(srcImagesDir, file), path.join(pubImagesDir, file));
+    }
+  });
+  console.log('Copied: images/ -> public/images/');
+}
+
+// 3. Ensure public/planets exists
+const outputDir = path.resolve(pubDir, 'planets');
 if (!fs.existsSync(outputDir)) {
   fs.mkdirSync(outputDir, { recursive: true });
 }
 
-// Copy i18n JSON files to public/i18n as well
+// 4. Copy i18n JSON files to public/i18n
 const srcI18nDir = path.resolve(__dirname, '../src/i18n');
-const pubI18nDir = path.resolve(__dirname, '../public/i18n');
+const pubI18nDir = path.resolve(pubDir, 'i18n');
 if (fs.existsSync(srcI18nDir)) {
   if (!fs.existsSync(pubI18nDir)) {
     fs.mkdirSync(pubI18nDir, { recursive: true });
@@ -24,6 +55,7 @@ if (fs.existsSync(srcI18nDir)) {
       fs.copyFileSync(path.join(srcI18nDir, file), path.join(pubI18nDir, file));
     }
   });
+  console.log('Copied: src/i18n/ -> public/i18n/');
 }
 
 

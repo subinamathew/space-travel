@@ -1,4 +1,28 @@
+# Dependencies
 node_modules/
-.DS_Store
-.agents/
 
+# Generated build output (generated on the fly by `npm run build`)
+public/
+
+# Environment and secrets
+.env
+.env.local
+.env.*.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Netlify local dev and build cache
+.netlify/
+
+# OS / Editor metadata
+.DS_Store
+Thumbs.db
+.agents/
+.idea/
+.vscode/
+
+# Temporary / Scratch
+scratch/

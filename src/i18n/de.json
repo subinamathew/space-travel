@@ -164,7 +164,7 @@
         {
           "label": "Monde & Ringe",
           "value": "0 Monde · 0 Ringe",
-          "sub": "Die Monde sind: keine (0 Monde)"
+          "sub": "Merkur besitzt keine Monde oder natürlichen Satelliten"
         },
         {
           "label": "Atmosphäre",
@@ -217,7 +217,7 @@
         {
           "label": "Monde & Ringe",
           "value": "0 Monde · 0 Ringe",
-          "sub": "Die Monde sind: keine (0 Monde)"
+          "sub": "Die Venus besitzt keine Monde oder natürlichen Satelliten"
         },
         {
           "label": "Atmosphäre",
@@ -270,7 +270,7 @@
         {
           "label": "Monde & Ringe",
           "value": "1 Mond · 0 Ringe",
-          "sub": "Der Mond ist: Luna (Der Mond)"
+          "sub": "Der einzige natürliche Mond der Erde ist Luna (Der Mond)"
         },
         {
           "label": "Atmosphäre",
@@ -323,7 +323,7 @@
         {
           "label": "Monde & Ringe",
           "value": "2 Monde · 0 Ringe",
-          "sub": "Die Monde sind: Phobos und Deimos"
+          "sub": "Die beiden Monde sind Phobos und Deimos"
         },
         {
           "label": "Atmosphäre",
@@ -376,7 +376,7 @@
         {
           "label": "Monde & Ringe",
           "value": "95 Monde · 4 Ringe",
-          "sub": "Die Hauptmonde sind: Io, Europa, Ganymed, Kallisto"
+          "sub": "Die bekanntesten Hauptmonde sind Io, Europa, Ganymed und Kallisto"
         },
         {
           "label": "Atmosphäre",
@@ -429,7 +429,7 @@
         {
           "label": "Monde & Ringe",
           "value": "146 Monde · 7 Hauptringe",
-          "sub": "Die Hauptmonde sind: Titan, Enceladus, Mimas"
+          "sub": "Die bekanntesten Hauptmonde sind Titan, Enceladus und Mimas"
         },
         {
           "label": "Atmosphäre",
@@ -482,7 +482,7 @@
         {
           "label": "Monde & Ringe",
           "value": "28 Monde · 13 Ringe",
-          "sub": "Die Hauptmonde sind: Titania, Oberon, Umbriel, Ariel, Miranda"
+          "sub": "Die bekanntesten Hauptmonde sind Titania, Oberon, Umbriel, Ariel und Miranda"
         },
         {
           "label": "Atmosphäre",
@@ -535,7 +535,7 @@
         {
           "label": "Monde & Ringe",
           "value": "16 Monde · 5 Ringe",
-          "sub": "Die Hauptmonde sind: Triton, Proteus, Nereid"
+          "sub": "Die bekanntesten Hauptmonde sind Triton, Proteus und Nereid"
         },
         {
           "label": "Atmosphäre",

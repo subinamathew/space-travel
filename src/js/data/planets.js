@@ -68,7 +68,7 @@ export const planets = [
       { label: 'Equatorial Radius', value: '2,439.7 km', sub: '0.383 × Earth' },
       { label: 'Mass', value: '3.30 × 10²³ kg', sub: '0.055 × Earth' },
       { label: 'Surface Temperature', value: '−180°C to 430°C', sub: 'Day is 4× boiling water; night is 9× colder than a freezer' },
-      { label: 'Moons & Rings', value: '0 Moons · 0 Rings', sub: 'The moons are: none (0 moons)' },
+      { label: 'Moons & Rings', value: '0 Moons · 0 Rings', sub: 'Mercury has no moons or natural satellites' },
       { label: 'Atmosphere', value: 'Exosphere', sub: 'Trace Oxygen, Sodium, Hydrogen' }
     ]
   },
@@ -103,7 +103,7 @@ export const planets = [
       { label: 'Equatorial Radius', value: '6,051.8 km', sub: '0.949 × Earth (Twin)' },
       { label: 'Mass', value: '4.87 × 10²⁴ kg', sub: '0.815 × Earth' },
       { label: 'Surface Temperature', value: '465°C (Average)', sub: 'Nearly 5× hotter than boiling water — melts lead!' },
-      { label: 'Moons & Rings', value: '0 Moons · 0 Rings', sub: 'The moons are: none (0 moons)' },
+      { label: 'Moons & Rings', value: '0 Moons · 0 Rings', sub: 'Venus has no moons or natural satellites' },
       { label: 'Atmosphere', value: '96.5% CO₂, 3.5% N₂', sub: 'Sulfuric acid clouds; 92 bar pressure' }
     ]
   },
@@ -140,7 +140,7 @@ export const planets = [
       { label: 'Equatorial Radius', value: '6,371.0 km', sub: 'Base unit: 1.000 R⊕' },
       { label: 'Mass', value: '5.972 × 10²⁴ kg', sub: 'Base unit: 1.000 M⊕' },
       { label: 'Surface Temperature', value: '−88°C to 58°C', sub: 'Mean: 15°C — comfortable room heat with liquid oceans' },
-      { label: 'Moons & Rings', value: '1 Moon · 0 Rings', sub: 'The moon is: Luna (The Moon)' },
+      { label: 'Moons & Rings', value: '1 Moon · 0 Rings', sub: "Earth's single natural moon is Luna (The Moon)" },
       { label: 'Atmosphere', value: '78% N₂, 21% O₂, 1% Ar', sub: 'Protective ozone layer & magnetosphere' }
     ]
   },
@@ -178,7 +178,7 @@ export const planets = [
       { label: 'Equatorial Radius', value: '3,389.5 km', sub: '0.532 × Earth' },
       { label: 'Mass', value: '6.42 × 10²³ kg', sub: '0.107 × Earth' },
       { label: 'Surface Temperature', value: '−140°C to 20°C', sub: 'Mean: −63°C — over 3× colder than kitchen freezer ice' },
-      { label: 'Moons & Rings', value: '2 Moons · 0 Rings', sub: 'The moons are: Phobos and Deimos' },
+      { label: 'Moons & Rings', value: '2 Moons · 0 Rings', sub: 'The two moons are Phobos and Deimos' },
       { label: 'Atmosphere', value: '95.3% CO₂, 2.6% N₂', sub: 'Thin atmosphere (~0.006 bar)' }
     ]
   },
@@ -218,7 +218,7 @@ export const planets = [
       { label: 'Equatorial Radius', value: '69,911 km', sub: '10.97 × Earth' },
       { label: 'Mass', value: '1.898 × 10²⁷ kg', sub: '317.8 × Earth (2.5× all other planets)' },
       { label: 'Cloud-Top Temperature', value: '−110°C', sub: 'Cloud tops −110°C; deep core is 240× hotter than boiling water (~24,000°C)' },
-      { label: 'Moons & Rings', value: '95 Moons · 4 Rings', sub: 'The major moons are: Io, Europa, Ganymede, Callisto' },
+      { label: 'Moons & Rings', value: '95 Moons · 4 Rings', sub: 'The major moons are Io, Europa, Ganymede, and Callisto' },
       { label: 'Atmosphere', value: '89.8% H₂, 10.2% He', sub: 'Trace methane, ammonia, water vapor' }
     ]
   },
@@ -258,7 +258,7 @@ export const planets = [
       { label: 'Equatorial Radius', value: '58,232 km', sub: '9.14 × Earth' },
       { label: 'Mass', value: '5.683 × 10²⁶ kg', sub: '95.2 × Earth (Density: 0.687 g/cm³)' },
       { label: 'Cloud-Top Temperature', value: '−140°C', sub: 'Upper clouds −140°C (7× colder than a freezer); interior is 115× boiling water' },
-      { label: 'Moons & Rings', value: '146 Moons · 7 Main Rings', sub: 'The major moons are: Titan, Enceladus, Mimas' },
+      { label: 'Moons & Rings', value: '146 Moons · 7 Main Rings', sub: 'The major moons are Titan, Enceladus, and Mimas' },
       { label: 'Atmosphere', value: '96.3% H₂, 3.25% He', sub: 'Trace methane, ammonia, ethane' }
     ]
   },
@@ -297,7 +297,7 @@ export const planets = [
       { label: 'Equatorial Radius', value: '25,362 km', sub: '3.98 × Earth' },
       { label: 'Mass', value: '8.681 × 10²⁵ kg', sub: '14.54 × Earth' },
       { label: 'Lowest Temperature', value: '−224°C', sub: 'Lowest −224°C — 11× colder than a freezer, coldest atmosphere in solar system' },
-      { label: 'Moons & Rings', value: '28 Moons · 13 Rings', sub: 'The major moons are: Titania, Oberon, Umbriel, Ariel, Miranda' },
+      { label: 'Moons & Rings', value: '28 Moons · 13 Rings', sub: 'The major moons are Titania, Oberon, Umbriel, Ariel, and Miranda' },
       { label: 'Atmosphere', value: '82.5% H₂, 15.2% He, 2.3% CH₄', sub: 'Methane absorbs red light yielding cyan hue' }
     ]
   },
@@ -335,7 +335,7 @@ export const planets = [
       { label: 'Equatorial Radius', value: '24,622 km', sub: '3.86 × Earth' },
       { label: 'Mass', value: '1.024 × 10²⁶ kg', sub: '17.15 × Earth' },
       { label: 'Cloud-Top Temperature', value: '−201°C', sub: 'Mean −201°C — 10× colder than a freezer, freezes nitrogen gas' },
-      { label: 'Moons & Rings', value: '16 Moons · 5 Rings', sub: 'The major moons are: Triton, Proteus, Nereid' },
+      { label: 'Moons & Rings', value: '16 Moons · 5 Rings', sub: 'The major moons are Triton, Proteus, and Nereid' },
       { label: 'Atmosphere', value: '80.0% H₂, 19.0% He, 1.5% CH₄', sub: 'Vivid azure blue with Great Dark Spot' }
     ]
   }

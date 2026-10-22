@@ -164,7 +164,7 @@
         {
           "label": "Moons & Rings",
           "value": "0 Moons · 0 Rings",
-          "sub": "The moons are: none (0 moons)"
+          "sub": "Mercury has no moons or natural satellites"
         },
         {
           "label": "Atmosphere",
@@ -217,7 +217,7 @@
         {
           "label": "Moons & Rings",
           "value": "0 Moons · 0 Rings",
-          "sub": "The moons are: none (0 moons)"
+          "sub": "Venus has no moons or natural satellites"
         },
         {
           "label": "Atmosphere",
@@ -270,7 +270,7 @@
         {
           "label": "Moons & Rings",
           "value": "1 Moon · 0 Rings",
-          "sub": "The moon is: Luna (The Moon)"
+          "sub": "Earth's single natural moon is Luna (The Moon)"
         },
         {
           "label": "Atmosphere",
@@ -323,7 +323,7 @@
         {
           "label": "Moons & Rings",
           "value": "2 Moons · 0 Rings",
-          "sub": "The moons are: Phobos and Deimos"
+          "sub": "The two moons are Phobos and Deimos"
         },
         {
           "label": "Atmosphere",
@@ -376,7 +376,7 @@
         {
           "label": "Moons & Rings",
           "value": "95 Moons · 4 Rings",
-          "sub": "The major moons are: Io, Europa, Ganymede, Callisto"
+          "sub": "The major moons are Io, Europa, Ganymede, and Callisto"
         },
         {
           "label": "Atmosphere",
@@ -429,7 +429,7 @@
         {
           "label": "Moons & Rings",
           "value": "146 Moons · 7 Main Rings",
-          "sub": "The major moons are: Titan, Enceladus, Mimas"
+          "sub": "The major moons are Titan, Enceladus, and Mimas"
         },
         {
           "label": "Atmosphere",
@@ -482,7 +482,7 @@
         {
           "label": "Moons & Rings",
           "value": "28 Moons · 13 Rings",
-          "sub": "The major moons are: Titania, Oberon, Umbriel, Ariel, Miranda"
+          "sub": "The major moons are Titania, Oberon, Umbriel, Ariel, and Miranda"
         },
         {
           "label": "Atmosphere",
@@ -535,7 +535,7 @@
         {
           "label": "Moons & Rings",
           "value": "16 Moons · 5 Rings",
-          "sub": "The major moons are: Triton, Proteus, Nereid"
+          "sub": "The major moons are Triton, Proteus, and Nereid"
         },
         {
           "label": "Atmosphere",

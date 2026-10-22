@@ -164,7 +164,7 @@
         {
           "label": "Lune & Anelli",
           "value": "0 Lune · 0 Anelli",
-          "sub": "Le lune sono: nessuna (0 lune)"
+          "sub": "Mercurio non possiede lune né satelliti naturali"
         },
         {
           "label": "Atmosfera",
@@ -217,7 +217,7 @@
         {
           "label": "Lune & Anelli",
           "value": "0 Lune · 0 Anelli",
-          "sub": "Le lune sono: nessuna (0 lune)"
+          "sub": "Venere non possiede lune né satelliti naturali"
         },
         {
           "label": "Atmosfera",
@@ -270,7 +270,7 @@
         {
           "label": "Lune & Anelli",
           "value": "1 Luna · 0 Anelli",
-          "sub": "La luna è: Luna (La Luna)"
+          "sub": "L'unica luna naturale della Terra è Luna (La Luna)"
         },
         {
           "label": "Atmosfera",
@@ -323,7 +323,7 @@
         {
           "label": "Lune & Anelli",
           "value": "2 Lune · 0 Anelli",
-          "sub": "Le lune sono: Phobos e Deimos"
+          "sub": "Le due lune sono Phobos e Deimos"
         },
         {
           "label": "Atmosfera",
@@ -376,7 +376,7 @@
         {
           "label": "Lune & Anelli",
           "value": "95 Lune · 4 Anelli",
-          "sub": "Le lune principali sono: Io, Europa, Ganimede, Callisto"
+          "sub": "Le lune principali sono Io, Europa, Ganimede e Callisto"
         },
         {
           "label": "Atmosfera",
@@ -429,7 +429,7 @@
         {
           "label": "Lune & Anelli",
           "value": "146 Lune · 7 Anelli Principali",
-          "sub": "Le lune principali sono: Titano, Encelado, Mimas"
+          "sub": "Le lune principali sono Titano, Encelado e Mimas"
         },
         {
           "label": "Atmosfera",
@@ -482,7 +482,7 @@
         {
           "label": "Lune & Anelli",
           "value": "28 Lune · 13 Anelli",
-          "sub": "Le lune principali sono: Titania, Oberon, Umbriel, Ariel, Miranda"
+          "sub": "Le lune principali sono Titania, Oberon, Umbriel, Ariel e Miranda"
         },
         {
           "label": "Atmosfera",
@@ -535,7 +535,7 @@
         {
           "label": "Lune & Anelli",
           "value": "16 Lune · 5 Anelli",
-          "sub": "Le lune principali sono: Tritone, Proteo, Nereide"
+          "sub": "Le lune principali sono Tritone, Proteo e Nereide"
         },
         {
           "label": "Atmosfera",

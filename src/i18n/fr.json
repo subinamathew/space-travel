@@ -164,7 +164,7 @@
         {
           "label": "Lunes & Anneaux",
           "value": "0 Lune · 0 Anneau",
-          "sub": "Les lunes sont : aucune (0 lune)"
+          "sub": "Mercure ne possède aucune lune ni satellite naturel"
         },
         {
           "label": "Atmosphère",
@@ -217,7 +217,7 @@
         {
           "label": "Lunes & Anneaux",
           "value": "0 Lune · 0 Anneau",
-          "sub": "Les lunes sont : aucune (0 lune)"
+          "sub": "Vénus ne possède aucune lune ni satellite naturel"
         },
         {
           "label": "Atmosphère",
@@ -270,7 +270,7 @@
         {
           "label": "Lunes & Anneaux",
           "value": "1 Lune · 0 Anneau",
-          "sub": "La lune est : Luna (La Lune)"
+          "sub": "L'unique lune naturelle de la Terre est Luna (La Lune)"
         },
         {
           "label": "Atmosphère",
@@ -323,7 +323,7 @@
         {
           "label": "Lunes & Anneaux",
           "value": "2 Lunes · 0 Anneau",
-          "sub": "Les lunes sont : Phobos et Déimos"
+          "sub": "Les deux lunes sont Phobos et Déimos"
         },
         {
           "label": "Atmosphère",
@@ -376,7 +376,7 @@
         {
           "label": "Lunes & Anneaux",
           "value": "95 Lunes · 4 Anneaux",
-          "sub": "Les lunes principales sont : Io, Europe, Ganymède, Callisto"
+          "sub": "Les lunes principales sont Io, Europe, Ganymède et Callisto"
         },
         {
           "label": "Atmosphère",
@@ -429,7 +429,7 @@
         {
           "label": "Lunes & Anneaux",
           "value": "146 Lunes · 7 Anneaux Principaux",
-          "sub": "Les lunes principales sont : Titan, Encelade, Mimas"
+          "sub": "Les lunes principales sont Titan, Encelade et Mimas"
         },
         {
           "label": "Atmosphère",
@@ -482,7 +482,7 @@
         {
           "label": "Lunes & Anneaux",
           "value": "28 Lunes · 13 Anneaux",
-          "sub": "Les lunes principales sont : Titania, Obéron, Umbriel, Ariel, Miranda"
+          "sub": "Les lunes principales sont Titania, Obéron, Umbriel, Ariel et Miranda"
         },
         {
           "label": "Atmosphère",
@@ -535,7 +535,7 @@
         {
           "label": "Lunes & Anneaux",
           "value": "16 Lunes · 5 Anneaux",
-          "sub": "Les lunes principales sont : Triton, Protée, Néréide"
+          "sub": "Les lunes principales sont Triton, Protée et Néréide"
         },
         {
           "label": "Atmosphère",

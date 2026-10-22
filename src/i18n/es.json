@@ -164,7 +164,7 @@
         {
           "label": "Lunas y Anillos",
           "value": "0 Lunas · 0 Anillos",
-          "sub": "Las lunas son: ninguna (0 lunas)"
+          "sub": "Mercurio no tiene lunas ni satélites naturales"
         },
         {
           "label": "Atmósfera",
@@ -217,7 +217,7 @@
         {
           "label": "Lunas y Anillos",
           "value": "0 Lunas · 0 Anillos",
-          "sub": "Las lunas son: ninguna (0 lunas)"
+          "sub": "Venus no tiene lunas ni satélites naturales"
         },
         {
           "label": "Atmósfera",
@@ -270,7 +270,7 @@
         {
           "label": "Lunas y Anillos",
           "value": "1 Luna · 0 Anillos",
-          "sub": "La luna es: Luna (La Luna)"
+          "sub": "La única luna natural de la Tierra es Luna (La Luna)"
         },
         {
           "label": "Atmósfera",
@@ -323,7 +323,7 @@
         {
           "label": "Lunas y Anillos",
           "value": "2 Lunas · 0 Anillos",
-          "sub": "Las lunas son: Fobos y Deimos"
+          "sub": "Las dos lunas son Fobos y Deimos"
         },
         {
           "label": "Atmósfera",
@@ -376,7 +376,7 @@
         {
           "label": "Lunas y Anillos",
           "value": "95 Lunas · 4 Anillos",
-          "sub": "Las lunas principales son: Ío, Europa, Ganimedes, Calisto"
+          "sub": "Las lunas principales son Ío, Europa, Ganimedes y Calisto"
         },
         {
           "label": "Atmósfera",
@@ -429,7 +429,7 @@
         {
           "label": "Lunas y Anillos",
           "value": "146 Lunas · 7 Anillos Principales",
-          "sub": "Las lunas principales son: Titán, Encélado, Mimas"
+          "sub": "Las lunas principales son Titán, Encélado y Mimas"
         },
         {
           "label": "Atmósfera",
@@ -482,7 +482,7 @@
         {
           "label": "Lunas y Anillos",
           "value": "28 Lunas · 13 Anillos",
-          "sub": "Las lunas principales son: Titania, Oberón, Umbriel, Ariel, Miranda"
+          "sub": "Las lunas principales son Titania, Oberón, Umbriel, Ariel y Miranda"
         },
         {
           "label": "Atmósfera",
@@ -535,7 +535,7 @@
         {
           "label": "Lunas y Anillos",
           "value": "16 Lunas · 5 Anillos",
-          "sub": "Las lunas principales son: Tritón, Proteo, Nereida"
+          "sub": "Las lunas principales son Tritón, Proteo y Nereida"
         },
         {
           "label": "Atmósfera",
