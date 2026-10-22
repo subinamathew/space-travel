@@ -14,7 +14,7 @@
     "back_btn": "← Système Solaire",
     "explore_sun_title": "Explorer le Soleil (Sol)",
     "explore_sun_aria": "Explorer le Soleil",
-    "hint": "Cliquez sur une planète pour visiter • Survolez pour figer l'orbite • ←→ pour naviguer",
+    "hint": "Cliquez sur une planète ou le Soleil pour explorer • Survoler pour mettre l'orbite en pause",
     "subpage_title": "{name} — Exploration du Système Solaire",
     "subpage_meta_desc": "Explorez {name} : données scientifiques, propriétés physiques, simulateur de gravité et faits NASA Kids.",
     "specs_heading": "Spécifications Scientifiques",

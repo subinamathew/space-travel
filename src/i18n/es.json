@@ -14,7 +14,7 @@
     "back_btn": "← Sistema Solar",
     "explore_sun_title": "Explorar el Sol (Sol)",
     "explore_sun_aria": "Explorar el Sol",
-    "hint": "Haz clic en un planeta para visitarlo • Pasa el cursor para pausar la órbita • ←→ para explorar",
+    "hint": "Haz clic en un planeta o en el Sol para explorar • Pasa el ratón para pausar la órbita",
     "subpage_title": "{name} — Exploración del Sistema Solar",
     "subpage_meta_desc": "Explora {name}: métricas científicas, propiedades físicas, calculadora de gravedad y datos de NASA Kids.",
     "specs_heading": "Especificaciones Científicas",

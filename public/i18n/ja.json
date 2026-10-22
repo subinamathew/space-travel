@@ -14,7 +14,7 @@
     "back_btn": "← 太陽系に戻る",
     "explore_sun_title": "太陽（Sol）を探索",
     "explore_sun_aria": "太陽を探索",
-    "hint": "惑星をクリックして探索 • ホバーで軌道一時停止 • ←→キーで移動",
+    "hint": "惑星や太陽をクリックして探査 • ホバーで軌道を一時停止",
     "subpage_title": "{name} — 太陽系探査",
     "subpage_meta_desc": "{name}の科学データ、物理的特性、重力計算機、NASAキッズの豆知識をチェックしよう。",
     "specs_heading": "科学的データ",

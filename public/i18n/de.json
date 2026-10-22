@@ -14,7 +14,7 @@
     "back_btn": "← Sonnensystem",
     "explore_sun_title": "Die Sonne erkunden (Sol)",
     "explore_sun_aria": "Die Sonne erkunden",
-    "hint": "Klicke auf einen Planeten zum Erkunden • Zeige mit der Maus zum Pausieren • ←→ zum Navigieren",
+    "hint": "Klicke auf einen Planeten oder die Sonne zum Landen und Erkunden • Hovern stoppt den Orbit",
     "subpage_title": "{name} — Sonnensystem-Erkundung",
     "subpage_meta_desc": "Entdecke {name}: wissenschaftliche Kennzahlen, physikalische Eigenschaften, Schwerkraftrechner und NASA-Kids-Fakten.",
     "specs_heading": "Wissenschaftliche Daten",

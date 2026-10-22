@@ -24,17 +24,19 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 6.2vmin;
-  height: 6.2vmin;
+  width: 8.5vmin;
+  height: 8.5vmin;
   border-radius: 50%;
   background: radial-gradient(circle at 45% 45%, #ffe066 0%, #ff7700 45%, #d93800 80%, #991b00 100%);
   background-image: url('../images/sun.png');
   background-size: cover;
   background-position: center;
   box-shadow:
-    0 0 22px 8px rgba(255, 120, 0, 0.85),
-    0 0 55px 20px rgba(255, 60, 0, 0.55),
-    0 0 110px 45px rgba(220, 30, 0, 0.35);
+    0 0 30px 10px rgba(255, 225, 90, 0.95),
+    0 0 70px 25px rgba(255, 150, 0, 0.85),
+    0 0 135px 55px rgba(255, 80, 0, 0.6),
+    0 0 230px 95px rgba(230, 35, 0, 0.38),
+    0 0 380px 160px rgba(200, 15, 0, 0.2);
   z-index: 25;
   pointer-events: auto;
   cursor: pointer;
@@ -44,6 +46,23 @@
   display: block;
   touch-action: manipulation;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: sun-radiance-pulse 5s ease-in-out infinite alternate;
+
+  // Expansive ambient solar radiance aura illuminating surrounding space
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 320%;
+    height: 320%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 200, 60, 0.38) 0%, rgba(255, 120, 0, 0.2) 35%, rgba(255, 55, 0, 0.07) 65%, transparent 80%);
+    pointer-events: none;
+    z-index: -1;
+    animation: sun-ambient-pulse 6s ease-in-out infinite alternate;
+  }
 
   // Proximity touch & hover hit-box for the Sun
   &::before {
@@ -52,24 +71,56 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: clamp(54px, 8vmin, 80px);
-    height: clamp(54px, 8vmin, 80px);
+    width: clamp(64px, 10vmin, 96px);
+    height: clamp(64px, 10vmin, 96px);
     border-radius: 50%;
     pointer-events: auto;
   }
 
   &:hover,
   &:focus-visible {
-    transform: translate(-50%, -50%) scale(1.22);
+    transform: translate(-50%, -50%) scale(1.18);
     box-shadow:
-      0 0 35px 12px rgba(255, 140, 0, 0.95),
-      0 0 85px 30px rgba(255, 70, 0, 0.75),
-      0 0 160px 60px rgba(220, 30, 0, 0.5);
+      0 0 45px 16px rgba(255, 240, 120, 1),
+      0 0 95px 35px rgba(255, 165, 0, 0.92),
+      0 0 180px 75px rgba(255, 75, 0, 0.72),
+      0 0 290px 120px rgba(230, 35, 0, 0.48),
+      0 0 440px 190px rgba(200, 15, 0, 0.28);
   }
 
   @include mobile {
-    width: 7.2vmin;
-    height: 7.2vmin;
+    width: 9.8vmin;
+    height: 9.8vmin;
+  }
+}
+
+@keyframes sun-radiance-pulse {
+  0% {
+    box-shadow:
+      0 0 28px 9px rgba(255, 215, 75, 0.92),
+      0 0 65px 22px rgba(255, 140, 0, 0.8),
+      0 0 120px 45px rgba(255, 75, 0, 0.55),
+      0 0 200px 80px rgba(230, 25, 0, 0.3),
+      0 0 320px 130px rgba(200, 10, 0, 0.15);
+  }
+  100% {
+    box-shadow:
+      0 0 38px 14px rgba(255, 235, 110, 1),
+      0 0 85px 32px rgba(255, 165, 0, 0.9),
+      0 0 155px 60px rgba(255, 90, 0, 0.65),
+      0 0 260px 110px rgba(235, 40, 0, 0.4),
+      0 0 400px 175px rgba(210, 15, 0, 0.22);
+  }
+}
+
+@keyframes sun-ambient-pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.94);
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.08);
+    opacity: 1;
   }
 }
 

@@ -32,8 +32,8 @@ export function buildOrrery(sceneEl, planets, onPlanetSelect) {
     b.style.setProperty('--pglow', p.glow);
     b.style.animationDuration = durStr;
     b.style.animationDelay = delayStr;
-    b.setAttribute('aria-label', `Visit ${p.name}`);
-    b.title = `${p.name} (Orbit: ${p.periodYears >= 1 ? p.periodYears.toFixed(1) + ' Earth yrs' : (p.periodYears * 365.25).toFixed(0) + ' Earth days'})`;
+    b.setAttribute('aria-label', `Explore ${p.name}`);
+    b.title = `🚀 Click to land & explore ${p.name}! (Orbit: ${p.periodYears >= 1 ? p.periodYears.toFixed(1) + ' Earth yrs' : (p.periodYears * 365.25).toFixed(0) + ' Earth days'})`;
     b.addEventListener('click', e => {
       e.stopPropagation();
       if (p.slug) {

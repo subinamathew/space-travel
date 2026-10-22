@@ -14,8 +14,8 @@ export const sunData = {
   c1: '#fff5aa',
   c2: '#ff8800',
   glow: '#ffaa00',
-  bg: 'radial-gradient(ellipse at 60% 20%, #261100 0%, #020510 70%)',
-  pvSize: 210,
+  bg: 'radial-gradient(ellipse at 50% 25%, #471900 0%, #1a0800 50%, #020510 85%)',
+  pvSize: 280,
   isSun: true,
   gravityRatio: 27.9,
   kidsNote: {

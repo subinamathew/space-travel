@@ -14,7 +14,7 @@
     "back_btn": "← 太阳系全景",
     "explore_sun_title": "探索太阳 (Sol)",
     "explore_sun_aria": "探索太阳",
-    "hint": "点击行星进行探索 • 悬停暂停公转 • ←→ 键浏览切换",
+    "hint": "点击任意行星或太阳以着陆探险 • 悬停暂停公转",
     "subpage_title": "{name} — 太阳系深空探索",
     "subpage_meta_desc": "探索{name}：科学参数、物理特性、引力测算器与 NASA 儿童趣味知识。",
     "specs_heading": "科学探测数据",

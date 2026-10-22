@@ -14,7 +14,7 @@
     "back_btn": "← Solar System",
     "explore_sun_title": "Explore The Sun (Sol)",
     "explore_sun_aria": "Explore The Sun",
-    "hint": "Click a planet to visit • Hover to pause orbit • ←→ to browse when visiting",
+    "hint": "Click any planet or the Sun to land and explore • Hover to pause orbit",
     "subpage_title": "{name} — Solar System Exploration",
     "subpage_meta_desc": "Explore {name}: scientific metrics, physical properties, gravity calculator, and NASA kids facts.",
     "specs_heading": "Scientific specifications",
