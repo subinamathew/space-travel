@@ -40,9 +40,7 @@ const commitUrl = `https://github.com/subinamathew/space-travel/commit/${gitComm
 const buildDate = new Date().toISOString().split('T')[0];
 
 if (fs.existsSync(srcIndex)) {
-  let indexContent = fs.readFileSync(srcIndex, 'utf8');
-  indexContent = indexContent.replace(/<span class="credits-tag">v[0-9.]+<\/span>/g, `<span class="credits-tag">v${appVersion}</span>`);
-  fs.writeFileSync(pubIndex, indexContent, 'utf8');
+  fs.copyFileSync(srcIndex, pubIndex);
   console.log('Copied: src/index.html -> public/index.html');
 }
 
