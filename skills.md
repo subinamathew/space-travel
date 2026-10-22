@@ -288,7 +288,13 @@ Astronomical facts, chemical formulas, and mathematical metrics must be rendered
    - **Sideways Roll (Axial Tilt)**:
      - Uranus: *"Rolls on its side around the Sun like a giant bowling ball!"*
 
-6. **Typography, Formatting & DOM Safety**:
+6. **Atmospheric Layers & Boundary Concepts (e.g., Exosphere & Ozone Shield)**:
+   - Technical terms for atmospheric layers must always be contextualized in relation to Earth's familiar sky:
+     - **Exosphere**: Define it as *"the outermost layer of Earth's atmosphere (hundreds of kilometers high), where air thins out into the black vacuum of space and satellites orbit."*
+     - Contrast this with airless celestial bodies (Mercury, the Moon): *"Because Mercury has no blanket of air or sky, its exosphere begins right at the rocky ground—a tiny whisper of loose atoms kicked up by the solar wind that almost never collide."*
+     - **Ozone Layer**: Explain as *"a protective sunscreen shield high in the sky that blocks harmful sunburn rays from reaching the ground."*
+
+7. **Typography, Formatting & DOM Safety**:
    - Format multi-gas breakdowns with clean bullet lists (`•`) to facilitate shared reading between parents and young explorers.
    - Enforce `white-space: pre-line;` in CSS on all explainer text containers to ensure natural line breaking while safely populating text via `textContent` (zero `innerHTML` injection risk).
    - Require 100% translation parity across all 7 supported languages (`en`, `de`, `fr`, `es`, `it`, `ja`, `zh`) with culturally natural idioms.
