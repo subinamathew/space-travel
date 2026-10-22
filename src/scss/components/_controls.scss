@@ -285,6 +285,11 @@
 }
 
 .hud-pause-btn {
+  // Mobile & tablet feature: hidden on desktop where mouse hover and keyboard shortcuts are available
+  @media screen and (min-width: 1024px) {
+    display: none !important;
+  }
+
   &.is-paused {
     background: rgba(180, 25, 25, 0.88);
     border-color: #f87171;
