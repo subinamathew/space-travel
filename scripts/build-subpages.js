@@ -217,15 +217,15 @@ allBodies.forEach((p, idx) => {
 
     <!-- Top-Right HUD Stack: Galactic Location + Settings HUD -->
     <div class="hud-stack">
-        <div id="galaxy-hud" class="in-stack visible" aria-label="Galactic location">
+        <div id="galaxy-hud" class="in-stack visible is-minimized" aria-label="Galactic location">
             <div class="hud-header" role="button" tabindex="0" aria-label="Toggle Galactic HUD" title="Minimize / Expand HUD" data-i18n-attr="aria-label:ui.toggle_hud,title:ui.toggle_hud">
                 <div class="hud-header-title">
                     <span>🌌</span>
-                    <span data-i18n="ui.sector_full">Sector: Milky Way Galaxy &bull; Orion Arm</span>
+                    <span class="hud-sector-name" data-i18n="ui.sector_full">Sector: Milky Way Galaxy &bull; Orion Arm</span>
                 </div>
                 <span class="hud-header-time" id="hud-header-time" aria-hidden="true">--:--:--</span>
-                <button type="button" class="hud-toggle-btn" id="hud-toggle-btn" aria-label="Minimize Galactic HUD" title="Minimize / Expand HUD" data-i18n-attr="aria-label:ui.minimize_hud,title:ui.minimize_hud">
-                    <span class="hud-toggle-icon">−</span>
+                <button type="button" class="hud-toggle-btn" id="hud-toggle-btn" aria-label="Expand Galactic HUD" title="Minimize / Expand HUD" data-i18n-attr="aria-label:ui.expand_hud,title:ui.toggle_hud">
+                    <span class="hud-toggle-icon">+</span>
                 </button>
             </div>
             <div class="hud-body" id="hud-body">

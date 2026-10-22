@@ -134,7 +134,10 @@ function setupCollapsibleHud(hudId, btnId, iconClass, storageKey, labelName) {
   const isMobileOrTablet = window.innerWidth <= 1023;
   const savedVal = localStorage.getItem(storageKey);
   let isMinimizedSaved;
-  if (hudId === 'settings-hud' && isMobileOrTablet) {
+  if (hudId === 'galaxy-hud') {
+    // Default Galactic HUD to normal mode (minimized) unless explicitly opened by user
+    isMinimizedSaved = savedVal !== null ? savedVal === 'true' : true;
+  } else if (hudId === 'settings-hud' && isMobileOrTablet) {
     const mobileSaved = localStorage.getItem('space_settings_mobile_open');
     isMinimizedSaved = mobileSaved === 'true' ? false : true;
   } else {
