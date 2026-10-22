@@ -240,13 +240,15 @@
   }
 }
 
-/* Quick Access People / Credits Button */
-.hud-people-btn {
+/* Quick Access Floating HUD Circular Buttons (People & Pause Controls) */
+.hud-circle-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
   background: rgba(3, 16, 32, 0.82);
   border: 1px solid rgba(100, 210, 255, 0.35);
   border-radius: 50%;
@@ -259,6 +261,8 @@
   cursor: pointer;
   pointer-events: auto;
   transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  touch-action: manipulation;
+  outline: none;
 
   &:hover,
   &:focus-visible {
@@ -269,9 +273,29 @@
     outline: none;
   }
 
-  .hud-people-icon {
+  &:active {
+    transform: scale(0.95);
+  }
+
+  .hud-people-icon,
+  .hud-pause-icon {
     line-height: 1;
     filter: drop-shadow(0 0 4px rgba(100, 210, 255, 0.5));
+  }
+}
+
+.hud-pause-btn {
+  &.is-paused {
+    background: rgba(180, 25, 25, 0.88);
+    border-color: #f87171;
+    box-shadow: 0 0 22px rgba(248, 113, 113, 0.65);
+
+    &:hover,
+    &:focus-visible {
+      background: rgba(220, 38, 38, 0.95);
+      border-color: #ef4444;
+      box-shadow: 0 0 28px rgba(239, 68, 68, 0.8);
+    }
   }
 }
 

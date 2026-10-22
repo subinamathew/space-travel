@@ -250,6 +250,12 @@ The application must run smoothly (target 60fps) on budget smartphones, older ta
      - Slow down or halt orbital spinning animations for users with vestibular disorders.
 5. **Modern Viewport Units**:
    - Use dynamic viewport height (`100dvh` or `100svh`) to avoid layout jumps when mobile address bars expand and collapse.
+6. **Touch Hover Parity & Orbital Pause Toggle**:
+   - Touchscreens (smartphones and tablets) do not support the mouse `:hover` pseudo-class.
+   - Provide a dedicated, touch-accessible pause button (minimum 44 × 44px touch target) that toggles orbital motion in place using declarative CSS `animation-play-state: paused !important`.
+7. **Circadian / Night-Time Solar Dimming**:
+   - Handheld devices used in dim/night environments require glare reduction for young explorers and parents.
+   - Between 18:00 and 07:00 local time, dim the central Sun by 5% to 20% on mobile and tablet devices via CSS brightness filters (`brightness(0.80)` to `brightness(0.95)`) driven by CSS custom properties (`--sun-brightness`).
 
 ---
 

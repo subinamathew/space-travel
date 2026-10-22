@@ -209,6 +209,7 @@ allBodies.forEach((p, idx) => {
                     <span>🌌</span>
                     <span data-i18n="ui.sector_full">Sector: Milky Way Galaxy &bull; Orion Arm</span>
                 </div>
+                <span class="hud-header-time" id="hud-header-time" aria-hidden="true">--:--:--</span>
                 <button type="button" class="hud-toggle-btn" id="hud-toggle-btn" aria-label="Minimize Galactic HUD" title="Minimize / Expand HUD" data-i18n-attr="aria-label:ui.minimize_hud,title:ui.minimize_hud">
                     <span class="hud-toggle-icon">−</span>
                 </button>
@@ -219,6 +220,9 @@ allBodies.forEach((p, idx) => {
                 </div>
                 <div class="hud-row">
                     <span><span data-i18n="ui.core_distance_label">Core Distance:</span> <strong data-i18n="ui.core_distance_val">26,000 Light-Years</strong></span>
+                </div>
+                <div class="hud-row hud-time-row">
+                    <span><span data-i18n="ui.current_time_label">Earth Time:</span> <strong id="hud-live-time">--:--:--</strong></span>
                 </div>
             </div>
         </div>

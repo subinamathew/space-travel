@@ -92,7 +92,11 @@
     "copyright": "© 2026 rocketrun.de. Tous droits réservés.",
     "domain_label": "rocketrun.de",
     "visit_rocketrun": "Visiter rocketrun.de",
-    "rocketrun_tagline": "RocketRun — Exploration Interactive du Système Solaire"
+    "rocketrun_tagline": "RocketRun — Exploration Interactive du Système Solaire",
+    "current_time_label": "Heure Terrestre :",
+    "pause_orbits_aria": "Mettre les orbites en pause",
+    "resume_orbits_aria": "Reprendre les orbites",
+    "pause_orbits_title": "Pause / Reprise des orbites"
   },
   "planets": {
     "sun": {

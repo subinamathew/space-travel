@@ -92,7 +92,11 @@
     "copyright": "© 2026 rocketrun.de. എല്ലാ അവകാശങ്ങളും നിക്ഷിപ്തം.",
     "domain_label": "rocketrun.de",
     "visit_rocketrun": "rocketrun.de സന്ദർശിക്കുക",
-    "rocketrun_tagline": "റോക്കറ്റ് റൺ — ഇന്ററാക്ടീവ് സൗരയൂഥ പര്യവേക്ഷണം"
+    "rocketrun_tagline": "റോക്കറ്റ് റൺ — ഇന്ററാക്ടീവ് സൗരയൂഥ പര്യവേക്ഷണം",
+    "current_time_label": "ഭൂമിയിലെ സമയം:",
+    "pause_orbits_aria": "ഭ്രമണപഥ ചലനം നിർത്തുക",
+    "resume_orbits_aria": "ഭ്രമണപഥ ചലനം പുനരാരംഭിക്കുക",
+    "pause_orbits_title": "ഭ്രമണം നിർത്തുക / തുടരുക"
   },
   "planets": {
     "sun": {

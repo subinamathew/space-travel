@@ -44,8 +44,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="css/style.css?v=3.0.2" />
-    <script src="js/script.min.js?v=3.0.2" defer></script>
+    <link rel="stylesheet" href="css/style.css?v=3.1.0" />
+    <script src="js/script.min.js?v=3.1.0" defer></script>
 </head>
 
 <body class="home-page">
@@ -78,6 +78,7 @@
                     <span>🌌</span>
                     <span data-i18n="ui.sector_full">Sector: Milky Way Galaxy &bull; Orion Arm</span>
                 </div>
+                <span class="hud-header-time" id="hud-header-time" aria-hidden="true">--:--:--</span>
                 <button type="button" class="hud-toggle-btn" id="hud-toggle-btn" aria-label="Minimize Galactic HUD" title="Minimize / Expand HUD" data-i18n-attr="aria-label:ui.minimize_hud,title:ui.minimize_hud">
                     <span class="hud-toggle-icon">−</span>
                 </button>
@@ -88,6 +89,9 @@
                 </div>
                 <div class="hud-row">
                     <span><span data-i18n="ui.core_distance_label">Core Distance:</span> <strong data-i18n="ui.core_distance_val">26,000 Light-Years</strong></span>
+                </div>
+                <div class="hud-row hud-time-row">
+                    <span><span data-i18n="ui.current_time_label">Earth Time:</span> <strong id="hud-live-time">--:--:--</strong></span>
                 </div>
             </div>
         </div>
@@ -139,6 +143,11 @@
                 </div>
             </div>
         </div>
+
+        <!-- Mobile & Tablet Orbit Pause Button -->
+        <button type="button" id="orbit-pause-btn" class="hud-circle-btn hud-pause-btn in-stack" aria-label="Pause orbital motion" title="Pause / Resume Orbits" data-i18n-attr="aria-label:ui.pause_orbits_aria,title:ui.pause_orbits_title">
+            <span class="hud-pause-icon" id="hud-pause-icon">⏸️</span>
+        </button>
 
         <!-- Quick Access People / Credits Button -->
         <a href="credits.html" class="hud-circle-btn hud-people-btn in-stack" aria-label="About & Credits" title="About & Credits" data-i18n-attr="aria-label:ui.credits_btn,title:ui.credits_btn">

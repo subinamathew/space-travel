@@ -92,7 +92,11 @@
     "copyright": "© 2026 rocketrun.de. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.",
     "domain_label": "rocketrun.de",
     "visit_rocketrun": "rocketrun.de தளத்தைப் பார்க்க",
-    "rocketrun_tagline": "ராக்கெட் ரன் — ஊடாடும் சூரியக் குடும்ப ஆய்வு"
+    "rocketrun_tagline": "ராக்கெட் ரன் — ஊடாடும் சூரியக் குடும்ப ஆய்வு",
+    "current_time_label": "பூமி நேரம்:",
+    "pause_orbits_aria": "சுற்றுப்பாதை இயக்கத்தை இடைநிறுத்து",
+    "resume_orbits_aria": "சுற்றுப்பாதை இயக்கத்தை மீண்டும் தொடங்கு",
+    "pause_orbits_title": "சுற்றுப்பாதை இடைநிறுத்தம் / தொடக்கம்"
   },
   "planets": {
     "sun": {

@@ -131,6 +131,19 @@
     width: 9.8vmin;
     height: 9.8vmin;
   }
+
+  // Mobile & Tablet Night-Time Sun Dimmer (18:00 to 07:00, 5% to 20% dimmer)
+  @media screen and (max-width: 1023px) {
+    body.sun-night-dimmed & {
+      filter: brightness(var(--sun-brightness, 0.85));
+      opacity: calc(var(--sun-brightness, 0.85) * 1.05);
+      transition: filter 0.8s ease, opacity 0.8s ease;
+
+      &::after {
+        opacity: var(--sun-brightness, 0.85);
+      }
+    }
+  }
 }
 
 @keyframes sun-radiance-pulse {
@@ -232,9 +245,11 @@
   }
 }
 
-// Pause orbits when mouse comes close to any planet OR the Sun
+// Pause orbits when mouse comes close to any planet OR the Sun, OR when explicitly paused via toggle button
 #scene:has(.planet-btn:hover),
-#scene:has(#sun:hover) {
+#scene:has(#sun:hover),
+#scene.is-paused,
+body.orbits-paused #scene {
   .orbit-carrier,
   .planet-btn,
   .moon-orbit {

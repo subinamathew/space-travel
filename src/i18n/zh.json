@@ -92,7 +92,11 @@
     "copyright": "© 2026 rocketrun.de. 保留所有权利。",
     "domain_label": "rocketrun.de",
     "visit_rocketrun": "访问 rocketrun.de",
-    "rocketrun_tagline": "RocketRun — 互动太阳系探索"
+    "rocketrun_tagline": "RocketRun — 互动太阳系探索",
+    "current_time_label": "地球标准时间:",
+    "pause_orbits_aria": "暂停轨道运转",
+    "resume_orbits_aria": "恢复轨道运转",
+    "pause_orbits_title": "暂停 / 恢复轨道"
   },
   "planets": {
     "sun": {

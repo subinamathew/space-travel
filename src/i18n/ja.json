@@ -92,7 +92,11 @@
     "copyright": "© 2026 rocketrun.de. 全著作権所有。",
     "domain_label": "rocketrun.de",
     "visit_rocketrun": "rocketrun.de を訪れる",
-    "rocketrun_tagline": "RocketRun — インタラクティブな太陽系探査"
+    "rocketrun_tagline": "RocketRun — インタラクティブな太陽系探査",
+    "current_time_label": "地球標準時:",
+    "pause_orbits_aria": "公転軌道を一時停止",
+    "resume_orbits_aria": "公転軌道を再開",
+    "pause_orbits_title": "軌道の一時停止 / 再開"
   },
   "planets": {
     "sun": {

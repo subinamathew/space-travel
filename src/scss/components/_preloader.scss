@@ -479,6 +479,21 @@
     flex-shrink: 0;
   }
 
+  .hud-header-time {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: #38bdf8;
+    background: rgba(56, 189, 248, 0.12);
+    padding: 0.08rem 0.42rem;
+    border-radius: 999px;
+    border: 1px solid rgba(56, 189, 248, 0.28);
+    letter-spacing: 0.05em;
+    margin-left: auto;
+    margin-right: 4px;
+    display: inline-block;
+  }
+
   .hud-body {
     display: flex;
     flex-direction: column;
@@ -494,8 +509,13 @@
       color: #9fe6ff;
       font-weight: 600;
     }
-  }
 
+    &.hud-time-row strong {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      color: #38bdf8;
+      letter-spacing: 0.05em;
+    }
+  }
 }
 
 #galaxy-hud {
