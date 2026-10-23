@@ -472,8 +472,23 @@ body.orbits-paused #scene {
   .planet-btn {
     animation-duration: var(--orbit-period-game, 25s) !important;
     animation-delay: var(--orbit-delay-game, 0s) !important;
-    pointer-events: none !important;
-    cursor: default !important;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.2s ease;
+
+    &:hover {
+      transform: scale(1.22);
+      filter: drop-shadow(0 0 14px #38bdf8);
+    }
+
+    &.is-game-target {
+      filter: drop-shadow(0 0 18px #38bdf8) drop-shadow(0 0 30px rgba(14, 165, 233, 0.8));
+
+      .planet-sphere {
+        box-shadow: 0 0 0 3px #38bdf8, 0 0 20px #0284c7;
+        animation: game-target-pulse 1.8s infinite ease-in-out;
+      }
+    }
   }
 
   .moon-orbit {
@@ -489,4 +504,10 @@ body.orbits-paused #scene {
     pointer-events: none !important;
     cursor: default !important;
   }
+}
+
+@keyframes game-target-pulse {
+  0% { transform: scale(1); box-shadow: 0 0 0 2px #38bdf8, 0 0 12px #0284c7; }
+  50% { transform: scale(1.15); box-shadow: 0 0 0 4px #7dd3fc, 0 0 24px #38bdf8; }
+  100% { transform: scale(1); box-shadow: 0 0 0 2px #38bdf8, 0 0 12px #0284c7; }
 }

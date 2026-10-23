@@ -88,8 +88,8 @@
 .site-tiny-footer {
   position: fixed;
   bottom: 0.75rem;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 1rem;
+  transform: none;
   z-index: 900;
   pointer-events: auto;
   font-size: 0.75rem;

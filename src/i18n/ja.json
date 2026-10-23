@@ -839,6 +839,11 @@
     "future_lead_label": "飛行中の公転移動：",
     "future_landing_location_label": "未来の着陸軌道位置：",
     "planner_subtitle": "惑星は時間とともに軌道上を移動します。未来の軌道配置をプレビューして最適な打ち上げウィンドウを選びましょう。",
-    "future_rendezvous_reticle": "🎯 未来の着陸ランデブー (+{sec}秒)"
+    "future_rendezvous_reticle": "🎯 未来の着陸ランデブー (+{sec}秒)",
+    "section_mode": "ミッションとモード",
+    "target_label": "目標:",
+    "target_luna_btn": "🌙 月（ルナ）を目標に設定",
+    "tap_planet_map_hint": "マップ上の惑星をタップして選択！",
+    "select_target_prompt": "マップで選択または月をタップ"
   }
 }

@@ -839,6 +839,11 @@
     "future_lead_label": "Transit Orbit Motion:",
     "future_landing_location_label": "Future Landing Orbit:",
     "planner_subtitle": "Planets advance along orbits over time. Preview future orbital alignments to pick optimal transfer windows.",
-    "future_rendezvous_reticle": "🎯 Future Landing Rendezvous (+{sec}s)"
+    "future_rendezvous_reticle": "🎯 Future Landing Rendezvous (+{sec}s)",
+    "section_mode": "Mission & Mode",
+    "target_label": "Target:",
+    "target_luna_btn": "🌙 Target Luna (Moon)",
+    "tap_planet_map_hint": "Tap any planet on map to target!",
+    "select_target_prompt": "Select on Map or tap Luna"
   }
 }

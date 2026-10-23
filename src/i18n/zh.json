@@ -839,6 +839,11 @@
     "future_lead_label": "飞行中轨道位移：",
     "future_landing_location_label": "未来着陆轨道位置：",
     "planner_subtitle": "行星随时间沿轨道移动。预览未来轨道排列，以选择最佳发射窗口。",
-    "future_rendezvous_reticle": "🎯 未来着陆交会点 (+{sec}秒)"
+    "future_rendezvous_reticle": "🎯 未来着陆交会点 (+{sec}秒)",
+    "section_mode": "任务与模式",
+    "target_label": "目标：",
+    "target_luna_btn": "🌙 锁定月球（Luna）",
+    "tap_planet_map_hint": "点击太阳系地图上的任意行星以锁定！",
+    "select_target_prompt": "在地图上选择或点击月球"
   }
 }

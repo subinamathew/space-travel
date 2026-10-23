@@ -55,6 +55,9 @@ export function buildOrrery(sceneEl, planets, onPlanetSelect) {
       e.stopPropagation();
       if (window.RocketRun && typeof window.RocketRun.isGameActive === 'function' && window.RocketRun.isGameActive()) {
         e.preventDefault();
+        if (typeof window.RocketRun.selectDestinationFromCanvas === 'function') {
+          window.RocketRun.selectDestinationFromCanvas(p.slug);
+        }
         return;
       }
       if (p.slug) {

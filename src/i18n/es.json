@@ -839,6 +839,11 @@
     "future_lead_label": "Movimiento en tránsito:",
     "future_landing_location_label": "Órbita de aterrizaje futura:",
     "planner_subtitle": "Los planetas avanzan por sus órbitas. Previsualiza alineaciones futuras para elegir ventanas de transferencia óptimas.",
-    "future_rendezvous_reticle": "🎯 Futuro encuentro de aterrizaje (+{sec}s)"
+    "future_rendezvous_reticle": "🎯 Futuro encuentro de aterrizaje (+{sec}s)",
+    "section_mode": "Misión y modo",
+    "target_label": "Objetivo:",
+    "target_luna_btn": "🌙 Apuntar a Luna",
+    "tap_planet_map_hint": "¡Toca cualquier planeta en el mapa!",
+    "select_target_prompt": "Selecciona en el mapa o toca Luna"
   }
 }

@@ -839,6 +839,11 @@
     "future_lead_label": "Bahnbewegung im Flug:",
     "future_landing_location_label": "Zukünftiger Landeorbit:",
     "planner_subtitle": "Planeten wandern entlang ihrer Umlaufbahnen. Prüfe zukünftige Konstellationen für optimale Transferfenster.",
-    "future_rendezvous_reticle": "🎯 Zukünftiges Lande-Rendezvous (+{sec}s)"
+    "future_rendezvous_reticle": "🎯 Zukünftiges Lande-Rendezvous (+{sec}s)",
+    "section_mode": "Mission & Modus",
+    "target_label": "Ziel:",
+    "target_luna_btn": "🌙 Ziel: Luna (Mond)",
+    "tap_planet_map_hint": "Tippe einen Planeten auf der Karte an!",
+    "select_target_prompt": "Auf Karte wählen oder Luna tippen"
   }
 }

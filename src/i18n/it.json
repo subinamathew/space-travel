@@ -839,6 +839,11 @@
     "future_lead_label": "Moto orbitale in transito:",
     "future_landing_location_label": "Orbita di atterraggio futura:",
     "planner_subtitle": "I pianeti avanzano lungo le orbite nel tempo. Visualizza in anteprima gli allineamenti futuri per finestre ottimali.",
-    "future_rendezvous_reticle": "🎯 Futuro rendezvous di atterraggio (+{sec}s)"
+    "future_rendezvous_reticle": "🎯 Futuro rendezvous di atterraggio (+{sec}s)",
+    "section_mode": "Missione e modalità",
+    "target_label": "Obiettivo:",
+    "target_luna_btn": "🌙 Seleziona Luna",
+    "tap_planet_map_hint": "Tocca un pianeta sulla mappa!",
+    "select_target_prompt": "Seleziona sulla mappa o tocca Luna"
   }
 }

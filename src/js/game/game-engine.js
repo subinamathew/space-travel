@@ -51,6 +51,15 @@ export function startGame(options = {}) {
   gameState.reset(options);
   startTime = Date.now();
 
+  if (!gameState.isFreePlay && !gameState.targetPlanet) {
+    const curMission = gameState.getCurrentMission();
+    if (curMission && curMission.targetSlug) {
+      gameState.setTarget(curMission.targetSlug);
+    } else {
+      gameState.setTarget('moon');
+    }
+  }
+
   const solarSystem = document.getElementById('solar-system');
   const sceneEl = document.getElementById('scene');
   if (solarSystem) solarSystem.classList.add('game-active');
@@ -59,6 +68,7 @@ export function startGame(options = {}) {
   enforce2DMode(true);
   renderGameUI();
   dockRocketAtCurrentPlanet();
+  updateCanvasTargetHighlight();
   updateHUD();
   updateSidebar();
   syncFreePlayUI(gameState.isFreePlay);
@@ -244,126 +254,237 @@ function renderGameUI() {
       </div>
       <div class="sidebar-header-actions">
         <div class="current-loc" id="current-location-indicator">Earth 🌍</div>
+        <button type="button" class="sidebar-min-btn" id="sidebar-min-btn" title="Minimize / Expand" aria-label="Minimize Launch Control">−</button>
         <button type="button" class="sidebar-close-btn" id="sidebar-close-btn" title="${t('game.exit_game_aria') || 'Exit Game Mode'}" aria-label="${t('game.exit_game_aria') || 'Exit Game Mode'}">✕</button>
       </div>
     </div>
     <div class="sidebar-body">
-      <div class="game-mode-pill-selector" role="radiogroup" aria-label="Game Mode">
-        <button type="button" class="mode-pill-btn ${!gameState.isFreePlay ? 'is-active' : ''}" id="mode-missions-btn" data-mode="missions">
-          <span>🎯</span> <span data-i18n="game.mode_missions">${t('game.mode_missions') || 'Missions'}</span>
-        </button>
-        <button type="button" class="mode-pill-btn ${gameState.isFreePlay ? 'is-active' : ''}" id="mode-freeplay-btn" data-mode="freeplay">
-          <span>🚀</span> <span data-i18n="game.mode_freeplay">${t('game.mode_freeplay') || 'Free Play'}</span>
-        </button>
-      </div>
+      <div class="launch-accordion" id="launch-accordion">
 
-      <label class="sidebar-label" data-i18n="game.select_destination">Select Destination:</label>
-      <div class="planet-select-list" id="planet-select-list"></div>
+        <!-- Accordion 1: Game Mode & Objective -->
+        <div class="accordion-section is-open" id="sec-mode">
+          <button type="button" class="accordion-header" aria-expanded="true" aria-controls="acc-content-mode" title="${t('game.section_mode') || 'Mission & Mode'}">
+            <span class="accordion-header-left">
+              <span class="accordion-icon">🎯</span>
+              <span class="accordion-title" data-i18n="game.section_mode">${t('game.section_mode') || 'Mission & Mode'}</span>
+            </span>
+            <span class="accordion-header-right">
+              <span class="accordion-summary" id="acc-summary-mode">🎯 Mission 1</span>
+              <span class="accordion-chevron" aria-hidden="true">▾</span>
+            </span>
+          </button>
+          <div class="accordion-content" id="acc-content-mode">
+            <div class="game-mode-pill-selector" role="radiogroup" aria-label="Game Mode">
+              <button type="button" class="mode-pill-btn ${!gameState.isFreePlay ? 'is-active' : ''}" id="mode-missions-btn" data-mode="missions">
+                <span>🎯</span> <span data-i18n="game.mode_missions">${t('game.mode_missions') || 'Missions'}</span>
+              </button>
+              <button type="button" class="mode-pill-btn ${gameState.isFreePlay ? 'is-active' : ''}" id="mode-freeplay-btn" data-mode="freeplay">
+                <span>🚀</span> <span data-i18n="game.mode_freeplay">${t('game.mode_freeplay') || 'Free Play'}</span>
+              </button>
+            </div>
+            <div class="sidebar-mission-card">
+              <span class="sidebar-mission-tag" id="sidebar-mission-tag">🎯 <span data-i18n="game.mission_label">ACTIVE MISSION</span></span>
+              <div class="sidebar-mission-clue" id="sidebar-mission-clue">Loading mission...</div>
+            </div>
+          </div>
+        </div>
 
-      <div class="energy-control-block">
-        <div class="energy-header">
-          <span class="sidebar-label" data-i18n="game.thrust_energy">Thrust Energy:</span>
-          <span class="energy-val" id="energy-val-readout">50%</span>
+        <!-- Accordion 2: Destination Selection -->
+        <div class="accordion-section is-open" id="sec-dest">
+          <button type="button" class="accordion-header" aria-expanded="true" aria-controls="acc-content-dest" title="${t('game.select_destination') || 'Select Destination:'}">
+            <span class="accordion-header-left">
+              <span class="accordion-icon">🪐</span>
+              <span class="accordion-title" data-i18n="game.select_destination">${t('game.select_destination') || 'Select Destination:'}</span>
+            </span>
+            <span class="accordion-header-right">
+              <span class="accordion-summary" id="acc-summary-dest">Luna 🌙</span>
+              <span class="accordion-chevron" aria-hidden="true">▾</span>
+            </span>
+          </button>
+          <div class="accordion-content" id="acc-content-dest">
+            <div class="destination-control-block">
+              <div class="dest-target-status">
+                <span class="dest-target-label" data-i18n="game.target_label">${t('game.target_label') || 'Target:'}</span>
+                <span class="dest-target-value" id="dest-target-name">Luna 🌙</span>
+              </div>
+              <button type="button" class="luna-dest-btn" id="luna-dest-btn">
+                <span>🌙</span> <span id="luna-dest-btn-text" data-i18n="game.target_luna_btn">${t('game.target_luna_btn') || 'Target Luna (Moon)'}</span>
+              </button>
+              <div class="dest-map-hint">
+                <span>👆</span> <span data-i18n="game.tap_planet_map_hint">${t('game.tap_planet_map_hint') || 'Tap any planet on map to target!'}</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <input type="range" id="energy-slider" class="energy-slider" min="5" max="100" value="50" step="1" aria-label="Thrust Energy Slider" />
-        <div class="energy-hints">
-          <span>10% (Low)</span>
-          <span>50% (Cruise)</span>
-          <span>100% (Max)</span>
-        </div>
-        <div class="energy-feedback-hint" id="energy-feedback-hint"></div>
-      </div>
 
-      <div class="sidebar-fuel-block" id="sidebar-fuel-block">
-        <div class="fuel-header">
-          <span class="sidebar-label" data-i18n="game.fuel_label">Fuel Tank:</span>
-          <span class="fuel-val" id="fuel-val-readout">100%</span>
+        <!-- Accordion 3: Thrust Energy -->
+        <div class="accordion-section is-open" id="sec-thrust">
+          <button type="button" class="accordion-header" aria-expanded="true" aria-controls="acc-content-thrust" title="${t('game.thrust_energy') || 'Thrust Energy:'}">
+            <span class="accordion-header-left">
+              <span class="accordion-icon">⚡</span>
+              <span class="accordion-title" data-i18n="game.thrust_energy">${t('game.thrust_energy') || 'Thrust Energy:'}</span>
+            </span>
+            <span class="accordion-header-right">
+              <span class="accordion-summary" id="acc-summary-thrust">50%</span>
+              <span class="accordion-chevron" aria-hidden="true">▾</span>
+            </span>
+          </button>
+          <div class="accordion-content" id="acc-content-thrust">
+            <div class="energy-control-block">
+              <div class="energy-header">
+                <span class="sidebar-label" data-i18n="game.thrust_energy">${t('game.thrust_energy') || 'Thrust Energy:'}</span>
+                <span class="energy-val" id="energy-val-readout">50%</span>
+              </div>
+              <input type="range" id="energy-slider" class="energy-slider" min="5" max="100" value="50" step="1" aria-label="Thrust Energy Slider" />
+              <div class="energy-hints">
+                <span>10% (Low)</span>
+                <span>50% (Cruise)</span>
+                <span>100% (Max)</span>
+              </div>
+              <div class="energy-feedback-hint" id="energy-feedback-hint"></div>
+            </div>
+          </div>
         </div>
-        <div class="fuel-progress-track">
-          <div class="fuel-progress-fill" id="fuel-progress-fill" style="width: 100%;"></div>
+
+        <!-- Accordion 4: Fuel Tank -->
+        <div class="accordion-section" id="sec-fuel">
+          <button type="button" class="accordion-header" aria-expanded="false" aria-controls="acc-content-fuel" title="${t('game.fuel_label') || 'Fuel Tank:'}">
+            <span class="accordion-header-left">
+              <span class="accordion-icon">⛽</span>
+              <span class="accordion-title" data-i18n="game.fuel_label">${t('game.fuel_label') || 'Fuel Tank:'}</span>
+            </span>
+            <span class="accordion-header-right">
+              <span class="accordion-summary" id="acc-summary-fuel">100%</span>
+              <span class="accordion-chevron" aria-hidden="true">▾</span>
+            </span>
+          </button>
+          <div class="accordion-content" id="acc-content-fuel">
+            <div class="sidebar-fuel-block" id="sidebar-fuel-block">
+              <div class="fuel-header">
+                <span class="sidebar-label" data-i18n="game.fuel_label">${t('game.fuel_label') || 'Fuel Tank:'}</span>
+                <span class="fuel-val" id="fuel-val-readout">100%</span>
+              </div>
+              <div class="fuel-progress-track">
+                <div class="fuel-progress-fill" id="fuel-progress-fill" style="width: 100%;"></div>
+              </div>
+              <div class="solar-recharge-indicator" id="solar-recharge-indicator" style="display:none;">
+                <span class="solar-icon">☀️</span>
+                <span class="solar-text" id="solar-recharge-text">${t('game.solar_charging_status') || '☀️ Solar Array Charging: Active'}</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="solar-recharge-indicator" id="solar-recharge-indicator" style="display:none;">
-          <span class="solar-icon">☀️</span>
-          <span class="solar-text" id="solar-recharge-text">${t('game.solar_charging_status') || '☀️ Solar Array Charging: Active'}</span>
+
+        <!-- Accordion 5: Orbital Telemetry -->
+        <div class="accordion-section" id="sec-telemetry">
+          <button type="button" class="accordion-header" aria-expanded="false" aria-controls="acc-content-telemetry" title="${t('game.orbital_telemetry') || 'Orbital Telemetry'}">
+            <span class="accordion-header-left">
+              <span class="accordion-icon">📡</span>
+              <span class="accordion-title" data-i18n="game.orbital_telemetry">${t('game.orbital_telemetry') || 'Orbital Telemetry'}</span>
+            </span>
+            <span class="accordion-header-right">
+              <span class="accordion-summary" id="acc-summary-telemetry">🟢 Window</span>
+              <span class="accordion-chevron" aria-hidden="true">▾</span>
+            </span>
+          </button>
+          <div class="accordion-content" id="acc-content-telemetry">
+            <div class="sidebar-telemetry-block" id="sidebar-orbit-telemetry">
+              <div class="telemetry-header">
+                <span class="telemetry-title" data-i18n="game.orbital_telemetry">ORBITAL TELEMETRY</span>
+                <span class="telemetry-window-tag" id="telemetry-window-tag">🟢 Perigee Window</span>
+              </div>
+              <div class="telemetry-physics-banner" id="telemetry-physics-banner">
+                <span class="banner-icon">🪐</span>
+                <span class="banner-text" id="telemetry-physics-text">${(t('game.future_rendezvous_principle') || '🚀 Keplerian Rendezvous: Planets orbit continuously while you fly! You must aim for where the planet will be upon arrival (T+{sec}s), not where it is today.').replace('{sec}', '5.2')}</span>
+              </div>
+              <div class="telemetry-grid">
+                <div class="telemetry-item">
+                  <span class="telemetry-label" data-i18n="game.perigee_label">Perigee (Min):</span>
+                  <span class="telemetry-val" id="telemetry-perigee-val">--</span>
+                </div>
+                <div class="telemetry-item">
+                  <span class="telemetry-label" data-i18n="game.apogee_label">Apogee (Max):</span>
+                  <span class="telemetry-val" id="telemetry-apogee-val">--</span>
+                </div>
+                <div class="telemetry-item">
+                  <span class="telemetry-label" data-i18n="game.current_separation">Current Distance:</span>
+                  <span class="telemetry-val" id="telemetry-dist-val">--</span>
+                </div>
+                <div class="telemetry-item highlight-item">
+                  <span class="telemetry-label" data-i18n="game.future_intercept_label">Arrival Intercept:</span>
+                  <span class="telemetry-val" id="telemetry-arrival-val">--</span>
+                </div>
+                <div class="telemetry-item highlight-item">
+                  <span class="telemetry-label" data-i18n="game.future_lead_label">Transit Orbit Motion:</span>
+                  <span class="telemetry-val" id="telemetry-lead-val">--</span>
+                </div>
+                <div class="telemetry-item highlight-item">
+                  <span class="telemetry-label" data-i18n="game.future_landing_location_label">Future Landing Orbit:</span>
+                  <span class="telemetry-val" id="telemetry-landing-loc-val">--</span>
+                </div>
+                <div class="telemetry-item">
+                  <span class="telemetry-label" data-i18n="game.next_window_label">Next Window:</span>
+                  <span class="telemetry-val" id="telemetry-next-window-val">--</span>
+                </div>
+                <div class="telemetry-item">
+                  <span class="telemetry-label" data-i18n="game.target_orbit_zone">Target Orbit Zone:</span>
+                  <span class="telemetry-val" id="telemetry-energy-req">--</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+
+        <!-- Accordion 6: Future Orbit Planner -->
+        <div class="accordion-section" id="sec-planner">
+          <button type="button" class="accordion-header" aria-expanded="false" aria-controls="acc-content-planner" title="${t('game.future_orbit_planner') || 'Future Orbit Planner'}">
+            <span class="accordion-header-left">
+              <span class="accordion-icon">🔮</span>
+              <span class="accordion-title" data-i18n="game.future_orbit_planner">${t('game.future_orbit_planner') || 'Future Orbit Planner'}</span>
+            </span>
+            <span class="accordion-header-right">
+              <span class="accordion-summary" id="acc-summary-planner">Live</span>
+              <span class="accordion-chevron" aria-hidden="true">▾</span>
+            </span>
+          </button>
+          <div class="accordion-content" id="acc-content-planner">
+            <div class="future-orbit-planner" id="future-orbit-planner">
+              <div class="planner-header">
+                <span class="planner-title" data-i18n="game.future_orbit_planner">🔮 FUTURE ORBIT PLANNER</span>
+                <span class="planner-offset-badge" id="planner-offset-badge">T+0s (LIVE)</span>
+              </div>
+              <p class="planner-subtitle" data-i18n="game.planner_subtitle">
+                ${t('game.planner_subtitle') || 'Planets advance along orbits over time. Preview future orbital alignments to pick optimal transfer windows.'}
+              </p>
+              <div class="planner-buttons">
+                <button type="button" class="planner-btn is-active" data-offset="0">Live</button>
+                <button type="button" class="planner-btn" data-offset="5">+5s</button>
+                <button type="button" class="planner-btn" data-offset="10">+10s</button>
+                <button type="button" class="planner-btn" data-offset="15">+15s</button>
+                <button type="button" class="planner-btn" data-offset="20">+20s</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
 
       <button type="button" id="launch-btn" class="big-launch-btn">
         <span class="btn-glow"></span>
         <span class="btn-text" id="launch-btn-text" data-i18n="game.big_launch_btn">BIG LAUNCH 🚀</span>
       </button>
-
-      <div class="sidebar-mission-card">
-        <span class="sidebar-mission-tag" id="sidebar-mission-tag">🎯 <span data-i18n="game.mission_label">ACTIVE MISSION</span></span>
-        <div class="sidebar-mission-clue" id="sidebar-mission-clue">Loading mission...</div>
-      </div>
-
-      <div class="sidebar-telemetry-block" id="sidebar-orbit-telemetry">
-        <div class="telemetry-header">
-          <span class="telemetry-title" data-i18n="game.orbital_telemetry">ORBITAL TELEMETRY</span>
-          <span class="telemetry-window-tag" id="telemetry-window-tag">🟢 Perigee Window</span>
-        </div>
-
-        <div class="telemetry-physics-banner" id="telemetry-physics-banner">
-          <span class="banner-icon">🪐</span>
-          <span class="banner-text" id="telemetry-physics-text">${(t('game.future_rendezvous_principle') || '🚀 Keplerian Rendezvous: Planets orbit continuously while you fly! You must aim for where the planet will be upon arrival (T+{sec}s), not where it is today.').replace('{sec}', '5.2')}</span>
-        </div>
-
-        <div class="telemetry-grid">
-          <div class="telemetry-item">
-            <span class="telemetry-label" data-i18n="game.perigee_label">Perigee (Min):</span>
-            <span class="telemetry-val" id="telemetry-perigee-val">--</span>
-          </div>
-          <div class="telemetry-item">
-            <span class="telemetry-label" data-i18n="game.apogee_label">Apogee (Max):</span>
-            <span class="telemetry-val" id="telemetry-apogee-val">--</span>
-          </div>
-          <div class="telemetry-item">
-            <span class="telemetry-label" data-i18n="game.current_separation">Current Distance:</span>
-            <span class="telemetry-val" id="telemetry-dist-val">--</span>
-          </div>
-          <div class="telemetry-item highlight-item">
-            <span class="telemetry-label" data-i18n="game.future_intercept_label">Arrival Intercept:</span>
-            <span class="telemetry-val" id="telemetry-arrival-val">--</span>
-          </div>
-          <div class="telemetry-item highlight-item">
-            <span class="telemetry-label" data-i18n="game.future_lead_label">Transit Orbit Motion:</span>
-            <span class="telemetry-val" id="telemetry-lead-val">--</span>
-          </div>
-          <div class="telemetry-item highlight-item">
-            <span class="telemetry-label" data-i18n="game.future_landing_location_label">Future Landing Orbit:</span>
-            <span class="telemetry-val" id="telemetry-landing-loc-val">--</span>
-          </div>
-          <div class="telemetry-item">
-            <span class="telemetry-label" data-i18n="game.next_window_label">Next Window:</span>
-            <span class="telemetry-val" id="telemetry-next-window-val">--</span>
-          </div>
-          <div class="telemetry-item">
-            <span class="telemetry-label" data-i18n="game.target_orbit_zone">Target Orbit Zone:</span>
-            <span class="telemetry-val" id="telemetry-energy-req">--</span>
-          </div>
-        </div>
-
-        <div class="future-orbit-planner" id="future-orbit-planner">
-          <div class="planner-header">
-            <span class="planner-title" data-i18n="game.future_orbit_planner">🔮 FUTURE ORBIT PLANNER</span>
-            <span class="planner-offset-badge" id="planner-offset-badge">T+0s (LIVE)</span>
-          </div>
-          <p class="planner-subtitle" data-i18n="game.planner_subtitle">
-            ${t('game.planner_subtitle') || 'Planets advance along orbits over time. Preview future orbital alignments to pick optimal transfer windows.'}
-          </p>
-          <div class="planner-buttons">
-            <button type="button" class="planner-btn is-active" data-offset="0">Live</button>
-            <button type="button" class="planner-btn" data-offset="5">+5s</button>
-            <button type="button" class="planner-btn" data-offset="10">+10s</button>
-            <button type="button" class="planner-btn" data-offset="15">+15s</button>
-            <button type="button" class="planner-btn" data-offset="20">+20s</button>
-          </div>
-        </div>
-      </div>
     </div>
   `;
   document.body.appendChild(sidebar);
+
+  if (typeof window !== 'undefined' && window.innerWidth <= 768) {
+    const thrustSec = sidebar.querySelector('#sec-thrust');
+    if (thrustSec) {
+      thrustSec.classList.remove('is-open');
+      const h = thrustSec.querySelector('.accordion-header');
+      if (h) h.setAttribute('aria-expanded', 'false');
+    }
+  }
 
   bindSidebarEvents();
   bindHUDEvents();
@@ -388,6 +509,9 @@ function teardownGameUI() {
     const el = document.getElementById(id);
     if (el) el.remove();
   });
+  document.querySelectorAll('.planet-btn, .moon').forEach(el => {
+    el.classList.remove('is-game-target');
+  });
 }
 
 function bindHUDEvents() {
@@ -411,12 +535,44 @@ function bindSidebarEvents() {
     });
   }
 
-  const listEl = document.getElementById('planet-select-list');
-  if (listEl) {
-    listEl.addEventListener('click', e => {
-      const btn = e.target.closest('.dest-btn');
-      if (!btn) return;
-      selectDestination(btn.dataset.slug);
+  const accordion = document.getElementById('launch-accordion');
+  if (accordion) {
+    accordion.addEventListener('click', e => {
+      const header = e.target.closest('.accordion-header');
+      if (!header) return;
+      const section = header.closest('.accordion-section');
+      if (!section) return;
+      const isOpen = section.classList.contains('is-open');
+      const isMobile = window.innerWidth <= 768;
+      if (isMobile) {
+        accordion.querySelectorAll('.accordion-section').forEach(s => {
+          if (s !== section) {
+            s.classList.remove('is-open');
+            const h = s.querySelector('.accordion-header');
+            if (h) h.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+      section.classList.toggle('is-open', !isOpen);
+      header.setAttribute('aria-expanded', String(!isOpen));
+    });
+  }
+
+  const lunaBtn = document.getElementById('luna-dest-btn');
+  if (lunaBtn) {
+    lunaBtn.addEventListener('click', () => {
+      const target = gameState.currentPlanet === 'moon' ? 'earth' : 'moon';
+      selectDestination(target);
+    });
+  }
+
+  const minBtn = document.getElementById('sidebar-min-btn');
+  if (minBtn) {
+    minBtn.addEventListener('click', () => {
+      const sidebar = document.getElementById('rocketrun-sidebar');
+      if (!sidebar) return;
+      const isMin = sidebar.classList.toggle('is-minimized');
+      minBtn.textContent = isMin ? '+' : '−';
     });
   }
 
@@ -430,6 +586,8 @@ function bindSidebarEvents() {
         gameState.setEnergy(slider.value);
         updateLaunchButtonState();
         updateEnergyFeedbackHint();
+        const sumThrust = document.getElementById('acc-summary-thrust');
+        if (sumThrust) sumThrust.textContent = `${slider.value}%`;
       },
       { passive: true }
     );
@@ -456,6 +614,10 @@ function bindSidebarEvents() {
       const badge = document.getElementById('planner-offset-badge');
       if (badge) {
         badge.textContent = futureOffsetSec === 0 ? 'T+0s (LIVE)' : `T+${futureOffsetSec}s (PROJECTED)`;
+      }
+      const sumPlanner = document.getElementById('acc-summary-planner');
+      if (sumPlanner) {
+        sumPlanner.textContent = futureOffsetSec === 0 ? 'Live' : `+${futureOffsetSec}s`;
       }
       updateOrbitalWindowUI();
     });
@@ -496,18 +658,27 @@ function updateSidebar() {
   }
 
   const tagEl = document.getElementById('sidebar-mission-tag');
+  const sumModeEl = document.getElementById('acc-summary-mode');
   if (tagEl) {
     if (gameState.isFreePlay) {
-      tagEl.textContent = `🚀 ${t('game.freeplay_tag') || 'FREE PLAY EXPLORATION'}`;
+      const fpText = `🚀 ${t('game.freeplay_tag') || 'FREE PLAY EXPLORATION'}`;
+      tagEl.textContent = fpText;
+      if (sumModeEl) sumModeEl.textContent = t('game.mode_freeplay') || 'Free Play';
     } else if (gameState.missionIndex < 7) {
       const tmpl = t('game.mission_tag_format') || 'Mission {num} of 8';
-      tagEl.textContent = `🎯 ${tmpl.replace('{num}', gameState.missionIndex + 1)}`;
+      const mText = `🎯 ${tmpl.replace('{num}', gameState.missionIndex + 1)}`;
+      tagEl.textContent = mText;
+      if (sumModeEl) sumModeEl.textContent = `🎯 Mission ${gameState.missionIndex + 1}`;
     } else if (gameState.missionIndex === 7) {
-      tagEl.textContent = `🌍 ${t('game.homecoming_tag') || 'Earth Homecoming (Mission 8)'}`;
+      const hcText = `🌍 ${t('game.homecoming_tag') || 'Earth Homecoming (Mission 8)'}`;
+      tagEl.textContent = hcText;
+      if (sumModeEl) sumModeEl.textContent = '🌍 Homecoming';
     } else {
       const expNum = gameState.missionIndex - 7;
       const tmpl = t('game.infinite_expedition_tag') || 'Infinite Expedition #{num}';
-      tagEl.textContent = `🌌 ${tmpl.replace('{num}', expNum)}`;
+      const expText = `🌌 ${tmpl.replace('{num}', expNum)}`;
+      tagEl.textContent = expText;
+      if (sumModeEl) sumModeEl.textContent = `🌌 #${expNum}`;
     }
   }
 
@@ -517,26 +688,24 @@ function updateSidebar() {
     sidebarClueEl.textContent = t(currentMission.clueKey);
   }
 
-  const listEl = document.getElementById('planet-select-list');
-  if (!listEl) return;
+  const destNameEl = document.getElementById('dest-target-name');
+  const sumDestEl = document.getElementById('acc-summary-dest');
+  const targetLabel = gameState.targetPlanet ? formatBodyName(gameState.targetPlanet) : (t('game.select_target_prompt') || 'Select on Map or tap Luna');
+  if (destNameEl) destNameEl.textContent = targetLabel;
+  if (sumDestEl) sumDestEl.textContent = gameState.targetPlanet ? formatBodyName(gameState.targetPlanet) : (t('game.select_target_prompt') || 'Select on Map');
 
-  const destinations = ['moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'earth'];
+  const isMoonOrigin = gameState.currentPlanet === 'moon';
+  const lunaText = document.getElementById('luna-dest-btn-text');
+  if (lunaText) {
+    lunaText.textContent = isMoonOrigin ? '🌍 Target Earth' : (t('game.target_luna_btn') || 'Target Luna (Moon)');
+  }
+  const lunaBtn = document.getElementById('luna-dest-btn');
+  if (lunaBtn) {
+    const isLunaTargeted = gameState.targetPlanet === (isMoonOrigin ? 'earth' : 'moon');
+    lunaBtn.classList.toggle('is-selected', isLunaTargeted);
+  }
 
-  listEl.innerHTML = destinations
-    .filter(slug => slug !== gameState.currentPlanet)
-    .map(slug => {
-      const isTarget = gameState.targetPlanet === slug;
-      const highlightClass = isTarget ? 'is-selected' : '';
-      const badge = isTarget ? '🚀' : '';
-      return `
-        <button type="button" class="dest-btn ${highlightClass}" data-slug="${slug}">
-          <span class="dest-badge">${badge}</span>
-          <span class="dest-name">${formatBodyName(slug)}</span>
-        </button>
-      `;
-    })
-    .join('');
-
+  updateCanvasTargetHighlight();
   updateFuelUI();
   updateLaunchButtonState();
 }
@@ -616,8 +785,20 @@ function selectDestination(slug) {
   if (gameState.state === GAME_STATES.TRANSIT) return;
   gameState.targetPlanet = slug;
   gameState.setState(GAME_STATES.TARGETED);
+  updateCanvasTargetHighlight();
   updateSidebar();
   updateOrbitalWindowUI();
+}
+
+function updateCanvasTargetHighlight() {
+  document.querySelectorAll('.planet-btn, .moon').forEach(el => {
+    el.classList.remove('is-game-target');
+  });
+  if (!gameState || !gameState.targetPlanet) return;
+  const targetEl = getBodyElement(gameState.targetPlanet);
+  if (targetEl) {
+    targetEl.classList.add('is-game-target');
+  }
 }
 
 function updateOrbitalWindowUI() {
@@ -645,6 +826,11 @@ function updateTelemetryHeaderAndTag(metrics) {
     if (metrics.status === 'perigee') tagEl.textContent = t('game.perigee_window') || '🟢 Perigee Window';
     else if (metrics.status === 'apogee') tagEl.textContent = t('game.apogee_window') || '🔴 Apogee Window';
     else tagEl.textContent = t('game.moderate_window') || '🟡 Mid-Orbit';
+  }
+
+  const sumTele = document.getElementById('acc-summary-telemetry');
+  if (sumTele) {
+    sumTele.textContent = metrics.status === 'perigee' ? '🟢 Perigee' : (metrics.status === 'apogee' ? '🔴 Apogee' : '🟡 Mid-Orbit');
   }
 
   const physicsText = document.getElementById('telemetry-physics-text');
@@ -1174,38 +1360,38 @@ function showTouchdownQuizModal(planetSlug) {
         if (isGrandTourCompletion) {
           gameState.addScore(250);
           showGrandTourVictoryModal(() => {
-            gameState.advanceMission();
-            dockRocketAtCurrentPlanet();
-            updateHUD();
-            updateSidebar();
-            updateOrbitalWindowUI();
-            saveLeaderboardScore({
-              name: 'Player',
-              avatar: getAstronautAvatar(),
-              rankKey: gameState.getRank().titleKey,
-              score: gameState.score,
-              date: new Date().toISOString().slice(0, 10)
-            });
+            handleMissionAdvancement();
           });
         } else {
-          gameState.advanceMission();
-          dockRocketAtCurrentPlanet();
-          updateHUD();
-          updateSidebar();
-          updateOrbitalWindowUI();
-          saveLeaderboardScore({
-            name: 'Player',
-            avatar: getAstronautAvatar(),
-            rankKey: gameState.getRank().titleKey,
-            score: gameState.score,
-            date: new Date().toISOString().slice(0, 10)
-          });
+          handleMissionAdvancement();
         }
       } else {
         btn.classList.add('is-incorrect');
         btn.disabled = true;
       }
     });
+  });
+}
+
+function handleMissionAdvancement() {
+  gameState.advanceMission();
+  if (!gameState.isFreePlay) {
+    const nextMission = gameState.getCurrentMission();
+    if (nextMission && nextMission.targetSlug) {
+      gameState.setTarget(nextMission.targetSlug);
+    }
+  }
+  dockRocketAtCurrentPlanet();
+  updateCanvasTargetHighlight();
+  updateHUD();
+  updateSidebar();
+  updateOrbitalWindowUI();
+  saveLeaderboardScore({
+    name: 'Player',
+    avatar: getAstronautAvatar(),
+    rankKey: gameState.getRank().titleKey,
+    score: gameState.score,
+    date: new Date().toISOString().slice(0, 10)
   });
 }
 
