@@ -20,7 +20,7 @@
     "explore_sun_aria": "Explorer le Soleil",
     "hint": "Cliquez sur une planète ou le Soleil pour explorer • Survoler pour mettre l'orbite en pause",
     "subpage_title": "{name} — Exploration du Système Solaire RocketRun",
-    "subpage_meta_desc": "Explorez {name} : données scientifiques, propriétés physiques, simulateur de gravité et faits NASA Kids.",
+    "subpage_meta_desc": "Explorez {name} : données scientifiques, propriétés physiques, simulateur de gravité et faits Mission Kids.",
     "specs_heading": "Spécifications Scientifiques",
     "planet_nav_aria": "Navigation planétaire",
     "selector_aria": "Sélecteur d'astre céleste",
@@ -150,7 +150,7 @@
       "greeting": "Bonjour, Étoile Dorée !",
       "fact": "L'étoile naine jaune au cœur de notre système solaire. Elle concentre 99,86 % de toute la masse du système, engendrant lumière et vie par fusion nucléaire.",
       "kids": {
-        "badge": "🚀 Mission NASA Kids",
+        "badge": "🚀 Mission Kids",
         "title": "La Méga Centrale Énergétique !",
         "jump": "Hauteur de saut : 0 centimètre ! La gravité y est 28 fois plus forte que sur Terre : vous seriez collé comme du pain grillé.",
         "fact": "Un million de Terres pourraient tenir à l'intérieur du Soleil ! Il rassemble 99,8 % de toute la matière de notre système solaire."
@@ -211,7 +211,7 @@
       "greeting": "Bonjour, Monde Brûlant !",
       "fact": "La plus petite planète — une journée y dure plus longtemps qu'une année, avec des écarts de −180 °C à 430 °C.",
       "kids": {
-        "badge": "🚀 Mission NASA Kids",
+        "badge": "🚀 Mission Kids",
         "title": "Le Terrain de Jeu en Bottes Lunaires !",
         "jump": "Vous sautez près de 3 fois plus haut que sur Terre ! Un petit bond vous propulse largement au-dessus de votre lit.",
         "fact": "Une année sur Mercure file à toute allure (88 jours), mais un seul jour de soleil dure plus longtemps qu'une année entière !"
@@ -272,7 +272,7 @@
       "greeting": "Bonjour, Jumelle Infernale !",
       "fact": "Un effet de serre féroce fait de Vénus la planète la plus chaude à 465 °C — plus torride que Mercure bien que plus éloignée du Soleil.",
       "kids": {
-        "badge": "🚀 Mission NASA Kids",
+        "badge": "🚀 Mission Kids",
         "title": "Le Four du Système Solaire !",
         "jump": "Vous sautez presque comme sur Terre, mais l'air est jaune, suffocant et assez chaud pour faire fondre une petite voiture en métal !",
         "fact": "Vénus tourne à l'envers comparée à la Terre : le Soleil s'y lève à l'ouest et se couche à l'est."
@@ -333,7 +333,7 @@
       "greeting": "Bonjour, Monde Natal !",
       "fact": "Le seul monde connu abritant la vie. Notre petite bille bleue est recouverte à 71 % d'océans, enveloppée d'une atmosphère protectrice.",
       "kids": {
-        "badge": "🚀 Mission NASA Kids",
+        "badge": "🚀 Mission Kids",
         "title": "L'Oasis Parfaite !",
         "jump": "Votre terrain de jeu préféré ! Une gravité idéale pour marquer des buts, faire du vélo et sauter dans les flaques.",
         "fact": "La Terre est la seule planète connue avec de l'air respirable, des océans d'eau liquide, un ciel bleu et des animaux vivants !"
@@ -394,7 +394,7 @@
       "greeting": "Bonjour, Planète Rouge !",
       "fact": "Elle abrite Olympus Mons — le plus haut volcan du système solaire, culminant à 21 km. Sa teinte rouille provient de poussières d'oxyde de fer.",
       "kids": {
-        "badge": "🚀 Mission NASA Kids",
+        "badge": "🚀 Mission Kids",
         "title": "Le Monde des Super-Sauts !",
         "jump": "Vous sautez 2,6 fois plus haut que sur Terre ! D'un seul bond vigoureux, vous enjambez une voiture garée.",
         "fact": "Sur Mars, des robots explorateurs comme Curiosity et Perseverance roulent actuellement sur les dunes de sable rouge !"
@@ -455,7 +455,7 @@
       "greeting": "Bonjour, Roi des Géants !",
       "fact": "Tellement gigantesque que toutes les autres planètes réunies pourraient y entrer. Sa Grande Tache Rouge tempête depuis plus de 350 ans.",
       "kids": {
-        "badge": "🚀 Mission NASA Kids",
+        "badge": "🚀 Mission Kids",
         "title": "Le Roi des Poids Lourds !",
         "jump": "Vos sauts sont divisés par deux ! Courir ici donne l'impression de porter de lourdes bottes de fonte.",
         "fact": "Jupiter est si immense que 1 300 Terres pourraient y loger, et sa Tache Rouge est un ouragan plus vaste que la Terre !"
@@ -516,7 +516,7 @@
       "greeting": "Bonjour, Beauté aux Anneaux !",
       "fact": "Ses anneaux spectaculaires s'étendent sur 282 000 km. Sa densité est si faible qu'elle flotterait sur l'eau !",
       "kids": {
-        "badge": "🚀 Mission NASA Kids",
+        "badge": "🚀 Mission Kids",
         "title": "Le Jouet de Bain de l'Univers !",
         "jump": "Votre poids et vos bonds ressemblent à ceux sur Terre, mais il n'y a pas de sol solide—juste des nuages et de la glace.",
         "fact": "Saturne est si légère et mousseuse que dans une baignoire géante, elle flotterait comme un canard en plastique !"
@@ -577,7 +577,7 @@
       "greeting": "Bonjour, Géante Glacée !",
       "fact": "Uranus possède une inclinaison d'axe de 98° — elle roule sur le côté autour du Soleil. Sa couleur cyan provient du gaz méthane.",
       "kids": {
-        "badge": "🚀 Mission NASA Kids",
+        "badge": "🚀 Mission Kids",
         "title": "Le Monde des Galipettes !",
         "jump": "Vous sautez 12 % plus haut avec un ressort supplémentaire, flottant doucement à travers des nuages turquoise givrés.",
         "fact": "Uranus roule sur le côté comme une boule de bowling et c'est la planète la plus glaciale du système à −224 °C !"
@@ -638,7 +638,7 @@
       "greeting": "Bonjour, Monde Venteux !",
       "fact": "La planète la plus venteuse — les tempêtes y soufflent à 2 100 km/h. Une orbite complète du Soleil prend 165 ans terrestres.",
       "kids": {
-        "badge": "🚀 Mission NASA Kids",
+        "badge": "🚀 Mission Kids",
         "title": "Le Géant aux Vents Supersoniques !",
         "jump": "Vous vous sentez à peine plus lourd que sur Terre, comme marcher face à un grand vent avec un épais manteau d'hiver.",
         "fact": "Neptune connaît les vents les plus furieux du système solaire : ils hurlent à plus de 2 000 km/h, plus vite qu'un avion à réaction !"

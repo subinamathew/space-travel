@@ -20,7 +20,7 @@
     "explore_sun_aria": "Die Sonne erkunden",
     "hint": "Klicke auf einen Planeten oder die Sonne zum Landen und Erkunden • Hovern stoppt den Orbit",
     "subpage_title": "{name} — RocketRun Sonnensystem-Erkundung",
-    "subpage_meta_desc": "Entdecke {name}: wissenschaftliche Kennzahlen, physikalische Eigenschaften, Schwerkraftrechner und NASA-Kids-Fakten.",
+    "subpage_meta_desc": "Entdecke {name}: wissenschaftliche Kennzahlen, physikalische Eigenschaften, Schwerkraftrechner und Kids-Mission-Fakten.",
     "specs_heading": "Wissenschaftliche Daten",
     "planet_nav_aria": "Planeten-Navigation",
     "selector_aria": "Direktauswahl Himmelskörper",
@@ -150,7 +150,7 @@
       "greeting": "Hallo, goldener Stern!",
       "fact": "Der gelbe Zwergstern im Herzen unseres Sonnensystems. Sie vereint 99,86 % der gesamten Masse des Systems in sich und spendet Licht und Leben durch Kernfusion.",
       "kids": {
-        "badge": "🚀 NASA Kids Mission",
+        "badge": "🚀 Kids Mission",
         "title": "Das Mega-Kraftwerk!",
         "jump": "Sprunghöhe: 0 Zentimeter! Die Schwerkraft ist 28-mal stärker als auf der Erde – du wärst platt wie eine Scheibe Toast.",
         "fact": "Eine Million Erden würden in die Sonne passen! Sie enthält 99,8 % der gesamten Materie unseres Sonnensystems."
@@ -211,7 +211,7 @@
       "greeting": "Hallo, glühende Welt!",
       "fact": "Der kleinste Planet — ein Tag dauert länger als ein Jahr, mit Temperaturen von −180 °C bis 430 °C.",
       "kids": {
-        "badge": "🚀 NASA Kids Mission",
+        "badge": "🚀 Kids Mission",
         "title": "Mondstiefel-Spielplatz!",
         "jump": "Du springst fast dreimal so hoch wie auf der Erde! Ein kleiner Hüpfer trägt dich locker über dein Bett.",
         "fact": "Ein Jahr auf Merkur vergeht blitzschnell (88 Tage), aber ein einziger Tag dauert länger als das ganze Jahr!"
@@ -272,7 +272,7 @@
       "greeting": "Hallo, feuriger Zwilling!",
       "fact": "Ein extremer Treibhauseffekt macht die Venus mit 465 °C zum heißesten Planeten — heißer als Merkur, obwohl sie weiter entfernt ist.",
       "kids": {
-        "badge": "🚀 NASA Kids Mission",
+        "badge": "🚀 Kids Mission",
         "title": "Der Backofen des Weltalls!",
         "jump": "Du springst fast wie auf der Erde, aber die Luft ist gelb, erdrückend schwer und heiß genug, um Spielzeugautos zu schmelzen!",
         "fact": "Die Venus dreht sich rückwärts im Vergleich zur Erde: Die Sonne geht im Westen auf und im Osten unter."
@@ -333,7 +333,7 @@
       "greeting": "Hallo, Heimatwelt!",
       "fact": "Die einzige bekannte Welt voller Leben. Unser blauer Planet besteht zu 71 % aus Ozeanen, umgeben von einer schützenden Atmosphäre.",
       "kids": {
-        "badge": "🚀 NASA Kids Mission",
+        "badge": "🚀 Kids Mission",
         "title": "Die perfekte Wohlfühl-Oase!",
         "jump": "Dein Heimatspielplatz! Perfekte Schwerkraft zum Fußballspielen, Fahrradfahren und Pfützenspringen.",
         "fact": "Die Erde ist der einzige bekannte Planet mit atembarer Luft, flüssigen Meeren, blauem Himmel und lebenden Tieren!"
@@ -394,7 +394,7 @@
       "greeting": "Hallo, roter Planet!",
       "fact": "Heimat des Olympus Mons — des höchsten Vulkans im Sonnensystem mit 21 km Höhe. Die rostrote Farbe stammt von Eisenoxid-Staub.",
       "kids": {
-        "badge": "🚀 NASA Kids Mission",
+        "badge": "🚀 Kids Mission",
         "title": "Hochsprung-Superhelden-Welt!",
         "jump": "Du springst 2,6-mal höher als auf der Erde! Mit einem einzigen Sprung hüpfst du mühelos über ein geparktes Auto.",
         "fact": "Auf dem Mars rollen echte Roboter wie Curiosity und Perseverance gerade über die roten Sanddünen!"
@@ -455,7 +455,7 @@
       "greeting": "Hallo, König der Riesen!",
       "fact": "So gewaltig, dass alle anderen Planeten zusammen hineinpassen würden. Sein Großer Roter Fleck tobt seit über 350 Jahren.",
       "kids": {
-        "badge": "🚀 NASA Kids Mission",
+        "badge": "🚀 Kids Mission",
         "title": "König der Schwergewichte!",
         "jump": "Deine Sprünge werden halbiert! Hier herumzulaufen fühlt sich an, als hättest du schwere Eisenstiefel an.",
         "fact": "Jupiter ist so riesig, dass 1.300 Erden in ihn hineinpassen, und sein Roter Fleck ist ein Wirbelsturm größer als die Erde!"
@@ -516,7 +516,7 @@
       "greeting": "Hallo, beringte Schönheit!",
       "fact": "Saturns berühmte Ringe spannen sich über 282.000 km. Seine Dichte ist so gering, dass er auf Wasser schwimmen würde!",
       "kids": {
-        "badge": "🚀 NASA Kids Mission",
+        "badge": "🚀 Kids Mission",
         "title": "Das kosmische Badespielzeug!",
         "jump": "Dein Gewicht und deine Sprünge fühlen sich fast wie auf der Erde an, aber es gibt keinen festen Boden – nur Wolken und Eisringe.",
         "fact": "Saturn ist so leicht, dass er in einer gigantischen Badewanne schwimmen würde wie eine riesige gelbe Quietscheente!"
@@ -577,7 +577,7 @@
       "greeting": "Hallo, Eisriese!",
       "fact": "Uranus hat eine Achsenneigung von 98° — er rollt wie eine Kugel seitlich um die Sonne. Sein blau-grüner Schimmer kommt von Methangas.",
       "kids": {
-        "badge": "🚀 NASA Kids Mission",
+        "badge": "🚀 Kids Mission",
         "title": "Die Welt der Purzelbäume!",
         "jump": "Du springst 12 % höher mit extra Schwung und schwebst sanft durch eiskalte, türkisblaue Wolken.",
         "fact": "Uranus rollt seitlich wie eine Bowlingkugel um die Sonne und ist mit −224 °C der kälteste Planet überhaupt!"
@@ -638,7 +638,7 @@
       "greeting": "Hallo, stürmische Welt!",
       "fact": "Der windigste Planet — Stürme erreichen bis zu 2.100 km/h. Ein einziger Umlauf um die Sonne dauert 165 Erdjahre.",
       "kids": {
-        "badge": "🚀 NASA Kids Mission",
+        "badge": "🚀 Kids Mission",
         "title": "Der Überschall-Sturmriese!",
         "jump": "Du fühlst dich ein kleines bisschen schwerer als auf der Erde, wie beim Laufen gegen starken Wind im dicken Mantel.",
         "fact": "Auf Neptun toben die stärksten Winde des Sonnensystems – mit über 2.000 km/h rasen sie schneller als ein Düsenjet!"

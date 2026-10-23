@@ -20,7 +20,7 @@
     "explore_sun_aria": "Esplora il Sole",
     "hint": "Clicca su un pianeta o sul Sole per esplorare • Passa sopra per mettere in pausa l'orbita",
     "subpage_title": "{name} — Esplorazione del Sistema Solare RocketRun",
-    "subpage_meta_desc": "Esplora {name}: dati scientifici, proprietà fisiche, calcolatore di gravità e curiosità NASA Kids.",
+    "subpage_meta_desc": "Esplora {name}: dati scientifici, proprietà fisiche, calcolatore di gravità e curiosità Missione Kids.",
     "specs_heading": "Dati Scientifici",
     "planet_nav_aria": "Navigazione planetaria",
     "selector_aria": "Selettore diretto corpo celeste",
@@ -150,7 +150,7 @@
       "greeting": "Ciao, Stella Dorata!",
       "fact": "La stella nana gialla al centro del nostro sistema solare. Contiene il 99,86% della massa totale, creando luce e vita attraverso la fusione nucleare.",
       "kids": {
-        "badge": "🚀 Missione NASA Kids",
+        "badge": "🚀 Missione Kids",
         "title": "La Mega Centrale di Energia!",
         "jump": "Altezza del salto: 0 centimetri! La gravità è 28 volte superiore alla Terra: saresti incollato a terra come un toast.",
         "fact": "Un milione di pianeti Terra potrebbero entrare nel Sole! Contiene il 99,8% di tutta la materia del nostro sistema solare."
@@ -211,7 +211,7 @@
       "greeting": "Ciao, Mondo Infuocato!",
       "fact": "Il pianeta più piccolo: un giorno dura più di un anno, con temperature da −180 °C a 430 °C.",
       "kids": {
-        "badge": "🚀 Missione NASA Kids",
+        "badge": "🚀 Missione Kids",
         "title": "Il Parco degli Stivali Lunari!",
         "jump": "Salti quasi 3 volte più in alto che sulla Terra! Con un piccolo balzo voleresti sopra il tuo letto.",
         "fact": "Un anno su Mercurio dura solo 88 giorni, ma un singolo giorno di luce dura più di un intero anno!"
@@ -272,7 +272,7 @@
       "greeting": "Ciao, Gemello Infernale!",
       "fact": "Un effetto serra incontrollato rende Venere il pianeta più caldo a 465 °C, più rovente di Mercurio pur essendo più lontano dal Sole.",
       "kids": {
-        "badge": "🚀 Missione NASA Kids",
+        "badge": "🚀 Missione Kids",
         "title": "Il Forno del Sistema Solare!",
         "jump": "Salti quasi come sulla Terra, ma l'aria è gialla, pesantissima e calda abbastanza da fondere una macchinina giocattolo!",
         "fact": "Venere gira al contrario rispetto alla Terra: il Sole sorge a ovest e tramonta a est."
@@ -333,7 +333,7 @@
       "greeting": "Ciao, Mondo Natale!",
       "fact": "L'unico mondo conosciuto che ospita la vita. Il nostro piccolo punto blu è ricoperto per il 71% da oceani, avvolto da un'atmosfera vitale.",
       "kids": {
-        "badge": "🚀 Missione NASA Kids",
+        "badge": "🚀 Missione Kids",
         "title": "L'Oasi Perfetta!",
         "jump": "Il tuo parco giochi di casa! Gravità ideale per correre, andare in bici e saltare nelle pozzanghere.",
         "fact": "La Terra è l'unico pianeta conosciuto con aria respirabile, mari di acqua liquida, cielo azzurro e animali viventi!"
@@ -394,7 +394,7 @@
       "greeting": "Ciao, Pianeta Rosso!",
       "fact": "Ospita l'Olympus Mons, il vulcano più alto del sistema solare con i suoi 21 km. Il colore ruggine è polvere di ossido di ferro.",
       "kids": {
-        "badge": "🚀 Missione NASA Kids",
+        "badge": "🚀 Missione Kids",
         "title": "Il Mondo dei Super-Salti!",
         "jump": "Salti 2,6 volte più in alto rispetto alla Terra! Con un solo balzo puoi scavalcare un'automobile parcheggiata.",
         "fact": "Su Marte ci sono veri rover robotici come Curiosity e Perseverance che stanno esplorando le dune rosse proprio adesso!"
@@ -455,7 +455,7 @@
       "greeting": "Ciao, Re dei Giganti!",
       "fact": "Così immenso che tutti gli altri pianeti uniti potrebbero entrare al suo interno. La Grande Macchia Rossa infuria da oltre 350 anni.",
       "kids": {
-        "badge": "🚀 Missione NASA Kids",
+        "badge": "🚀 Missione Kids",
         "title": "Il Re dei Pesi Massimi!",
         "jump": "I tuoi salti sono dimezzati! Correre qui è come indossare stivali di piombo mentre cammini nel burro d'arachidi.",
         "fact": "Giove è così mastodontico che 1.300 Terre ci starebbero dentro, e la sua Macchia Rossa è un uragano più grande della Terra!"
@@ -516,7 +516,7 @@
       "greeting": "Ciao, Bellezza con gli Anelli!",
       "fact": "I suoi spettacolari anelli si estendono per 282.000 km. La sua densità è così bassa che galleggerebbe sull'acqua!",
       "kids": {
-        "badge": "🚀 Missione NASA Kids",
+        "badge": "🚀 Missione Kids",
         "title": "Il Giocattolo da Bagno dello Spazio!",
         "jump": "Il tuo peso e i tuoi balzi sembrano quasi quelli terrestri, ma non c'è terreno solido: solo morbide nubi e anelli di ghiaccio.",
         "fact": "Saturno è così leggero che se avessi una vasca da bagno abbastanza grande, galleggerebbe come una papera di gomma!"
@@ -577,7 +577,7 @@
       "greeting": "Ciao, Gigante di Ghiaccio!",
       "fact": "Ha un'inclinazione assiale di 98°: rotola su un fianco lungo l'orbita attorno al Sole. Il suo colore ciano è dovuto al gas metano.",
       "kids": {
-        "badge": "🚀 Missione NASA Kids",
+        "badge": "🚀 Missione Kids",
         "title": "Il Mondo che Fa le Capovolte!",
         "jump": "Salti il 12% più in alto con un piacevole rimbalzo, fluttuando piano tra nubi celesti ghiacciate.",
         "fact": "Urano rotola su un fianco come una palla da bowling ed è il pianeta più freddo del sistema a −224 °C!"
@@ -638,7 +638,7 @@
       "greeting": "Ciao, Mondo Tempestoso!",
       "fact": "Il pianeta più ventoso: le tempeste raggiungono i 2.100 km/h. Un'orbita attorno al Sole dura ben 165 anni terrestri.",
       "kids": {
-        "badge": "🚀 Missione NASA Kids",
+        "badge": "🚀 Missione Kids",
         "title": "Il Gigante delle Tempeste Supersoniche!",
         "jump": "Ti senti solo un filo più pesante della Terra, come se camminassi controvento con un pesante cappotto invernale.",
         "fact": "Su Nettuno soffiano i venti più rabbiosi dell'intero sistema: sfrecciano a 2.000 km/h, più veloci di un aereo supersonico!"

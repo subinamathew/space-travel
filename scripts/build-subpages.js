@@ -173,7 +173,7 @@ allBodies.forEach((p, idx) => {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title data-i18n="ui.subpage_title" data-i18n-params='{"name":"${p.name}"}'>${p.name} — RocketRun Solar System Exploration</title>
-    <meta name="description" content="Explore ${p.name} on RocketRun: scientific metrics, physical properties, gravity calculator, and NASA kids facts." data-i18n-attr="content:ui.subpage_meta_desc" data-i18n-params='{"name":"${p.name}"}' />
+    <meta name="description" content="Explore ${p.name} on RocketRun: scientific metrics, physical properties, gravity calculator, and kids mission facts." data-i18n-attr="content:ui.subpage_meta_desc" data-i18n-params='{"name":"${p.name}"}' />
     <meta name="author" content="Zachary David Mathew + Papa" />
     <meta name="copyright" content="rocketrun.de" />
     <meta name="application-name" content="RocketRun" />
@@ -321,7 +321,7 @@ allBodies.forEach((p, idx) => {
                 </nav>
             </div>
 
-            <!-- Floating Cosmic Explorer Lab & NASA Kids Corner -->
+            <!-- Floating Cosmic Explorer Lab & Kids Mission Corner -->
             <aside class="space-calc-sidebar is-minimized" id="space-calc-sidebar" data-gravity="${p.gravityRatio}" data-body="${p.name}" data-slug="${p.slug}">
                 <div class="calc-header" id="calc-header" role="button" tabindex="0" aria-expanded="false" aria-controls="sidebar-body" aria-label="Expand Cosmic Explorer Lab" title="Click to minimize or expand" data-i18n-attr="aria-label:ui.expand_lab">
                     <div class="calc-header-left">

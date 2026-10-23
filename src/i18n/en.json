@@ -20,7 +20,7 @@
     "explore_sun_aria": "Explore The Sun",
     "hint": "Click any planet or the Sun to land and explore • Hover to pause orbit",
     "subpage_title": "{name} — RocketRun Solar System Exploration",
-    "subpage_meta_desc": "Explore {name}: scientific metrics, physical properties, gravity calculator, and NASA kids facts.",
+    "subpage_meta_desc": "Explore {name}: scientific metrics, physical properties, gravity calculator, and kids mission facts.",
     "specs_heading": "Scientific specifications",
     "planet_nav_aria": "Planet navigation",
     "selector_aria": "Direct celestial body selector",
@@ -150,7 +150,7 @@
       "greeting": "Hello, Golden Star!",
       "fact": "The yellow dwarf star at the heart of our solar system. It accounts for 99.86% of all mass in the solar system, generating light and life through core nuclear fusion.",
       "kids": {
-        "badge": "🚀 NASA Kids Mission",
+        "badge": "🚀 Kids Mission",
         "title": "The Mega Powerhouse!",
         "jump": "Jump height: 0 inches! The gravity is 28× stronger than Earth, so you would be glued flat like toast.",
         "fact": "One million Earths could fit inside the Sun! It holds 99.8% of all the stuff in our solar system."
@@ -211,7 +211,7 @@
       "greeting": "Hello, Scorched World!",
       "fact": "The smallest planet — a day lasts longer than a year, with temperatures ranging from −180°C to 430°C.",
       "kids": {
-        "badge": "🚀 NASA Kids Mission",
+        "badge": "🚀 Kids Mission",
         "title": "Moon-Boots Playground!",
         "jump": "You can leap nearly 3× higher than on Earth! One small hop would launch you clean over your bed.",
         "fact": "A year on Mercury is super fast (88 days), but one single daytime lasts longer than a whole year!"
@@ -272,7 +272,7 @@
       "greeting": "Hello, Inferno Twin!",
       "fact": "A runaway greenhouse makes Venus the hottest planet at 465°C — hotter than Mercury despite being farther from the Sun.",
       "kids": {
-        "badge": "🚀 NASA Kids Mission",
+        "badge": "🚀 Kids Mission",
         "title": "The Solar System’s Oven!",
         "jump": "You jump almost identical to Earth, but the air is yellow, crushing, and hot enough to melt a tin toy car!",
         "fact": "Venus spins backwards compared to Earth, so the Sun rises in the west and sets in the east."
@@ -333,7 +333,7 @@
       "greeting": "Hello, Home World!",
       "fact": "The only known world teeming with life. Our pale blue dot is 71% ocean, wrapped in a life-giving atmosphere.",
       "kids": {
-        "badge": "🚀 NASA Kids Mission",
+        "badge": "🚀 Kids Mission",
         "title": "The Just-Right Oasis!",
         "jump": "Your home playground! Perfect gravity for kicking soccer goals, riding bikes, and splashing in puddles.",
         "fact": "Earth is the only known planet with breathable oxygen, liquid oceans, blue skies, and living animals!"
@@ -394,7 +394,7 @@
       "greeting": "Hello, Red Planet!",
       "fact": "Home to Olympus Mons — the tallest volcano in the solar system at 21 km high. The rusty colour is iron-oxide dust.",
       "kids": {
-        "badge": "🚀 NASA Kids Mission",
+        "badge": "🚀 Kids Mission",
         "title": "High-Jump Superhero World!",
         "jump": "You jump 2.6× higher than on Earth! You could leap right over a parked car with a single bounce.",
         "fact": "Mars has robot rovers like Curiosity and Perseverance rolling across red sand dunes right now."
@@ -455,7 +455,7 @@
       "greeting": "Hello, Giant King!",
       "fact": "So massive all other planets could fit inside it. Its Great Red Spot storm has raged for over 350 years.",
       "kids": {
-        "badge": "🚀 NASA Kids Mission",
+        "badge": "🚀 Kids Mission",
         "title": "King of the Heavyweights!",
         "jump": "Your jumps are cut in half! Running here feels like wearing iron boots while wading through peanut butter.",
         "fact": "Jupiter is so huge that 1,300 Earths fit inside it, and its Great Red Spot is a hurricane bigger than Earth!"
@@ -516,7 +516,7 @@
       "greeting": "Hello, Ringed Beauty!",
       "fact": "Saturn’s iconic rings span 282,000 km. It’s so low-density it would float on water!",
       "kids": {
-        "badge": "🚀 NASA Kids Mission",
+        "badge": "🚀 Kids Mission",
         "title": "The Great Cosmic Bath Toy!",
         "jump": "Your weight and jumps feel almost like Earth, but there is no solid ground—just fluffy gas clouds and icy rings.",
         "fact": "Saturn is so light and airy that if you had a bathtub big enough, the whole planet would float like a rubber ducky!"
@@ -577,7 +577,7 @@
       "greeting": "Hello, Ice Giant!",
       "fact": "Uranus has a 98° axial tilt — it rolls around the Sun on its side. Its blue-green hue comes from methane gas.",
       "kids": {
-        "badge": "🚀 NASA Kids Mission",
+        "badge": "🚀 Kids Mission",
         "title": "The Sideways Somersault World!",
         "jump": "You jump 12% higher with extra bounce in your step, floating softly through frozen cyan clouds.",
         "fact": "Uranus rolls on its side like a bowling ball around the Sun, and it is the coldest planet at −224°C!"
@@ -638,7 +638,7 @@
       "greeting": "Hello, Windy World!",
       "fact": "The windiest planet — storms reach 2,100 km/h. One orbit of the Sun takes 165 Earth years.",
       "kids": {
-        "badge": "🚀 NASA Kids Mission",
+        "badge": "🚀 Kids Mission",
         "title": "The Supersonic Storm Giant!",
         "jump": "You feel a tiny bit heavier than Earth, like walking against the wind wearing a thick winter coat.",
         "fact": "Neptune has the wildest winds in the solar system—howling past at 1,200 mph, faster than a supersonic jet!"
