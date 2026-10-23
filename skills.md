@@ -3,7 +3,7 @@ name: rocketrun-development-standards
 description: >-
   Core engineering skills, architectural principles, multi-agent contracts,
   pedagogical standards, web security anti-hacking rules, open source licensing,
-  and quality guidelines for RocketRun (rocketrun.de). Enforces CSS over JS,
+  and quality guidelines for RocketRun (rocketrun.org). Enforces CSS over JS,
   conventional commits, lightweight semantic HTML, low cyclomatic complexity (<= 8),
   procedural asset rendering, strict i18n parity, enterprise security headers (CSP),
   MIT attribution licensing, and 60fps performance on lower-end devices.
@@ -11,7 +11,7 @@ description: >-
 
 # Engineering Skills & Development Guidelines
 
-This document defines the core engineering skills, architectural principles, quality standards, and development rules for the **RocketRun (rocketrun.de)** project. All contributors, agents, and pipelines must adhere to these practices to ensure high performance, maintainability, rock-solid stability, security, and an optimal experience across all devices.
+This document defines the core engineering skills, architectural principles, quality standards, and development rules for the **RocketRun (rocketrun.org)** project. All contributors, agents, and pipelines must adhere to these practices to ensure high performance, maintainability, rock-solid stability, security, and an optimal experience across all devices.
 
 ---
 
@@ -348,11 +348,11 @@ Astronomical facts, chemical formulas, and mathematical metrics must be rendered
 ## Skill 12: Metadata, OpenGraph & Social Sharing Standards
 
 ### Core Rule
-Every public endpoint and generated subpage in **RocketRun** must include comprehensive, valid, and rich metadata optimized for **Facebook, Twitter/X, WhatsApp, LinkedIn, Discord, and Telegram**. The official canonical domain is **`https://rocketrun.de`**, and all content is copyrighted under **`rocketrun.de`**.
+Every public endpoint and generated subpage in **RocketRun** must include comprehensive, valid, and rich metadata optimized for **Facebook, Twitter/X, WhatsApp, LinkedIn, Discord, and Telegram**. The official canonical domain is **`https://rocketrun.org`**, and all content is copyrighted under **`rocketrun.org`**.
 
 ### Standard Metadata Requirements
 1. **Canonical URLs & Absolute Paths**:
-   - Every page must declare its canonical URL: `<link rel="canonical" href="https://rocketrun.de/path" />`.
+   - Every page must declare its canonical URL: `<link rel="canonical" href="https://rocketrun.org/path" />`.
    - Never use relative paths for `og:image` or `og:url`. Social scrapers (especially WhatsApp and Facebook) strictly ignore relative URLs.
 
 2. **OpenGraph Protocol**:
@@ -360,7 +360,7 @@ Every public endpoint and generated subpage in **RocketRun** must include compre
    - `og:type`: `website` for root/credits; `article` for celestial subpages.
    - `og:title`: Concise, brand-aligned title (e.g., `RocketRun — Solar System Tour` or `${name} — RocketRun Solar System Exploration`).
    - `og:description`: Engaging summary highlighting interactive 3D physics, planetary science, and NASA kids missions.
-   - `og:image`: High-contrast, transparent or deep-space PNG (e.g., `https://rocketrun.de/images/earth.png` or `https://rocketrun.de/images/${slug}.png`).
+   - `og:image`: High-contrast, transparent or deep-space PNG (e.g., `https://rocketrun.org/images/earth.png` or `https://rocketrun.org/images/${slug}.png`).
    - `og:image:width`: `1200`, `og:image:height`: `630`, `og:image:type`: `image/png`.
    - `og:locale`: `en_US` with alternate locales (`de_DE`, `fr_FR`, `es_ES`, `it_IT`, `ja_JP`, `zh_CN`, `ml_IN`, `ta_IN`).
 
@@ -376,8 +376,8 @@ Every public endpoint and generated subpage in **RocketRun** must include compre
 
 5. **Copyright & Authorship**:
    - `<meta name="author" content="Zachary David Mathew + Papa" />`
-   - `<meta name="copyright" content="rocketrun.de" />`
-   - Visible and i18n-backed copyright in app footers and credits: `© 2026 rocketrun.de. All rights reserved.`
+   - `<meta name="copyright" content="rocketrun.org" />`
+   - Visible and i18n-backed copyright in app footers and credits: `© 2026 rocketrun.org. All rights reserved.`
 
 ---
 
@@ -399,7 +399,7 @@ Every public endpoint and generated subpage in **RocketRun** must include compre
      - `script-src 'self'`: Disallow untrusted inline scripts and forbid `eval()`, `new Function()`, and `WebAssembly` compilation unless specifically isolated.
      - `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com`: Restrict font styles to trusted CDN origins while permitting essential CSS custom property manipulations.
      - `font-src 'self' https://fonts.gstatic.com`: Restrict downloadable fonts to trusted Google Font CDN origins.
-     - `img-src 'self' data: https://rocketrun.de`: Block rogue image exfiltration channels.
+     - `img-src 'self' data: https://rocketrun.org`: Block rogue image exfiltration channels.
      - `connect-src 'self'`: Prevent background AJAX/fetch calls from leaking data to unauthorized third-party endpoints.
      - `frame-ancestors 'none'`: Strictly forbid framing on any domain to prevent clickjacking.
      - `base-uri 'self'`: Block `<base>` tag hijacking attacks.
@@ -445,10 +445,10 @@ RocketRun is an educational, community-friendly initiative. Others are encourage
    - Users are permitted to use, modify, copy, and distribute the code, provided that:
      1. The copyright notice and license notice are preserved in all copies.
      2. Derivative works, educational forks, or adaptations must display prominent visible attribution:
-        `"RocketRun by Zachary David Mathew + Papa (https://rocketrun.de)"`.
+        `"RocketRun by Zachary David Mathew + Papa (https://rocketrun.org)"`.
 2. **Trademark & Domain Protection**:
-   - The brand name `"RocketRun"`, domain `rocketrun.de`, and original planetary narratives remain the intellectual property of `rocketrun.de`.
-   - Forks and clones must not claim to be the official `rocketrun.de` service or imply endorsement.
+   - The brand name `"RocketRun"`, domain `rocketrun.org`, and original planetary narratives remain the intellectual property of `rocketrun.org`.
+   - Forks and clones must not claim to be the official `rocketrun.org` service or imply endorsement.
 
 ---
 
@@ -482,10 +482,10 @@ Before pushing any commit or releasing to production, verify:
   - [ ] All chemical abbreviations (`N₂`, `O₂`, `CO₂`, `H₂`, `He`, `CH₄`) are deciphered into everyday metaphors.
   - [ ] Multiplication uses written-out *"times"* rather than *"x"*.
 - [ ] **Social & Metadata**:
-  - [ ] Canonical URL points to `https://rocketrun.de/...`.
+  - [ ] Canonical URL points to `https://rocketrun.org/...`.
   - [ ] OpenGraph (`og:title`, `og:image`, `og:url`, `og:site_name`) and Twitter Card tags are present.
   - [ ] Social images are served over absolute HTTPS and optimized for WhatsApp (< 300KB).
-  - [ ] Copyright declared as `rocketrun.de`.
+  - [ ] Copyright declared as `rocketrun.org`.
 - [ ] **Anti-Hacking & Web Security**:
   - [ ] Zero internal deployment, dashboard, or pipeline URLs exposed in production HTML or JS bundles.
   - [ ] Enterprise security headers (`Content-Security-Policy`, `X-Frame-Options: DENY`, `X-Content-Type-Options: nosniff`, `Permissions-Policy`, `HSTS`, `COOP`, `CORP`) active in `netlify.toml`.

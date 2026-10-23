@@ -5,21 +5,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title data-i18n="ui.site_title">RocketRun — Solar System Tour</title>
-    <meta name="description" content="RocketRun: Tour the solar system — click any planet to explore realistic 3D orbits, planetary science, and kids missions!" data-i18n-attr="content:ui.site_description" />
+    <meta name="description"
+        content="RocketRun: Tour the solar system — click any planet to explore realistic 3D orbits, planetary science, and kids missions!"
+        data-i18n-attr="content:ui.site_description" />
     <meta name="author" content="Zachary David Mathew + Papa" />
-    <meta name="copyright" content="rocketrun.de" />
+    <meta name="copyright" content="rocketrun.org" />
     <meta name="application-name" content="RocketRun" />
     <meta name="theme-color" content="#030712" />
-    <link rel="canonical" href="https://rocketrun.de/" />
+    <link rel="canonical" href="https://rocketrun.org/" />
 
     <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="RocketRun" />
-    <meta property="og:url" content="https://rocketrun.de/" />
+    <meta property="og:url" content="https://rocketrun.org/" />
     <meta property="og:title" content="RocketRun — Solar System Tour" />
-    <meta property="og:description" content="Explore our solar system in interactive 3D: planetary orbits, astronomical specifications, gravity calculator, and kids missions. Rocket through cosmic wonders at rocketrun.de!" />
-    <meta property="og:image" content="https://rocketrun.de/images/earth.png" />
-    <meta property="og:image:secure_url" content="https://rocketrun.de/images/earth.png" />
+    <meta property="og:description"
+        content="Explore our solar system in interactive 3D: planetary orbits, astronomical specifications, gravity calculator, and kids missions. Rocket through cosmic wonders at rocketrun.org!" />
+    <meta property="og:image" content="https://rocketrun.org/images/earth.png" />
+    <meta property="og:image:secure_url" content="https://rocketrun.org/images/earth.png" />
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -37,8 +40,9 @@
     <meta name="twitter:site" content="@rocketrun_de" />
     <meta name="twitter:creator" content="@rocketrun_de" />
     <meta name="twitter:title" content="RocketRun — Solar System Tour" />
-    <meta name="twitter:description" content="Explore our solar system in interactive 3D: planetary orbits, astronomical specifications, gravity calculator, and kids missions. Rocket through cosmic wonders at rocketrun.de!" />
-    <meta name="twitter:image" content="https://rocketrun.de/images/earth.png" />
+    <meta name="twitter:description"
+        content="Explore our solar system in interactive 3D: planetary orbits, astronomical specifications, gravity calculator, and kids missions. Rocket through cosmic wonders at rocketrun.org!" />
+    <meta name="twitter:image" content="https://rocketrun.org/images/earth.png" />
     <meta name="twitter:image:alt" content="RocketRun — Interactive Solar System Tour" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -60,49 +64,65 @@
             <div class="warp-center-ring"></div>
             <p class="warp-status" data-i18n="ui.warp_status">WARP DRIVE ENGAGED</p>
             <div class="warp-notice" id="warp-notice">
-                <span class="coord-sector" data-i18n="ui.sector_full">🌌 Sector: Milky Way Galaxy &bull; Orion Arm</span>
+                <span class="coord-sector" data-i18n="ui.sector_full">🌌 Sector: Milky Way Galaxy &bull; Orion
+                    Arm</span>
                 <div class="coord-details">
-                    <span><span data-i18n="ui.galactic_coords_label">Galactic Coordinates:</span> <strong class="coord-highlight" data-i18n="ui.galactic_coords_val">RA 17h 45.6m, Dec -29°00′</strong></span>
-                    <span><span data-i18n="ui.core_distance_label">Core Distance:</span> <strong class="coord-highlight" data-i18n="ui.core_distance_val">26,000 Light-Years</strong></span>
+                    <span><span data-i18n="ui.galactic_coords_label">Galactic Coordinates:</span> <strong
+                            class="coord-highlight" data-i18n="ui.galactic_coords_val">RA 17h 45.6m, Dec
+                            -29°00′</strong></span>
+                    <span><span data-i18n="ui.core_distance_label">Core Distance:</span> <strong class="coord-highlight"
+                            data-i18n="ui.core_distance_val">26,000 Light-Years</strong></span>
                 </div>
             </div>
-            <div class="warp-bar"><div class="warp-bar-fill"></div></div>
+            <div class="warp-bar">
+                <div class="warp-bar-fill"></div>
+            </div>
         </div>
     </div>
 
     <!-- Top-Right HUD Stack: Galactic Location + Settings HUD -->
     <div class="hud-stack">
         <div id="galaxy-hud" class="in-stack is-minimized" aria-label="Galactic location">
-            <div class="hud-header" role="button" tabindex="0" aria-label="Toggle Galactic HUD" title="Minimize / Expand HUD" data-i18n-attr="aria-label:ui.toggle_hud,title:ui.toggle_hud">
+            <div class="hud-header" role="button" tabindex="0" aria-label="Toggle Galactic HUD"
+                title="Minimize / Expand HUD" data-i18n-attr="aria-label:ui.toggle_hud,title:ui.toggle_hud">
                 <div class="hud-header-title">
                     <span>🌌</span>
-                    <span class="hud-sector-name" data-i18n="ui.sector_full">Sector: Milky Way Galaxy &bull; Orion Arm</span>
+                    <span class="hud-sector-name" data-i18n="ui.sector_full">Sector: Milky Way Galaxy &bull; Orion
+                        Arm</span>
                 </div>
                 <span class="hud-header-time" id="hud-header-time" aria-hidden="true">--:--:--</span>
-                <button type="button" class="hud-toggle-btn" id="hud-toggle-btn" aria-label="Expand Galactic HUD" title="Minimize / Expand HUD" data-i18n-attr="aria-label:ui.expand_hud,title:ui.toggle_hud">
+                <button type="button" class="hud-toggle-btn" id="hud-toggle-btn" aria-label="Expand Galactic HUD"
+                    title="Minimize / Expand HUD" data-i18n-attr="aria-label:ui.expand_hud,title:ui.toggle_hud">
                     <span class="hud-toggle-icon">+</span>
                 </button>
             </div>
             <div class="hud-body" id="hud-body">
                 <div class="hud-row">
-                    <span><span data-i18n="ui.galactic_coords_label">Galactic Coordinates:</span> <strong data-i18n="ui.galactic_coords_val">RA 17h 45.6m, Dec -29°00′</strong></span>
+                    <span><span data-i18n="ui.galactic_coords_label">Galactic Coordinates:</span> <strong
+                            data-i18n="ui.galactic_coords_val">RA 17h 45.6m, Dec -29°00′</strong></span>
                 </div>
                 <div class="hud-row">
-                    <span><span data-i18n="ui.core_distance_label">Core Distance:</span> <strong data-i18n="ui.core_distance_val">26,000 Light-Years</strong></span>
+                    <span><span data-i18n="ui.core_distance_label">Core Distance:</span> <strong
+                            data-i18n="ui.core_distance_val">26,000 Light-Years</strong></span>
                 </div>
                 <div class="hud-row hud-time-row">
-                    <span><span data-i18n="ui.current_time_label">Earth Time:</span> <strong id="hud-live-time">--:--:--</strong></span>
+                    <span><span data-i18n="ui.current_time_label">Earth Time:</span> <strong
+                            id="hud-live-time">--:--:--</strong></span>
                 </div>
             </div>
         </div>
 
         <div id="settings-hud" class="in-stack" aria-label="Settings and Language">
-            <div class="hud-header" role="button" tabindex="0" aria-label="Toggle Settings HUD" title="Minimize / Expand Settings" data-i18n-attr="aria-label:ui.toggle_settings,title:ui.toggle_settings">
+            <div class="hud-header" role="button" tabindex="0" aria-label="Toggle Settings HUD"
+                title="Minimize / Expand Settings"
+                data-i18n-attr="aria-label:ui.toggle_settings,title:ui.toggle_settings">
                 <div class="hud-header-title">
                     <span>⚙️</span>
                     <span data-i18n="ui.settings_title">Settings</span>
                 </div>
-                <button type="button" class="hud-toggle-btn" id="settings-toggle-btn" aria-label="Minimize Settings HUD" title="Minimize / Expand Settings" data-i18n-attr="aria-label:ui.minimize_settings,title:ui.minimize_settings">
+                <button type="button" class="hud-toggle-btn" id="settings-toggle-btn" aria-label="Minimize Settings HUD"
+                    title="Minimize / Expand Settings"
+                    data-i18n-attr="aria-label:ui.minimize_settings,title:ui.minimize_settings">
                     <span class="settings-toggle-icon">−</span>
                 </button>
             </div>
@@ -124,14 +144,16 @@
                 <div class="settings-row">
                     <label for="moons-toggle" class="settings-label" data-i18n="ui.moons_label">Moons:</label>
                     <label class="hud-switch" for="moons-toggle">
-                        <input type="checkbox" id="moons-toggle" aria-label="Toggle planetary moons" data-i18n-attr="aria-label:ui.moons_toggle_aria" />
+                        <input type="checkbox" id="moons-toggle" aria-label="Toggle planetary moons"
+                            data-i18n-attr="aria-label:ui.moons_toggle_aria" />
                         <span class="slider"></span>
                     </label>
                 </div>
                 <div class="settings-row">
                     <label for="orbit-toggle" class="settings-label" data-i18n="ui.orbit_label">Orbit (3D):</label>
                     <label class="hud-switch" for="orbit-toggle">
-                        <input type="checkbox" id="orbit-toggle" aria-label="Toggle realistic 3D orbits" data-i18n-attr="aria-label:ui.orbit_toggle_aria" />
+                        <input type="checkbox" id="orbit-toggle" aria-label="Toggle realistic 3D orbits"
+                            data-i18n-attr="aria-label:ui.orbit_toggle_aria" />
                         <span class="slider"></span>
                     </label>
                 </div>
@@ -139,12 +161,15 @@
         </div>
 
         <!-- Mobile & Tablet Orbit Pause Button -->
-        <button type="button" id="orbit-pause-btn" class="hud-circle-btn hud-pause-btn in-stack" aria-label="Pause orbital motion" title="Pause / Resume Orbits" data-i18n-attr="aria-label:ui.pause_orbits_aria,title:ui.pause_orbits_title">
+        <button type="button" id="orbit-pause-btn" class="hud-circle-btn hud-pause-btn in-stack"
+            aria-label="Pause orbital motion" title="Pause / Resume Orbits"
+            data-i18n-attr="aria-label:ui.pause_orbits_aria,title:ui.pause_orbits_title">
             <span class="hud-pause-icon" id="hud-pause-icon">⏸️</span>
         </button>
 
         <!-- Quick Access RocketRun Credits Button (R🚀R) -->
-        <a href="credits.html" class="hud-circle-btn hud-credits-btn in-stack" aria-label="About & Credits" title="About & Credits" data-i18n-attr="aria-label:ui.credits_btn,title:ui.credits_btn">
+        <a href="credits.html" class="hud-circle-btn hud-credits-btn in-stack" aria-label="About & Credits"
+            title="About & Credits" data-i18n-attr="aria-label:ui.credits_btn,title:ui.credits_btn">
             <span class="hud-rr-badge" aria-hidden="true">
                 <span class="rr-letter">R</span>
                 <span class="rr-rocket">🚀</span>
@@ -153,7 +178,9 @@
         </a>
 
         <!-- Cookie & Privacy Settings Button -->
-        <button type="button" id="cookie-btn" class="hud-circle-btn hud-cookie-btn in-stack" aria-label="Cookie & Storage Preferences" title="Cookie & Storage Preferences" data-i18n-attr="aria-label:ui.cookie_btn_aria,title:ui.cookie_btn_title">
+        <button type="button" id="cookie-btn" class="hud-circle-btn hud-cookie-btn in-stack"
+            aria-label="Cookie & Storage Preferences" title="Cookie & Storage Preferences"
+            data-i18n-attr="aria-label:ui.cookie_btn_aria,title:ui.cookie_btn_title">
             <span class="hud-cookie-icon">🍪</span>
         </button>
     </div>
@@ -161,7 +188,8 @@
     <canvas id="stars"></canvas>
     <div id="solar-system">
         <div id="scene">
-            <a id="sun" href="planets/sun.html" title="Explore The Sun (Sol)" aria-label="Explore The Sun" data-i18n-attr="title:ui.explore_sun_title,aria-label:ui.explore_sun_aria"></a>
+            <a id="sun" href="planets/sun.html" title="Explore The Sun (Sol)" aria-label="Explore The Sun"
+                data-i18n-attr="title:ui.explore_sun_title,aria-label:ui.explore_sun_aria"></a>
         </div>
     </div>
     <div id="planet-view">
@@ -179,10 +207,13 @@
             <span id="pv-counter"></span>
             <button class="nav-btn" id="btn-next" aria-label="Next planet">→</button>
         </div>
-        <div id="pv-dots" role="tablist" aria-label="Planet selector" data-i18n-attr="aria-label:ui.selector_aria"></div>
+        <div id="pv-dots" role="tablist" aria-label="Planet selector" data-i18n-attr="aria-label:ui.selector_aria">
+        </div>
     </div>
-    <button id="back-btn" aria-label="Back to solar system" data-i18n="ui.back_btn" data-i18n-attr="aria-label:ui.back_btn">← Solar System</button>
-    <p id="hint" data-i18n="ui.hint">Click any planet or the Sun to land and explore &nbsp;&bull;&nbsp; Hover to pause orbit</p>
+    <button id="back-btn" aria-label="Back to solar system" data-i18n="ui.back_btn"
+        data-i18n-attr="aria-label:ui.back_btn">← Solar System</button>
+    <p id="hint" data-i18n="ui.hint">Click any planet or the Sun to land and explore &nbsp;&bull;&nbsp; Hover to pause
+        orbit</p>
 
     <!-- Tiny Footer: German Impressum / Imprint -->
     <footer class="site-tiny-footer" role="contentinfo">

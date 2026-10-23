@@ -5,21 +5,23 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title data-i18n="ui.credits_title">Credits & Mission — RocketRun</title>
-    <meta name="description" content="RocketRun: Created by Zachary David Mathew + Papa. Supported with Gemini Antigravity. Domain rocketrun.de, Git commit tracking, astronomical credits, and missional.eu non-profit info." />
+    <meta name="description"
+        content="RocketRun: Created by Zachary David Mathew + Papa. Supported with Gemini Antigravity. Domain rocketrun.org, Git commit tracking, astronomical credits, and missional.eu non-profit info." />
     <meta name="author" content="Zachary David Mathew + Papa" />
-    <meta name="copyright" content="rocketrun.de" />
+    <meta name="copyright" content="rocketrun.org" />
     <meta name="application-name" content="RocketRun" />
     <meta name="theme-color" content="#030712" />
-    <link rel="canonical" href="https://rocketrun.de/credits.html" />
+    <link rel="canonical" href="https://rocketrun.org/credits.html" />
 
     <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="RocketRun" />
-    <meta property="og:url" content="https://rocketrun.de/credits.html" />
+    <meta property="og:url" content="https://rocketrun.org/credits.html" />
     <meta property="og:title" content="Credits & Mission — RocketRun" />
-    <meta property="og:description" content="Created by Zachary David Mathew + Papa. Supported with Gemini Antigravity. Domain rocketrun.de, Git commit tracking, astronomical credits, and educational non-profit info." />
-    <meta property="og:image" content="https://rocketrun.de/images/earth.png" />
-    <meta property="og:image:secure_url" content="https://rocketrun.de/images/earth.png" />
+    <meta property="og:description"
+        content="Created by Zachary David Mathew + Papa. Supported with Gemini Antigravity. Domain rocketrun.org, Git commit tracking, astronomical credits, and educational non-profit info." />
+    <meta property="og:image" content="https://rocketrun.org/images/earth.png" />
+    <meta property="og:image:secure_url" content="https://rocketrun.org/images/earth.png" />
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -31,13 +33,15 @@
     <meta name="twitter:site" content="@rocketrun_de" />
     <meta name="twitter:creator" content="@rocketrun_de" />
     <meta name="twitter:title" content="Credits & Mission — RocketRun" />
-    <meta name="twitter:description" content="Created by Zachary David Mathew + Papa. Supported with Gemini Antigravity. Domain rocketrun.de, Git commit tracking, astronomical credits, and educational non-profit info." />
-    <meta name="twitter:image" content="https://rocketrun.de/images/earth.png" />
+    <meta name="twitter:description"
+        content="Created by Zachary David Mathew + Papa. Supported with Gemini Antigravity. Domain rocketrun.org, Git commit tracking, astronomical credits, and educational non-profit info." />
+    <meta name="twitter:image" content="https://rocketrun.org/images/earth.png" />
     <meta name="twitter:image:alt" content="RocketRun — Credits & Mission" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap"
+        rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css?v=3.1.1" />
     <script src="js/script.min.js?v=3.1.1" defer></script>
 </head>
@@ -45,17 +49,21 @@
 <body class="subpage-body credits-page">
     <canvas id="stars"></canvas>
 
-    <a id="back-btn" class="visible" href="index.html" aria-label="Back to solar system" data-i18n="ui.back_btn" data-i18n-attr="aria-label:ui.back_btn">← Solar System</a>
+    <a id="back-btn" class="visible" href="index.html" aria-label="Back to solar system" data-i18n="ui.back_btn"
+        data-i18n-attr="aria-label:ui.back_btn">← Solar System</a>
 
     <!-- Top-Right HUD Stack: Warp Preloader Launch & Language Selector -->
     <div class="hud-stack">
         <!-- Replay Warp Speed Preloader Button -->
-        <a href="index.html?warp=1" id="launch-preloader-btn" class="hud-circle-btn hud-rocket-btn in-stack" aria-label="Launch Warp Speed Preloader" title="Launch Warp Speed Preloader" data-i18n-attr="aria-label:ui.replay_preloader,title:ui.replay_preloader">
+        <a href="index.html?warp=1" id="launch-preloader-btn" class="hud-circle-btn hud-rocket-btn in-stack"
+            aria-label="Launch Warp Speed Preloader" title="Launch Warp Speed Preloader"
+            data-i18n-attr="aria-label:ui.replay_preloader,title:ui.replay_preloader">
             <span class="hud-rocket-icon">🚀</span>
         </a>
 
         <div id="settings-hud" class="in-stack visible" aria-label="Settings and Language">
-            <div class="hud-header" role="button" tabindex="0" aria-label="Toggle Settings HUD" title="Language Settings" data-i18n-attr="aria-label:ui.toggle_settings,title:ui.toggle_settings">
+            <div class="hud-header" role="button" tabindex="0" aria-label="Toggle Settings HUD"
+                title="Language Settings" data-i18n-attr="aria-label:ui.toggle_settings,title:ui.toggle_settings">
                 <div class="hud-header-title">
                     <span>⚙️</span>
                     <span data-i18n="ui.settings_title">Settings</span>
@@ -80,7 +88,9 @@
         </div>
 
         <!-- Cookie & Privacy Settings Button -->
-        <button type="button" id="cookie-btn" class="hud-circle-btn hud-cookie-btn in-stack" aria-label="Cookie & Storage Preferences" title="Cookie & Storage Preferences" data-i18n-attr="aria-label:ui.cookie_btn_aria,title:ui.cookie_btn_title">
+        <button type="button" id="cookie-btn" class="hud-circle-btn hud-cookie-btn in-stack"
+            aria-label="Cookie & Storage Preferences" title="Cookie & Storage Preferences"
+            data-i18n-attr="aria-label:ui.cookie_btn_aria,title:ui.cookie_btn_title">
             <span class="hud-cookie-icon">🍪</span>
         </button>
     </div>
@@ -101,12 +111,14 @@
             <div class="credits-card hero-card">
                 <div class="credits-icon-ring">👥</div>
                 <h1 class="credits-title" data-i18n="ui.credits_title">Credits & Mission</h1>
-                <p class="credits-tagline" data-i18n="ui.rocketrun_tagline">RocketRun — Interactive Solar System Exploration</p>
-                
+                <p class="credits-tagline" data-i18n="ui.rocketrun_tagline">RocketRun — Interactive Solar System
+                    Exploration</p>
+
                 <div class="version-badges-row">
                     <div class="badge-item">
                         <span class="badge-label" data-i18n="ui.author_label">Author</span>
-                        <span class="badge-value author-badge-val" data-i18n="ui.author_names">Zachary David Mathew + Papa</span>
+                        <span class="badge-value author-badge-val" data-i18n="ui.author_names">Zachary David Mathew +
+                            Papa</span>
                     </div>
                     <div class="badge-item">
                         <span class="badge-label" data-i18n="ui.version_label">App Version</span>
@@ -114,7 +126,8 @@
                     </div>
                     <div class="badge-item">
                         <span class="badge-label" data-i18n="ui.commit_label">Git Commit</span>
-                        <a href="{{COMMIT_URL}}" target="_blank" rel="noopener noreferrer" class="badge-value commit-hash-link" title="View commit on GitHub">
+                        <a href="{{COMMIT_URL}}" target="_blank" rel="noopener noreferrer"
+                            class="badge-value commit-hash-link" title="View commit on GitHub">
                             <code>{{GIT_COMMIT}}</code>
                             <span class="external-icon">↗</span>
                         </a>
@@ -131,7 +144,9 @@
                 <div class="card-badge">CREATORS & EXPLORERS</div>
                 <h2 class="card-title" data-i18n="ui.author_names">Zachary David Mathew + Papa</h2>
                 <p class="card-desc" data-i18n="ui.creators_desc">
-                    An interactive cosmic exploration created by Zachary David Mathew and Papa, designed to bring the wonders of the solar system to life for young explorers. Built with modern web standards and supported with Gemini Antigravity.
+                    An interactive cosmic exploration created by Zachary David Mathew and Papa, designed to bring the
+                    wonders of the solar system to life for young explorers. Built with modern web standards and
+                    supported with Gemini Antigravity.
                 </p>
                 <div class="author-support-box">
                     <div class="support-badge">
@@ -145,14 +160,15 @@
             <!-- Card 3: Domain & Copyright Section -->
             <div class="credits-card domain-card">
                 <div class="card-badge">DOMAIN & COPYRIGHT</div>
-                <h2 class="card-title">rocketrun.de</h2>
+                <h2 class="card-title">rocketrun.org</h2>
                 <p class="card-desc" data-i18n="ui.copyright">
-                    © 2026 rocketrun.de. All rights reserved.
+                    © 2026 rocketrun.org. All rights reserved.
                 </p>
                 <div class="card-actions">
-                    <a href="https://rocketrun.de" target="_blank" rel="noopener noreferrer" class="btn-primary-action" title="Visit rocketrun.de">
+                    <a href="https://rocketrun.org" target="_blank" rel="noopener noreferrer" class="btn-primary-action"
+                        title="Visit rocketrun.org">
                         <span>🚀</span>
-                        <span data-i18n="ui.visit_rocketrun">Visit rocketrun.de</span>
+                        <span data-i18n="ui.visit_rocketrun">Visit rocketrun.org</span>
                         <span class="external-icon">↗</span>
                     </a>
                     <a href="impressum.html" class="btn-secondary-action" title="Impressum / Imprint">
@@ -168,10 +184,12 @@
                 <div class="card-badge">NON-PROFIT INITIATIVE</div>
                 <h2 class="card-title" data-i18n="ui.missional_title">Part of missional.eu</h2>
                 <p class="card-desc" data-i18n="ui.missional_desc">
-                    We are proud to be part of missional.eu, a UK-based non-profit organization dedicated to fostering education, scientific curiosity, and cosmic wonder for everyone.
+                    We are proud to be part of missional.eu, a UK-based non-profit organization dedicated to fostering
+                    education, scientific curiosity, and cosmic wonder for everyone.
                 </p>
                 <div class="card-actions">
-                    <a href="https://missional.eu" target="_blank" rel="noopener noreferrer" class="btn-secondary-action" title="Visit missional.eu">
+                    <a href="https://missional.eu" target="_blank" rel="noopener noreferrer"
+                        class="btn-secondary-action" title="Visit missional.eu">
                         <span>🌐</span>
                         <span data-i18n="ui.visit_missional">Visit missional.eu</span>
                         <span class="external-icon">↗</span>
@@ -184,7 +202,8 @@
                 <div class="card-badge">EXPLORATION & ROADMAP</div>
                 <h2 class="card-title" data-i18n="ui.roadmap_title">Our Roadmap & Plans</h2>
                 <p class="card-desc" data-i18n="ui.roadmap_desc">
-                    Discover our mission milestones, game mode upgrades, sensory features, and accessibility roadmap for 2026.
+                    Discover our mission milestones, game mode upgrades, sensory features, and accessibility roadmap for
+                    2026.
                 </p>
                 <div class="card-actions">
                     <a href="features.html#roadmap-section" class="btn-primary-action" title="View Our Roadmap & Plans">
@@ -200,7 +219,8 @@
                 <div class="card-badge">ASTRONOMICAL CITATIONS</div>
                 <h2 class="card-title" data-i18n="ui.data_sources_title">Scientific Data & Astronomical Sources</h2>
                 <p class="card-desc" data-i18n="ui.data_sources_desc">
-                    Orbital parameters, planetary physical characteristics, gravity multipliers, and kids mission facts are curated from NASA Solar System Exploration, JPL, ESA, and peer-reviewed astronomical databases.
+                    Orbital parameters, planetary physical characteristics, gravity multipliers, and kids mission facts
+                    are curated from NASA Solar System Exploration, JPL, ESA, and peer-reviewed astronomical databases.
                 </p>
                 <div class="tech-pills">
                     <span class="tech-pill">NASA Solar System</span>
@@ -222,7 +242,9 @@
 
     <!-- Floating Crawl Controls Bar -->
     <nav class="crawl-controls-bar" aria-label="Crawl animation controls">
-        <a href="index.html?warp=1" class="crawl-ctrl-btn crawl-warp-btn" id="crawl-warp-btn" aria-label="Launch Warp Speed Preloader" title="Launch Warp Speed Preloader" data-i18n-attr="aria-label:ui.replay_preloader,title:ui.replay_preloader">
+        <a href="index.html?warp=1" class="crawl-ctrl-btn crawl-warp-btn" id="crawl-warp-btn"
+            aria-label="Launch Warp Speed Preloader" title="Launch Warp Speed Preloader"
+            data-i18n-attr="aria-label:ui.replay_preloader,title:ui.replay_preloader">
             <span class="ctrl-icon">🚀</span>
             <span class="ctrl-label" data-i18n="ui.replay_preloader_short">Warp Speed</span>
         </a>

@@ -1,9 +1,9 @@
 {
   "name": "rocketrun",
   "version": "3.1.1",
-  "description": "RocketRun — Interactive Solar System Tour (rocketrun.de)",
+  "description": "RocketRun — Interactive Solar System Tour (rocketrun.org)",
   "license": "MIT",
-  "homepage": "https://rocketrun.de",
+  "homepage": "https://rocketrun.org",
   "main": "src/js/script.js",
   "type": "module",
   "scripts": {

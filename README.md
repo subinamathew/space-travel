@@ -2,7 +2,7 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/df0b00d7-6873-4a27-9269-eb8daee2a50c/deploy-status)](https://app.netlify.com/projects/zachandappa/deploys)
 
-An interactive, animated 3D-styled solar system explorer available at [rocketrun.de](https://rocketrun.de). Tour the planets, discover scientific facts, and experience smooth transitions powered by CSS animations, HTML5 Canvas, and modular modern tooling. Copyright © 2026 rocketrun.de.
+An interactive, animated 3D-styled solar system explorer available at [rocketrun.org](https://rocketrun.org). Tour the planets, discover scientific facts, and experience smooth transitions powered by CSS animations, HTML5 Canvas, and modular modern tooling. Copyright © 2026 rocketrun.org.
 
 ---
 
@@ -175,8 +175,8 @@ This project is licensed under the **MIT License with Attribution Requirement** 
 You are welcome to explore, learn from, fork, and adapt the code, architectural ideas, and pedagogical concepts of RocketRun. Under the terms of the license:
 1. **Preserve Copyright**: You must retain the original copyright notice and permission notice in all copies or substantial portions of the Software.
 2. **Prominent Attribution**: Any derivative work, fork, reuse of the idea/pedagogical explainers, or redistribution must visibly and prominently provide credit and attribution:
-   > **"RocketRun by Zachary David Mathew + Papa ([https://rocketrun.de](https://rocketrun.de))"**
+   > **"RocketRun by Zachary David Mathew + Papa ([https://rocketrun.org](https://rocketrun.org))"**
 
 ---
 
-Copyright © 2026 rocketrun.de. All rights reserved.
+Copyright © 2026 rocketrun.org. All rights reserved.

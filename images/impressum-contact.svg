@@ -38,7 +38,7 @@
 
   <!-- Badge / Header -->
   <text x="82" y="42" class="badge">ANGABEN GEMÄSS § 5 DDG • DOMAIN INHABER &amp; BETREIBER</text>
-  <text x="684" y="42" text-anchor="end" class="domain-tag">rocketrun.de</text>
+  <text x="684" y="42" text-anchor="end" class="domain-tag">rocketrun.org</text>
 
   <!-- Divider Line -->
   <line x1="36" y1="56" x2="684" y2="56" stroke="rgba(255,255,255,0.08)" stroke-width="1" />

@@ -99,9 +99,9 @@ const mlUi = {
   crawl_restart: "വീണ്ടും തുടങ്ങുക",
   crawl_flat_view: "സ്റ്റാറ്റിക് കാഴ്ച",
   crawl_crawl_view: "സ്ക്രോൾ ചെയ്യുക",
-  copyright: "© 2026 rocketrun.de. എല്ലാ അവകാശങ്ങളും നിക്ഷിപ്തം.",
-  domain_label: "rocketrun.de",
-  visit_rocketrun: "rocketrun.de സന്ദർശിക്കുക",
+  copyright: "© 2026 rocketrun.org. എല്ലാ അവകാശങ്ങളും നിക്ഷിപ്തം.",
+  domain_label: "rocketrun.org",
+  visit_rocketrun: "rocketrun.org സന്ദർശിക്കുക",
   rocketrun_tagline: "റോക്കറ്റ് റൺ — ഇന്ററാക്ടീവ് സൗരയൂഥ പര്യവേക്ഷണം"
 };
 
@@ -195,9 +195,9 @@ const taUi = {
   crawl_restart: "மீண்டும் தொடங்கு",
   crawl_flat_view: "நிலையான பார்வை",
   crawl_crawl_view: "மேலே உருட்டவும்",
-  copyright: "© 2026 rocketrun.de. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.",
-  domain_label: "rocketrun.de",
-  visit_rocketrun: "rocketrun.de தளத்தைப் பார்க்க",
+  copyright: "© 2026 rocketrun.org. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.",
+  domain_label: "rocketrun.org",
+  visit_rocketrun: "rocketrun.org தளத்தைப் பார்க்க",
   rocketrun_tagline: "ராக்கெட் ரன் — ஊடாடும் சூரியக் குடும்ப ஆய்வு"
 };
 

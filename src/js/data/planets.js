@@ -1,7 +1,7 @@
 /**
  * Planetary Data & Astronomical Specifications
  * Astronomical orbital periods, geometric parameters, visual palettes,
- * and gravity ratios for RocketRun (rocketrun.de).
+ * and gravity ratios for RocketRun (rocketrun.org).
  *
  * Localized textual copy and stat cards live in src/i18n/*.json (Single Source of Truth).
  */

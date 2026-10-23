@@ -129,8 +129,8 @@ fs.writeFileSync(
   path.resolve(pubDir, 'version.json'),
   JSON.stringify({
     appName: 'RocketRun',
-    domain: 'rocketrun.de',
-    copyright: '© 2026 rocketrun.de',
+    domain: 'rocketrun.org',
+    copyright: '© 2026 rocketrun.org',
     version: appVersion,
     commit: gitCommit,
     commitUrl,
@@ -189,19 +189,19 @@ allBodies.forEach((p, idx) => {
     <title data-i18n="ui.subpage_title" data-i18n-params='{"name":"${p.name}"}'>${p.name} — RocketRun Solar System Exploration</title>
     <meta name="description" content="Explore ${p.name} on RocketRun: scientific metrics, physical properties, gravity calculator, and kids mission facts." data-i18n-attr="content:ui.subpage_meta_desc" data-i18n-params='{"name":"${p.name}"}' />
     <meta name="author" content="Zachary David Mathew + Papa" />
-    <meta name="copyright" content="rocketrun.de" />
+    <meta name="copyright" content="rocketrun.org" />
     <meta name="application-name" content="RocketRun" />
     <meta name="theme-color" content="#030712" />
-    <link rel="canonical" href="https://rocketrun.de/planets/${p.slug}.html" />
+    <link rel="canonical" href="https://rocketrun.org/planets/${p.slug}.html" />
 
     <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="RocketRun" />
-    <meta property="og:url" content="https://rocketrun.de/planets/${p.slug}.html" />
+    <meta property="og:url" content="https://rocketrun.org/planets/${p.slug}.html" />
     <meta property="og:title" content="${p.name} — RocketRun Solar System Exploration" />
-    <meta property="og:description" content="Explore ${p.name} on RocketRun (rocketrun.de): real orbital physics, planetary atmosphere, gravity calculator, and kids mission facts." />
-    <meta property="og:image" content="https://rocketrun.de/images/${p.slug}.png" />
-    <meta property="og:image:secure_url" content="https://rocketrun.de/images/${p.slug}.png" />
+    <meta property="og:description" content="Explore ${p.name} on RocketRun (rocketrun.org): real orbital physics, planetary atmosphere, gravity calculator, and kids mission facts." />
+    <meta property="og:image" content="https://rocketrun.org/images/${p.slug}.png" />
+    <meta property="og:image:secure_url" content="https://rocketrun.org/images/${p.slug}.png" />
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
@@ -213,8 +213,8 @@ allBodies.forEach((p, idx) => {
     <meta name="twitter:site" content="@rocketrun_de" />
     <meta name="twitter:creator" content="@rocketrun_de" />
     <meta name="twitter:title" content="${p.name} — RocketRun Solar System Exploration" />
-    <meta name="twitter:description" content="Explore ${p.name} on RocketRun (rocketrun.de): real orbital physics, planetary atmosphere, gravity calculator, and kids mission facts." />
-    <meta name="twitter:image" content="https://rocketrun.de/images/${p.slug}.png" />
+    <meta name="twitter:description" content="Explore ${p.name} on RocketRun (rocketrun.org): real orbital physics, planetary atmosphere, gravity calculator, and kids mission facts." />
+    <meta name="twitter:image" content="https://rocketrun.org/images/${p.slug}.png" />
     <meta name="twitter:image:alt" content="${p.name} — RocketRun Solar System Exploration" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
