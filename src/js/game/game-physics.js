@@ -103,3 +103,55 @@ export function checkSolarBoost(originSlug, targetSlug) {
   const r2 = ORBIT_RADII[targetSlug] ?? 30;
   return r1 <= 20 || r2 <= 20;
 }
+
+export function generateScientificTransferArc(p1, p2, isMoon = false) {
+  const points = [];
+  const steps = 24;
+
+  if (isMoon) {
+    // Translunar injection: smooth curved leap around Earth
+    const midX = (p1.x + p2.x) / 2 + (p2.y - p1.y) * 0.45;
+    const midY = (p1.y + p2.y) / 2 - (p2.x - p1.x) * 0.45;
+
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps;
+      const x = (1 - t) * (1 - t) * p1.x + 2 * (1 - t) * t * midX + t * t * p2.x;
+      const y = (1 - t) * (1 - t) * p1.y + 2 * (1 - t) * t * midY + t * t * p2.y;
+      points.push({ x, y });
+    }
+  } else {
+    // Interplanetary Hohmann / Keplerian transfer ellipse around Sun (0, 0)
+    const r1 = Math.hypot(p1.x, p1.y);
+    const r2 = Math.hypot(p2.x, p2.y);
+    const theta1 = Math.atan2(p1.y, p1.x);
+    const theta2 = Math.atan2(p2.y, p2.x);
+
+    let dTheta = theta2 - theta1;
+    while (dTheta <= 0.3) {
+      dTheta += Math.PI * 2;
+    }
+    if (dTheta > Math.PI * 1.6) {
+      dTheta -= Math.PI * 2;
+      if (Math.abs(dTheta) < 0.3) dTheta = Math.PI * 0.8;
+    }
+
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps;
+      const r = r1 + (r2 - r1) * (0.5 - 0.5 * Math.cos(Math.PI * t));
+      const theta = theta1 + dTheta * t;
+      const x = r * Math.cos(theta);
+      const y = r * Math.sin(theta);
+      points.push({ x, y });
+    }
+  }
+
+  for (let i = 0; i <= steps; i++) {
+    const prev = points[Math.max(0, i - 1)];
+    const next = points[Math.min(steps, i + 1)];
+    const dx = next.x - prev.x;
+    const dy = next.y - prev.y;
+    points[i].angle = (Math.atan2(dy, dx) * 180) / Math.PI + 90;
+  }
+
+  return points;
+}

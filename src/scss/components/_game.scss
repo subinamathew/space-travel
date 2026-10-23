@@ -344,25 +344,16 @@
   }
 }
 
-// Rocket Actor & Flight Trajectory
+// Rocket Actor & Scientific Flight Trajectory
 .rocket-actor {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 32px;
-  height: 32px;
-  margin-top: -16px;
-  margin-left: -16px;
-  z-index: 500;
   pointer-events: none;
-  transform: translate3d(0, 0, 0);
-  will-change: transform;
+  z-index: 500;
   display: flex;
   align-items: center;
   justify-content: center;
 
   .rocket-sprite {
-    font-size: 26px;
+    font-size: 24px;
     line-height: 1;
     filter: drop-shadow(0 0 6px #38bdf8);
   }
@@ -375,9 +366,31 @@
     transform: rotate(180deg);
   }
 
+  // 1. Docked on origin planet (Earth, Luna, Mars, etc.)
+  &.is-docked {
+    position: absolute;
+    top: -24px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    animation: rocketDockFloat 2s ease-in-out infinite alternate;
+
+    .thruster-flame {
+      display: none;
+    }
+  }
+
+  // 2. Flying along scientific Keplerian transfer ellipse
   &.is-flying {
-    transition: transform 2.2s cubic-bezier(0.22, 1, 0.36, 1);
-    transform: translate3d(var(--target-x, 0), var(--target-y, 0), 0) rotate(var(--rocket-rot, 0deg));
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 32px;
+    height: 32px;
+    margin-top: -16px;
+    margin-left: -16px;
+    will-change: transform;
+    animation: rocket-transfer-flight var(--flight-duration, 5.5s) cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 
     .thruster-flame {
       opacity: 1;
@@ -385,9 +398,18 @@
     }
   }
 
+  // 3. Exploded midway due to low energy
   &.is-exploded {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 32px;
+    height: 32px;
+    margin-top: -16px;
+    margin-left: -16px;
+
     .explosion-sprite {
-      font-size: 34px;
+      font-size: 38px;
       animation: explodePop 0.8s ease-out forwards;
     }
     .rocket-sprite, .thruster-flame {
@@ -395,22 +417,69 @@
     }
   }
 
+  // 4. Overshot into deep space due to high energy
   &.is-overshot {
-    transition: transform 2.2s cubic-bezier(0.2, 0.8, 0.4, 1), opacity 0.8s 1.4s ease-out;
-    transform: translate3d(calc(var(--target-x, 0) * 1.5), calc(var(--target-y, 0) * 1.5), 0) rotate(var(--rocket-rot, 0deg));
-    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 32px;
+    height: 32px;
+    margin-top: -16px;
+    margin-left: -16px;
+    animation: rocket-transfer-flight var(--flight-duration, 5.5s) cubic-bezier(0.2, 0.8, 0.4, 1) forwards,
+               overshootFade 1.2s calc(var(--flight-duration, 5.5s) * 0.7) ease-out forwards;
   }
 }
 
+// Glowing Orbital Transfer Path Overlay
+.flight-path-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 450;
+  overflow: visible;
+
+  .flight-transfer-path {
+    fill: none;
+    stroke: rgba(56, 189, 248, 0.85);
+    stroke-width: 2.5px;
+    stroke-dasharray: 6 6;
+    stroke-linecap: round;
+    filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.75));
+    animation: pathDashScroll 1s linear infinite, pathGlowPulse 1.5s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes rocketDockFloat {
+  0% { transform: translateX(-50%) translateY(0); }
+  100% { transform: translateX(-50%) translateY(-5px); }
+}
+
+@keyframes pathDashScroll {
+  to { stroke-dashoffset: -24; }
+}
+
+@keyframes pathGlowPulse {
+  0% { opacity: 0.75; stroke: rgba(56, 189, 248, 0.7); }
+  100% { opacity: 1; stroke: rgba(129, 140, 248, 1); }
+}
+
 @keyframes flamePulse {
-  0% { transform: rotate(180deg) scale(0.85); opacity: 0.7; }
-  100% { transform: rotate(180deg) scale(1.25); opacity: 1; }
+  0% { transform: rotate(180deg) scale(0.85); opacity: 0.75; }
+  100% { transform: rotate(180deg) scale(1.3); opacity: 1; }
 }
 
 @keyframes explodePop {
   0% { transform: scale(0.6); opacity: 1; filter: drop-shadow(0 0 12px #ef4444); }
   50% { transform: scale(1.6); opacity: 1; filter: drop-shadow(0 0 24px #f97316); }
   100% { transform: scale(2.2); opacity: 0; }
+}
+
+@keyframes overshootFade {
+  to { opacity: 0; transform: scale(0.5); }
 }
 
 // Asteroid Warning Banner

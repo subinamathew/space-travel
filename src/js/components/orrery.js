@@ -38,6 +38,8 @@ export function buildOrrery(sceneEl, planets, onPlanetSelect) {
 
     const b = document.createElement('button');
     b.className = 'planet-btn';
+    b.dataset.slug = p.slug;
+    b.id = `planet-btn-${p.slug}`;
     b.style.setProperty('--pc1', p.c1);
     b.style.setProperty('--pc2', p.c2);
     b.style.setProperty('--pglow', p.glow);
@@ -45,6 +47,10 @@ export function buildOrrery(sceneEl, planets, onPlanetSelect) {
     b.title = `🚀 Click to land & explore ${p.name}! (Orbit: ${p.periodYears >= 1 ? p.periodYears.toFixed(1) + ' Earth yrs' : (p.periodYears * 365.25).toFixed(0) + ' Earth days'})`;
     b.addEventListener('click', e => {
       e.stopPropagation();
+      if (window.RocketRun && typeof window.RocketRun.selectDestinationFromCanvas === 'function') {
+        const handled = window.RocketRun.selectDestinationFromCanvas(p.slug);
+        if (handled) return;
+      }
       if (p.slug) {
         window.location.href = `planets/${p.slug}.html`;
       } else if (onPlanetSelect) {
@@ -92,12 +98,20 @@ export function buildOrrery(sceneEl, planets, onPlanetSelect) {
 
         const moonEl = document.createElement('div');
         moonEl.className = 'moon';
+        moonEl.dataset.slug = p.slug === 'earth' ? 'moon' : `${p.slug}-moon-${mIdx}`;
+        moonEl.id = `moon-btn-${moonEl.dataset.slug}`;
         moonEl.style.width = `${m.size}vmin`;
         moonEl.style.height = `${m.size}vmin`;
         moonEl.style.backgroundColor = m.color || '#fff';
         if (m.glow) moonEl.style.boxShadow = `0 0 5px ${m.glow}`;
         moonEl.title = `${m.name} (${p.name}'s Moon)`;
         moonEl.setAttribute('aria-label', `${m.name}, moon of ${p.name}`);
+        moonEl.addEventListener('click', e => {
+          e.stopPropagation();
+          if (window.RocketRun && typeof window.RocketRun.selectDestinationFromCanvas === 'function') {
+            window.RocketRun.selectDestinationFromCanvas(moonEl.dataset.slug);
+          }
+        });
 
         mOrbit.appendChild(moonEl);
         moonSys.appendChild(mOrbit);

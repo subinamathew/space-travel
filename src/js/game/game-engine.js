@@ -1,11 +1,18 @@
 /**
  * RocketRun Game Engine & Orchestrator
  * Clean, lightweight, CSS-first, Fire-tablet ready.
+ * Starts docked on Earth; flies via slower scientific Keplerian transfer arcs.
  * Cyclomatic Complexity <= 5 per function.
  */
 
 import { GameState, GAME_STATES, MISSIONS } from './game-state.js';
-import { calculateOrbitalWindow, evaluateLaunchOutcome, checkAsteroidHazard, checkSolarBoost } from './game-physics.js';
+import {
+  calculateOrbitalWindow,
+  evaluateLaunchOutcome,
+  checkAsteroidHazard,
+  checkSolarBoost,
+  generateScientificTransferArc
+} from './game-physics.js';
 import { getTouchdownNoteKey, getPlanetQuiz } from './game-quiz.js';
 import { loadLeaderboard, saveLeaderboardScore } from './game-leaderboard.js';
 import { playLaunchSound, playTouchdownSound, playExplosionSound, playWarningSound } from './game-audio.js';
@@ -15,6 +22,7 @@ let gameState = null;
 let gameActive = false;
 let startTime = Date.now();
 let orbitalTimer = null;
+let activeFlightTimeout = null;
 
 export function isGameActive() {
   return gameActive;
@@ -25,6 +33,10 @@ export function initGameEngine() {
   gameState = new GameState();
   window.RocketRun = gameState;
 
+  // Expose canvas tap selection bridge
+  window.RocketRun.selectDestinationFromCanvas = selectDestinationFromCanvas;
+  window.RocketRun.isGameActive = isGameActive;
+
   bindGlobalShortcuts();
 }
 
@@ -34,8 +46,14 @@ export function startGame() {
   gameState.reset();
   startTime = Date.now();
 
+  const solarSystem = document.getElementById('solar-system');
+  const sceneEl = document.getElementById('scene');
+  if (solarSystem) solarSystem.classList.add('game-active');
+  if (sceneEl) sceneEl.classList.add('game-active');
+
   enforce2DMode(true);
   renderGameUI();
+  dockRocketAtCurrentPlanet();
   updateHUD();
   updateSidebar();
   startOrbitalTelemetry();
@@ -44,8 +62,22 @@ export function startGame() {
 export function stopGame() {
   gameActive = false;
   stopOrbitalTelemetry();
+  clearFlightTimeout();
   enforce2DMode(false);
+
+  const solarSystem = document.getElementById('solar-system');
+  const sceneEl = document.getElementById('scene');
+  if (solarSystem) solarSystem.classList.remove('game-active');
+  if (sceneEl) sceneEl.classList.remove('game-active');
+
   teardownGameUI();
+}
+
+function clearFlightTimeout() {
+  if (activeFlightTimeout) {
+    clearTimeout(activeFlightTimeout);
+    activeFlightTimeout = null;
+  }
 }
 
 function enforce2DMode(active) {
@@ -90,6 +122,41 @@ function getElapsedSec() {
 function getAstronautAvatar() {
   const saved = localStorage.getItem('space_calc_astronaut');
   return saved === 'female' ? '👩‍🚀' : '👨‍🚀';
+}
+
+function getBodyElement(slug) {
+  if (slug === 'sun') return document.getElementById('sun');
+  if (slug === 'moon') {
+    return document.getElementById('moon-btn-moon') || document.querySelector('.moon[data-slug="moon"]');
+  }
+  return document.getElementById(`planet-btn-${slug}`) || document.querySelector(`.planet-btn[data-slug="${slug}"]`);
+}
+
+function getBodyCenterRelativeToScene(bodyEl, sceneEl) {
+  if (!bodyEl || !sceneEl) return { x: 0, y: 0 };
+  const bRect = bodyEl.getBoundingClientRect();
+  const sRect = sceneEl.getBoundingClientRect();
+  return {
+    x: bRect.left + bRect.width / 2 - (sRect.left + sRect.width / 2),
+    y: bRect.top + bRect.height / 2 - (sRect.top + sRect.height / 2)
+  };
+}
+
+function dockRocketAtCurrentPlanet() {
+  const bodyEl = getBodyElement(gameState.currentPlanet);
+  if (!bodyEl) return;
+
+  let rocket = document.getElementById('rocket-actor');
+  if (!rocket) {
+    rocket = createRocketActor();
+  }
+
+  rocket.className = 'rocket-actor is-docked';
+  rocket.style.removeProperty('animation');
+  rocket.style.removeProperty('--flight-duration');
+  bodyEl.appendChild(rocket);
+
+  removeFlightPathSvg();
 }
 
 function renderGameUI() {
@@ -162,26 +229,21 @@ function renderGameUI() {
 }
 
 function teardownGameUI() {
-  const hud = document.getElementById('rocketrun-hud');
-  if (hud) hud.remove();
-
-  const sidebar = document.getElementById('rocketrun-sidebar');
-  if (sidebar) sidebar.remove();
-
-  const rocket = document.getElementById('rocket-actor');
-  if (rocket) rocket.remove();
-
-  const quiz = document.getElementById('game-quiz-modal');
-  if (quiz) quiz.remove();
-
-  const debrief = document.getElementById('game-debrief-modal');
-  if (debrief) debrief.remove();
-
-  const warning = document.getElementById('asteroid-warning-banner');
-  if (warning) warning.remove();
-
-  const lbModal = document.getElementById('game-leaderboard-modal');
-  if (lbModal) lbModal.remove();
+  const elements = [
+    'rocketrun-hud',
+    'rocketrun-sidebar',
+    'rocket-actor',
+    'game-quiz-modal',
+    'game-debrief-modal',
+    'asteroid-warning-banner',
+    'game-leaderboard-modal',
+    'flight-path-svg',
+    'rocket-flight-keyframes'
+  ];
+  elements.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.remove();
+  });
 }
 
 function bindHUDEvents() {
@@ -204,10 +266,14 @@ function bindSidebarEvents() {
   const slider = document.getElementById('energy-slider');
   const readout = document.getElementById('energy-val-readout');
   if (slider && readout) {
-    slider.addEventListener('input', () => {
-      readout.textContent = `${slider.value}%`;
-      gameState.setEnergy(slider.value);
-    }, { passive: true });
+    slider.addEventListener(
+      'input',
+      () => {
+        readout.textContent = `${slider.value}%`;
+        gameState.setEnergy(slider.value);
+      },
+      { passive: true }
+    );
   }
 
   const launchBtn = document.getElementById('launch-btn');
@@ -264,7 +330,7 @@ function updateSidebar() {
     .map(slug => {
       const isTarget = gameState.targetPlanet === slug;
       const isMissionGoal = currentMission.targetSlug === slug;
-      const highlightClass = isTarget ? 'is-selected' : (isMissionGoal ? 'is-mission-goal' : '');
+      const highlightClass = isTarget ? 'is-selected' : isMissionGoal ? 'is-mission-goal' : '';
       const badge = isMissionGoal ? '🎯' : '';
       return `
         <button type="button" class="dest-btn ${highlightClass}" data-slug="${slug}">
@@ -289,6 +355,13 @@ function formatBodyName(slug) {
     neptune: 'Neptune ♆'
   };
   return map[slug] || slug;
+}
+
+export function selectDestinationFromCanvas(slug) {
+  if (!gameActive || gameState.state === GAME_STATES.TRANSIT) return false;
+  if (slug === gameState.currentPlanet) return false;
+  selectDestination(slug);
+  return true;
 }
 
 function selectDestination(slug) {
@@ -323,7 +396,7 @@ function handleLaunchClick() {
   }
   if (gameState.state === GAME_STATES.TRANSIT) return;
 
-  // 3-2-1 Ignition
+  // 3-2-1 Ignition Countdown
   gameState.setState(GAME_STATES.LAUNCHING);
   const btn = document.getElementById('launch-btn');
   const btnText = document.getElementById('launch-btn-text');
@@ -351,28 +424,37 @@ function executeFlightTransit() {
   const metrics = calculateOrbitalWindow(gameState.currentPlanet, gameState.targetPlanet, getElapsedSec());
   const outcomeData = evaluateLaunchOutcome(gameState.energy, metrics);
 
-  // Check Asteroid Hazard
   if (checkAsteroidHazard(gameState.currentPlanet, gameState.targetPlanet)) {
     triggerAsteroidWarning();
   }
 
-  // Create Rocket Actor
-  const rocket = createRocketActor();
-  const solarSystem = document.getElementById('solar-system');
-  if (solarSystem) solarSystem.appendChild(rocket);
+  const sceneEl = document.getElementById('scene') || document.body;
+  const originEl = getBodyElement(gameState.currentPlanet);
+  const targetEl = getBodyElement(gameState.targetPlanet);
 
-  // Setup CSS Transform Target
-  const angle = (Math.atan2(metrics.dy, metrics.dx) * 180) / Math.PI + 90;
-  rocket.style.setProperty('--target-x', `${metrics.dx.toFixed(2)}vmin`);
-  rocket.style.setProperty('--target-y', `${metrics.dy.toFixed(2)}vmin`);
-  rocket.style.setProperty('--rocket-rot', `${angle.toFixed(1)}deg`);
+  const p1 = getBodyCenterRelativeToScene(originEl, sceneEl);
+  const p2 = getBodyCenterRelativeToScene(targetEl, sceneEl);
+  const isMoon = gameState.targetPlanet === 'moon' || gameState.currentPlanet === 'moon';
+  const isOuter = ['jupiter', 'saturn', 'uranus', 'neptune'].includes(gameState.targetPlanet);
 
-  // Animate with CSS hardware acceleration
-  requestAnimationFrame(() => {
-    rocket.classList.add('is-flying');
-  });
+  // Slower, graceful, scientific duration (3.8s to 6.5s)
+  const durationSec = isMoon ? 3.8 : (isOuter ? 6.5 : 5.2);
 
-  handleTransitOutcome(rocket, outcomeData);
+  // Calculate authentic Keplerian transfer trajectory
+  const points = generateScientificTransferArc(p1, p2, isMoon);
+
+  // Inject CSS Keyframes & Render Path SVG
+  injectFlightKeyframes(points);
+  renderFlightPathSvg(points, sceneEl);
+
+  let rocket = document.getElementById('rocket-actor');
+  if (!rocket) rocket = createRocketActor();
+
+  rocket.className = 'rocket-actor is-flying';
+  rocket.style.setProperty('--flight-duration', `${durationSec}s`);
+  sceneEl.appendChild(rocket);
+
+  handleTransitOutcome(rocket, outcomeData, durationSec);
 }
 
 function createRocketActor() {
@@ -381,9 +463,63 @@ function createRocketActor() {
 
   const rocket = document.createElement('div');
   rocket.id = 'rocket-actor';
-  rocket.className = 'rocket-actor';
+  rocket.className = 'rocket-actor is-docked';
   rocket.innerHTML = `<span class="rocket-sprite">🚀</span><span class="thruster-flame">🔥</span>`;
   return rocket;
+}
+
+function injectFlightKeyframes(points) {
+  let styleEl = document.getElementById('rocket-flight-keyframes');
+  if (!styleEl) {
+    styleEl = document.createElement('style');
+    styleEl.id = 'rocket-flight-keyframes';
+    document.head.appendChild(styleEl);
+  }
+
+  const keyframeRules = points
+    .map((p, i) => {
+      const pct = ((i / (points.length - 1)) * 100).toFixed(1);
+      return `${pct}% { transform: translate3d(${p.x.toFixed(1)}px, ${p.y.toFixed(1)}px, 0) rotate(${p.angle.toFixed(1)}deg); }`;
+    })
+    .join('\n');
+
+  styleEl.textContent = `
+    @keyframes rocket-transfer-flight {
+      ${keyframeRules}
+    }
+  `;
+}
+
+function renderFlightPathSvg(points, sceneEl) {
+  removeFlightPathSvg();
+
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.id = 'flight-path-svg';
+  svg.setAttribute('class', 'flight-path-svg');
+
+  const sRect = sceneEl.getBoundingClientRect();
+  const cx = sRect.width / 2;
+  const cy = sRect.height / 2;
+
+  const d = points
+    .map((p, i) => {
+      const x = (cx + p.x).toFixed(1);
+      const y = (cy + p.y).toFixed(1);
+      return `${i === 0 ? 'M' : 'L'} ${x} ${y}`;
+    })
+    .join(' ');
+
+  const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  path.setAttribute('class', 'flight-transfer-path');
+  path.setAttribute('d', d);
+
+  svg.appendChild(path);
+  sceneEl.appendChild(svg);
+}
+
+function removeFlightPathSvg() {
+  const existing = document.getElementById('flight-path-svg');
+  if (existing) existing.remove();
 }
 
 function triggerAsteroidWarning() {
@@ -400,39 +536,40 @@ function triggerAsteroidWarning() {
   setTimeout(() => banner.remove(), 2500);
 }
 
-function handleTransitOutcome(rocket, outcomeData) {
-  const duration = 2200;
+function handleTransitOutcome(rocket, outcomeData, durationSec) {
+  clearFlightTimeout();
 
   if (outcomeData.outcome === 'fuel_out') {
-    setTimeout(() => {
+    activeFlightTimeout = setTimeout(() => {
       triggerExplosion(rocket, outcomeData.reason);
-    }, duration * 0.5);
+    }, durationSec * 500);
     return;
   }
 
   if (outcomeData.outcome === 'overshoot') {
-    setTimeout(() => {
+    activeFlightTimeout = setTimeout(() => {
       triggerOvershoot(rocket, outcomeData.reason);
-    }, duration);
+    }, durationSec * 1000);
     return;
   }
 
   // Capture / Successful Landing
-  setTimeout(() => {
+  activeFlightTimeout = setTimeout(() => {
     triggerTouchdown(rocket);
-  }, duration);
+  }, durationSec * 1000);
 }
 
 function triggerExplosion(rocket, reasonKey) {
   playExplosionSound();
   rocket.innerHTML = `<span class="explosion-sprite">💥</span>`;
-  rocket.classList.add('is-exploded');
+  rocket.className = 'rocket-actor is-exploded';
 
   const lives = gameState.deductLife();
   updateHUD();
 
   setTimeout(() => {
-    rocket.remove();
+    removeFlightPathSvg();
+    dockRocketAtCurrentPlanet();
     if (lives <= 0) {
       showDebriefModal(reasonKey);
     } else {
@@ -444,14 +581,15 @@ function triggerExplosion(rocket, reasonKey) {
 }
 
 function triggerOvershoot(rocket, reasonKey) {
-  rocket.classList.add('is-overshot');
+  rocket.className = 'rocket-actor is-overshot';
   playWarningSound();
 
   const lives = gameState.deductLife();
   updateHUD();
 
   setTimeout(() => {
-    rocket.remove();
+    removeFlightPathSvg();
+    dockRocketAtCurrentPlanet();
     if (lives <= 0) {
       showDebriefModal(reasonKey);
     } else {
@@ -464,7 +602,6 @@ function triggerOvershoot(rocket, reasonKey) {
 
 function triggerTouchdown(rocket) {
   playTouchdownSound();
-  rocket.remove();
 
   // Check Solar Boost
   if (checkSolarBoost(gameState.currentPlanet, gameState.targetPlanet)) {
@@ -476,6 +613,7 @@ function triggerTouchdown(rocket) {
   gameState.targetPlanet = null;
   gameState.setState(GAME_STATES.ARRIVED);
 
+  dockRocketAtCurrentPlanet();
   resetLaunchButton();
   updateHUD();
   updateSidebar();
@@ -571,6 +709,7 @@ function showDebriefModal(reasonKey) {
     retryBtn.addEventListener('click', () => {
       modal.remove();
       gameState.restoreLives();
+      dockRocketAtCurrentPlanet();
       resetLaunchButton();
       updateHUD();
       updateSidebar();
@@ -619,6 +758,7 @@ function bindGlobalShortcuts() {
     if (e.shiftKey && (e.key === 'D' || e.key === 'd')) {
       const rocket = document.getElementById('rocket-actor');
       if (rocket && gameState.state === GAME_STATES.TRANSIT) {
+        clearFlightTimeout();
         triggerTouchdown(rocket);
       }
     }

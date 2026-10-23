@@ -393,9 +393,16 @@ body.orbits-paused #scene {
 }
 
 #solar-system.show-moons .moon-system,
-#scene.show-moons .moon-system {
+#scene.show-moons .moon-system,
+#solar-system.game-active .moon-system,
+#scene.game-active .moon-system {
   opacity: 1;
   visibility: visible;
+}
+
+.moon {
+  pointer-events: auto;
+  cursor: pointer;
 }
 
 .moon-orbit {
