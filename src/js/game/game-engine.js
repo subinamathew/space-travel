@@ -346,6 +346,12 @@ function renderGameUI() {
           </div>
         </div>
 
+        <!-- Central BIG LAUNCH Button -->
+        <button type="button" id="launch-btn" class="big-launch-btn">
+          <span class="btn-glow"></span>
+          <span class="btn-text" id="launch-btn-text" data-i18n="game.big_launch_btn">BIG LAUNCH 🚀</span>
+        </button>
+
         <!-- Accordion 4: Fuel Tank -->
         <div class="accordion-section" id="sec-fuel">
           <button type="button" class="accordion-header" aria-expanded="false" aria-controls="acc-content-fuel" title="${t('game.fuel_label') || 'Fuel Tank:'}">
@@ -462,22 +468,16 @@ function renderGameUI() {
                 <button type="button" class="planner-btn" data-offset="10">+10s</button>
                 <button type="button" class="planner-btn" data-offset="15">+15s</button>
                 <button type="button" class="planner-btn" data-offset="20">+20s</button>
-              </div>
             </div>
           </div>
         </div>
 
       </div>
-
-      <button type="button" id="launch-btn" class="big-launch-btn">
-        <span class="btn-glow"></span>
-        <span class="btn-text" id="launch-btn-text" data-i18n="game.big_launch_btn">BIG LAUNCH 🚀</span>
-      </button>
     </div>
   `;
   document.body.appendChild(sidebar);
 
-  if (typeof window !== 'undefined' && window.innerWidth <= 768) {
+  if (typeof window !== 'undefined' && (window.innerWidth <= 768 || window.innerHeight <= 600)) {
     const thrustSec = sidebar.querySelector('#sec-thrust');
     if (thrustSec) {
       thrustSec.classList.remove('is-open');
@@ -543,7 +543,7 @@ function bindSidebarEvents() {
       const section = header.closest('.accordion-section');
       if (!section) return;
       const isOpen = section.classList.contains('is-open');
-      const isMobile = window.innerWidth <= 768;
+      const isMobile = window.innerWidth <= 768 || window.innerHeight <= 600;
       if (isMobile) {
         accordion.querySelectorAll('.accordion-section').forEach(s => {
           if (s !== section) {
