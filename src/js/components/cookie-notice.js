@@ -80,7 +80,7 @@ export function initCookieNotice() {
     clearBtn.addEventListener('click', () => {
       clearAllCookiesAndStorage();
       if (toast) {
-        const msg = t('ui.cookie_cleared_msg') || 'All local storage and cookies have been cleared!';
+        const msg = t('ui.cookie_cleared_msg') || 'All local storage, cookies, high scores, and pilot details have been cleared!';
         toast.textContent = msg;
         toast.classList.add('is-active');
         setTimeout(() => {
@@ -256,9 +256,12 @@ function ensureCookieMarkup() {
           </label>
         </div>
       </div>
+      <p class="cookie-clear-note" data-i18n="ui.cookie_clear_note">
+        ⚠️ Clearing stored data will also permanently remove your game high scores, pilot details, and flight ranks.
+      </p>
       <div class="cookie-actions">
         <button type="button" class="cookie-btn cookie-btn-accept" id="cookie-accept-btn" data-i18n="ui.cookie_accept">Got it / Accept</button>
-        <button type="button" class="cookie-btn cookie-btn-clear" id="cookie-clear-btn" data-i18n="ui.cookie_clear">Clear Stored Data</button>
+        <button type="button" class="cookie-btn cookie-btn-clear" id="cookie-clear-btn" data-i18n="ui.cookie_clear" title="Clear all local data, high scores, and cookies">Clear Stored Data</button>
       </div>
       <div class="cookie-toast" id="cookie-toast" aria-live="polite"></div>
     </div>

@@ -162,6 +162,17 @@
   }
 }
 
+.cookie-clear-note {
+  margin: 0.4rem 0 0.2rem 0;
+  font-size: 0.76rem;
+  line-height: 1.4;
+  color: #fcd34d;
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  border-radius: 8px;
+  padding: 0.45rem 0.65rem;
+}
+
 .cookie-actions {
   display: flex;
   align-items: center;

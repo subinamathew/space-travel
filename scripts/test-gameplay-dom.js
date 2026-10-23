@@ -114,7 +114,8 @@ import {
   getGameModeCookie,
   setGameModeCookie,
   getCookie,
-  clearAllCookiesAndStorage
+  clearAllCookiesAndStorage,
+  initCookieNotice
 } from '../src/js/components/cookie-notice.js';
 import {
   getPilotName,
@@ -597,6 +598,15 @@ clearAllCookiesAndStorage();
 assert(localStorage.getItem('space_pilot_name') === null, 'clearAllCookiesAndStorage wipes space_pilot_name');
 assert(localStorage.getItem('space_game_leaderboard') === null, 'clearAllCookiesAndStorage wipes space_game_leaderboard');
 assert(getCookie('cookie_lb_consent') === null, 'clearAllCookiesAndStorage wipes cookie_lb_consent');
+
+// 6. Test Cookie Notice Clear Warning & High Score Notice
+initCookieNotice();
+const cookieNoticeEl = document.getElementById('cookie-notice');
+assert(cookieNoticeEl !== null, '#cookie-notice element created');
+const clearNote = cookieNoticeEl.querySelector('.cookie-clear-note');
+assert(clearNote !== null, '#cookie-notice includes .cookie-clear-note warning banner');
+assert(clearNote.textContent.includes('high scores'), '.cookie-clear-note explicitly warns about removing high scores');
+assert(clearNote.textContent.includes('pilot details'), '.cookie-clear-note explicitly warns about removing pilot details');
 
 console.log('\n====================================================');
 console.log(`🎉 ALL TESTS PASSED: ${passedTests} / ${totalTests} assertions verified!`);
