@@ -834,6 +834,11 @@
     "freeplay_tag": "自由探索航行模式",
     "freeplay_clue": "选择任意星球，调整引擎推力并发射！着陆后即可探索完整的科学简报与行星数据。",
     "freeplay_touchdown_opening": "🎉 着陆成功！正在打开 {name} 行星科学简报... 🪐",
-    "freeplay_return_btn": "🚀 返回游戏（已停泊在 {name}）→"
+    "freeplay_return_btn": "🚀 返回游戏（已停泊在 {name}）→",
+    "future_rendezvous_principle": "🚀 开普勒轨道交会：飞行期间行星持续公转！必须瞄准飞船到达时（T+{sec}秒后）行星的未来轨道位置，而非当前位置。",
+    "future_lead_label": "飞行中轨道位移：",
+    "future_landing_location_label": "未来着陆轨道位置：",
+    "planner_subtitle": "行星随时间沿轨道移动。预览未来轨道排列，以选择最佳发射窗口。",
+    "future_rendezvous_reticle": "🎯 未来着陆交会点 (+{sec}秒)"
   }
 }

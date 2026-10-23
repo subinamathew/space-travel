@@ -834,6 +834,11 @@
     "freeplay_tag": "EXPLORACIÓN EN JUEGO LIBRE",
     "freeplay_clue": "¡Elige cualquier planeta, ajusta el empuje y despega! Al aterrizar, explorarás el informe científico completo.",
     "freeplay_touchdown_opening": "🎉 ¡ATERRIZAJE! Abriendo informe para {name}... 🪐",
-    "freeplay_return_btn": "🚀 Volver al Juego (Acoplado en {name}) →"
+    "freeplay_return_btn": "🚀 Volver al Juego (Acoplado en {name}) →",
+    "future_rendezvous_principle": "🚀 Encuentro Kepleriano: ¡Los planetas orbitan mientras vuelas! Debes apuntar a donde estará el planeta a la llegada (T+{sec}s), no donde está hoy.",
+    "future_lead_label": "Movimiento en tránsito:",
+    "future_landing_location_label": "Órbita de aterrizaje futura:",
+    "planner_subtitle": "Los planetas avanzan por sus órbitas. Previsualiza alineaciones futuras para elegir ventanas de transferencia óptimas.",
+    "future_rendezvous_reticle": "🎯 Futuro encuentro de aterrizaje (+{sec}s)"
   }
 }

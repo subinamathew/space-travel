@@ -834,6 +834,11 @@
     "freeplay_tag": "EXPLORATION EN JEU LIBRE",
     "freeplay_clue": "Choisissez n'importe quelle planète, ajustez la poussée et décollez ! À l'atterrissage, découvrez le dossier scientifique complet.",
     "freeplay_touchdown_opening": "🎉 ATTERRISSAGE ! Ouverture du dossier pour {name}... 🪐",
-    "freeplay_return_btn": "🚀 Retour au Jeu (Amarré à {name}) →"
+    "freeplay_return_btn": "🚀 Retour au Jeu (Amarré à {name}) →",
+    "future_rendezvous_principle": "🚀 Rendez-vous Képlérien : Les planètes orbitent pendant le vol ! Visez là où la planète sera à l'arrivée (T+{sec}s), pas là où elle est aujourd'hui.",
+    "future_lead_label": "Mouvement en transit :",
+    "future_landing_location_label": "Orbite d'atterrissage future :",
+    "planner_subtitle": "Les planètes avancent sur leurs orbites. Prévisualisez les alignements futurs pour choisir les fenêtres optimales.",
+    "future_rendezvous_reticle": "🎯 Rendez-vous d'atterrissage futur (+{sec}s)"
   }
 }

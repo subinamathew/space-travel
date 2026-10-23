@@ -303,6 +303,12 @@ function renderGameUI() {
           <span class="telemetry-title" data-i18n="game.orbital_telemetry">ORBITAL TELEMETRY</span>
           <span class="telemetry-window-tag" id="telemetry-window-tag">🟢 Perigee Window</span>
         </div>
+
+        <div class="telemetry-physics-banner" id="telemetry-physics-banner">
+          <span class="banner-icon">🪐</span>
+          <span class="banner-text" id="telemetry-physics-text">${(t('game.future_rendezvous_principle') || '🚀 Keplerian Rendezvous: Planets orbit continuously while you fly! You must aim for where the planet will be upon arrival (T+{sec}s), not where it is today.').replace('{sec}', '5.2')}</span>
+        </div>
+
         <div class="telemetry-grid">
           <div class="telemetry-item">
             <span class="telemetry-label" data-i18n="game.perigee_label">Perigee (Min):</span>
@@ -316,9 +322,17 @@ function renderGameUI() {
             <span class="telemetry-label" data-i18n="game.current_separation">Current Distance:</span>
             <span class="telemetry-val" id="telemetry-dist-val">--</span>
           </div>
-          <div class="telemetry-item">
+          <div class="telemetry-item highlight-item">
             <span class="telemetry-label" data-i18n="game.future_intercept_label">Arrival Intercept:</span>
             <span class="telemetry-val" id="telemetry-arrival-val">--</span>
+          </div>
+          <div class="telemetry-item highlight-item">
+            <span class="telemetry-label" data-i18n="game.future_lead_label">Transit Orbit Motion:</span>
+            <span class="telemetry-val" id="telemetry-lead-val">--</span>
+          </div>
+          <div class="telemetry-item highlight-item">
+            <span class="telemetry-label" data-i18n="game.future_landing_location_label">Future Landing Orbit:</span>
+            <span class="telemetry-val" id="telemetry-landing-loc-val">--</span>
           </div>
           <div class="telemetry-item">
             <span class="telemetry-label" data-i18n="game.next_window_label">Next Window:</span>
@@ -335,6 +349,9 @@ function renderGameUI() {
             <span class="planner-title" data-i18n="game.future_orbit_planner">🔮 FUTURE ORBIT PLANNER</span>
             <span class="planner-offset-badge" id="planner-offset-badge">T+0s (LIVE)</span>
           </div>
+          <p class="planner-subtitle" data-i18n="game.planner_subtitle">
+            ${t('game.planner_subtitle') || 'Planets advance along orbits over time. Preview future orbital alignments to pick optimal transfer windows.'}
+          </p>
           <div class="planner-buttons">
             <button type="button" class="planner-btn is-active" data-offset="0">Live</button>
             <button type="button" class="planner-btn" data-offset="5">+5s</button>
@@ -364,6 +381,7 @@ function teardownGameUI() {
     'game-leaderboard-modal',
     'flight-path-svg',
     'future-intercept-reticle',
+    'future-lead-arc-svg',
     'rocket-flight-keyframes'
   ];
   elements.forEach(id => {
@@ -614,6 +632,13 @@ function updateOrbitalWindowUI() {
     futureOffsetSec
   );
 
+  updateTelemetryHeaderAndTag(metrics);
+  updateTelemetryGridValues(metrics);
+  updateEnergyFeedbackHint(metrics);
+  renderFutureInterceptMarker(metrics);
+}
+
+function updateTelemetryHeaderAndTag(metrics) {
   const tagEl = document.getElementById('telemetry-window-tag');
   if (tagEl) {
     tagEl.className = `telemetry-window-tag status-${metrics.status}`;
@@ -622,6 +647,15 @@ function updateOrbitalWindowUI() {
     else tagEl.textContent = t('game.moderate_window') || '🟡 Mid-Orbit';
   }
 
+  const physicsText = document.getElementById('telemetry-physics-text');
+  if (physicsText) {
+    const rawPrinciple = t('game.future_rendezvous_principle') ||
+      '🚀 Keplerian Rendezvous: Planets orbit continuously while you fly! You must aim for where the planet will be upon arrival (T+{sec}s), not where it is today.';
+    physicsText.textContent = rawPrinciple.replace('{sec}', metrics.flightDurationSec);
+  }
+}
+
+function updateTelemetryGridValues(metrics) {
   const pVal = document.getElementById('telemetry-perigee-val');
   if (pVal) pVal.textContent = `${metrics.minAu.toFixed(2)} AU`;
 
@@ -639,6 +673,18 @@ function updateOrbitalWindowUI() {
     arrVal.textContent = `${metrics.arrivalAu.toFixed(2)} AU (+${metrics.flightDurationSec}s)`;
   }
 
+  const arrivalPt = calculateArrivalScenePoint(gameState.targetPlanet, document.getElementById('scene'), metrics.flightDurationSec);
+
+  const leadVal = document.getElementById('telemetry-lead-val');
+  if (leadVal) {
+    leadVal.textContent = `+${arrivalPt.deltaDeg || Math.round(metrics.leadDeg || 0)}° (+${metrics.flightDurationSec}s)`;
+  }
+
+  const landingLocVal = document.getElementById('telemetry-landing-loc-val');
+  if (landingLocVal) {
+    landingLocVal.textContent = `@ ${arrivalPt.arrivalAngleDeg || 0}°`;
+  }
+
   const nextWinVal = document.getElementById('telemetry-next-window-val');
   if (nextWinVal) {
     if (metrics.nextWindow.isOpen) {
@@ -651,19 +697,25 @@ function updateOrbitalWindowUI() {
 
   const zVal = document.getElementById('telemetry-energy-req');
   if (zVal) zVal.textContent = `${metrics.minReq}% – ${metrics.maxCap}%`;
-
-  updateEnergyFeedbackHint(metrics);
-  renderFutureInterceptMarker(metrics);
 }
 
 function calculateArrivalScenePoint(targetSlug, sceneEl, durationSec) {
   const targetEl = getBodyElement(targetSlug);
-  if (!targetEl || !sceneEl) return { x: 0, y: 0 };
+  if (!targetEl || !sceneEl) return { x: 0, y: 0, r: 0, deltaDeg: 0, arrivalAngleDeg: 0, currentPos: { x: 0, y: 0 } };
   const currentPos = getBodyCenterRelativeToScene(targetEl, sceneEl);
-  if (targetSlug === 'moon') return currentPos;
+  if (targetSlug === 'moon') {
+    return {
+      x: currentPos.x,
+      y: currentPos.y,
+      r: Math.hypot(currentPos.x, currentPos.y),
+      deltaDeg: 0,
+      arrivalAngleDeg: 0,
+      currentPos
+    };
+  }
 
   const r = Math.hypot(currentPos.x, currentPos.y);
-  if (r === 0) return currentPos;
+  if (r === 0) return { x: 0, y: 0, r: 0, deltaDeg: 0, arrivalAngleDeg: 0, currentPos };
 
   const currentAngle = Math.atan2(currentPos.y, currentPos.x);
   const spec = ORBIT_SPECS[targetSlug] || ORBIT_SPECS.mars;
@@ -671,9 +723,16 @@ function calculateArrivalScenePoint(targetSlug, sceneEl, durationSec) {
   const deltaAngle = (durationSec / periodSec) * (Math.PI * 2);
   const arrivalAngle = currentAngle + deltaAngle;
 
+  const deltaDeg = Math.round(((deltaAngle * 180) / Math.PI) * 10) / 10;
+  const arrivalAngleDeg = Math.round(((((arrivalAngle * 180) / Math.PI) + 360) % 360) * 10) / 10;
+
   return {
     x: r * Math.cos(arrivalAngle),
-    y: r * Math.sin(arrivalAngle)
+    y: r * Math.sin(arrivalAngle),
+    r,
+    deltaDeg,
+    arrivalAngleDeg,
+    currentPos
   };
 }
 
@@ -684,6 +743,11 @@ function renderFutureInterceptMarker(metrics) {
     return;
   }
 
+  const arrivalPt = calculateArrivalScenePoint(gameState.targetPlanet, sceneEl, metrics.flightDurationSec);
+  const sRect = sceneEl.getBoundingClientRect();
+  const left = sRect.width / 2 + arrivalPt.x;
+  const top = sRect.height / 2 + arrivalPt.y;
+
   let reticle = document.getElementById('future-intercept-reticle');
   if (!reticle) {
     reticle = document.createElement('div');
@@ -692,21 +756,53 @@ function renderFutureInterceptMarker(metrics) {
     sceneEl.appendChild(reticle);
   }
 
-  const arrivalPt = calculateArrivalScenePoint(gameState.targetPlanet, sceneEl, metrics.flightDurationSec);
-  const sRect = sceneEl.getBoundingClientRect();
-  const left = sRect.width / 2 + arrivalPt.x;
-  const top = sRect.height / 2 + arrivalPt.y;
-
   reticle.style.left = `${left.toFixed(1)}px`;
   reticle.style.top = `${top.toFixed(1)}px`;
+  const reticleTemplate = t('game.future_rendezvous_reticle') || '🎯 Future Landing Rendezvous (+{sec}s)';
+  const reticleLabel = reticleTemplate.replace('{sec}', metrics.flightDurationSec);
   reticle.innerHTML = `
     <span class="reticle-ring"></span>
-    <span class="reticle-label">🎯 Intercept (+${metrics.flightDurationSec}s)</span>
+    <span class="reticle-ghost-badge">🪐</span>
+    <span class="reticle-label">${reticleLabel}</span>
   `;
+
+  renderPlanetaryLeadArc(arrivalPt, sceneEl);
+}
+
+function renderPlanetaryLeadArc(arrivalPt, sceneEl) {
+  removePlanetaryLeadArc();
+  if (gameState.targetPlanet === 'moon' || arrivalPt.deltaDeg === 0 || arrivalPt.r === 0) return;
+
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.id = 'future-lead-arc-svg';
+  svg.setAttribute('class', 'future-lead-arc-svg');
+
+  const sRect = sceneEl.getBoundingClientRect();
+  const cx = sRect.width / 2;
+  const cy = sRect.height / 2;
+  const r = arrivalPt.r;
+
+  const x1 = cx + arrivalPt.currentPos.x;
+  const y1 = cy + arrivalPt.currentPos.y;
+  const x2 = cx + arrivalPt.x;
+  const y2 = cy + arrivalPt.y;
+
+  const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  path.setAttribute('class', 'future-lead-arc-path');
+  path.setAttribute('d', `M ${x1.toFixed(1)} ${y1.toFixed(1)} A ${r.toFixed(1)} ${r.toFixed(1)} 0 0 1 ${x2.toFixed(1)} ${y2.toFixed(1)}`);
+
+  svg.appendChild(path);
+  sceneEl.appendChild(svg);
 }
 
 function removeFutureInterceptMarker() {
   const existing = document.getElementById('future-intercept-reticle');
+  if (existing) existing.remove();
+  removePlanetaryLeadArc();
+}
+
+function removePlanetaryLeadArc() {
+  const existing = document.getElementById('future-lead-arc-svg');
   if (existing) existing.remove();
 }
 

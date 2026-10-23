@@ -834,6 +834,11 @@
     "freeplay_tag": "ESPLORAZIONE IN GIOCO LIBERO",
     "freeplay_clue": "Scegli qualsiasi pianeta, regola la spinta e parti! All'atterraggio esplorerai la scheda scientifica completa.",
     "freeplay_touchdown_opening": "🎉 ATTERRAGGIO! Apertura scheda per {name}... 🪐",
-    "freeplay_return_btn": "🚀 Torna al Gioco (Attraccato a {name}) →"
+    "freeplay_return_btn": "🚀 Torna al Gioco (Attraccato a {name}) →",
+    "future_rendezvous_principle": "🚀 Rendezvous Kepleriano: I pianeti orbitano durante il volo! Devi mirare a dove si troverà il pianeta all'arrivo (T+{sec}s), non dove si trova oggi.",
+    "future_lead_label": "Moto orbitale in transito:",
+    "future_landing_location_label": "Orbita di atterraggio futura:",
+    "planner_subtitle": "I pianeti avanzano lungo le orbite nel tempo. Visualizza in anteprima gli allineamenti futuri per finestre ottimali.",
+    "future_rendezvous_reticle": "🎯 Futuro rendezvous di atterraggio (+{sec}s)"
   }
 }

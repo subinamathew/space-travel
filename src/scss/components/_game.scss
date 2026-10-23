@@ -534,6 +534,30 @@
     gap: 6px;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
 
+    .telemetry-physics-banner {
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 6px;
+      padding: 5px 8px;
+      margin-bottom: 2px;
+
+      .banner-icon {
+        font-size: 13px;
+        line-height: 1.2;
+        filter: drop-shadow(0 0 4px rgba(56, 189, 248, 0.5));
+      }
+
+      .banner-text {
+        font-size: 9.5px;
+        line-height: 1.35;
+        color: #bae6fd;
+        font-weight: 600;
+      }
+    }
+
     .telemetry-header {
       display: flex;
       justify-content: space-between;
@@ -584,6 +608,15 @@
         border-radius: 6px;
         border: 1px solid rgba(255, 255, 255, 0.04);
 
+        &.highlight-item {
+          border-color: rgba(56, 189, 248, 0.35);
+          background: rgba(14, 165, 233, 0.12);
+
+          .telemetry-val {
+            color: #38bdf8;
+          }
+        }
+
         .telemetry-label {
           font-size: 9px;
           color: #64748b;
@@ -631,6 +664,14 @@
           border-radius: 4px;
           font-family: monospace;
         }
+      }
+
+      .planner-subtitle {
+        font-size: 8.5px;
+        color: #94a3b8;
+        line-height: 1.3;
+        margin-top: -2px;
+        margin-bottom: 2px;
       }
 
       .planner-buttons {
@@ -798,6 +839,14 @@
     animation: reticlePulse 2s infinite ease-in-out;
   }
 
+  .reticle-ghost-badge,
+  .ghost-planet-badge {
+    font-size: 16px;
+    line-height: 1;
+    opacity: 0.85;
+    filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.6));
+  }
+
   .reticle-label {
     font-size: 8.5px;
     font-weight: 800;
@@ -810,6 +859,32 @@
     letter-spacing: 0.3px;
     backdrop-filter: blur(4px);
   }
+}
+
+// Target Planetary Lead Arc Overlay (Shows motion along orbit during transit)
+.future-lead-arc-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 50;
+  overflow: visible;
+
+  .future-lead-arc-path {
+    stroke: #38bdf8;
+    stroke-width: 2.5px;
+    stroke-dasharray: 4 4;
+    fill: none;
+    filter: drop-shadow(0 0 6px #0284c7);
+    animation: lead-arc-pulse 2s infinite ease-in-out;
+  }
+}
+
+@keyframes lead-arc-pulse {
+  0% { opacity: 0.6; stroke-width: 2px; }
+  50% { opacity: 1; stroke-width: 3px; stroke: #7dd3fc; }
+  100% { opacity: 0.6; stroke-width: 2px; }
 }
 
 @keyframes reticlePulse {

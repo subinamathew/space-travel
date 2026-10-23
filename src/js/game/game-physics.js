@@ -109,13 +109,17 @@ export function findNextOptimalWindow(originSlug, targetSlug, elapsedSec) {
 
 export function calculateFutureOrbitalIntercept(originSlug, targetSlug, elapsedSec, durationSec) {
   const p1 = getBodyCoordinates(originSlug, elapsedSec);
+  const p2 = getBodyCoordinates(targetSlug, elapsedSec);
   const p2Future = getBodyCoordinates(targetSlug, elapsedSec + durationSec);
   const dx = p2Future.x - p1.x;
   const dy = p2Future.y - p1.y;
   const arrivalDist = Math.hypot(dx, dy);
+  const leadDeg = Math.round((((p2Future.angleDeg - p2.angleDeg + 360) % 360) * 10)) / 10;
   return {
     arrivalDist,
     p2Future,
+    p2,
+    leadDeg,
     dx,
     dy
   };
@@ -155,6 +159,7 @@ export function calculateOrbitalWindow(originSlug, targetSlug, elapsedSec, futur
     arrivalAu,
     futureArrivalCoords: intercept.p2Future,
     flightDurationSec: durationSec,
+    leadDeg: intercept.leadDeg,
     nextWindow,
     minDist: bounds.minDist,
     maxDist: bounds.maxDist,

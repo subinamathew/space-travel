@@ -834,6 +834,11 @@
     "freeplay_tag": "FREE PLAY EXPLORATION",
     "freeplay_clue": "Choose any planet, adjust thrust energy, and launch! On touchdown, you will explore full scientific briefing and planetary stats.",
     "freeplay_touchdown_opening": "🎉 TOUCHDOWN! Opening planetary briefing for {name}... 🪐",
-    "freeplay_return_btn": "🚀 Back to Game (Docked at {name}) →"
+    "freeplay_return_btn": "🚀 Back to Game (Docked at {name}) →",
+    "future_rendezvous_principle": "🚀 Keplerian Rendezvous: Planets orbit continuously while you fly! You must aim for where the planet will be upon arrival (T+{sec}s), not where it is today.",
+    "future_lead_label": "Transit Orbit Motion:",
+    "future_landing_location_label": "Future Landing Orbit:",
+    "planner_subtitle": "Planets advance along orbits over time. Preview future orbital alignments to pick optimal transfer windows.",
+    "future_rendezvous_reticle": "🎯 Future Landing Rendezvous (+{sec}s)"
   }
 }

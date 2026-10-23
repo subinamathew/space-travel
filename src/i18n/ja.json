@@ -834,6 +834,11 @@
     "freeplay_tag": "フリープレイ探査モード",
     "freeplay_clue": "好きな惑星を選んで推力を調整し発進！着陸すると詳しい科学データと探査レポートが開きます。",
     "freeplay_touchdown_opening": "🎉 着陸成功！{name} の惑星レポートを開いています... 🪐",
-    "freeplay_return_btn": "🚀 ゲームに戻る（{name} に停泊中）→"
+    "freeplay_return_btn": "🚀 ゲームに戻る（{name} に停泊中）→",
+    "future_rendezvous_principle": "🚀 ケプラーランデブー：飛行中も惑星は公転し続けます！現在地ではなく、到着時（T+{sec}秒後）に惑星がある未来の軌道位置を狙いましょう。",
+    "future_lead_label": "飛行中の公転移動：",
+    "future_landing_location_label": "未来の着陸軌道位置：",
+    "planner_subtitle": "惑星は時間とともに軌道上を移動します。未来の軌道配置をプレビューして最適な打ち上げウィンドウを選びましょう。",
+    "future_rendezvous_reticle": "🎯 未来の着陸ランデブー (+{sec}秒)"
   }
 }

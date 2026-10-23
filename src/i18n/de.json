@@ -834,6 +834,11 @@
     "freeplay_tag": "FREIES SPIEL — ERKUNDUNG",
     "freeplay_clue": "Wähle einen beliebigen Planeten, passe den Schub an und starte! Bei der Landung öffnet sich das vollständige wissenschaftliche Briefing.",
     "freeplay_touchdown_opening": "🎉 GELANDET! Öffne Planeten-Briefing für {name}... 🪐",
-    "freeplay_return_btn": "🚀 Zurück zum Spiel (Angedockt an {name}) →"
+    "freeplay_return_btn": "🚀 Zurück zum Spiel (Angedockt an {name}) →",
+    "future_rendezvous_principle": "🚀 Kepler-Rendezvous: Planeten bewegen sich im Flug weiter! Ziele dorthin, wo der Planet bei Ankunft sein wird (T+{sec}s), nicht wo er heute steht.",
+    "future_lead_label": "Bahnbewegung im Flug:",
+    "future_landing_location_label": "Zukünftiger Landeorbit:",
+    "planner_subtitle": "Planeten wandern entlang ihrer Umlaufbahnen. Prüfe zukünftige Konstellationen für optimale Transferfenster.",
+    "future_rendezvous_reticle": "🎯 Zukünftiges Lande-Rendezvous (+{sec}s)"
   }
 }
