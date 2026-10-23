@@ -103,7 +103,14 @@ function enforce2DMode(active) {
 function startOrbitalTelemetry() {
   stopOrbitalTelemetry();
   orbitalTimer = setInterval(() => {
-    if (!gameActive || gameState.state === GAME_STATES.TRANSIT) return;
+    if (!gameActive) return;
+    if (gameState.state !== GAME_STATES.TRANSIT && gameState.state !== GAME_STATES.LAUNCHING) {
+      if (gameState.fuel < 100) {
+        gameState.addFuel(4);
+        updateFuelUI();
+        updateLaunchButtonState();
+      }
+    }
     updateOrbitalWindowUI();
   }, 400);
 }
@@ -182,6 +189,7 @@ function renderGameUI() {
       <div class="hud-col stats-col">
         <div class="hud-lives" id="hud-lives" aria-label="Lives">🚀 🚀 🚀</div>
         <div class="hud-stars" id="hud-stars">⭐ 0</div>
+        <div class="hud-fuel" id="hud-fuel-gauge" title="Fuel Tank">⛽ 100%</div>
       </div>
       <button type="button" class="hud-lb-btn" id="hud-lb-btn" title="View Leaderboard" aria-label="Leaderboard">🏆</button>
     </div>
@@ -217,6 +225,16 @@ function renderGameUI() {
           <span>10% (Low)</span>
           <span>50% (Cruise)</span>
           <span>100% (Max)</span>
+        </div>
+      </div>
+
+      <div class="sidebar-fuel-block" id="sidebar-fuel-block">
+        <div class="fuel-header">
+          <span class="sidebar-label" data-i18n="game.fuel_label">Fuel Tank:</span>
+          <span class="fuel-val" id="fuel-val-readout">100%</span>
+        </div>
+        <div class="fuel-progress-track">
+          <div class="fuel-progress-fill" id="fuel-progress-fill" style="width: 100%;"></div>
         </div>
       </div>
 
@@ -275,6 +293,7 @@ function bindSidebarEvents() {
       () => {
         readout.textContent = `${slider.value}%`;
         gameState.setEnergy(slider.value);
+        updateLaunchButtonState();
       },
       { passive: true }
     );
@@ -313,6 +332,8 @@ function updateHUD() {
   if (starsEl) {
     starsEl.textContent = `⭐ ${gameState.score}`;
   }
+
+  updateFuelUI();
 }
 
 function updateSidebar() {
@@ -348,6 +369,41 @@ function updateSidebar() {
       `;
     })
     .join('');
+
+  updateFuelUI();
+  updateLaunchButtonState();
+}
+
+function updateFuelUI() {
+  if (!gameState) return;
+  const fuelEl = document.getElementById('hud-fuel-gauge');
+  if (fuelEl) fuelEl.textContent = `⛽ ${Math.round(gameState.fuel)}%`;
+
+  const fuelVal = document.getElementById('fuel-val-readout');
+  const fuelFill = document.getElementById('fuel-progress-fill');
+  if (fuelVal && fuelFill) {
+    const f = Math.round(gameState.fuel);
+    fuelVal.textContent = `${f}%`;
+    fuelFill.style.width = `${f}%`;
+  }
+}
+
+function updateLaunchButtonState() {
+  if (!gameState || gameState.state === GAME_STATES.TRANSIT || gameState.state === GAME_STATES.LAUNCHING) return;
+  const btn = document.getElementById('launch-btn');
+  const btnText = document.getElementById('launch-btn-text');
+  if (!btn || !btnText) return;
+
+  if (gameState.fuel < gameState.energy) {
+    const deficit = gameState.energy - gameState.fuel;
+    const waitSec = Math.ceil(deficit / 10);
+    btn.disabled = true;
+    const template = t('game.refueling_wait') || 'REFUELING ({sec}s)... ⛽';
+    btnText.textContent = template.replace('{sec}', waitSec);
+  } else {
+    btn.disabled = false;
+    btnText.textContent = t('game.big_launch_btn') || 'BIG LAUNCH 🚀';
+  }
 }
 
 function formatBodyName(slug) {
@@ -416,6 +472,18 @@ function handleLaunchClick() {
     return;
   }
 
+  if (!gameState.hasSufficientFuel(gameState.energy)) {
+    const rawFuelAlert =
+      t('game.insufficient_fuel_alert') ||
+      '⚠️ Insufficient Propellant: This launch requires {energy}% fuel, but only {fuel}% is available. Please wait for ground refueling!';
+    alert(
+      rawFuelAlert
+        .replace('{energy}', Math.round(gameState.energy))
+        .replace('{fuel}', Math.round(gameState.fuel))
+    );
+    return;
+  }
+
   // 3-2-1 Ignition Countdown
   gameState.setState(GAME_STATES.LAUNCHING);
   const btn = document.getElementById('launch-btn');
@@ -432,6 +500,8 @@ function handleLaunchClick() {
     } else {
       clearInterval(countdown);
       btnText.textContent = 'BLASTOFF! 🚀';
+      gameState.consumeFuel(gameState.energy);
+      updateFuelUI();
       executeFlightTransit();
     }
   }, 400);
@@ -626,7 +696,8 @@ function triggerTouchdown(rocket) {
   // Check Solar Boost
   if (checkSolarBoost(gameState.currentPlanet, gameState.targetPlanet)) {
     gameState.addScore(50);
-    alert('☀️ SOLAR BOOST ACTIVATED! +50 Cosmic Stars for utilizing Solar Energy!');
+    gameState.addFuel(50);
+    alert('☀️ SOLAR BOOST ACTIVATED! +50% Propellant Tank Refuel & +50 Cosmic Stars!');
   }
 
   gameState.currentPlanet = gameState.targetPlanet;
@@ -642,10 +713,7 @@ function triggerTouchdown(rocket) {
 }
 
 function resetLaunchButton() {
-  const btn = document.getElementById('launch-btn');
-  const btnText = document.getElementById('launch-btn-text');
-  if (btn) btn.disabled = false;
-  if (btnText) btnText.textContent = t('game.big_launch_btn') || 'BIG LAUNCH 🚀';
+  updateLaunchButtonState();
 }
 
 function showTouchdownQuizModal(planetSlug) {

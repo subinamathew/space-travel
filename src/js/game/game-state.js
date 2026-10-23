@@ -43,6 +43,7 @@ export class GameState {
     this.lives = 3;
     this.score = 0;
     this.energy = 50;
+    this.fuel = 100;
     this.solarBoostActive = false;
   }
 
@@ -70,6 +71,7 @@ export class GameState {
 
   restoreLives() {
     this.lives = 3;
+    this.fuel = 100;
     this.state = GAME_STATES.STANDBY;
   }
 
@@ -82,11 +84,26 @@ export class GameState {
     this.currentPlanet = this.targetPlanet || this.currentPlanet;
     this.targetPlanet = null;
     this.missionIndex = Math.min(this.missionIndex + 1, MISSIONS.length);
+    this.fuel = 100;
     this.state = GAME_STATES.STANDBY;
   }
 
   setEnergy(val) {
     this.energy = Math.max(0, Math.min(100, Number(val) || 0));
+  }
+
+  consumeFuel(amount) {
+    this.fuel = Math.max(0, this.fuel - (Number(amount) || 0));
+    return this.fuel;
+  }
+
+  addFuel(amount) {
+    this.fuel = Math.min(100, this.fuel + (Number(amount) || 0));
+    return this.fuel;
+  }
+
+  hasSufficientFuel(req) {
+    return this.fuel >= (Number(req) || 0);
   }
 
   setState(nextState) {
@@ -99,6 +116,7 @@ export class GameState {
             currentPlanet: this.currentPlanet,
             targetPlanet: this.targetPlanet,
             energy: this.energy,
+            fuel: this.fuel,
             lives: this.lives,
             score: this.score
           }
