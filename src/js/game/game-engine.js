@@ -337,8 +337,8 @@ function renderGameUI() {
       <div class="launch-accordion" id="launch-accordion">
 
         <!-- Accordion 3: Thrust Energy -->
-        <div class="accordion-section is-open" id="sec-thrust">
-          <button type="button" class="accordion-header" aria-expanded="true" aria-controls="acc-content-thrust" title="${t('game.thrust_energy') || 'Thrust Energy:'}">
+        <div class="accordion-section" id="sec-thrust">
+          <button type="button" class="accordion-header" aria-expanded="false" aria-controls="acc-content-thrust" title="${t('game.thrust_energy') || 'Thrust Energy:'}">
             <span class="accordion-header-left">
               <span class="accordion-icon">⚡</span>
               <span class="accordion-title" data-i18n="game.thrust_energy">${t('game.thrust_energy') || 'Thrust Energy:'}</span>
@@ -496,15 +496,6 @@ function renderGameUI() {
   `;
   document.body.appendChild(sidebar);
 
-  if (typeof window !== 'undefined' && (window.innerWidth <= 768 || window.innerHeight <= 600)) {
-    const thrustSec = sidebar.querySelector('#sec-thrust');
-    if (thrustSec) {
-      thrustSec.classList.remove('is-open');
-      const h = thrustSec.querySelector('.accordion-header');
-      if (h) h.setAttribute('aria-expanded', 'false');
-    }
-  }
-
   bindSidebarEvents();
   bindHUDEvents();
 }
@@ -562,16 +553,13 @@ function bindSidebarEvents() {
       const section = header.closest('.accordion-section');
       if (!section) return;
       const isOpen = section.classList.contains('is-open');
-      const isMobile = window.innerWidth <= 768 || window.innerHeight <= 600;
-      if (isMobile) {
-        accordion.querySelectorAll('.accordion-section').forEach(s => {
-          if (s !== section) {
-            s.classList.remove('is-open');
-            const h = s.querySelector('.accordion-header');
-            if (h) h.setAttribute('aria-expanded', 'false');
-          }
-        });
-      }
+      accordion.querySelectorAll('.accordion-section').forEach(s => {
+        if (s !== section) {
+          s.classList.remove('is-open');
+          const h = s.querySelector('.accordion-header');
+          if (h) h.setAttribute('aria-expanded', 'false');
+        }
+      });
       section.classList.toggle('is-open', !isOpen);
       header.setAttribute('aria-expanded', String(!isOpen));
     });
