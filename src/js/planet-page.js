@@ -36,6 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 6. Kid-Friendly Science Stat Card Popups
   initStatCardPopups();
+
+  // 7. Free Play Floating Navigation Banner
+  initFreePlayReturnBanner();
 });
 
 function initCosmicCalculator() {
@@ -361,6 +364,7 @@ function initCosmicCalculator() {
   window.addEventListener('space:langchange', () => {
     updateSubpageDynamicTexts();
     calculate();
+    initFreePlayReturnBanner();
   });
 
   // Initial calculation and dynamic texts on load
@@ -482,4 +486,40 @@ function initStatCardPopups() {
     });
   });
 }
+
+/**
+ * Free Play Mode: Floating return navigation button
+ * Allows the astronaut to read planet specifications and jump directly back to game mode docked at this planet.
+ */
+function initFreePlayReturnBanner() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const isFreePlay = urlParams.get('mode') === 'freeplay' ||
+    (typeof sessionStorage !== 'undefined' && sessionStorage.getItem('rocketrun_freeplay') === 'true');
+  if (!isFreePlay) return;
+
+  const currentSlug = urlParams.get('docked') ||
+    document.querySelector('.space-calc-sidebar')?.dataset?.slug ||
+    window.location.pathname.split('/').pop().replace('.html', '') ||
+    'earth';
+
+  const planetName = t(`planets.${currentSlug}.name`) || currentSlug.toUpperCase();
+  const rawTemplate = t('game.freeplay_return_btn') || '🚀 Back to Game (Docked at {name}) →';
+  const returnBtnText = rawTemplate.replace('{name}', planetName);
+
+  let banner = document.getElementById('freeplay-floating-banner');
+  if (!banner) {
+    banner = document.createElement('div');
+    banner.id = 'freeplay-floating-banner';
+    banner.className = 'freeplay-floating-banner';
+    document.body.appendChild(banner);
+  }
+
+  banner.innerHTML = `
+    <a href="../index.html?mode=freeplay&docked=${encodeURIComponent(currentSlug)}" class="freeplay-return-btn" id="freeplay-return-btn">
+      <span class="return-btn-icon">🚀</span>
+      <span class="return-btn-text">${returnBtnText}</span>
+    </a>
+  `;
+}
+
 

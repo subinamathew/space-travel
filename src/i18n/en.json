@@ -148,7 +148,9 @@
     "impressum_heading": "Impressum & Legal Notice",
     "impressum_subheading": "Provider information according to § 5 DDG, § 18 MStV and GDPR compliance",
     "game_mode_label": "RocketRun Game:",
-    "game_toggle_aria": "Toggle RocketRun Game Mode"
+    "game_toggle_aria": "Toggle RocketRun Game Mode",
+    "freeplay_mode_label": "Free Play Mode:",
+    "freeplay_toggle_aria": "Toggle Free Play Mode"
   },
   "planets": {
     "sun": {
@@ -826,6 +828,12 @@
     "infinite_expedition_tag": "Infinite Expedition #{num}",
     "grand_tour_completed_title": "🎉 SOLAR SYSTEM GRAND TOUR COMPLETED!",
     "grand_tour_completed_desc": "Congratulations, Commander! You navigated the entire Solar System and safely touched down on Earth! You earned +250 Cosmic Stars ⭐. Deep Space Expeditions are now unlocked for infinite exploration!",
-    "grand_tour_continue_btn": "Embark on Deep Space Expeditions 🚀"
+    "grand_tour_continue_btn": "Embark on Deep Space Expeditions 🚀",
+    "mode_missions": "🎯 Missions",
+    "mode_freeplay": "🚀 Free Play",
+    "freeplay_tag": "FREE PLAY EXPLORATION",
+    "freeplay_clue": "Choose any planet, adjust thrust energy, and launch! On touchdown, you will explore full scientific briefing and planetary stats.",
+    "freeplay_touchdown_opening": "🎉 TOUCHDOWN! Opening planetary briefing for {name}... 🪐",
+    "freeplay_return_btn": "🚀 Back to Game (Docked at {name}) →"
   }
 }

@@ -148,7 +148,9 @@
     "impressum_heading": "Impressum & Rechtliche Hinweise",
     "impressum_subheading": "Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG), § 18 Abs. 2 MStV und Datenschutz-Grundverordnung (DSGVO)",
     "game_mode_label": "RocketRun Spiel:",
-    "game_toggle_aria": "RocketRun-Spielmodus umschalten"
+    "game_toggle_aria": "RocketRun-Spielmodus umschalten",
+    "freeplay_mode_label": "Freies Spiel:",
+    "freeplay_toggle_aria": "Freies Spiel umschalten"
   },
   "planets": {
     "sun": {
@@ -826,6 +828,12 @@
     "infinite_expedition_tag": "Unendliche Expedition #{num}",
     "grand_tour_completed_title": "🎉 GRAND TOUR DES SONNENSYSTEMS ABGESCHLOSSEN!",
     "grand_tour_completed_desc": "Glückwunsch, Commander! Du hast das gesamte Sonnensystem navigiert und bist sicher auf der Erde gelandet! Du erhältst +250 Kosmische Sterne ⭐. Tiefenraum-Expeditionen sind nun für endlose Entdeckungen freigeschaltet!",
-    "grand_tour_continue_btn": "Auf zu Tiefenraum-Expeditionen 🚀"
+    "grand_tour_continue_btn": "Auf zu Tiefenraum-Expeditionen 🚀",
+    "mode_missions": "🎯 Missionen",
+    "mode_freeplay": "🚀 Freies Spiel",
+    "freeplay_tag": "FREIES SPIEL — ERKUNDUNG",
+    "freeplay_clue": "Wähle einen beliebigen Planeten, passe den Schub an und starte! Bei der Landung öffnet sich das vollständige wissenschaftliche Briefing.",
+    "freeplay_touchdown_opening": "🎉 GELANDET! Öffne Planeten-Briefing für {name}... 🪐",
+    "freeplay_return_btn": "🚀 Zurück zum Spiel (Angedockt an {name}) →"
   }
 }

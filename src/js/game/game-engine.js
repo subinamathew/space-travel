@@ -40,14 +40,15 @@ export function initGameEngine() {
   window.RocketRun.selectDestinationFromCanvas = selectDestinationFromCanvas;
   window.RocketRun.isGameActive = isGameActive;
   window.RocketRun.exitGameMode = exitGameMode;
+  window.RocketRun.setFreePlayMode = setFreePlayMode;
 
   bindGlobalShortcuts();
 }
 
-export function startGame() {
+export function startGame(options = {}) {
   initGameEngine();
   gameActive = true;
-  gameState.reset();
+  gameState.reset(options);
   startTime = Date.now();
 
   const solarSystem = document.getElementById('solar-system');
@@ -60,7 +61,29 @@ export function startGame() {
   dockRocketAtCurrentPlanet();
   updateHUD();
   updateSidebar();
+  syncFreePlayUI(gameState.isFreePlay);
   startOrbitalTelemetry();
+}
+
+export function setFreePlayMode(active) {
+  if (!gameState) return;
+  const isFree = Boolean(active);
+  gameState.setFreePlay(isFree);
+  if (typeof localStorage !== 'undefined') {
+    localStorage.setItem('space_game_freeplay', isFree ? 'true' : 'false');
+  }
+  syncFreePlayUI(isFree);
+  updateSidebar();
+}
+
+function syncFreePlayUI(isFree) {
+  const fpToggle = document.getElementById('settings-freeplay-toggle');
+  if (fpToggle) fpToggle.checked = isFree;
+
+  const missionBtn = document.getElementById('mode-missions-btn');
+  const fpBtn = document.getElementById('mode-freeplay-btn');
+  if (missionBtn) missionBtn.classList.toggle('is-active', !isFree);
+  if (fpBtn) fpBtn.classList.toggle('is-active', isFree);
 }
 
 export function stopGame() {
@@ -82,8 +105,13 @@ export function exitGameMode() {
   if (gameToggle) {
     gameToggle.checked = false;
   }
+  const fpToggle = document.getElementById('settings-freeplay-toggle');
+  if (fpToggle) {
+    fpToggle.checked = false;
+  }
   if (typeof localStorage !== 'undefined') {
     localStorage.setItem('space_game_mode', 'false');
+    localStorage.setItem('space_game_freeplay', 'false');
   }
   stopGame();
 }
@@ -220,6 +248,15 @@ function renderGameUI() {
       </div>
     </div>
     <div class="sidebar-body">
+      <div class="game-mode-pill-selector" role="radiogroup" aria-label="Game Mode">
+        <button type="button" class="mode-pill-btn ${!gameState.isFreePlay ? 'is-active' : ''}" id="mode-missions-btn" data-mode="missions">
+          <span>🎯</span> <span data-i18n="game.mode_missions">${t('game.mode_missions') || 'Missions'}</span>
+        </button>
+        <button type="button" class="mode-pill-btn ${gameState.isFreePlay ? 'is-active' : ''}" id="mode-freeplay-btn" data-mode="freeplay">
+          <span>🚀</span> <span data-i18n="game.mode_freeplay">${t('game.mode_freeplay') || 'Free Play'}</span>
+        </button>
+      </div>
+
       <label class="sidebar-label" data-i18n="game.select_destination">Select Destination:</label>
       <div class="planet-select-list" id="planet-select-list"></div>
 
@@ -347,6 +384,15 @@ function bindHUDEvents() {
 }
 
 function bindSidebarEvents() {
+  const modeSelector = document.querySelector('.game-mode-pill-selector');
+  if (modeSelector) {
+    modeSelector.addEventListener('click', e => {
+      const btn = e.target.closest('.mode-pill-btn');
+      if (!btn) return;
+      setFreePlayMode(btn.dataset.mode === 'freeplay');
+    });
+  }
+
   const listEl = document.getElementById('planet-select-list');
   if (listEl) {
     listEl.addEventListener('click', e => {
@@ -433,7 +479,9 @@ function updateSidebar() {
 
   const tagEl = document.getElementById('sidebar-mission-tag');
   if (tagEl) {
-    if (gameState.missionIndex < 7) {
+    if (gameState.isFreePlay) {
+      tagEl.textContent = `🚀 ${t('game.freeplay_tag') || 'FREE PLAY EXPLORATION'}`;
+    } else if (gameState.missionIndex < 7) {
       const tmpl = t('game.mission_tag_format') || 'Mission {num} of 8';
       tagEl.textContent = `🎯 ${tmpl.replace('{num}', gameState.missionIndex + 1)}`;
     } else if (gameState.missionIndex === 7) {
@@ -690,30 +738,44 @@ function handleLaunchClick() {
   }
   if (gameState.state === GAME_STATES.TRANSIT) return;
 
-  const currentMission = gameState.getCurrentMission();
-  if (currentMission && gameState.targetPlanet !== currentMission.targetSlug) {
-    const rawTemplate =
-      t('game.mission_target_mismatch') ||
-      'Mission Control Alert: Objective is "{clue}". You targeted {target}. Check the clue and select the correct planet before launch!';
-    const alertMsg = rawTemplate
-      .replace('{clue}', t(currentMission.clueKey))
-      .replace('{target}', formatBodyName(gameState.targetPlanet));
-    alert(alertMsg);
-    return;
-  }
+  if (isDestinationBlockedByMission()) return;
 
   if (!gameState.hasSufficientFuel(gameState.energy)) {
-    const rawFuelAlert =
-      t('game.insufficient_fuel_alert') ||
-      '⚠️ Insufficient Propellant: This launch requires {energy}% fuel, but only {fuel}% is available. Please wait for solar recharging!';
-    alert(
-      rawFuelAlert
-        .replace('{energy}', Math.round(gameState.energy))
-        .replace('{fuel}', Math.round(gameState.fuel))
-    );
+    alertInsufficientFuel();
     return;
   }
 
+  startLaunchCountdown();
+}
+
+function alertInsufficientFuel() {
+  const rawFuelAlert =
+    t('game.insufficient_fuel_alert') ||
+    '⚠️ Insufficient Propellant: This launch requires {energy}% fuel, but only {fuel}% is available. Please wait for solar recharging!';
+  alert(
+    rawFuelAlert
+      .replace('{energy}', Math.round(gameState.energy))
+      .replace('{fuel}', Math.round(gameState.fuel))
+  );
+}
+
+function isDestinationBlockedByMission() {
+  if (gameState.isFreePlay) return false;
+  const currentMission = gameState.getCurrentMission();
+  if (!currentMission || gameState.targetPlanet === currentMission.targetSlug) {
+    return false;
+  }
+  const rawTemplate =
+    t('game.mission_target_mismatch') ||
+    'Mission Control Alert: Objective is "{clue}". You targeted {target}. Check the clue and select the correct planet before launch!';
+  const alertMsg = rawTemplate
+    .replace('{clue}', t(currentMission.clueKey))
+    .replace('{target}', formatBodyName(gameState.targetPlanet));
+  alert(alertMsg);
+  return true;
+}
+
+function startLaunchCountdown() {
   gameState.setState(GAME_STATES.LAUNCHING);
   const btn = document.getElementById('launch-btn');
   const btnText = document.getElementById('launch-btn-text');
@@ -931,7 +993,46 @@ function triggerTouchdown(rocket) {
   updateHUD();
   updateSidebar();
 
-  showTouchdownQuizModal(gameState.currentPlanet);
+  if (gameState.isFreePlay) {
+    handleFreePlayTouchdown(gameState.currentPlanet);
+  } else {
+    showTouchdownQuizModal(gameState.currentPlanet);
+  }
+}
+
+function handleFreePlayTouchdown(planetSlug) {
+  const existing = document.getElementById('freeplay-touchdown-banner');
+  if (existing) existing.remove();
+
+  const name = formatBodyName(planetSlug);
+  const rawMsg = t('game.freeplay_touchdown_opening') || '🎉 TOUCHDOWN! Opening planetary briefing for {name}... 🪐';
+  const msg = rawMsg.replace('{name}', name);
+
+  const banner = document.createElement('div');
+  banner.id = 'freeplay-touchdown-banner';
+  banner.className = 'game-modal-overlay';
+  banner.innerHTML = `
+    <div class="game-modal-card freeplay-touchdown-card">
+      <div class="modal-badge">🎉 TOUCHDOWN ON ${name.toUpperCase()}!</div>
+      <p class="touchdown-note">${msg}</p>
+      <div class="touchdown-spinner" aria-hidden="true">🪐 🚀 ✨</div>
+    </div>
+  `;
+  document.body.appendChild(banner);
+
+  if (typeof sessionStorage !== 'undefined') {
+    sessionStorage.setItem('rocketrun_freeplay', 'true');
+    sessionStorage.setItem('rocketrun_docked', planetSlug);
+  }
+  if (typeof localStorage !== 'undefined') {
+    localStorage.setItem('space_game_mode', 'true');
+    localStorage.setItem('space_game_freeplay', 'true');
+  }
+
+  const targetFile = planetSlug === 'moon' ? 'earth.html' : `${planetSlug}.html`;
+  setTimeout(() => {
+    window.location.href = `planets/${targetFile}?mode=freeplay&docked=${encodeURIComponent(planetSlug)}`;
+  }, 1200);
 }
 
 function resetLaunchButton() {

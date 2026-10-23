@@ -148,7 +148,9 @@
     "impressum_heading": "Note Legali e Impressum",
     "impressum_subheading": "Informazioni sul fornitore ai sensi del § 5 DDG, § 18 MStV e conformità GDPR",
     "game_mode_label": "Gioco RocketRun:",
-    "game_toggle_aria": "Attiva/disattiva modalità di gioco RocketRun"
+    "game_toggle_aria": "Attiva/disattiva modalità di gioco RocketRun",
+    "freeplay_mode_label": "Modalità Gioco Libero:",
+    "freeplay_toggle_aria": "Attiva/disattiva modalità gioco libero"
   },
   "planets": {
     "sun": {
@@ -826,6 +828,12 @@
     "infinite_expedition_tag": "Spedizione Infinita #{num}",
     "grand_tour_completed_title": "🎉 GRAND TOUR DEL SISTEMA SOLARE COMPLETATO!",
     "grand_tour_completed_desc": "Congratulazioni, Comandante! Hai esplorato l'intero Sistema Solare e sei atterrato sano e salvo sulla Terra! Guadagni +250 Stelle Cosmiche ⭐. Le Spedizioni Infinite sono ora sbloccate!",
-    "grand_tour_continue_btn": "Parti per le Spedizioni Profonde 🚀"
+    "grand_tour_continue_btn": "Parti per le Spedizioni Profonde 🚀",
+    "mode_missions": "🎯 Missioni",
+    "mode_freeplay": "🚀 Gioco Libero",
+    "freeplay_tag": "ESPLORAZIONE IN GIOCO LIBERO",
+    "freeplay_clue": "Scegli qualsiasi pianeta, regola la spinta e parti! All'atterraggio esplorerai la scheda scientifica completa.",
+    "freeplay_touchdown_opening": "🎉 ATTERRAGGIO! Apertura scheda per {name}... 🪐",
+    "freeplay_return_btn": "🚀 Torna al Gioco (Attraccato a {name}) →"
   }
 }

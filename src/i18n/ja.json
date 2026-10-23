@@ -148,7 +148,9 @@
     "impressum_heading": "法律情報とインプリント",
     "impressum_subheading": "ドイツデジタルサービス法（§ 5 DDG）、メディア国家協定（§ 18 MStV）およびGDPRに基づく情報開示",
     "game_mode_label": "ロケットラン・ゲーム:",
-    "game_toggle_aria": "ロケットラン・ゲームモードの切り替え"
+    "game_toggle_aria": "ロケットラン・ゲームモードの切り替え",
+    "freeplay_mode_label": "フリープレイモード:",
+    "freeplay_toggle_aria": "フリープレイモードの切り替え"
   },
   "planets": {
     "sun": {
@@ -826,6 +828,12 @@
     "infinite_expedition_tag": "無限深宇宙探査 #{num}",
     "grand_tour_completed_title": "🎉 太陽系グランドツアー達成！",
     "grand_tour_completed_desc": "おめでとう、船長！太陽系全体を巡航回航し、無事地球へ帰還しました！+250 コズミックスター ⭐ を獲得。ここからは無限深宇宙探査モードに突入します！",
-    "grand_tour_continue_btn": "深宇宙探査へ出発せよ 🚀"
+    "grand_tour_continue_btn": "深宇宙探査へ出発せよ 🚀",
+    "mode_missions": "🎯 ミッション",
+    "mode_freeplay": "🚀 フリープレイ",
+    "freeplay_tag": "フリープレイ探査モード",
+    "freeplay_clue": "好きな惑星を選んで推力を調整し発進！着陸すると詳しい科学データと探査レポートが開きます。",
+    "freeplay_touchdown_opening": "🎉 着陸成功！{name} の惑星レポートを開いています... 🪐",
+    "freeplay_return_btn": "🚀 ゲームに戻る（{name} に停泊中）→"
   }
 }

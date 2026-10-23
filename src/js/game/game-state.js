@@ -54,9 +54,9 @@ export class GameState {
     this.reset();
   }
 
-  reset() {
+  reset(options = {}) {
     this.state = GAME_STATES.STANDBY;
-    this.currentPlanet = 'earth';
+    this.currentPlanet = options.docked || 'earth';
     this.targetPlanet = null;
     this.missionIndex = 0;
     this.lives = 3;
@@ -65,9 +65,24 @@ export class GameState {
     this.fuel = 100;
     this.solarBoostActive = false;
     this.dynamicMission = null;
+    this.isFreePlay = Boolean(options.freeplay);
+  }
+
+  setFreePlay(val) {
+    this.isFreePlay = Boolean(val);
+    this.setState(this.state);
   }
 
   getCurrentMission() {
+    if (this.isFreePlay) {
+      return {
+        id: 'freeplay',
+        name: 'Free Play',
+        clueKey: 'game.freeplay_clue',
+        targetSlug: null,
+        isFreePlay: true
+      };
+    }
     if (this.missionIndex < MISSIONS.length) {
       return MISSIONS[this.missionIndex];
     }

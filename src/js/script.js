@@ -9,7 +9,7 @@ import { initCreditsCrawl } from './components/credits.js';
 import { initCookieNotice } from './components/cookie-notice.js';
 import { initFeaturesPage } from './components/features.js';
 import { init3DOrbitInteraction } from './components/orbit-3d.js';
-import { startGame, stopGame, initGameEngine } from './game/game-engine.js';
+import { startGame, stopGame, initGameEngine, setFreePlayMode } from './game/game-engine.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize i18n translation system
@@ -37,24 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
   init3DOrbitInteraction();
 
   // Initialize RocketRun 2D Space Navigation Game Mode
-  const gameToggle = document.getElementById('settings-game-toggle');
-  if (gameToggle) {
-    initGameEngine();
-    const savedGame = localStorage.getItem('space_game_mode') === 'true';
-    if (savedGame) {
-      gameToggle.checked = true;
-      startGame();
-    }
-    gameToggle.addEventListener('change', () => {
-      const active = gameToggle.checked;
-      localStorage.setItem('space_game_mode', active ? 'true' : 'false');
-      if (active) {
-        startGame();
-      } else {
-        stopGame();
-      }
-    });
-  }
+  initGameModeSettings();
 
   // Initialize starfield canvas background
   initStarfield('stars');
@@ -68,4 +51,61 @@ document.addEventListener('DOMContentLoaded', () => {
     viewer.showPlanet(idx);
   });
 });
+
+function initGameModeSettings() {
+  const gameToggle = document.getElementById('settings-game-toggle');
+  const freePlayToggle = document.getElementById('settings-freeplay-toggle');
+  if (!gameToggle && !freePlayToggle) return;
+
+  initGameEngine();
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const isFreePlayParam = urlParams.get('mode') === 'freeplay';
+  const dockedParam = urlParams.get('docked');
+  const savedGame = localStorage.getItem('space_game_mode') === 'true';
+  const savedFreePlay = localStorage.getItem('space_game_freeplay') === 'true';
+
+  const shouldStartGame = isFreePlayParam || savedGame;
+  const isFreePlayActive = isFreePlayParam || savedFreePlay;
+
+  if (gameToggle) gameToggle.checked = shouldStartGame;
+  if (freePlayToggle) freePlayToggle.checked = isFreePlayActive;
+
+  if (shouldStartGame) {
+    const sessionDocked = typeof sessionStorage !== 'undefined' ? sessionStorage.getItem('rocketrun_docked') : null;
+    const docked = dockedParam || (isFreePlayActive ? sessionDocked : null) || 'earth';
+    startGame({ freeplay: isFreePlayActive, docked });
+  }
+
+  bindGameModeToggles(gameToggle, freePlayToggle);
+}
+
+function bindGameModeToggles(gameToggle, freePlayToggle) {
+  if (gameToggle) {
+    gameToggle.addEventListener('change', () => {
+      const active = gameToggle.checked;
+      localStorage.setItem('space_game_mode', active ? 'true' : 'false');
+      if (active) {
+        const isFp = freePlayToggle ? freePlayToggle.checked : false;
+        startGame({ freeplay: isFp });
+      } else {
+        stopGame();
+      }
+    });
+  }
+
+  if (freePlayToggle) {
+    freePlayToggle.addEventListener('change', () => {
+      const fpActive = freePlayToggle.checked;
+      localStorage.setItem('space_game_freeplay', fpActive ? 'true' : 'false');
+      if (fpActive && (!gameToggle || !gameToggle.checked)) {
+        if (gameToggle) gameToggle.checked = true;
+        localStorage.setItem('space_game_mode', 'true');
+        startGame({ freeplay: true });
+      } else {
+        setFreePlayMode(fpActive);
+      }
+    });
+  }
+}
 

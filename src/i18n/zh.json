@@ -148,7 +148,9 @@
     "impressum_heading": "法律声明与印章",
     "impressum_subheading": "根据德国数字服务法（§ 5 DDG）、国家媒体条约（§ 18 MStV）及通用数据保护条例（GDPR）所载之信息",
     "game_mode_label": "火箭漫游游戏：",
-    "game_toggle_aria": "切换火箭漫游游戏模式"
+    "game_toggle_aria": "切换火箭漫游游戏模式",
+    "freeplay_mode_label": "自由探索模式：",
+    "freeplay_toggle_aria": "切换自由探索模式"
   },
   "planets": {
     "sun": {
@@ -826,6 +828,12 @@
     "infinite_expedition_tag": "无限深空探险 #{num}",
     "grand_tour_completed_title": "🎉 太阳系壮游圆满完成！",
     "grand_tour_completed_desc": "祝贺指挥官！您成功航行了整个太阳系并安全降落在地球上！荣获 +250 颗宇宙之星 ⭐。无限深空探险现已解锁！",
-    "grand_tour_continue_btn": "启程深空探险 🚀"
+    "grand_tour_continue_btn": "启程深空探险 🚀",
+    "mode_missions": "🎯 任务挑战",
+    "mode_freeplay": "🚀 自由探索",
+    "freeplay_tag": "自由探索航行模式",
+    "freeplay_clue": "选择任意星球，调整引擎推力并发射！着陆后即可探索完整的科学简报与行星数据。",
+    "freeplay_touchdown_opening": "🎉 着陆成功！正在打开 {name} 行星科学简报... 🪐",
+    "freeplay_return_btn": "🚀 返回游戏（已停泊在 {name}）→"
   }
 }
