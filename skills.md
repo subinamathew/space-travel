@@ -31,7 +31,9 @@ This document defines the core engineering skills, architectural principles, qua
 12. [Skill 12: Metadata, OpenGraph & Social Sharing Standards](#skill-12-metadata-opengraph--social-sharing-standards)
 13. [Skill 13: Web Security, Anti-Hacking & Defense-in-Depth](#skill-13-web-security-anti-hacking--defense-in-depth)
 14. [Skill 14: Open Source Licensing, Attribution & Trademark Integrity](#skill-14-open-source-licensing-attribution--trademark-integrity)
-15. [Pre-Flight Verification Checklist](#pre-flight-verification-checklist)
+15. [Skill 15: GDPR-Compliant Local Storage, Data Erasure & Accessible Features Standard](#skill-15-gdpr-compliant-local-storage-data-erasure--accessible-features-standard)
+16. [Skill 16: Zero Native Browser Dialogs (No window.alert, confirm, or prompt — In-App Notifications Only)](#skill-16-zero-native-browser-dialogs-no-windowalert-confirm-or-prompt--in-app-notifications-only)
+17. [Pre-Flight Verification Checklist](#pre-flight-verification-checklist)
 
 ---
 
@@ -87,6 +89,9 @@ Write modular, defensive, self-documenting code with clear separation of concern
 4. **Cache Invalidation & Asset Versioning**:
    - All production asset links (`style.css`, `script.min.js`) must include query hashes or build versions (`?v=X.Y.Z`) to prevent stale browser disk caching.
    - Configure cache headers defensively (`max-age=0, must-revalidate` for HTML and version-controlled bundles).
+5. **Zero Native Browser Dialogs (`alert`, `confirm`, `prompt`)**:
+   - Never invoke `window.alert()`, `confirm()`, or `prompt()`. They block the JavaScript event loop, freeze 60fps animations, cause audio hitching, and break user immersion.
+   - Deliver all notices, warnings, and error messages via accessible, non-blocking in-app toasts (`showGameNotification(message, type, duration)`) with `aria-live="polite"` and GPU-composited styling.
 
 ---
 
@@ -469,6 +474,34 @@ RocketRun respects user privacy to the highest standard: zero trackers, zero adv
 
 ---
 
+## Skill 16: Zero Native Browser Dialogs (No window.alert, confirm, or prompt — In-App Notifications Only)
+
+### Core Rule
+**Native browser dialogs (`window.alert()`, `window.confirm()`, and `window.prompt()`) are strictly forbidden across the entire codebase.** All user-facing alerts, warnings, errors, and announcements must be rendered exclusively through lightweight, non-blocking in-app notification toasts or accessible DOM dialogs.
+
+### Rationale & Constraints
+1. **Thread-Blocking Event Loop Freezes**:
+   - Native dialogs freeze the browser's JavaScript execution thread, interrupting ongoing CSS animations, halting Web Audio playback, and breaking orbital rendezvous calculations.
+2. **Poor Mobile & Handheld Experience**:
+   - On Amazon Fire tablets, budget Android devices, and iOS WebViews, native alert modals cover the entire screen, drop hardware acceleration contexts, and frequently trigger OS-level permission dialogs or viewport resizing glitches.
+3. **Accessibility & Screen Reader Compliance (a11y)**:
+   - In-app notification toasts utilize explicit `aria-live="polite"`, `aria-atomic="true"`, and `role="status"`, ensuring assistive technologies can announce notifications seamlessly without hijacking user focus.
+
+### Guidelines & Implementation Standards
+1. **In-App Notification API (`showGameNotification`)**:
+   - Use `showGameNotification(message, type = 'info', duration = 3500)`:
+     - `type`: `'info'`, `'warning'`, `'error'`, or `'success'`.
+     - `duration`: Auto-dismiss duration in milliseconds (defaults to 3500ms; `0` for persistent).
+   - Must provide an accessible close button (`✕`) with `aria-label="Dismiss notification"`.
+   - Must support tap/click-to-dismiss for handheld touchscreens.
+2. **Compositor-Friendly CSS Motion**:
+   - Toasts animate strictly using GPU-composited transforms (`translateY` / `opacity`) via `.is-active` and `.is-leaving` classes.
+   - Glassmorphism backdrop-filter with high contrast (compliant with WCAG 2.2 AA).
+3. **DOM Safety**:
+   - Content must be injected via `.textContent`, never `.innerHTML`, guarding against any XSS vectors.
+
+---
+
 ## Pre-Flight Verification Checklist
 
 Before pushing any commit or releasing to production, verify:
@@ -476,6 +509,7 @@ Before pushing any commit or releasing to production, verify:
 - [ ] **Commit Message**: Conforms to Conventional Commits format with imperative summary.
 - [ ] **CSS First**: Visual effects, animations, and transitions use pure CSS rather than JavaScript interval loops.
 - [ ] **DOM Size**: Page structure is lean, semantic, and contains no unnecessary wrapper divs.
+- [ ] **Zero Native Browser Popups**: Zero `alert()`, `confirm()`, or `prompt()` calls; all status/error messages use non-blocking in-app toasts with polite aria-live regions.
 - [ ] **Complexity**: Functions are small, guard clauses are used, and cyclomatic complexity is low.
 - [ ] **Kid Explainer Pedagogy**:
   - [ ] Every `%` symbol is grounded in concrete counts (*"parts out of 100"* / *"100 scoops"* / *"100 marbles"*).

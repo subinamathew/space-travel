@@ -1044,9 +1044,77 @@ function updateEnergyFeedbackHint(optMetrics) {
   }
 }
 
+export function showGameNotification(message, type = 'info', duration = 3500) {
+  let container = document.getElementById('game-notification-container');
+  if (!container) {
+    container = document.createElement('div');
+    container.id = 'game-notification-container';
+    container.className = 'game-notification-container';
+    container.setAttribute('aria-live', 'polite');
+    container.setAttribute('aria-atomic', 'true');
+    document.body.appendChild(container);
+  }
+
+  const toast = document.createElement('div');
+  toast.className = `game-notification-toast is-${type}`;
+  toast.setAttribute('role', 'status');
+
+  const icons = {
+    warning: '⚠️',
+    error: '🚨',
+    success: '✨',
+    info: '🚀'
+  };
+  const icon = icons[type] || '🚀';
+
+  const iconSpan = document.createElement('span');
+  iconSpan.className = 'game-toast-icon';
+  iconSpan.setAttribute('aria-hidden', 'true');
+  iconSpan.textContent = icon;
+
+  const msgSpan = document.createElement('span');
+  msgSpan.className = 'game-toast-msg';
+  msgSpan.textContent = message;
+
+  const closeBtn = document.createElement('button');
+  closeBtn.type = 'button';
+  closeBtn.className = 'game-toast-close';
+  closeBtn.setAttribute('aria-label', 'Dismiss notification');
+  closeBtn.textContent = '✕';
+
+  toast.appendChild(iconSpan);
+  toast.appendChild(msgSpan);
+  toast.appendChild(closeBtn);
+  function dismiss() {
+    if (toast.classList.contains('is-leaving')) return;
+    toast.classList.add('is-leaving');
+    setTimeout(() => toast.remove(), 250);
+  }
+
+  if (closeBtn) closeBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    dismiss();
+  });
+  toast.addEventListener('click', dismiss);
+
+  container.appendChild(toast);
+
+  if (typeof requestAnimationFrame !== 'undefined') {
+    requestAnimationFrame(() => toast.classList.add('is-active'));
+  } else {
+    toast.classList.add('is-active');
+  }
+
+  if (duration > 0) {
+    setTimeout(dismiss, duration);
+  }
+
+  return toast;
+}
+
 function handleLaunchClick() {
   if (!gameState.targetPlanet) {
-    alert(t('game.select_destination_alert') || 'Please select a destination planet first!');
+    showGameNotification(t('game.select_destination_alert') || 'Please select a destination planet first!', 'warning');
     return;
   }
   if (gameState.state === GAME_STATES.TRANSIT) return;
@@ -1065,10 +1133,11 @@ function alertInsufficientFuel() {
   const rawFuelAlert =
     t('game.insufficient_fuel_alert') ||
     '⚠️ Insufficient Propellant: This launch requires {energy}% fuel, but only {fuel}% is available. Please wait for solar recharging!';
-  alert(
+  showGameNotification(
     rawFuelAlert
       .replace('{energy}', Math.round(gameState.energy))
-      .replace('{fuel}', Math.round(gameState.fuel))
+      .replace('{fuel}', Math.round(gameState.fuel)),
+    'warning'
   );
 }
 
@@ -1084,7 +1153,7 @@ function isDestinationBlockedByMission() {
   const alertMsg = rawTemplate
     .replace('{clue}', t(currentMission.clueKey))
     .replace('{target}', formatBodyName(gameState.targetPlanet));
-  alert(alertMsg);
+  showGameNotification(alertMsg, 'warning', 4500);
   return true;
 }
 
@@ -1263,7 +1332,7 @@ function triggerExplosion(rocket, reasonKey) {
     } else {
       gameState.setState(GAME_STATES.STANDBY);
       resetLaunchButton();
-      alert(`${t(reasonKey)}\n${t('game.try_again_life_lost')}`);
+      showGameNotification(`${t(reasonKey)} — ${t('game.try_again_life_lost')}`, 'error', 4500);
     }
   }, 900);
 }
@@ -1283,7 +1352,7 @@ function triggerOvershoot(rocket, reasonKey) {
     } else {
       gameState.setState(GAME_STATES.STANDBY);
       resetLaunchButton();
-      alert(`${t(reasonKey)}\n${t('game.try_again_life_lost')}`);
+      showGameNotification(`${t(reasonKey)} — ${t('game.try_again_life_lost')}`, 'error', 4500);
     }
   }, 1000);
 }
@@ -1294,7 +1363,7 @@ function triggerTouchdown(rocket) {
   if (checkSolarBoost(gameState.currentPlanet, gameState.targetPlanet)) {
     gameState.addScore(50);
     gameState.addFuel(50);
-    alert('☀️ SOLAR BOOST ACTIVATED! +50% Propellant Tank Refuel & +50 Cosmic Stars!');
+    showGameNotification('☀️ SOLAR BOOST ACTIVATED! +50% Propellant Tank Refuel & +50 Cosmic Stars!', 'success', 4000);
   }
 
   gameState.currentPlanet = gameState.targetPlanet;

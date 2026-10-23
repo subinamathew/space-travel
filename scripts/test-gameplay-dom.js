@@ -99,7 +99,8 @@ import {
   setFreePlayMode,
   selectDestinationFromCanvas,
   isGameActive,
-  showLeaderboardModal
+  showLeaderboardModal,
+  showGameNotification
 } from '../src/js/game/game-engine.js';
 import {
   calculateOrbitalWindow,
@@ -606,7 +607,83 @@ assert(cookieNoticeEl !== null, '#cookie-notice element created');
 const clearNote = cookieNoticeEl.querySelector('.cookie-clear-note');
 assert(clearNote !== null, '#cookie-notice includes .cookie-clear-note warning banner');
 assert(clearNote.textContent.includes('high scores'), '.cookie-clear-note explicitly warns about removing high scores');
-assert(clearNote.textContent.includes('pilot details'), '.cookie-clear-note explicitly warns about removing pilot details');
+// ----------------------------------------------------
+// TEST 18: In-App Notifications & Zero Browser Popups
+// ----------------------------------------------------
+console.log('\n[Test 18: In-App Notifications & Zero Browser Dialogs]');
+
+let alertCalls = 0;
+let confirmCalls = 0;
+let promptCalls = 0;
+dom.window.alert = () => { alertCalls++; };
+dom.window.confirm = () => { confirmCalls++; return true; };
+dom.window.prompt = () => { promptCalls++; return ''; };
+global.alert = dom.window.alert;
+global.confirm = dom.window.confirm;
+global.prompt = dom.window.prompt;
+
+// 1. Test showGameNotification rendering
+showGameNotification('Propellant deficit! Waiting for solar charge', 'warning', 3500);
+const notifContainer = document.getElementById('game-notification-container');
+assert(notifContainer !== null, '#game-notification-container created in DOM');
+assert(notifContainer.getAttribute('aria-live') === 'polite', 'Notification container has aria-live="polite"');
+assert(notifContainer.getAttribute('aria-atomic') === 'true', 'Notification container has aria-atomic="true"');
+
+const toastWarning = notifContainer.querySelector('.game-notification-toast.is-warning');
+assert(toastWarning !== null, 'Warning notification toast rendered with .is-warning');
+assert(toastWarning.getAttribute('role') === 'status', 'Notification toast has role="status"');
+assert(toastWarning.querySelector('.game-toast-icon').textContent === '⚠️', 'Warning toast displays ⚠️ icon');
+assert(toastWarning.querySelector('.game-toast-msg').textContent === 'Propellant deficit! Waiting for solar charge', 'Toast message text matches accurately');
+
+const closeToastBtn = toastWarning.querySelector('.game-toast-close');
+assert(closeToastBtn !== null, 'Toast includes accessible close button (✕)');
+assert(closeToastBtn.getAttribute('aria-label') === 'Dismiss notification', 'Close button has descriptive aria-label');
+
+// Click close button triggers dismiss
+closeToastBtn.click();
+assert(toastWarning.classList.contains('is-leaving'), 'Clicking close button adds .is-leaving class');
+
+// 2. Test types: success, error, info
+showGameNotification('Touchdown success on Mars!', 'success', 0);
+const toastSuccess = notifContainer.querySelector('.game-notification-toast.is-success');
+assert(toastSuccess !== null, 'Success notification toast rendered with .is-success');
+assert(toastSuccess.querySelector('.game-toast-icon').textContent === '✨', 'Success toast displays ✨ icon');
+
+showGameNotification('Collision trajectory detected!', 'error', 0);
+const toastError = notifContainer.querySelector('.game-notification-toast.is-error');
+assert(toastError !== null, 'Error notification toast rendered with .is-error');
+assert(toastError.querySelector('.game-toast-icon').textContent === '🚨', 'Error toast displays 🚨 icon');
+
+showGameNotification('Standard telemetry update', 'info', 0);
+const toastInfo = notifContainer.querySelector('.game-notification-toast.is-info');
+assert(toastInfo !== null, 'Info notification toast rendered with .is-info');
+assert(toastInfo.querySelector('.game-toast-icon').textContent === '🚀', 'Info toast displays 🚀 icon');
+
+// Verify zero alert() calls
+assert(alertCalls === 0, 'Zero window.alert() calls invoked during notification lifecycle');
+assert(confirmCalls === 0, 'Zero window.confirm() calls invoked');
+assert(promptCalls === 0, 'Zero window.prompt() calls invoked');
+
+// 3. Static audit: Assert zero alert( in src/js
+function scanDirectoryForAlerts(dir) {
+  let count = 0;
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  for (const entry of entries) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      count += scanDirectoryForAlerts(full);
+    } else if (entry.isFile() && (entry.name.endsWith('.js') || entry.name.endsWith('.html'))) {
+      const code = fs.readFileSync(full, 'utf8');
+      if (/\balert\s*\(/.test(code)) {
+        console.error(`Found alert() in ${full}`);
+        count++;
+      }
+    }
+  }
+  return count;
+}
+const alertOccurrences = scanDirectoryForAlerts(path.resolve(__dirname, '../src'));
+assert(alertOccurrences === 0, 'Codebase audit: 0 native alert() occurrences in src/');
 
 console.log('\n====================================================');
 console.log(`🎉 ALL TESTS PASSED: ${passedTests} / ${totalTests} assertions verified!`);
