@@ -81,14 +81,55 @@ function computeEnergyWindow(targetSlug, normDist) {
   return { minReq, maxCap };
 }
 
-export function calculateOrbitalWindow(originSlug, targetSlug, elapsedSec) {
+export function getFlightDuration(originSlug, targetSlug) {
+  if (targetSlug === 'moon' || originSlug === 'moon') return 3.8;
+  if (['jupiter', 'saturn', 'uranus', 'neptune'].includes(targetSlug)) return 6.5;
+  return 5.2;
+}
+
+export function findNextOptimalWindow(originSlug, targetSlug, elapsedSec) {
+  let bestDt = 0;
+  let minDist = Infinity;
+  for (let dt = 0; dt <= 25; dt += 0.5) {
+    const t = elapsedSec + dt;
+    const p1 = getBodyCoordinates(originSlug, t);
+    const p2 = getBodyCoordinates(targetSlug, t);
+    const dist = Math.hypot(p2.x - p1.x, p2.y - p1.y);
+    if (dist < minDist) {
+      minDist = dist;
+      bestDt = dt;
+    }
+  }
+  return {
+    timeToWindow: bestDt,
+    isOpen: bestDt <= 1.0,
+    minDist
+  };
+}
+
+export function calculateFutureOrbitalIntercept(originSlug, targetSlug, elapsedSec, durationSec) {
+  const p1 = getBodyCoordinates(originSlug, elapsedSec);
+  const p2Future = getBodyCoordinates(targetSlug, elapsedSec + durationSec);
+  const dx = p2Future.x - p1.x;
+  const dy = p2Future.y - p1.y;
+  const arrivalDist = Math.hypot(dx, dy);
+  return {
+    arrivalDist,
+    p2Future,
+    dx,
+    dy
+  };
+}
+
+export function calculateOrbitalWindow(originSlug, targetSlug, elapsedSec, futureOffsetSec = 0) {
   const s1 = ORBIT_SPECS[originSlug] ?? ORBIT_SPECS.earth;
   const s2 = ORBIT_SPECS[targetSlug] ?? ORBIT_SPECS.mars;
   const isMoon = targetSlug === 'moon' || originSlug === 'moon';
 
+  const simTime = elapsedSec + (Number(futureOffsetSec) || 0);
   const bounds = calculateSeparationBounds(s1, s2, isMoon);
-  const p1 = getBodyCoordinates(originSlug, elapsedSec);
-  const p2 = getBodyCoordinates(targetSlug, elapsedSec);
+  const p1 = getBodyCoordinates(originSlug, simTime);
+  const p2 = getBodyCoordinates(targetSlug, simTime);
 
   const dx = p2.x - p1.x;
   const dy = p2.y - p1.y;
@@ -101,9 +142,20 @@ export function calculateOrbitalWindow(originSlug, targetSlug, elapsedSec) {
   const energyWin = computeEnergyWindow(targetSlug, normDist);
   const currentAu = bounds.minAu + normDist * (bounds.maxAu - bounds.minAu);
 
+  const durationSec = getFlightDuration(originSlug, targetSlug);
+  const intercept = calculateFutureOrbitalIntercept(originSlug, targetSlug, simTime, durationSec);
+  const arrivalNorm = Math.max(0, Math.min(1, (intercept.arrivalDist - bounds.minDist) / distRange));
+  const arrivalAu = bounds.minAu + arrivalNorm * (bounds.maxAu - bounds.minAu);
+  const nextWindow = findNextOptimalWindow(originSlug, targetSlug, elapsedSec);
+
   return {
     currentDist,
     currentAu,
+    arrivalDist: intercept.arrivalDist,
+    arrivalAu,
+    futureArrivalCoords: intercept.p2Future,
+    flightDurationSec: durationSec,
+    nextWindow,
     minDist: bounds.minDist,
     maxDist: bounds.maxDist,
     minAu: bounds.minAu,
@@ -114,6 +166,7 @@ export function calculateOrbitalWindow(originSlug, targetSlug, elapsedSec) {
     status,
     minReq: energyWin.minReq,
     maxCap: energyWin.maxCap,
+    futureOffsetSec,
     dx,
     dy
   };

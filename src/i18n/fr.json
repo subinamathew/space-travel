@@ -725,7 +725,7 @@
     "mission_clue_saturn": "Mission 4 : Envolez-vous vers la planète avec le plus grand nombre de lunes !",
     "mission_clue_uranus": "Mission 5 : Envolez-vous vers le géant de glace qui tourne sur le côté !",
     "mission_clue_neptune": "Mission 6 : Envolez-vous vers la planète la plus venteuse et la plus éloignée du Soleil !",
-    "mission_clue_earth_slingshot": "Mission Finale : Envolez-vous de retour chez vous vers la planète bleue et la vie !",
+    "mission_clue_earth_slingshot": "Étape Grand Tour : Envolez-vous de retour chez vous vers la planète bleue et la vie !",
     "mission_target_mismatch": "Alerte de Contrôle de Mission : Notre objectif est : « {clue} ». Vous visez {target}. Choisissez la bonne destination avant le lancement !",
     "fuel_label": "Réservoir de carburant",
     "refueling_wait": "RAVITAILLEMENT ({sec}s)... ⛽",
@@ -815,6 +815,17 @@
     "quiz_jupiter_2_opt2": "⛵ Seulement 2 Terres !",
     "rank_explorer": "Explorateur de l'Espace Profond",
     "rank_voyager": "Voyageur Cosmique",
-    "rank_legend": "Légende Galactique"
+    "rank_legend": "Légende Galactique",
+    "future_intercept_label": "Interception à l'arrivée :",
+    "next_window_label": "Prochaine fenêtre :",
+    "window_open_now": "🟢 Fenêtre ouverte maintenant !",
+    "window_countdown": "⏳ Dans ~{sec}s",
+    "future_orbit_planner": "🔮 PLANIFICATEUR D'ORBITE FUTUR",
+    "mission_tag_format": "Mission {num} sur 8",
+    "homecoming_tag": "Retour sur Terre (Mission 8)",
+    "infinite_expedition_tag": "Expédition Infinie n°{num}",
+    "grand_tour_completed_title": "🎉 GRAND TOUR DU SYSTÈME SOLAIRE TERMINÉ !",
+    "grand_tour_completed_desc": "Félicitations, Commandant ! Vous avez exploré l'ensemble du Système Solaire et atterri en sécurité sur Terre ! Vous gagnez +250 Étoiles Cosmiques ⭐. Les Expéditions Spatiales Infinies sont maintenant débloquées !",
+    "grand_tour_continue_btn": "Partir en Expéditions Lointaines 🚀"
   }
 }

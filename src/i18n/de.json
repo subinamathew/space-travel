@@ -725,7 +725,7 @@
     "mission_clue_saturn": "Mission 4: Fliege zum Planeten mit den meisten Monden!",
     "mission_clue_uranus": "Mission 5: Fliege zum Eisriesen, der auf der Seite rollt!",
     "mission_clue_neptune": "Mission 6: Fliege zum stürmischsten Planeten, der am weitesten von der Sonne entfernt ist!",
-    "mission_clue_earth_slingshot": "Finale Mission: Fliege zurück nach Hause zum blauen Planeten mit Leben!",
+    "mission_clue_earth_slingshot": "Grand-Tour-Meilenstein: Fliege zurück nach Hause zum blauen Planeten mit Leben!",
     "mission_target_mismatch": "Missionskontrolle-Warnung: Unser Ziel lautet: \"{clue}\". Du hast {target} anvisiert. Wähle den richtigen Planeten vor dem Start!",
     "fuel_label": "Treibstofftank",
     "refueling_wait": "BETANKUNG ({sec}s)... ⛽",
@@ -815,6 +815,17 @@
     "quiz_jupiter_2_opt2": "⛵ Nur 2 Erden!",
     "rank_explorer": "Tiefraum-Forscher",
     "rank_voyager": "Kosmischer Reisender",
-    "rank_legend": "Galaktische Legende"
+    "rank_legend": "Galaktische Legende",
+    "future_intercept_label": "Ankunft-Abfang:",
+    "next_window_label": "Nächstes Fenster:",
+    "window_open_now": "🟢 Fenster jetzt offen!",
+    "window_countdown": "⏳ In ~{sec}s",
+    "future_orbit_planner": "🔮 ZUKUNFT-BAHNPLANER",
+    "mission_tag_format": "Mission {num} von 8",
+    "homecoming_tag": "Heimkehr zur Erde (Mission 8)",
+    "infinite_expedition_tag": "Unendliche Expedition #{num}",
+    "grand_tour_completed_title": "🎉 GRAND TOUR DES SONNENSYSTEMS ABGESCHLOSSEN!",
+    "grand_tour_completed_desc": "Glückwunsch, Commander! Du hast das gesamte Sonnensystem navigiert und bist sicher auf der Erde gelandet! Du erhältst +250 Kosmische Sterne ⭐. Tiefenraum-Expeditionen sind nun für endlose Entdeckungen freigeschaltet!",
+    "grand_tour_continue_btn": "Auf zu Tiefenraum-Expeditionen 🚀"
   }
 }

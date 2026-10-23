@@ -725,7 +725,7 @@
     "mission_clue_saturn": "Mission 4: Launch to the planet with the most moons!",
     "mission_clue_uranus": "Mission 5: Launch to the ice giant that rolls on its side!",
     "mission_clue_neptune": "Mission 6: Launch to the windiest planet furthest from the Sun!",
-    "mission_clue_earth_slingshot": "Final Mission: Launch back home to the blue planet with life!",
+    "mission_clue_earth_slingshot": "Grand Tour Milestone: Launch back home to the blue planet with life!",
     "mission_target_mismatch": "Mission Control Alert: Objective is \"{clue}\". You targeted {target}. Check the clue and select the correct planet before launch!",
     "fuel_label": "Fuel Tank",
     "refueling_wait": "REFUELING ({sec}s)... ⛽",
@@ -815,6 +815,17 @@
     "quiz_jupiter_2_opt2": "⛵ Just 2 Earths!",
     "rank_explorer": "Deep Space Explorer",
     "rank_voyager": "Cosmic Voyager",
-    "rank_legend": "Galactic Legend"
+    "rank_legend": "Galactic Legend",
+    "future_intercept_label": "Arrival Intercept:",
+    "next_window_label": "Next Window:",
+    "window_open_now": "🟢 Window Open Now!",
+    "window_countdown": "⏳ In ~{sec}s",
+    "future_orbit_planner": "🔮 FUTURE ORBIT PLANNER",
+    "mission_tag_format": "Mission {num} of 8",
+    "homecoming_tag": "Earth Homecoming (Mission 8)",
+    "infinite_expedition_tag": "Infinite Expedition #{num}",
+    "grand_tour_completed_title": "🎉 SOLAR SYSTEM GRAND TOUR COMPLETED!",
+    "grand_tour_completed_desc": "Congratulations, Commander! You navigated the entire Solar System and safely touched down on Earth! You earned +250 Cosmic Stars ⭐. Deep Space Expeditions are now unlocked for infinite exploration!",
+    "grand_tour_continue_btn": "Embark on Deep Space Expeditions 🚀"
   }
 }

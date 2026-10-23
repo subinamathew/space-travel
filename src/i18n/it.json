@@ -725,7 +725,7 @@
     "mission_clue_saturn": "Missione 4: Lancia verso il pianeta con il maggior numero di lune!",
     "mission_clue_uranus": "Missione 5: Lancia verso il gigante di ghiaccio che rotola sul fianco!",
     "mission_clue_neptune": "Missione 6: Lancia verso il pianeta più ventoso e più lontano dal Sole!",
-    "mission_clue_earth_slingshot": "Missione Finale: Lancia di nuovo verso casa sul pianeta blu con la vita!",
+    "mission_clue_earth_slingshot": "Tappa del Gran Tour: Lancia di nuovo verso casa sul pianeta blu con la vita!",
     "mission_target_mismatch": "Avviso Controllo Missione: Il nostro obiettivo è: \"{clue}\". Hai puntato su {target}. Seleziona il pianeta corretto prima del lancio!",
     "fuel_label": "Serbatoio carburante",
     "refueling_wait": "RIFORNIMENTO ({sec}s)... ⛽",
@@ -815,6 +815,17 @@
     "quiz_jupiter_2_opt2": "⛵ Solo 2 Terre!",
     "rank_explorer": "Esploratore dello Spazio Profondo",
     "rank_voyager": "Viaggiatore Cosmico",
-    "rank_legend": "Leggenda Galattica"
+    "rank_legend": "Leggenda Galattica",
+    "future_intercept_label": "Intercettazione d'arrivo:",
+    "next_window_label": "Prossima finestra:",
+    "window_open_now": "🟢 Finestra aperta ora!",
+    "window_countdown": "⏳ In ~{sec}s",
+    "future_orbit_planner": "🔮 PIANIFICATORE DI ORBITA FUTURA",
+    "mission_tag_format": "Missione {num} di 8",
+    "homecoming_tag": "Ritorno sulla Terra (Missione 8)",
+    "infinite_expedition_tag": "Spedizione Infinita #{num}",
+    "grand_tour_completed_title": "🎉 GRAND TOUR DEL SISTEMA SOLARE COMPLETATO!",
+    "grand_tour_completed_desc": "Congratulazioni, Comandante! Hai esplorato l'intero Sistema Solare e sei atterrato sano e salvo sulla Terra! Guadagni +250 Stelle Cosmiche ⭐. Le Spedizioni Infinite sono ora sbloccate!",
+    "grand_tour_continue_btn": "Parti per le Spedizioni Profonde 🚀"
   }
 }

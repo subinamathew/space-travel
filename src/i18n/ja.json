@@ -725,7 +725,7 @@
     "mission_clue_saturn": "ミッション4: 最も多くの衛星を持つ惑星へ発進せよ！",
     "mission_clue_uranus": "ミッション5: 横倒しで自転する氷の巨人へ発進せよ！",
     "mission_clue_neptune": "ミッション6: 太陽から最も遠く、最も風が強い惑星へ発進せよ！",
-    "mission_clue_earth_slingshot": "最終ミッション: 生命あふれる青い地球へ帰還発進せよ！",
+    "mission_clue_earth_slingshot": "グランドツアー達成点: 生命あふれる青い地球へ帰還発進せよ！",
     "mission_target_mismatch": "ミッション管制警告: 今回の目的は「{clue}」です。現在{target}が設定されています。発進前に正しい天体を選択してください！",
     "fuel_label": "燃料タンク",
     "refueling_wait": "燃料補給中（あと{sec}秒）... ⛽",
@@ -815,6 +815,17 @@
     "quiz_jupiter_2_opt2": "⛵ たった2個！",
     "rank_explorer": "深宇宙探査士",
     "rank_voyager": "コズミック・ボイジャー",
-    "rank_legend": "銀河の伝説"
+    "rank_legend": "銀河の伝説",
+    "future_intercept_label": "到達時インターセプト:",
+    "next_window_label": "次の最適ウィンドウ:",
+    "window_open_now": "🟢 最適ウィンドウ開放中！",
+    "window_countdown": "⏳ 約{sec}秒後",
+    "future_orbit_planner": "🔮 未来軌道プランナー",
+    "mission_tag_format": "ミッション {num} / 8",
+    "homecoming_tag": "地球帰還（ミッション 8）",
+    "infinite_expedition_tag": "無限深宇宙探査 #{num}",
+    "grand_tour_completed_title": "🎉 太陽系グランドツアー達成！",
+    "grand_tour_completed_desc": "おめでとう、船長！太陽系全体を巡航回航し、無事地球へ帰還しました！+250 コズミックスター ⭐ を獲得。ここからは無限深宇宙探査モードに突入します！",
+    "grand_tour_continue_btn": "深宇宙探査へ出発せよ 🚀"
   }
 }

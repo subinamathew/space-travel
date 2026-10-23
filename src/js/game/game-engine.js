@@ -11,7 +11,10 @@ import {
   evaluateLaunchOutcome,
   checkAsteroidHazard,
   checkSolarBoost,
-  generateScientificTransferArc
+  generateScientificTransferArc,
+  getFlightDuration,
+  ORBIT_SPECS,
+  BASE_EARTH_SECONDS
 } from './game-physics.js';
 import { getTouchdownNoteKey, getPlanetQuiz } from './game-quiz.js';
 import { loadLeaderboard, saveLeaderboardScore } from './game-leaderboard.js';
@@ -23,6 +26,7 @@ let gameActive = false;
 let startTime = Date.now();
 let orbitalTimer = null;
 let activeFlightTimeout = null;
+let futureOffsetSec = 0;
 
 export function isGameActive() {
   return gameActive;
@@ -253,7 +257,7 @@ function renderGameUI() {
       </button>
 
       <div class="sidebar-mission-card">
-        <span class="sidebar-mission-tag">🎯 <span data-i18n="game.mission_label">ACTIVE MISSION</span></span>
+        <span class="sidebar-mission-tag" id="sidebar-mission-tag">🎯 <span data-i18n="game.mission_label">ACTIVE MISSION</span></span>
         <div class="sidebar-mission-clue" id="sidebar-mission-clue">Loading mission...</div>
       </div>
 
@@ -276,8 +280,30 @@ function renderGameUI() {
             <span class="telemetry-val" id="telemetry-dist-val">--</span>
           </div>
           <div class="telemetry-item">
+            <span class="telemetry-label" data-i18n="game.future_intercept_label">Arrival Intercept:</span>
+            <span class="telemetry-val" id="telemetry-arrival-val">--</span>
+          </div>
+          <div class="telemetry-item">
+            <span class="telemetry-label" data-i18n="game.next_window_label">Next Window:</span>
+            <span class="telemetry-val" id="telemetry-next-window-val">--</span>
+          </div>
+          <div class="telemetry-item">
             <span class="telemetry-label" data-i18n="game.target_orbit_zone">Target Orbit Zone:</span>
             <span class="telemetry-val" id="telemetry-energy-req">--</span>
+          </div>
+        </div>
+
+        <div class="future-orbit-planner" id="future-orbit-planner">
+          <div class="planner-header">
+            <span class="planner-title" data-i18n="game.future_orbit_planner">🔮 FUTURE ORBIT PLANNER</span>
+            <span class="planner-offset-badge" id="planner-offset-badge">T+0s (LIVE)</span>
+          </div>
+          <div class="planner-buttons">
+            <button type="button" class="planner-btn is-active" data-offset="0">Live</button>
+            <button type="button" class="planner-btn" data-offset="5">+5s</button>
+            <button type="button" class="planner-btn" data-offset="10">+10s</button>
+            <button type="button" class="planner-btn" data-offset="15">+15s</button>
+            <button type="button" class="planner-btn" data-offset="20">+20s</button>
           </div>
         </div>
       </div>
@@ -295,10 +321,12 @@ function teardownGameUI() {
     'rocketrun-sidebar',
     'rocket-actor',
     'game-quiz-modal',
+    'game-victory-modal',
     'game-debrief-modal',
     'asteroid-warning-banner',
     'game-leaderboard-modal',
     'flight-path-svg',
+    'future-intercept-reticle',
     'rocket-flight-keyframes'
   ];
   elements.forEach(id => {
@@ -352,6 +380,22 @@ function bindSidebarEvents() {
   if (closeBtn) {
     closeBtn.addEventListener('click', exitGameMode);
   }
+
+  const plannerControls = document.getElementById('future-orbit-planner');
+  if (plannerControls) {
+    plannerControls.addEventListener('click', e => {
+      const btn = e.target.closest('.planner-btn');
+      if (!btn) return;
+      futureOffsetSec = Number(btn.dataset.offset) || 0;
+      plannerControls.querySelectorAll('.planner-btn').forEach(b => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      const badge = document.getElementById('planner-offset-badge');
+      if (badge) {
+        badge.textContent = futureOffsetSec === 0 ? 'T+0s (LIVE)' : `T+${futureOffsetSec}s (PROJECTED)`;
+      }
+      updateOrbitalWindowUI();
+    });
+  }
 }
 
 function updateHUD() {
@@ -385,6 +429,20 @@ function updateSidebar() {
   const locEl = document.getElementById('current-location-indicator');
   if (locEl) {
     locEl.textContent = `${formatBodyName(gameState.currentPlanet)}`;
+  }
+
+  const tagEl = document.getElementById('sidebar-mission-tag');
+  if (tagEl) {
+    if (gameState.missionIndex < 7) {
+      const tmpl = t('game.mission_tag_format') || 'Mission {num} of 8';
+      tagEl.textContent = `🎯 ${tmpl.replace('{num}', gameState.missionIndex + 1)}`;
+    } else if (gameState.missionIndex === 7) {
+      tagEl.textContent = `🌍 ${t('game.homecoming_tag') || 'Earth Homecoming (Mission 8)'}`;
+    } else {
+      const expNum = gameState.missionIndex - 7;
+      const tmpl = t('game.infinite_expedition_tag') || 'Infinite Expedition #{num}';
+      tagEl.textContent = `🌌 ${tmpl.replace('{num}', expNum)}`;
+    }
   }
 
   const currentMission = gameState.getCurrentMission();
@@ -497,8 +555,16 @@ function selectDestination(slug) {
 }
 
 function updateOrbitalWindowUI() {
-  if (!gameState.targetPlanet) return;
-  const metrics = calculateOrbitalWindow(gameState.currentPlanet, gameState.targetPlanet, getElapsedSec());
+  if (!gameState.targetPlanet) {
+    removeFutureInterceptMarker();
+    return;
+  }
+  const metrics = calculateOrbitalWindow(
+    gameState.currentPlanet,
+    gameState.targetPlanet,
+    getElapsedSec(),
+    futureOffsetSec
+  );
 
   const tagEl = document.getElementById('telemetry-window-tag');
   if (tagEl) {
@@ -515,12 +581,85 @@ function updateOrbitalWindowUI() {
   if (aVal) aVal.textContent = `${metrics.maxAu.toFixed(2)} AU`;
 
   const dVal = document.getElementById('telemetry-dist-val');
-  if (dVal) dVal.textContent = `${metrics.currentAu.toFixed(2)} AU`;
+  if (dVal) {
+    const prefix = futureOffsetSec > 0 ? `(T+${futureOffsetSec}s) ` : '';
+    dVal.textContent = `${prefix}${metrics.currentAu.toFixed(2)} AU`;
+  }
+
+  const arrVal = document.getElementById('telemetry-arrival-val');
+  if (arrVal) {
+    arrVal.textContent = `${metrics.arrivalAu.toFixed(2)} AU (+${metrics.flightDurationSec}s)`;
+  }
+
+  const nextWinVal = document.getElementById('telemetry-next-window-val');
+  if (nextWinVal) {
+    if (metrics.nextWindow.isOpen) {
+      nextWinVal.textContent = t('game.window_open_now') || '🟢 Open Now!';
+    } else {
+      const tmpl = t('game.window_countdown') || '⏳ In ~{sec}s';
+      nextWinVal.textContent = tmpl.replace('{sec}', Math.round(metrics.nextWindow.timeToWindow));
+    }
+  }
 
   const zVal = document.getElementById('telemetry-energy-req');
   if (zVal) zVal.textContent = `${metrics.minReq}% – ${metrics.maxCap}%`;
 
   updateEnergyFeedbackHint(metrics);
+  renderFutureInterceptMarker(metrics);
+}
+
+function calculateArrivalScenePoint(targetSlug, sceneEl, durationSec) {
+  const targetEl = getBodyElement(targetSlug);
+  if (!targetEl || !sceneEl) return { x: 0, y: 0 };
+  const currentPos = getBodyCenterRelativeToScene(targetEl, sceneEl);
+  if (targetSlug === 'moon') return currentPos;
+
+  const r = Math.hypot(currentPos.x, currentPos.y);
+  if (r === 0) return currentPos;
+
+  const currentAngle = Math.atan2(currentPos.y, currentPos.x);
+  const spec = ORBIT_SPECS[targetSlug] || ORBIT_SPECS.mars;
+  const periodSec = spec.period * BASE_EARTH_SECONDS;
+  const deltaAngle = (durationSec / periodSec) * (Math.PI * 2);
+  const arrivalAngle = currentAngle + deltaAngle;
+
+  return {
+    x: r * Math.cos(arrivalAngle),
+    y: r * Math.sin(arrivalAngle)
+  };
+}
+
+function renderFutureInterceptMarker(metrics) {
+  const sceneEl = document.getElementById('scene');
+  if (!sceneEl || !gameState.targetPlanet) {
+    removeFutureInterceptMarker();
+    return;
+  }
+
+  let reticle = document.getElementById('future-intercept-reticle');
+  if (!reticle) {
+    reticle = document.createElement('div');
+    reticle.id = 'future-intercept-reticle';
+    reticle.className = 'future-intercept-reticle';
+    sceneEl.appendChild(reticle);
+  }
+
+  const arrivalPt = calculateArrivalScenePoint(gameState.targetPlanet, sceneEl, metrics.flightDurationSec);
+  const sRect = sceneEl.getBoundingClientRect();
+  const left = sRect.width / 2 + arrivalPt.x;
+  const top = sRect.height / 2 + arrivalPt.y;
+
+  reticle.style.left = `${left.toFixed(1)}px`;
+  reticle.style.top = `${top.toFixed(1)}px`;
+  reticle.innerHTML = `
+    <span class="reticle-ring"></span>
+    <span class="reticle-label">🎯 Intercept (+${metrics.flightDurationSec}s)</span>
+  `;
+}
+
+function removeFutureInterceptMarker() {
+  const existing = document.getElementById('future-intercept-reticle');
+  if (existing) existing.remove();
 }
 
 function updateEnergyFeedbackHint(optMetrics) {
@@ -610,14 +749,13 @@ function executeFlightTransit() {
 
   const sceneEl = document.getElementById('scene') || document.body;
   const originEl = getBodyElement(gameState.currentPlanet);
-  const targetEl = getBodyElement(gameState.targetPlanet);
 
   const p1 = getBodyCenterRelativeToScene(originEl, sceneEl);
-  const p2 = getBodyCenterRelativeToScene(targetEl, sceneEl);
+  const durationSec = getFlightDuration(gameState.currentPlanet, gameState.targetPlanet);
+  const p2 = calculateArrivalScenePoint(gameState.targetPlanet, sceneEl, durationSec);
   const isMoon = gameState.targetPlanet === 'moon' || gameState.currentPlanet === 'moon';
-  const isOuter = ['jupiter', 'saturn', 'uranus', 'neptune'].includes(gameState.targetPlanet);
 
-  const durationSec = isMoon ? 3.8 : (isOuter ? 6.5 : 5.2);
+  removeFutureInterceptMarker();
   const points = generateScientificTransferArc(p1, p2, isMoon);
 
   injectFlightKeyframes(points);
@@ -834,22 +972,72 @@ function showTouchdownQuizModal(planetSlug) {
       if (isCorrect) {
         modal.remove();
         gameState.addScore(100);
-        gameState.advanceMission();
-        updateHUD();
-        updateSidebar();
-        saveLeaderboardScore({
-          name: 'Player',
-          avatar: getAstronautAvatar(),
-          rankKey: gameState.getRank().titleKey,
-          score: gameState.score,
-          date: new Date().toISOString().slice(0, 10)
-        });
+
+        const isGrandTourCompletion = gameState.missionIndex === 7 && planetSlug === 'earth';
+        if (isGrandTourCompletion) {
+          gameState.addScore(250);
+          showGrandTourVictoryModal(() => {
+            gameState.advanceMission();
+            dockRocketAtCurrentPlanet();
+            updateHUD();
+            updateSidebar();
+            updateOrbitalWindowUI();
+            saveLeaderboardScore({
+              name: 'Player',
+              avatar: getAstronautAvatar(),
+              rankKey: gameState.getRank().titleKey,
+              score: gameState.score,
+              date: new Date().toISOString().slice(0, 10)
+            });
+          });
+        } else {
+          gameState.advanceMission();
+          dockRocketAtCurrentPlanet();
+          updateHUD();
+          updateSidebar();
+          updateOrbitalWindowUI();
+          saveLeaderboardScore({
+            name: 'Player',
+            avatar: getAstronautAvatar(),
+            rankKey: gameState.getRank().titleKey,
+            score: gameState.score,
+            date: new Date().toISOString().slice(0, 10)
+          });
+        }
       } else {
         btn.classList.add('is-incorrect');
         btn.disabled = true;
       }
     });
   });
+}
+
+function showGrandTourVictoryModal(onContinue) {
+  const existing = document.getElementById('game-victory-modal');
+  if (existing) existing.remove();
+
+  const modal = document.createElement('div');
+  modal.id = 'game-victory-modal';
+  modal.className = 'game-modal-overlay';
+  modal.innerHTML = `
+    <div class="game-modal-card victory-card">
+      <div class="modal-badge victory-badge">${t('game.grand_tour_completed_title')}</div>
+      <p class="touchdown-note">${t('game.grand_tour_completed_desc')}</p>
+      <div class="debrief-stats">Bonus Stars: ⭐ +250 | Total Score: ⭐ ${gameState.score}</div>
+      <button type="button" class="retry-mission-btn grand-tour-continue-btn" id="grand-tour-continue-btn">
+        ${t('game.grand_tour_continue_btn') || 'Embark on Deep Space Expeditions 🚀'}
+      </button>
+    </div>
+  `;
+  document.body.appendChild(modal);
+
+  const btn = document.getElementById('grand-tour-continue-btn');
+  if (btn) {
+    btn.addEventListener('click', () => {
+      modal.remove();
+      if (typeof onContinue === 'function') onContinue();
+    });
+  }
 }
 
 function showDebriefModal(reasonKey) {

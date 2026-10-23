@@ -725,7 +725,7 @@
     "mission_clue_saturn": "任务 4：向拥有最多卫星的行星发射！",
     "mission_clue_uranus": "任务 5：向躺着自转的冰巨星发射！",
     "mission_clue_neptune": "任务 6：向离太阳最远、风暴最猛烈的行星发射！",
-    "mission_clue_earth_slingshot": "终极任务：发射返回孕育生命的蓝色家园！",
+    "mission_clue_earth_slingshot": "壮游里程碑：发射返回孕育生命的蓝色家园！",
     "mission_target_mismatch": "任务控制中心提醒：当前探索目标是：“{clue}”。你锁定了 {target}。请在点火前选择正确的星球！",
     "fuel_label": "推进剂燃料舱",
     "refueling_wait": "燃料加注中（还需{sec}秒）... ⛽",
@@ -815,6 +815,17 @@
     "quiz_jupiter_2_opt2": "⛵ 只有2个！",
     "rank_explorer": "深空探险家",
     "rank_voyager": "星际漫游者",
-    "rank_legend": "银河传奇"
+    "rank_legend": "银河传奇",
+    "future_intercept_label": "到达拦截点：",
+    "next_window_label": "下一个发射窗口：",
+    "window_open_now": "🟢 发射窗口现已开启！",
+    "window_countdown": "⏳ 约 {sec} 秒后",
+    "future_orbit_planner": "🔮 未来轨道规划器",
+    "mission_tag_format": "任务 {num} / 8",
+    "homecoming_tag": "重返地球（任务 8）",
+    "infinite_expedition_tag": "无限深空探险 #{num}",
+    "grand_tour_completed_title": "🎉 太阳系壮游圆满完成！",
+    "grand_tour_completed_desc": "祝贺指挥官！您成功航行了整个太阳系并安全降落在地球上！荣获 +250 颗宇宙之星 ⭐。无限深空探险现已解锁！",
+    "grand_tour_continue_btn": "启程深空探险 🚀"
   }
 }

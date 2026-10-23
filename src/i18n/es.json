@@ -725,7 +725,7 @@
     "mission_clue_saturn": "Misión 4: ¡Lanza hacia el planeta con más lunas!",
     "mission_clue_uranus": "Misión 5: ¡Lanza hacia el gigante de hielo que rueda de lado!",
     "mission_clue_neptune": "Misión 6: ¡Lanza hacia el planeta más ventoso y más alejado del Sol!",
-    "mission_clue_earth_slingshot": "Misión Final: ¡Lanza de regreso a casa al planeta azul con vida!",
+    "mission_clue_earth_slingshot": "Hito del Gran Tour: ¡Lanza de regreso a casa al planeta azul con vida!",
     "mission_target_mismatch": "Alerta de Control de Misión: Nuestro objetivo es: \"{clue}\". Has seleccionado {target}. ¡Selecciona el planeta correcto antes del lanzamiento!",
     "fuel_label": "Tanque de combustible",
     "refueling_wait": "REPOSTANDO ({sec}s)... ⛽",
@@ -815,6 +815,17 @@
     "quiz_jupiter_2_opt2": "⛵ ¡Solo 2 Tierras!",
     "rank_explorer": "Explorador del Espacio Profundo",
     "rank_voyager": "Viajero Cósmico",
-    "rank_legend": "Leyenda Galáctica"
+    "rank_legend": "Leyenda Galáctica",
+    "future_intercept_label": "Intercepción de llegada:",
+    "next_window_label": "Próxima ventana:",
+    "window_open_now": "🟢 ¡Ventana abierta ahora!",
+    "window_countdown": "⏳ En ~{sec}s",
+    "future_orbit_planner": "🔮 PLANIFICADOR DE ÓRBITAS FUTURAS",
+    "mission_tag_format": "Misión {num} de 8",
+    "homecoming_tag": "Regreso a la Tierra (Misión 8)",
+    "infinite_expedition_tag": "Expedición Infinita #{num}",
+    "grand_tour_completed_title": "🎉 ¡GRAN TOUR DEL SISTEMA SOLAR COMPLETADO!",
+    "grand_tour_completed_desc": "¡Felicitaciones, Comandante! Has navegado por todo el Sistema Solar y aterrizado a salvo en la Tierra. ¡Ganaste +250 Estrellas Cósmicas ⭐! ¡Las expediciones infinitas ahora están desbloqueadas!",
+    "grand_tour_continue_btn": "Embarcarse en Expediciones Profundas 🚀"
   }
 }
