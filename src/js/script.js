@@ -9,10 +9,14 @@ import { initCreditsCrawl } from './components/credits.js';
 import { initCookieNotice } from './components/cookie-notice.js';
 import { initFeaturesPage } from './components/features.js';
 import { init3DOrbitInteraction } from './components/orbit-3d.js';
+import { initAuthGate } from './components/auth-gate.js';
 import { startGame, stopGame, exitGameMode, isGameActive, initGameEngine, setFreePlayMode } from './game/game-engine.js';
 import { getGameModeCookie, setGameModeCookie } from './components/cookie-notice.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Initialize site-wide access gate ('gorocket')
+  initAuthGate();
+
   // Initialize i18n translation system
   initI18n();
 

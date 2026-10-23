@@ -13,10 +13,20 @@
     <meta name="theme-color" content="#030712" />
     <link rel="canonical" href="https://rocketrun.org/credits.html" />
 
-    <!-- Robots & Search Engine Indexing Directives -->
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <!-- Pre-render Site Auth Gate FOUC Prevention -->
+    <script>
+      (function(){
+        try {
+          var a = document.cookie.indexOf('site_auth=authenticated') !== -1 || localStorage.getItem('site_auth') === 'authenticated';
+          if (!a) { document.documentElement.classList.add('site-locked'); }
+        } catch(e) {}
+      })();
+    </script>
+
+    <!-- Robots & Search Engine Indexing Directives (Closed Private Access) -->
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="googlebot" content="noindex, nofollow" />
+    <meta name="bingbot" content="noindex, nofollow" />
     <meta name="keywords" content="RocketRun credits, Zachary David Mathew, space education, solar system simulator credits, open source astrophysics" />
 
     <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
@@ -194,11 +204,6 @@
                         <span>🚀</span>
                         <span data-i18n="ui.visit_rocketrun">Visit rocketrun.org</span>
                         <span class="external-icon">↗</span>
-                    </a>
-                    <a href="impressum.html" class="btn-secondary-action imprint-link" title="Impressum / Imprint">
-                        <span>⚖️</span>
-                        <span data-i18n="ui.impressum_link">Impressum / Imprint</span>
-                        <span class="external-icon">→</span>
                     </a>
                 </div>
             </div>

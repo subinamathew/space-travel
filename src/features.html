@@ -13,10 +13,20 @@
     <meta name="theme-color" content="#030712" />
     <link rel="canonical" href="https://rocketrun.org/features.html" />
 
-    <!-- Robots & Search Engine Indexing Directives -->
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <!-- Pre-render Site Auth Gate FOUC Prevention -->
+    <script>
+      (function(){
+        try {
+          var a = document.cookie.indexOf('site_auth=authenticated') !== -1 || localStorage.getItem('site_auth') === 'authenticated';
+          if (!a) { document.documentElement.classList.add('site-locked'); }
+        } catch(e) {}
+      })();
+    </script>
+
+    <!-- Robots & Search Engine Indexing Directives (Closed Private Access) -->
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="googlebot" content="noindex, nofollow" />
+    <meta name="bingbot" content="noindex, nofollow" />
     <meta name="keywords" content="RocketRun features, space physics roadmap, accessibility standards, astronomy trivia, cosmic jokes, solar system simulator" />
 
     <!-- Open Graph / Social Sharing -->
@@ -577,8 +587,7 @@
                 <span data-i18n="ui.back_btn">← Back to Solar System</span>
             </a>
             <p class="features-copy">
-                © 2026 rocketrun.org · Part of missional.eu<span class="imprint-sep"> · </span>
-                <a href="impressum.html" class="tiny-footer-link imprint-link" data-i18n="ui.impressum_link">Impressum / Imprint</a>
+                © 2026 rocketrun.org · Part of missional.eu
             </p>
         </footer>
     </main>

@@ -2,8 +2,12 @@ import { initStarfield } from './components/starfield.js';
 import { initHuds } from './components/hud.js';
 import { initI18n, t } from './i18n.js';
 import { initCookieNotice, getGameModeCookie } from './components/cookie-notice.js';
+import { initAuthGate } from './components/auth-gate.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+  // 0. Initialize site-wide access gate ('gorocket')
+  initAuthGate();
+
   // 1. Initialize i18n translation system
   initI18n();
 

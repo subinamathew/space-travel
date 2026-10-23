@@ -1,0 +1,254 @@
+// ==========================================================================
+// RocketRun Site-Wide Access Gate & Authentication Terminal
+// ==========================================================================
+
+// Pre-render content masking when site is locked
+html.site-locked {
+  overflow: hidden !important;
+
+  #scene,
+  #top-bar,
+  main,
+  #hint,
+  #back-btn,
+  #planet-viewer,
+  .features-container,
+  .subpage-nav-header,
+  .site-tiny-footer,
+  .subpage-tiny-footer,
+  #cookie-notice,
+  #game-notification-container {
+    display: none !important;
+  }
+}
+
+.site-auth-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: radial-gradient(circle at center, rgba(15, 23, 42, 0.95) 0%, rgba(3, 7, 18, 0.98) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  opacity: 1;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+
+  &.is-unlocked {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(1.04);
+  }
+}
+
+.auth-gate-backdrop {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(1.5px 1.5px at 20% 30%, rgba(255, 255, 255, 0.4) 100%, transparent),
+    radial-gradient(1px 1px at 70% 65%, rgba(56, 189, 248, 0.4) 100%, transparent),
+    radial-gradient(2px 2px at 40% 80%, rgba(168, 85, 247, 0.3) 100%, transparent);
+  background-size: 300px 300px;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.auth-gate-card {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  padding: 2.25rem 2rem;
+  background: rgba(15, 23, 42, 0.88);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  border-radius: 1.25rem;
+  box-shadow: 
+    0 0 40px rgba(56, 189, 248, 0.15),
+    0 25px 50px -12px rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  text-align: center;
+  color: #f8fafc;
+  transform: translate3d(0, 0, 0);
+
+  &.is-shaking {
+    animation: authCardShake 0.45s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  }
+}
+
+.auth-gate-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.3rem 0.85rem;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #38bdf8;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+}
+
+.auth-gate-icon {
+  font-size: 3rem;
+  line-height: 1;
+  margin-bottom: 0.75rem;
+  filter: drop-shadow(0 0 16px rgba(56, 189, 248, 0.5));
+}
+
+.auth-gate-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5rem;
+  background: linear-gradient(135deg, #ffffff 40%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.auth-gate-subtitle {
+  font-size: 0.925rem;
+  color: #94a3b8;
+  margin: 0 0 1.75rem;
+  line-height: 1.45;
+}
+
+.auth-gate-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: left;
+}
+
+.auth-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #cbd5e1;
+}
+
+.auth-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.auth-input {
+  width: 100%;
+  height: 48px;
+  padding: 0 3rem 0 1rem;
+  background: rgba(3, 7, 18, 0.75);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 0.65rem;
+  color: #ffffff;
+  font-size: 1rem;
+  font-family: inherit;
+  letter-spacing: 0.04em;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+  &::placeholder {
+    color: #64748b;
+    font-size: 0.9rem;
+    letter-spacing: normal;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: #38bdf8;
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25);
+  }
+}
+
+.auth-vis-btn {
+  position: absolute;
+  right: 0.5rem;
+  height: 38px;
+  width: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.15rem;
+  color: #94a3b8;
+  border-radius: 0.4rem;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.auth-feedback {
+  min-height: 1.25rem;
+  font-size: 0.85rem;
+  line-height: 1.35;
+  transition: color 0.2s ease;
+
+  &.is-error {
+    color: #f87171;
+    font-weight: 600;
+  }
+
+  &.is-success {
+    color: #4ade80;
+    font-weight: 600;
+  }
+}
+
+.auth-submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 50px;
+  margin-top: 0.25rem;
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  color: #ffffff;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  border-radius: 0.65rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4);
+  transition: transform 0.15s ease, background 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    background: linear-gradient(135deg, #0369a1 0%, #075985 100%);
+    box-shadow: 0 6px 20px rgba(2, 132, 199, 0.5);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+@keyframes authCardShake {
+  10%, 90% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  20%, 80% {
+    transform: translate3d(6px, 0, 0);
+  }
+  30%, 50%, 70% {
+    transform: translate3d(-8px, 0, 0);
+  }
+  40%, 60% {
+    transform: translate3d(8px, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-auth-gate {
+    transition: none;
+  }
+  .auth-gate-card.is-shaking {
+    animation: none;
+  }
+}

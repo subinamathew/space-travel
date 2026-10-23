@@ -181,27 +181,21 @@ export function applyTranslations() {
  * In all other languages, hidden completely via display:none and hidden attribute.
  * If user changes language on impressum.html to non-German, redirect to index.html.
  */
-export function updateImprintVisibility(lang = currentLang) {
+export function updateImprintVisibility() {
   if (typeof document === 'undefined') return;
-  const isGerman = lang === 'de';
 
   const imprintEls = document.querySelectorAll(
     '.site-tiny-footer, .subpage-tiny-footer, .imprint-link, .imprint-sep, a[href*="impressum.html"], .btn-secondary-action[href*="impressum.html"]'
   );
   imprintEls.forEach(el => {
     if (!el) return;
-    if (isGerman) {
-      el.removeAttribute('hidden');
-      el.style.display = '';
-    } else {
-      el.setAttribute('hidden', '');
-      el.style.display = 'none';
-    }
+    el.setAttribute('hidden', '');
+    el.style.display = 'none';
   });
 
-  // If user on impressum.html switches to a non-German language, redirect to home page
+  // If URL targets impressum.html (now deprecated & removed), redirect to home page
   if (typeof window !== 'undefined' && window.location && window.location.pathname) {
-    if (window.location.pathname.includes('impressum.html') && !isGerman) {
+    if (window.location.pathname.includes('impressum.html')) {
       if (typeof window.RocketRunNavigate === 'function') {
         window.RocketRunNavigate('index.html');
       } else if (typeof window.location.replace === 'function') {

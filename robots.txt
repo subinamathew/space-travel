@@ -1,10 +1,4 @@
 # RocketRun (rocketrun.org) Robots Directives
-# Designed for clean indexing of all celestial bodies and educational content
-
+# Site is restricted to authorized expedition members
 User-agent: *
-Allow: /
-Disallow: /api/
-Disallow: /scratch/
-
-# Sitemap Location
-Sitemap: https://rocketrun.org/sitemap.xml
+Disallow: /

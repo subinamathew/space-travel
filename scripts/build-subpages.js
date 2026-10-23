@@ -131,19 +131,6 @@ if (fs.existsSync(srcFeatures)) {
   console.log(`Generated: public/features.html (commit: ${gitCommit}, version: ${appVersion})`);
 }
 
-// 5c. Compile src/impressum.html -> public/impressum.html with Git commit and version
-const srcImpressum = path.resolve(__dirname, '../src/impressum.html');
-const pubImpressum = path.resolve(pubDir, 'impressum.html');
-if (fs.existsSync(srcImpressum)) {
-  let impressumContent = fs.readFileSync(srcImpressum, 'utf8');
-  impressumContent = impressumContent
-    .replace(/\{\{APP_VERSION\}\}/g, appVersion)
-    .replace(/\{\{GIT_COMMIT\}\}/g, gitCommit)
-    .replace(/\{\{COMMIT_URL\}\}/g, commitUrl)
-    .replace(/\{\{BUILD_DATE\}\}/g, buildDate);
-  fs.writeFileSync(pubImpressum, impressumContent, 'utf8');
-  console.log(`Generated: public/impressum.html (commit: ${gitCommit}, version: ${appVersion})`);
-}
 
 // Write public/version.json
 fs.writeFileSync(
@@ -229,10 +216,20 @@ allBodies.forEach((p, idx) => {
     <meta name="theme-color" content="#030712" />
     <link rel="canonical" href="https://rocketrun.org/planets/${p.slug}.html" />
 
-    <!-- Robots & Search Engine Indexing Directives -->
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <!-- Pre-render Site Auth Gate FOUC Prevention -->
+    <script>
+      (function(){
+        try {
+          var a = document.cookie.indexOf('site_auth=authenticated') !== -1 || localStorage.getItem('site_auth') === 'authenticated';
+          if (!a) { document.documentElement.classList.add('site-locked'); }
+        } catch(e) {}
+      })();
+    </script>
+
+    <!-- Robots & Search Engine Indexing Directives (Closed Private Access) -->
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="googlebot" content="noindex, nofollow" />
+    <meta name="bingbot" content="noindex, nofollow" />
     <meta name="keywords" content="${p.name}, ${p.slug}, solar system, planets, astronomy, orbital physics, gravity calculator, kids science, RocketRun, space exploration" />
 
     <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
@@ -530,9 +527,6 @@ allBodies.forEach((p, idx) => {
                     </div>
                 </div>
             </aside>
-            <footer class="subpage-tiny-footer">
-                <a href="../impressum.html" class="tiny-footer-link imprint-link" data-i18n="ui.impressum_link">Impressum / Imprint</a>
-            </footer>
         </div>
     </main>
 
