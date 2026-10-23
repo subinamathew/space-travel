@@ -168,6 +168,14 @@
         display: none;
       }
 
+      > .big-launch-btn {
+        display: none;
+      }
+
+      .sidebar-route-banner {
+        display: none;
+      }
+
       .sidebar-min-bar {
         display: flex;
       }
@@ -192,6 +200,44 @@
       align-items: center;
       gap: 6px;
       flex-shrink: 0;
+    }
+
+    .sidebar-route-banner {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 8px;
+      background: rgba(30, 41, 59, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      flex-shrink: 0;
+
+      .route-icon {
+        font-size: 16px;
+        line-height: 1;
+        display: inline-flex;
+        align-items: center;
+      }
+
+      .route-arrow {
+        font-size: 11px;
+        color: #38bdf8;
+        line-height: 1;
+      }
+    }
+
+    > .big-launch-btn {
+      flex: 1 1 auto;
+      max-width: 220px;
+      min-height: 36px;
+      height: 36px;
+      margin: 0 10px;
+      font-size: 12.5px;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      padding: 0 14px;
+      border-radius: 8px;
+      white-space: nowrap;
     }
 
     .sidebar-min-bar {
@@ -469,101 +515,6 @@
     gap: 12px;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-
-    .sidebar-route-block {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      background: rgba(15, 23, 42, 0.7);
-      border: 1px solid rgba(56, 189, 248, 0.25);
-      border-radius: 10px;
-      padding: 8px 12px;
-
-      @media (min-width: 680px) {
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-between;
-        gap: 10px;
-
-        .sidebar-route-banner {
-          flex: 1.1;
-        }
-
-        .destination-control-block {
-          flex: 0 0 auto;
-        }
-
-        .sidebar-mission-card {
-          flex: 1.4;
-          margin-top: 0;
-        }
-      }
-
-      .sidebar-route-banner {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 8px;
-        padding: 8px 12px;
-        background: rgba(30, 41, 59, 0.65);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        border-radius: 8px;
-
-        .route-point {
-          display: flex;
-          align-items: center;
-          gap: 6px;
-          min-width: 0;
-
-          .route-body-img {
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            object-fit: cover;
-            flex-shrink: 0;
-            box-shadow: 0 0 6px rgba(56, 189, 248, 0.4);
-          }
-
-          .route-icon {
-            font-size: 18px;
-            flex-shrink: 0;
-            line-height: 1;
-          }
-
-          .route-name {
-            font-size: 12px;
-            font-weight: 700;
-            color: #f1f5f9;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-          }
-        }
-
-        .route-dest .route-name {
-          color: #38bdf8;
-        }
-
-        .route-arrow-wrap {
-          display: flex;
-          align-items: center;
-          gap: 4px;
-          flex-shrink: 0;
-          color: #94a3b8;
-
-          .route-arrow {
-            font-size: 14px;
-            color: #38bdf8;
-            line-height: 1;
-          }
-
-          .route-target-icon {
-            font-size: 13px;
-            line-height: 1;
-          }
-        }
-      }
-    }
   }
 
   .sidebar-label {
@@ -661,92 +612,6 @@
 
     .accordion-section.is-open .accordion-content {
       display: block;
-    }
-
-    .big-launch-btn {
-      grid-row: 3;
-      grid-column: 1 / -1;
-      width: 100%;
-      min-height: 46px;
-      font-size: 13.5px;
-      font-weight: 800;
-      letter-spacing: 0.8px;
-      margin-top: 4px;
-    }
-  }
-
-  .destination-control-block {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-
-    .dest-target-status {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 11.5px;
-      background: rgba(30, 41, 59, 0.5);
-      padding: 6px 10px;
-      border-radius: 8px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-
-      .dest-target-label {
-        color: #94a3b8;
-        font-weight: 700;
-        text-transform: uppercase;
-        font-size: 10px;
-        letter-spacing: 0.5px;
-      }
-
-      .dest-target-value {
-        color: #38bdf8;
-        font-weight: 800;
-      }
-    }
-
-    .luna-dest-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      min-height: 40px;
-      min-width: 40px;
-      padding: 0;
-      background: rgba(56, 189, 248, 0.15);
-      border: 1px solid rgba(56, 189, 248, 0.5);
-      border-radius: 50%;
-      color: #e0f2fe;
-      cursor: pointer;
-      transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
-
-      .luna-icon {
-        font-size: 20px;
-        line-height: 1;
-      }
-
-      &:hover, &:focus-visible {
-        background: rgba(56, 189, 248, 0.32);
-        border-color: #38bdf8;
-        transform: scale(1.08);
-      }
-
-      &.is-selected {
-        background: #0284c7;
-        border-color: #38bdf8;
-        color: #ffffff;
-        box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
-      }
-    }
-
-    .dest-map-hint {
-      font-size: 10px;
-      color: #94a3b8;
-      font-style: italic;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      line-height: 1.3;
     }
   }
 
@@ -947,28 +812,117 @@
   }
 
   .sidebar-mission-card {
-    background: rgba(15, 23, 42, 0.85);
-    border: 1px solid rgba(56, 189, 248, 0.35);
-    border-radius: 10px;
-    padding: 9px 11px;
+    width: 100%;
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.75) 0%, rgba(15, 23, 42, 0.9) 100%);
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    border-left: 4px solid #facc15;
+    border-radius: 8px;
+    padding: 10px 14px;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 8px;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
 
+    .mission-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
     .sidebar-mission-tag {
-      font-size: 10px;
+      font-size: 10.5px;
       font-weight: 800;
       color: #facc15;
       text-transform: uppercase;
-      letter-spacing: 0.7px;
+      letter-spacing: 0.8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .destination-control-block {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+
+      .dest-target-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        font-size: 11px;
+        background: rgba(15, 23, 42, 0.7);
+        padding: 3px 8px;
+        border-radius: 6px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+
+        .dest-target-label {
+          color: #94a3b8;
+          font-weight: 700;
+          font-size: 9.5px;
+          letter-spacing: 0.5px;
+        }
+
+        .dest-target-name {
+          color: #38bdf8;
+          font-weight: 800;
+        }
+      }
+
+      .luna-dest-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        width: auto;
+        min-width: 32px;
+        height: 28px;
+        min-height: 28px;
+        padding: 3px 7px;
+        background: rgba(15, 23, 42, 0.85);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 8px;
+        color: #e0f2fe;
+        cursor: pointer;
+        transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+
+        .luna-icon {
+          font-size: 15px;
+          line-height: 1;
+        }
+
+        &:hover, &:focus-visible {
+          background: rgba(56, 189, 248, 0.25);
+          border-color: #38bdf8;
+          transform: scale(1.05);
+        }
+
+        &.is-selected {
+          background: rgba(56, 189, 248, 0.35);
+          border-color: #38bdf8;
+          color: #ffffff;
+        }
+      }
     }
 
     .sidebar-mission-clue {
-      font-size: 11.5px;
-      font-weight: 700;
+      font-size: 12px;
+      font-weight: 600;
       color: #f8fafc;
-      line-height: 1.35;
+      line-height: 1.45;
+    }
+
+    .dest-map-hint {
+      font-size: 10px;
+      color: #94a3b8;
+      font-style: italic;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      line-height: 1.3;
+      border-top: 1px dashed rgba(255, 255, 255, 0.08);
+      padding-top: 6px;
     }
   }
 
@@ -1902,15 +1856,6 @@
         padding: 8px;
         margin-top: 2px;
       }
-
-      .big-launch-btn {
-        grid-row: 3;
-        grid-column: 1 / -1;
-        width: 100%;
-        min-height: 44px;
-        font-size: 13px;
-        margin-top: 4px;
-      }
     }
   }
 }
@@ -2008,8 +1953,7 @@
 
     .launch-accordion {
       display: grid;
-      // 5 columns: 2 icon buttons, central big launch in the middle, 2 icon buttons!
-      grid-template-columns: repeat(2, minmax(42px, 52px)) minmax(130px, 1fr) repeat(2, minmax(42px, 52px));
+      grid-template-columns: repeat(4, 1fr);
       gap: 5px;
       align-items: center;
 
@@ -2049,25 +1993,11 @@
         }
       }
 
-      // 5-column explicit placement
+      // 4-column explicit placement
       #sec-thrust .accordion-header { grid-column: 1; }
       #sec-fuel .accordion-header { grid-column: 2; }
-      // Column 3 is BIG LAUNCH in the middle!
-      .big-launch-btn {
-        grid-row: 2;
-        grid-column: 3;
-        min-height: 42px;
-        height: 42px;
-        font-size: 12.5px;
-        font-weight: 800;
-        letter-spacing: 0.6px;
-        padding: 0 10px;
-        margin: 0;
-        white-space: nowrap;
-        border-radius: 8px;
-      }
-      #sec-telemetry .accordion-header { grid-column: 4; }
-      #sec-planner .accordion-header { grid-column: 5; }
+      #sec-telemetry .accordion-header { grid-column: 3; }
+      #sec-planner .accordion-header { grid-column: 4; }
 
       .accordion-section.is-open .accordion-header {
         background: rgba(56, 189, 248, 0.3);

@@ -34,7 +34,8 @@ This document defines the core engineering skills, architectural principles, qua
 15. [Skill 15: GDPR-Compliant Local Storage, Data Erasure & Accessible Features Standard](#skill-15-gdpr-compliant-local-storage-data-erasure--accessible-features-standard)
 16. [Skill 16: Zero Native Browser Dialogs (No window.alert, confirm, or prompt — In-App Notifications Only)](#skill-16-zero-native-browser-dialogs-no-windowalert-confirm-or-prompt--in-app-notifications-only)
 17. [Skill 17: Site-Wide Access Passcode Protection & Legal Impressum Exemption Standards](#skill-17-site-wide-access-passcode-protection--legal-impressum-exemption-standards)
-18. [Pre-Flight Verification Checklist](#pre-flight-verification-checklist)
+18. [Skill 18: Launch Sidebar Header Dock, Central Launch Button, 3-Emoji Route Banner, and Long Mission Note Layout](#skill-18-launch-sidebar-header-dock-central-launch-button-3-emoji-route-banner-and-long-mission-note-layout)
+19. [Pre-Flight Verification Checklist](#pre-flight-verification-checklist)
 
 ---
 
@@ -553,6 +554,39 @@ The entire site is access-gated behind a shared expedition passcode (`gorocket`)
    - Closed-circle portals must not be indexed by public search bots.
    - `src/robots.txt` must declare `User-agent: *\nDisallow: /`.
    - HTML meta tags must declare `<meta name="robots" content="noindex, nofollow" />`.
+
+---
+
+## Skill 18: Launch Sidebar Header Dock, Central Launch Button, 3-Emoji Route Banner, and Long Mission Note Layout
+
+### Core Rule
+The Launch Control Sidebar (`.rocketrun-launch-sidebar`) architecture must adhere to strict low-complexity, unobstructed spatial layout standards:
+
+1. **Header Area Launch Action**:
+   - The primary launch action (`#launch-btn` / `.big-launch-btn`) is positioned in the middle of `.sidebar-header`, flanked by `.sidebar-title` and `.sidebar-header-actions`.
+   - It is completely removed from `#launch-accordion`, ensuring the launch trigger remains immediately accessible without accordion scrolling or opening drawers.
+2. **Compact Luna Target Button**:
+   - `#luna-dest-btn` must be compact and share the exact rounded-rectangle shape of `accordion-header-left` (`border-radius: 8px;`, `display: inline-flex; align-items: center; justify-content: center;`).
+   - Displays strictly the crescent moon icon (`🌙` / `🌍`), avoiding crowded text.
+3. **3-Emoji Route Banner in Header Area**:
+   - The route banner (`#sidebar-route-banner`) is positioned in the `.sidebar-header` area displaying exactly 3 emojis:
+     1. Origin celestial body color emoji (`#route-origin-icon`).
+     2. Flight transfer arrow (`#route-arrow-icon` / `➔`).
+     3. Destination celestial body color emoji (`#route-dest-icon`).
+   - All celestial bodies map to vibrant, distinct color emojis in `getBodyIcon`:
+     - Mercury: `🟤`
+     - Venus: `🟡`
+     - Earth: `🌍`
+     - Moon/Luna: `🌙`
+     - Mars: `🔴`
+     - Jupiter: `🟠`
+     - Saturn: `🪐`
+     - Uranus: `🔵`
+     - Neptune: `🔷`
+     - Sun: `☀️`
+4. **Long Mission Note Layout**:
+   - `#sidebar-mission-card` must stretch across the entire width of `.sidebar-body` as a long flight directive note with high-contrast accenting (`border-left: 4px solid #facc15;`).
+   - Houses the active mission badge (`#sidebar-mission-tag`), full riddle clue (`#sidebar-mission-clue`), target indicator (`#dest-target-name`), compact Luna button, and canvas tap hint.
 
 ---
 

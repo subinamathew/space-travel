@@ -297,6 +297,15 @@ function renderGameUI() {
         <span class="sidebar-icon">🚀</span>
         <span class="sidebar-title-text" data-i18n="game.launch_control">Launch Control</span>
       </div>
+      <div class="sidebar-route-banner" id="sidebar-route-banner" title="${t('game.next_destination') || 'Route'}">
+        <span class="route-icon" id="route-origin-icon" title="${t('game.current_location') || 'Origin'}">${getBodyIcon(gameState.currentPlanet)}</span>
+        <span class="route-arrow" id="route-arrow-icon" aria-hidden="true">➔</span>
+        <span class="route-icon" id="route-dest-icon" title="${t('game.next_destination') || 'Destination'}">${gameState.targetPlanet ? getBodyIcon(gameState.targetPlanet) : '🎯'}</span>
+      </div>
+      <button type="button" id="launch-btn" class="big-launch-btn">
+        <span class="btn-glow"></span>
+        <span class="btn-text" id="launch-btn-text" data-i18n="game.big_launch_btn">BIG LAUNCH 🚀</span>
+      </button>
       <div class="sidebar-min-bar" id="sidebar-min-bar">
         <div class="min-route-widget" id="min-route-widget" title="Active Route">
           <img id="min-origin-img" class="min-planet-img" src="${getBodyImagePath(gameState.currentPlanet)}" alt="Origin Planet" />
@@ -331,37 +340,23 @@ function renderGameUI() {
       </div>
     </div>
     <div class="sidebar-body">
-      <!-- Route & Destination Block (Non-Accordion Header) -->
-      <div class="sidebar-route-block" id="sidebar-route-block">
-        <div class="sidebar-route-banner" id="sidebar-route-banner">
-          <div class="route-point route-origin" id="route-origin" title="${t('game.current_location') || 'Current Location'}">
-            <img class="route-body-img" id="route-origin-img" src="${getBodyImagePath(gameState.currentPlanet)}" alt="Origin Planet" />
-            <span class="route-icon" id="route-origin-icon">${getBodyIcon(gameState.currentPlanet)}</span>
-            <span class="route-name" id="route-origin-name">${getBodyPlainName(gameState.currentPlanet)}</span>
-          </div>
-          <div class="route-arrow-wrap" aria-hidden="true">
-            <span class="route-arrow">➔</span>
-            <span class="route-target-icon" title="Target">🎯</span>
-          </div>
-          <div class="route-point route-dest" id="route-dest" title="${t('game.next_destination') || 'Next Destination'}">
-            <img class="route-body-img" id="route-dest-img" src="${getBodyImagePath(gameState.targetPlanet || (gameState.currentPlanet === 'moon' ? 'earth' : 'moon'))}" alt="Destination Planet" />
-            <span class="route-icon" id="route-dest-icon">${gameState.targetPlanet ? getBodyIcon(gameState.targetPlanet) : '🎯'}</span>
-            <span class="route-name" id="dest-target-name">${gameState.targetPlanet ? getBodyPlainName(gameState.targetPlanet) : (t('game.select_target_prompt') || 'Select Target')}</span>
-          </div>
-        </div>
-
-        <div class="destination-control-block">
-          <button type="button" class="luna-dest-btn" id="luna-dest-btn" title="${t('game.target_moon') || 'Target Moon'}" aria-label="${t('game.target_moon') || 'Target Moon'}">
-            <span class="luna-icon" aria-hidden="true">${gameState.currentPlanet === 'moon' ? '🌍' : '🌙'}</span>
-          </button>
-          <div class="dest-map-hint">
-            <span>👆</span> <span data-i18n="game.tap_planet_map_hint">${t('game.tap_planet_map_hint') || 'Tap any planet on map to target!'}</span>
-          </div>
-        </div>
-
-        <div class="sidebar-mission-card" id="sidebar-mission-card">
+      <!-- Long Mission Note stretching the sidebar-body -->
+      <div class="sidebar-mission-card" id="sidebar-mission-card">
+        <div class="mission-card-header">
           <span class="sidebar-mission-tag" id="sidebar-mission-tag">🎯 <span data-i18n="game.mission_label">ACTIVE MISSION</span></span>
-          <div class="sidebar-mission-clue" id="sidebar-mission-clue">Loading mission...</div>
+          <div class="destination-control-block">
+            <span class="dest-target-status" id="dest-target-status">
+              <span class="dest-target-label" data-i18n="game.target_label">TARGET:</span>
+              <span class="dest-target-name" id="dest-target-name">${gameState.targetPlanet ? getBodyPlainName(gameState.targetPlanet) : (t('game.select_target_prompt') || 'Select Target')}</span>
+            </span>
+            <button type="button" class="luna-dest-btn" id="luna-dest-btn" title="${t('game.target_moon') || 'Target Moon'}" aria-label="${t('game.target_moon') || 'Target Moon'}">
+              <span class="luna-icon" aria-hidden="true">${gameState.currentPlanet === 'moon' ? '🌍' : '🌙'}</span>
+            </button>
+          </div>
+        </div>
+        <div class="sidebar-mission-clue" id="sidebar-mission-clue">Loading mission...</div>
+        <div class="dest-map-hint">
+          <span>👆</span> <span data-i18n="game.tap_planet_map_hint">${t('game.tap_planet_map_hint') || 'Tap any planet on map to target!'}</span>
         </div>
       </div>
 
@@ -395,12 +390,6 @@ function renderGameUI() {
             </div>
           </div>
         </div>
-
-        <!-- Central BIG LAUNCH Button -->
-        <button type="button" id="launch-btn" class="big-launch-btn">
-          <span class="btn-glow"></span>
-          <span class="btn-text" id="launch-btn-text" data-i18n="game.big_launch_btn">BIG LAUNCH 🚀</span>
-        </button>
 
         <!-- Accordion 4: Fuel Tank -->
         <div class="accordion-section" id="sec-fuel">
@@ -930,14 +919,15 @@ export function getBodyIcon(slug) {
   const map = {
     moon: '🌙',
     luna: '🌙',
-    mercury: '☿',
-    venus: '♀',
+    mercury: '🟤',
+    venus: '🟡',
     earth: '🌍',
-    mars: '♂',
-    jupiter: '♃',
+    mars: '🔴',
+    jupiter: '🟠',
     saturn: '🪐',
-    uranus: '♅',
-    neptune: '♆'
+    uranus: '🔵',
+    neptune: '🔷',
+    sun: '☀️'
   };
   return map[slug] || '🪐';
 }
