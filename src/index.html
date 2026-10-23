@@ -14,6 +14,12 @@
     <meta name="theme-color" content="#030712" />
     <link rel="canonical" href="https://rocketrun.org/" />
 
+    <!-- Robots & Search Engine Indexing Directives -->
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="keywords" content="solar system, planets, space exploration, 3D orbits, astronomy for kids, gravity calculator, rocket game, rocketrun, space travel, educational physics" />
+
     <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="RocketRun" />
@@ -44,6 +50,46 @@
         content="Explore our solar system in interactive 3D: planetary orbits, astronomical specifications, gravity calculator, and kids missions. Rocket through cosmic wonders at rocketrun.org!" />
     <meta name="twitter:image" content="https://rocketrun.org/images/earth.png" />
     <meta name="twitter:image:alt" content="RocketRun — Interactive Solar System Tour" />
+
+    <!-- Schema.org JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebApplication",
+          "@id": "https://rocketrun.org/#webapp",
+          "name": "RocketRun",
+          "url": "https://rocketrun.org/",
+          "description": "Interactive 3D Solar System exploration and space flight simulator featuring realistic orbital physics, planetary science metrics, gravity calculator, and kids missions.",
+          "applicationCategory": "EducationalApplication",
+          "operatingSystem": "All modern browsers",
+          "inLanguage": ["en", "de", "fr", "es", "it", "ja", "zh", "ml", "ta"],
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "author": {
+            "@type": "Person",
+            "name": "Zachary David Mathew + Papa"
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://rocketrun.org/#website",
+          "url": "https://rocketrun.org/",
+          "name": "RocketRun",
+          "description": "Tour our Solar System in interactive 3D with authentic orbital mechanics and planetary science.",
+          "publisher": {
+            "@type": "Organization",
+            "name": "rocketrun.org",
+            "url": "https://rocketrun.org"
+          }
+        }
+      ]
+    }
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

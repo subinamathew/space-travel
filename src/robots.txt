@@ -1,0 +1,10 @@
+# RocketRun (rocketrun.org) Robots Directives
+# Designed for clean indexing of all celestial bodies and educational content
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /scratch/
+
+# Sitemap Location
+Sitemap: https://rocketrun.org/sitemap.xml

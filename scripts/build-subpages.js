@@ -41,7 +41,8 @@ const buildDate = new Date().toISOString().split('T')[0];
 
 if (fs.existsSync(srcIndex)) {
   fs.copyFileSync(srcIndex, pubIndex);
-  console.log('Copied: src/index.html -> public/index.html');
+  fs.copyFileSync(srcIndex, path.resolve(__dirname, '../index.html'));
+  console.log('Copied: src/index.html -> public/index.html & ./index.html');
 }
 
 // 2. Copy images/ -> public/images/
@@ -58,6 +59,26 @@ if (fs.existsSync(srcImagesDir)) {
     }
   });
   console.log('Copied: images/ -> public/images/');
+}
+
+// 2b. Copy src/robots.txt -> public/robots.txt & root
+const srcRobots = path.resolve(__dirname, '../src/robots.txt');
+const pubRobots = path.resolve(pubDir, 'robots.txt');
+const rootRobots = path.resolve(__dirname, '../robots.txt');
+if (fs.existsSync(srcRobots)) {
+  fs.copyFileSync(srcRobots, pubRobots);
+  fs.copyFileSync(srcRobots, rootRobots);
+  console.log('Copied: src/robots.txt -> public/robots.txt & ./robots.txt');
+}
+
+// 2c. Copy src/sitemap.xml -> public/sitemap.xml & root
+const srcSitemap = path.resolve(__dirname, '../src/sitemap.xml');
+const pubSitemap = path.resolve(pubDir, 'sitemap.xml');
+const rootSitemap = path.resolve(__dirname, '../sitemap.xml');
+if (fs.existsSync(srcSitemap)) {
+  fs.copyFileSync(srcSitemap, pubSitemap);
+  fs.copyFileSync(srcSitemap, rootSitemap);
+  console.log('Copied: src/sitemap.xml -> public/sitemap.xml & ./sitemap.xml');
 }
 
 // 3. Ensure public/planets exists
@@ -201,6 +222,12 @@ allBodies.forEach((p, idx) => {
     <meta name="theme-color" content="#030712" />
     <link rel="canonical" href="https://rocketrun.org/planets/${p.slug}.html" />
 
+    <!-- Robots & Search Engine Indexing Directives -->
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="keywords" content="${p.name}, ${p.slug}, solar system, planets, astronomy, orbital physics, gravity calculator, kids science, RocketRun, space exploration" />
+
     <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
     <meta property="og:type" content="article" />
     <meta property="og:site_name" content="RocketRun" />
@@ -223,6 +250,45 @@ allBodies.forEach((p, idx) => {
     <meta name="twitter:description" content="Explore ${p.name} on RocketRun (rocketrun.org): real orbital physics, planetary atmosphere, gravity calculator, and kids mission facts." />
     <meta name="twitter:image" content="https://rocketrun.org/images/${p.slug}.png" />
     <meta name="twitter:image:alt" content="${p.name} — RocketRun Solar System Exploration" />
+
+    <!-- Schema.org JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ItemPage",
+          "@id": "https://rocketrun.org/planets/${p.slug}.html#webpage",
+          "url": "https://rocketrun.org/planets/${p.slug}.html",
+          "name": "${p.name} — RocketRun Solar System Exploration",
+          "description": "Explore ${p.name} on RocketRun: scientific metrics, physical properties, gravity calculator, and kids mission facts.",
+          "isPartOf": {
+            "@type": "WebSite",
+            "@id": "https://rocketrun.org/#website",
+            "name": "RocketRun",
+            "url": "https://rocketrun.org/"
+          },
+          "primaryImageOfPage": {
+            "@type": "ImageObject",
+            "url": "https://rocketrun.org/images/${p.slug}.png"
+          },
+          "inLanguage": ["en", "de", "fr", "es", "it", "ja", "zh", "ml", "ta"]
+        },
+        {
+          "@type": "LearningResource",
+          "@id": "https://rocketrun.org/planets/${p.slug}.html#learning-resource",
+          "name": "Planetary Science: ${p.name}",
+          "description": "Educational guide and orbital facts for ${p.name}, including gravitational ratios, jump height calculator, and atmospheric details.",
+          "learningResourceType": "Interactive Simulation",
+          "educationalLevel": "Beginner to Intermediate",
+          "audience": {
+            "@type": "EducationalAudience",
+            "educationalRole": "student"
+          }
+        }
+      ]
+    }
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

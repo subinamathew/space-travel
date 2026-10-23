@@ -431,6 +431,50 @@ exitGameMode();
 assert(getGameModeCookie() === 'off', 'exitGameMode() resets gamemode cookie to "off"');
 assert(getCookie('gsmemode') === 'off', 'exitGameMode() resets gsmemode cookie to "off"');
 
+// ----------------------------------------------------
+// TEST 15: Robots & SEO Structured Data Verification
+// ----------------------------------------------------
+console.log('\n[Test 15: Robots Directives, Sitemap & SEO Structured Data]');
+const pubRobotsFile = path.resolve(__dirname, '../public/robots.txt');
+const rootRobotsFile = path.resolve(__dirname, '../robots.txt');
+const pubSitemapFile = path.resolve(__dirname, '../public/sitemap.xml');
+const rootSitemapFile = path.resolve(__dirname, '../sitemap.xml');
+
+assert(fs.existsSync(pubRobotsFile), 'public/robots.txt exists');
+assert(fs.existsSync(rootRobotsFile), 'root robots.txt exists');
+const robotsContent = fs.readFileSync(pubRobotsFile, 'utf8');
+assert(robotsContent.includes('User-agent: *'), 'robots.txt specifies User-agent: *');
+assert(robotsContent.includes('Allow: /'), 'robots.txt allows indexing');
+assert(robotsContent.includes('Sitemap: https://rocketrun.org/sitemap.xml'), 'robots.txt specifies sitemap URL');
+
+assert(fs.existsSync(pubSitemapFile), 'public/sitemap.xml exists');
+assert(fs.existsSync(rootSitemapFile), 'root sitemap.xml exists');
+const sitemapContent = fs.readFileSync(pubSitemapFile, 'utf8');
+assert(sitemapContent.includes('<loc>https://rocketrun.org/</loc>'), 'sitemap.xml includes home page');
+assert(sitemapContent.includes('<loc>https://rocketrun.org/planets/luna.html</loc>'), 'sitemap.xml includes Luna subpage');
+assert(sitemapContent.includes('<loc>https://rocketrun.org/credits.html</loc>'), 'sitemap.xml includes credits');
+assert(sitemapContent.includes('<loc>https://rocketrun.org/features.html</loc>'), 'sitemap.xml includes features');
+assert(sitemapContent.includes('<loc>https://rocketrun.org/impressum.html</loc>'), 'sitemap.xml includes impressum');
+
+// Test robots meta tags and Schema.org JSON-LD on all pages
+const pagesToCheck = [
+  { name: 'index.html', path: path.resolve(__dirname, '../public/index.html') },
+  { name: 'credits.html', path: path.resolve(__dirname, '../public/credits.html') },
+  { name: 'features.html', path: path.resolve(__dirname, '../public/features.html') },
+  { name: 'impressum.html', path: path.resolve(__dirname, '../public/impressum.html') },
+  { name: 'planets/luna.html', path: path.resolve(__dirname, '../public/planets/luna.html') }
+];
+
+for (const p of pagesToCheck) {
+  assert(fs.existsSync(p.path), `${p.name} exists in build output`);
+  const content = fs.readFileSync(p.path, 'utf8');
+  assert(content.includes('<meta name="robots"'), `${p.name} contains <meta name="robots"`);
+  assert(content.includes('<meta name="googlebot"'), `${p.name} contains <meta name="googlebot"`);
+  assert(content.includes('<meta name="bingbot"'), `${p.name} contains <meta name="bingbot"`);
+  assert(content.includes('<meta name="keywords"'), `${p.name} contains <meta name="keywords"`);
+  assert(content.includes('<script type="application/ld+json">'), `${p.name} contains Schema.org JSON-LD`);
+}
+
 console.log('\n====================================================');
 console.log(`🎉 ALL TESTS PASSED: ${passedTests} / ${totalTests} assertions verified!`);
 console.log('====================================================\n');

@@ -13,6 +13,12 @@
     <meta name="theme-color" content="#030712" />
     <link rel="canonical" href="https://rocketrun.org/credits.html" />
 
+    <!-- Robots & Search Engine Indexing Directives -->
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="keywords" content="RocketRun credits, Zachary David Mathew, space education, solar system simulator credits, open source astrophysics" />
+
     <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="RocketRun" />
@@ -38,12 +44,30 @@
     <meta name="twitter:image" content="https://rocketrun.org/images/earth.png" />
     <meta name="twitter:image:alt" content="RocketRun — Credits & Mission" />
 
+    <!-- Schema.org JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      "@id": "https://rocketrun.org/credits.html#webpage",
+      "url": "https://rocketrun.org/credits.html",
+      "name": "Credits & Mission — RocketRun",
+      "description": "RocketRun credits, project history by Zachary David Mathew + Papa, astrophysics datasets, and mission statement.",
+      "isPartOf": {
+        "@type": "WebSite",
+        "@id": "https://rocketrun.org/#website",
+        "name": "RocketRun",
+        "url": "https://rocketrun.org/"
+      }
+    }
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap"
         rel="stylesheet" />
-    <link rel="stylesheet" href="css/style.css?v=3.1.1" />
-    <script src="js/script.min.js?v=3.1.1" defer></script>
+    <link rel="stylesheet" href="css/style.css?v={{APP_VERSION}}" />
+    <script src="js/script.min.js?v={{APP_VERSION}}" defer></script>
 </head>
 
 <body class="subpage-body credits-page">
