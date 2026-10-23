@@ -13,6 +13,7 @@
     "build:pages": "node scripts/build-subpages.js",
     "build": "npm run build:pages && npm run build:css && npm run build:js && npm run build:planet-js",
     "test:i18n": "node scripts/test-i18n.js",
+    "test:smoke": "node scripts/test-gameplay-smoke.js",
     "test:dom": "node scripts/test-gameplay-dom.js",
     "test": "node scripts/test-i18n.js && node scripts/test-gameplay-dom.js",
     "watch:css": "sass --watch src/scss:public/css --style=compressed",

@@ -9,7 +9,7 @@ import { initCreditsCrawl } from './components/credits.js';
 import { initCookieNotice } from './components/cookie-notice.js';
 import { initFeaturesPage } from './components/features.js';
 import { init3DOrbitInteraction } from './components/orbit-3d.js';
-import { startGame, stopGame, initGameEngine, setFreePlayMode } from './game/game-engine.js';
+import { startGame, stopGame, exitGameMode, isGameActive, initGameEngine, setFreePlayMode } from './game/game-engine.js';
 import { getGameModeCookie, setGameModeCookie } from './components/cookie-notice.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -106,7 +106,7 @@ function bindGameModeToggles(gameToggle, freePlayToggle) {
         const isFp = freePlayToggle ? freePlayToggle.checked : false;
         startGame({ freeplay: isFp });
       } else {
-        stopGame();
+        exitGameMode();
       }
     });
   }

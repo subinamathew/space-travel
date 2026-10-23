@@ -83,6 +83,10 @@ export function startGame(options = {}) {
   updateHUD();
   updateSidebar();
   syncFreePlayUI(gameState.isFreePlay);
+
+  const gameToggle = document.getElementById('settings-game-toggle');
+  if (gameToggle) gameToggle.checked = true;
+
   startOrbitalTelemetry();
 
   const playBtn = document.getElementById('game-play-btn');
@@ -298,63 +302,39 @@ function renderGameUI() {
       </div>
     </div>
     <div class="sidebar-body">
+      <!-- Route & Destination Block (Non-Accordion Header) -->
+      <div class="sidebar-route-block" id="sidebar-route-block">
+        <div class="sidebar-route-banner" id="sidebar-route-banner">
+          <div class="route-point route-origin" id="route-origin" title="${t('game.current_location') || 'Current Location'}">
+            <span class="route-icon" id="route-origin-icon">${getBodyIcon(gameState.currentPlanet)}</span>
+            <span class="route-name" id="route-origin-name">${getBodyPlainName(gameState.currentPlanet)}</span>
+          </div>
+          <div class="route-arrow-wrap" aria-hidden="true">
+            <span class="route-arrow">➔</span>
+            <span class="route-target-icon" title="Target">🎯</span>
+          </div>
+          <div class="route-point route-dest" id="route-dest" title="${t('game.next_destination') || 'Next Destination'}">
+            <span class="route-icon" id="route-dest-icon">${gameState.targetPlanet ? getBodyIcon(gameState.targetPlanet) : '🎯'}</span>
+            <span class="route-name" id="dest-target-name">${gameState.targetPlanet ? getBodyPlainName(gameState.targetPlanet) : (t('game.select_target_prompt') || 'Select Target')}</span>
+          </div>
+        </div>
+
+        <div class="destination-control-block">
+          <button type="button" class="luna-dest-btn" id="luna-dest-btn">
+            <span>🌙</span> <span id="luna-dest-btn-text" data-i18n="game.target_luna_btn">${t('game.target_luna_btn') || 'Target Luna (Moon)'}</span>
+          </button>
+          <div class="dest-map-hint">
+            <span>👆</span> <span data-i18n="game.tap_planet_map_hint">${t('game.tap_planet_map_hint') || 'Tap any planet on map to target!'}</span>
+          </div>
+        </div>
+
+        <div class="sidebar-mission-card" id="sidebar-mission-card">
+          <span class="sidebar-mission-tag" id="sidebar-mission-tag">🎯 <span data-i18n="game.mission_label">ACTIVE MISSION</span></span>
+          <div class="sidebar-mission-clue" id="sidebar-mission-clue">Loading mission...</div>
+        </div>
+      </div>
+
       <div class="launch-accordion" id="launch-accordion">
-
-        <!-- Accordion 1: Game Mode & Objective -->
-        <div class="accordion-section is-open" id="sec-mode">
-          <button type="button" class="accordion-header" aria-expanded="true" aria-controls="acc-content-mode" title="${t('game.section_mode') || 'Mission & Mode'}">
-            <span class="accordion-header-left">
-              <span class="accordion-icon">🎯</span>
-              <span class="accordion-title" data-i18n="game.section_mode">${t('game.section_mode') || 'Mission & Mode'}</span>
-            </span>
-            <span class="accordion-header-right">
-              <span class="accordion-summary" id="acc-summary-mode">🎯 Mission 1</span>
-              <span class="accordion-chevron" aria-hidden="true">▾</span>
-            </span>
-          </button>
-          <div class="accordion-content" id="acc-content-mode">
-            <div class="game-mode-pill-selector" role="radiogroup" aria-label="Game Mode">
-              <button type="button" class="mode-pill-btn ${!gameState.isFreePlay ? 'is-active' : ''}" id="mode-missions-btn" data-mode="missions">
-                <span>🎯</span> <span data-i18n="game.mode_missions">${t('game.mode_missions') || 'Missions'}</span>
-              </button>
-              <button type="button" class="mode-pill-btn ${gameState.isFreePlay ? 'is-active' : ''}" id="mode-freeplay-btn" data-mode="freeplay">
-                <span>🚀</span> <span data-i18n="game.mode_freeplay">${t('game.mode_freeplay') || 'Free Play'}</span>
-              </button>
-            </div>
-            <div class="sidebar-mission-card">
-              <span class="sidebar-mission-tag" id="sidebar-mission-tag">🎯 <span data-i18n="game.mission_label">ACTIVE MISSION</span></span>
-              <div class="sidebar-mission-clue" id="sidebar-mission-clue">Loading mission...</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Accordion 2: Destination Selection -->
-        <div class="accordion-section is-open" id="sec-dest">
-          <button type="button" class="accordion-header" aria-expanded="true" aria-controls="acc-content-dest" title="${t('game.select_destination') || 'Select Destination:'}">
-            <span class="accordion-header-left">
-              <span class="accordion-icon">🪐</span>
-              <span class="accordion-title" data-i18n="game.select_destination">${t('game.select_destination') || 'Select Destination:'}</span>
-            </span>
-            <span class="accordion-header-right">
-              <span class="accordion-summary" id="acc-summary-dest">Luna 🌙</span>
-              <span class="accordion-chevron" aria-hidden="true">▾</span>
-            </span>
-          </button>
-          <div class="accordion-content" id="acc-content-dest">
-            <div class="destination-control-block">
-              <div class="dest-target-status">
-                <span class="dest-target-label" data-i18n="game.target_label">${t('game.target_label') || 'Target:'}</span>
-                <span class="dest-target-value" id="dest-target-name">Luna 🌙</span>
-              </div>
-              <button type="button" class="luna-dest-btn" id="luna-dest-btn">
-                <span>🌙</span> <span id="luna-dest-btn-text" data-i18n="game.target_luna_btn">${t('game.target_luna_btn') || 'Target Luna (Moon)'}</span>
-              </button>
-              <div class="dest-map-hint">
-                <span>👆</span> <span data-i18n="game.tap_planet_map_hint">${t('game.tap_planet_map_hint') || 'Tap any planet on map to target!'}</span>
-              </div>
-            </div>
-          </div>
-        </div>
 
         <!-- Accordion 3: Thrust Energy -->
         <div class="accordion-section is-open" id="sec-thrust">
@@ -697,6 +677,21 @@ function updateSidebar() {
     locEl.textContent = `${formatBodyName(gameState.currentPlanet)}`;
   }
 
+  const originIconEl = document.getElementById('route-origin-icon');
+  if (originIconEl) {
+    originIconEl.textContent = getBodyIcon(gameState.currentPlanet);
+  }
+
+  const originNameEl = document.getElementById('route-origin-name');
+  if (originNameEl) {
+    originNameEl.textContent = getBodyPlainName(gameState.currentPlanet);
+  }
+
+  const destIconEl = document.getElementById('route-dest-icon');
+  if (destIconEl) {
+    destIconEl.textContent = gameState.targetPlanet ? getBodyIcon(gameState.targetPlanet) : '🎯';
+  }
+
   const tagEl = document.getElementById('sidebar-mission-tag');
   const sumModeEl = document.getElementById('acc-summary-mode');
   if (tagEl) {
@@ -730,7 +725,7 @@ function updateSidebar() {
 
   const destNameEl = document.getElementById('dest-target-name');
   const sumDestEl = document.getElementById('acc-summary-dest');
-  const targetLabel = gameState.targetPlanet ? formatBodyName(gameState.targetPlanet) : (t('game.select_target_prompt') || 'Select on Map or tap Luna');
+  const targetLabel = gameState.targetPlanet ? getBodyPlainName(gameState.targetPlanet) : (t('game.select_target_prompt') || 'Select on Map or tap Luna');
   if (destNameEl) destNameEl.textContent = targetLabel;
   if (sumDestEl) sumDestEl.textContent = gameState.targetPlanet ? formatBodyName(gameState.targetPlanet) : (t('game.select_target_prompt') || 'Select on Map');
 
@@ -806,6 +801,38 @@ function updateLaunchButtonState() {
     btn.classList.remove('is-fuel-empty');
     btnText.textContent = t('game.big_launch_btn') || 'BIG LAUNCH 🚀';
   }
+}
+
+export function getBodyIcon(slug) {
+  const map = {
+    moon: '🌙',
+    luna: '🌙',
+    mercury: '☿',
+    venus: '♀',
+    earth: '🌍',
+    mars: '♂',
+    jupiter: '♃',
+    saturn: '🪐',
+    uranus: '♅',
+    neptune: '♆'
+  };
+  return map[slug] || '🪐';
+}
+
+export function getBodyPlainName(slug) {
+  const map = {
+    moon: 'Luna',
+    luna: 'Luna',
+    mercury: 'Mercury',
+    venus: 'Venus',
+    earth: 'Earth',
+    mars: 'Mars',
+    jupiter: 'Jupiter',
+    saturn: 'Saturn',
+    uranus: 'Uranus',
+    neptune: 'Neptune'
+  };
+  return map[slug] || (slug ? slug.charAt(0).toUpperCase() + slug.slice(1) : '');
 }
 
 function formatBodyName(slug) {

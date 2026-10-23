@@ -233,6 +233,10 @@ Code changes to core logic, data models, or translations must be accompanied by 
 3. **Visual & Behavioral Verification**:
    - Test UI components across narrow viewports (360px mobile), tablet viewports (768px), and desktop viewports (1440px+).
    - Verify keyboard navigability (`Tab`, `Enter`, `Escape`) for all interactive modals and controls.
+4. **Pre-Commit Gameplay Smoke Testing & Feature Verification**:
+   - **MANDATORY BEFORE ANY COMMIT AND PUSH**: Test gameplay to ensure the game can start cleanly without runtime or reference errors (`npm run test:smoke` or `node scripts/test-gameplay-smoke.js`).
+   - Do NOT run the entire heavy test suite just to verify basic startup; use the fast smoke test (< 300ms).
+   - If there have been JavaScript changes to the game since the last commit, ensure to specifically test that newly added or modified game feature.
 
 ---
 
@@ -534,6 +538,9 @@ Before pushing any commit or releasing to production, verify:
   - [ ] `package.json` contains `"license": "MIT"`.
 - [ ] **i18n Parity**: `npm test` passes with 100% parity across all 9 language files.
 - [ ] **German-Only Imprint**: Imprint / Impressum is strictly hidden in all non-German languages and visible in German.
+- [ ] **Gameplay Startup & Feature Test**:
+  - [ ] **MANDATORY**: Run fast gameplay smoke test (`npm run test:smoke` or `node scripts/test-gameplay-smoke.js`) before any commit or push to verify the game starts cleanly without runtime or reference errors (do not run the entire heavy test suite just to verify startup).
+  - [ ] If there were JavaScript changes made to the game since the last commit, test that specific game feature directly.
 - [ ] **Build Validation**: `npm run build` generates all pages and bundles without errors or warnings.
 - [ ] **Mobile & Handheld Test**: Tested on narrow mobile screen (360px–414px) with touch-friendly tap targets (≥ 44px).
 - [ ] **Reduced Motion**: Verified that `@media (prefers-reduced-motion: reduce)` disables heavy 3D motion cleanly.

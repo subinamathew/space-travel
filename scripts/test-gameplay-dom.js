@@ -32,11 +32,10 @@ const dom = new JSDOM(`
       <button id="planet-btn-neptune" class="planet-btn" data-slug="neptune"></button>
     </div>
   </div>
-  <button type="button" id="game-play-btn" class="hud-circle-btn hud-game-play-btn in-stack">
-    <span class="hud-play-icon">🎮</span>
-  </button>
-  <input type="checkbox" id="settings-game-toggle" />
-  <input type="checkbox" id="settings-freeplay-toggle" />
+  <div class="settings-modal-content">
+    <input type="checkbox" id="settings-game-toggle" />
+    <input type="checkbox" id="settings-freeplay-toggle" />
+  </div>
   <footer class="site-tiny-footer" role="contentinfo">
     <a href="impressum.html" class="tiny-footer-link imprint-link" data-i18n="ui.impressum_link">Impressum / Imprint</a>
   </footer>
@@ -179,14 +178,21 @@ assert(document.getElementById('sidebar-close-btn') !== null, 'Sidebar close but
 const accordion = document.getElementById('launch-accordion');
 assert(accordion !== null, '#launch-accordion mounted in DOM');
 
-const expectedSections = ['sec-mode', 'sec-dest', 'sec-thrust', 'sec-fuel', 'sec-telemetry', 'sec-planner'];
+const routeBanner = document.getElementById('sidebar-route-banner');
+assert(routeBanner !== null, '#sidebar-route-banner exists as non-accordion route header');
+assert(document.getElementById('route-origin-icon') !== null, '#route-origin-icon exists');
+assert(document.getElementById('route-dest-icon') !== null, '#route-dest-icon exists');
+assert(document.getElementById('sec-mode') === null, '#sec-mode accordion section is removed');
+assert(document.getElementById('sec-dest') === null, '#sec-dest accordion section is removed');
+
+const expectedSections = ['sec-thrust', 'sec-fuel', 'sec-telemetry', 'sec-planner'];
 for (const secId of expectedSections) {
   assert(document.getElementById(secId) !== null, `Accordion section #${secId} exists`);
 }
 
-const playBtn = document.getElementById('game-play-btn');
-assert(playBtn !== null, '#game-play-btn exists in DOM');
-assert(playBtn.classList.contains('is-playing'), '#game-play-btn has .is-playing class while game is active');
+const gameToggle = document.getElementById('settings-game-toggle');
+assert(gameToggle !== null, '#settings-game-toggle exists in Settings');
+assert(gameToggle.checked === true, '#settings-game-toggle is checked while game is active');
 
 // ----------------------------------------------------
 // TEST 2: Auto-Targeting & Canvas Highlight
@@ -435,7 +441,7 @@ assert(document.getElementById('rocketrun-hud') === null, '#rocketrun-hud remove
 assert(document.getElementById('rocketrun-sidebar') === null, '#rocketrun-sidebar removed from DOM');
 assert(document.querySelectorAll('.is-game-target').length === 0, 'All .is-game-target highlights cleaned from canvas');
 assert(!document.getElementById('solar-system').classList.contains('game-active'), '#solar-system .game-active class removed');
-assert(!document.getElementById('game-play-btn').classList.contains('is-playing'), '#game-play-btn .is-playing class removed after teardown');
+assert(!gameToggle.checked, '#settings-game-toggle is unchecked after teardown');
 
 // ----------------------------------------------------
 // TEST 13: Dedicated Luna (Moon) Subpage Verification
@@ -527,15 +533,15 @@ for (const p of pagesToCheck) {
 }
 
 // ----------------------------------------------------
-// TEST 16: Settings Simplification & 1-Tap Play Button
+// TEST 16: Game Mode Toggle in Settings & Main View Cleanup
 // ----------------------------------------------------
-console.log('\n[Test 16: Settings Simplification & 1-Tap Play Button]');
+console.log('\n[Test 16: Game Mode Toggle in Settings & Main View Cleanup]');
 const indexHtmlSrc = fs.readFileSync(path.resolve(__dirname, '../src/index.html'), 'utf8');
-assert(!indexHtmlSrc.includes('id="settings-game-toggle"'), 'src/index.html settings does NOT contain settings-game-toggle');
-assert(!indexHtmlSrc.includes('id="settings-freeplay-toggle"'), 'src/index.html settings does NOT contain settings-freeplay-toggle');
-assert(indexHtmlSrc.includes('id="game-play-btn"'), 'src/index.html contains #game-play-btn');
-assert(indexHtmlSrc.includes('hud-game-play-btn'), 'src/index.html has .hud-game-play-btn class');
-assert(indexHtmlSrc.includes('🎮'), 'src/index.html has 🎮 game play icon');
+assert(indexHtmlSrc.includes('id="settings-game-toggle"'), 'src/index.html settings contains #settings-game-toggle');
+assert(indexHtmlSrc.includes('id="settings-freeplay-toggle"'), 'src/index.html settings contains #settings-freeplay-toggle');
+assert(!indexHtmlSrc.includes('id="game-play-btn"'), 'src/index.html main view does NOT contain #game-play-btn');
+assert(indexHtmlSrc.includes('game-settings-row'), 'src/index.html contains #game-settings-row in settings');
+assert(indexHtmlSrc.includes('freeplay-settings-row'), 'src/index.html contains #freeplay-settings-row in settings');
 
 // ----------------------------------------------------
 // TEST 17: Leaderboard Cookie Storage & Pilot Callsign Name
