@@ -9,6 +9,7 @@ import { initCreditsCrawl } from './components/credits.js';
 import { initCookieNotice } from './components/cookie-notice.js';
 import { initFeaturesPage } from './components/features.js';
 import { init3DOrbitInteraction } from './components/orbit-3d.js';
+import { startGame, stopGame, initGameEngine } from './game/game-engine.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize i18n translation system
@@ -34,6 +35,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize interactive 3D orbit manipulation (drag to rotate, wheel/pinch to zoom)
   init3DOrbitInteraction();
+
+  // Initialize RocketRun 2D Space Navigation Game Mode
+  const gameToggle = document.getElementById('settings-game-toggle');
+  if (gameToggle) {
+    initGameEngine();
+    const savedGame = localStorage.getItem('space_game_mode') === 'true';
+    if (savedGame) {
+      gameToggle.checked = true;
+      startGame();
+    }
+    gameToggle.addEventListener('change', () => {
+      const active = gameToggle.checked;
+      localStorage.setItem('space_game_mode', active ? 'true' : 'false');
+      if (active) {
+        startGame();
+      } else {
+        stopGame();
+      }
+    });
+  }
 
   // Initialize starfield canvas background
   initStarfield('stars');

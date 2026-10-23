@@ -55,11 +55,13 @@ const otherLanguages = supportedLanguages.map(l => l.code).filter(c => c !== 'en
 console.log(`\n[Test 4: Translation Parity Across All ${supportedLanguages.length} Languages]`);
 const enUiKeys = Object.keys(translations.en.ui);
 const enPlanets = Object.keys(translations.en.planets);
+const enGameKeys = Object.keys(translations.en.game || {});
 
 let allValid = true;
 for (const lang of otherLanguages) {
   const missingUi = enUiKeys.filter(k => translations[lang].ui[k] === undefined);
   const missingPlanets = enPlanets.filter(k => translations[lang].planets[k] === undefined);
+  const missingGame = enGameKeys.filter(k => !translations[lang].game || translations[lang].game[k] === undefined);
   if (missingUi.length > 0) {
     console.error(`Missing UI keys in ${lang}:`, missingUi);
     allValid = false;
@@ -68,10 +70,14 @@ for (const lang of otherLanguages) {
     console.error(`Missing planet keys in ${lang}:`, missingPlanets);
     allValid = false;
   }
+  if (missingGame.length > 0) {
+    console.error(`Missing game keys in ${lang}:`, missingGame);
+    allValid = false;
+  }
 }
 
 if (allValid) {
-  console.log(`PERFECT PARITY: All ${supportedLanguages.length} languages have 100% of the UI keys and celestial bodies!`);
+  console.log(`PERFECT PARITY: All ${supportedLanguages.length} languages have 100% of UI, Game, and Celestial Body keys!`);
 } else {
   process.exit(1);
 }
