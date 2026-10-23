@@ -145,6 +145,12 @@ export class GameState {
     this.state = GAME_STATES.STANDBY;
   }
 
+  setTarget(slug) {
+    this.targetPlanet = slug;
+    this.setState(slug ? GAME_STATES.TARGETED : GAME_STATES.STANDBY);
+    return this.targetPlanet;
+  }
+
   setEnergy(val) {
     this.energy = Math.max(0, Math.min(100, Number(val) || 0));
   }

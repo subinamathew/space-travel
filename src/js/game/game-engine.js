@@ -586,6 +586,7 @@ function bindSidebarEvents() {
         gameState.setEnergy(slider.value);
         updateLaunchButtonState();
         updateEnergyFeedbackHint();
+        updateFuelUI();
         const sumThrust = document.getElementById('acc-summary-thrust');
         if (sumThrust) sumThrust.textContent = `${slider.value}%`;
       },
