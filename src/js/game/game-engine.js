@@ -17,7 +17,14 @@ import {
   BASE_EARTH_SECONDS
 } from './game-physics.js';
 import { getTouchdownNoteKey, getPlanetQuiz } from './game-quiz.js';
-import { loadLeaderboard, saveLeaderboardScore } from './game-leaderboard.js';
+import {
+  loadLeaderboard,
+  saveLeaderboardScore,
+  getPilotName,
+  setPilotName,
+  isLeaderboardCookieAllowed,
+  setLeaderboardCookieAllowed
+} from './game-leaderboard.js';
 import { playLaunchSound, playTouchdownSound, playExplosionSound, playWarningSound } from './game-audio.js';
 import { setGameModeCookie } from '../components/cookie-notice.js';
 import { t } from '../i18n.js';
@@ -1412,7 +1419,7 @@ function handleMissionAdvancement() {
   updateSidebar();
   updateOrbitalWindowUI();
   saveLeaderboardScore({
-    name: 'Player',
+    name: getPilotName(),
     avatar: getAstronautAvatar(),
     rankKey: gameState.getRank().titleKey,
     score: gameState.score,
@@ -1468,6 +1475,14 @@ function showDebriefModal(reasonKey) {
   `;
   document.body.appendChild(modal);
 
+  saveLeaderboardScore({
+    name: getPilotName(),
+    avatar: getAstronautAvatar(),
+    rankKey: gameState.getRank().titleKey,
+    score: gameState.score,
+    date: new Date().toISOString().slice(0, 10)
+  });
+
   const retryBtn = document.getElementById('retry-mission-btn');
   if (retryBtn) {
     retryBtn.addEventListener('click', () => {
@@ -1481,24 +1496,31 @@ function showDebriefModal(reasonKey) {
   }
 }
 
-function showLeaderboardModal() {
+export function showLeaderboardModal() {
   const existing = document.getElementById('game-leaderboard-modal');
   if (existing) existing.remove();
 
+  const currentPilot = getPilotName();
   const entries = loadLeaderboard();
-  const rows = entries
-    .map(
-      (e, idx) => `
-      <div class="lb-row">
-        <span class="lb-rank">#${idx + 1}</span>
-        <span class="lb-avatar">${e.avatar || '👨‍🚀'}</span>
-        <span class="lb-name">${e.name}</span>
-        <span class="lb-rank-title">${t(e.rankKey)}</span>
-        <span class="lb-stars">⭐ ${e.score}</span>
-      </div>
-    `
-    )
-    .join('');
+
+  function buildRowsHtml(list, pilotName) {
+    if (!list || list.length === 0) {
+      return '<div class="lb-empty">No flights logged yet! Launch a mission to join the ranks!</div>';
+    }
+    return list
+      .map(
+        (e, idx) => `
+        <div class="lb-row ${e.name === pilotName ? 'is-current-pilot' : ''}">
+          <span class="lb-rank">#${idx + 1}</span>
+          <span class="lb-avatar">${e.avatar || '👨‍🚀'}</span>
+          <span class="lb-name">${e.name}</span>
+          <span class="lb-rank-title">${t(e.rankKey)}</span>
+          <span class="lb-stars">⭐ ${e.score}</span>
+        </div>
+      `
+      )
+      .join('');
+  }
 
   const modal = document.createElement('div');
   modal.id = 'game-leaderboard-modal';
@@ -1506,11 +1528,67 @@ function showLeaderboardModal() {
   modal.innerHTML = `
     <div class="game-modal-card lb-card">
       <div class="modal-badge">🏆 TOP COSMIC NAVIGATORS</div>
-      <div class="lb-list">${rows || '<div class="lb-empty">No flights logged yet! Launch a mission to join the ranks!</div>'}</div>
+
+      <div class="lb-pilot-box">
+        <label for="lb-pilot-input" class="lb-pilot-label" data-i18n="ui.pilot_name_label">🧑‍🚀 Pilot Name & Callsign:</label>
+        <div class="lb-pilot-input-group">
+          <input type="text" id="lb-pilot-input" class="lb-pilot-input" maxlength="20" placeholder="e.g. Cmdr. Nova" value="${currentPilot}" />
+          <button type="button" id="lb-save-name-btn" class="lb-save-name-btn" data-i18n="ui.save_pilot_name">Save Name</button>
+        </div>
+        <div class="lb-cookie-toggle-row">
+          <label for="lb-cookie-pref-toggle" class="lb-cookie-label">
+            <span>🍪 <span data-i18n="ui.allow_lb_cookie">Allow Leaderboard Stats in Cookie</span></span>
+          </label>
+          <label class="hud-switch" for="lb-cookie-pref-toggle">
+            <input type="checkbox" id="lb-cookie-pref-toggle" ${isLeaderboardCookieAllowed() ? 'checked' : ''} aria-label="Toggle Leaderboard Cookie" />
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="lb-pilot-status" id="lb-pilot-status" aria-live="polite"></div>
+      </div>
+
+      <div class="lb-list" id="lb-list">${buildRowsHtml(entries, currentPilot)}</div>
       <button type="button" class="lb-close-btn" id="lb-close-btn">Close ✕</button>
     </div>
   `;
   document.body.appendChild(modal);
+
+  const saveBtn = document.getElementById('lb-save-name-btn');
+  const pilotInput = document.getElementById('lb-pilot-input');
+  const statusEl = document.getElementById('lb-pilot-status');
+  const listEl = document.getElementById('lb-list');
+
+  if (saveBtn && pilotInput) {
+    saveBtn.addEventListener('click', () => {
+      const val = pilotInput.value.trim();
+      if (!val) return;
+      const saved = setPilotName(val);
+      if (statusEl) {
+        statusEl.textContent = `✓ Saved as ${saved}! Stats updated.`;
+        setTimeout(() => { if (statusEl) statusEl.textContent = ''; }, 3000);
+      }
+      if (listEl) {
+        listEl.innerHTML = buildRowsHtml(loadLeaderboard(), saved);
+      }
+    });
+
+    pilotInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter') saveBtn.click();
+    });
+  }
+
+  const cookieToggle = document.getElementById('lb-cookie-pref-toggle');
+  if (cookieToggle) {
+    cookieToggle.addEventListener('change', e => {
+      setLeaderboardCookieAllowed(cookieToggle.checked);
+      if (statusEl) {
+        statusEl.textContent = cookieToggle.checked
+          ? '✓ Leaderboard stats saved in first-party cookie.'
+          : '⚠️ Leaderboard cookies cleared and disabled.';
+        setTimeout(() => { if (statusEl) statusEl.textContent = ''; }, 3000);
+      }
+    });
+  }
 
   const closeBtn = document.getElementById('lb-close-btn');
   if (closeBtn) closeBtn.addEventListener('click', () => modal.remove());

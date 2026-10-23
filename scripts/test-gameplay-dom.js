@@ -98,7 +98,8 @@ import {
   exitGameMode,
   setFreePlayMode,
   selectDestinationFromCanvas,
-  isGameActive
+  isGameActive,
+  showLeaderboardModal
 } from '../src/js/game/game-engine.js';
 import {
   calculateOrbitalWindow,
@@ -109,7 +110,20 @@ import {
   ORBIT_SPECS
 } from '../src/js/game/game-physics.js';
 import { getPlanetQuiz, getTouchdownNoteKey } from '../src/js/game/game-quiz.js';
-import { getGameModeCookie, setGameModeCookie, getCookie } from '../src/js/components/cookie-notice.js';
+import {
+  getGameModeCookie,
+  setGameModeCookie,
+  getCookie,
+  clearAllCookiesAndStorage
+} from '../src/js/components/cookie-notice.js';
+import {
+  getPilotName,
+  setPilotName,
+  isLeaderboardCookieAllowed,
+  setLeaderboardCookieAllowed,
+  loadLeaderboard,
+  saveLeaderboardScore
+} from '../src/js/game/game-leaderboard.js';
 
 let passedTests = 0;
 let totalTests = 0;
@@ -499,6 +513,80 @@ assert(!indexHtmlSrc.includes('id="settings-freeplay-toggle"'), 'src/index.html 
 assert(indexHtmlSrc.includes('id="game-play-btn"'), 'src/index.html contains #game-play-btn');
 assert(indexHtmlSrc.includes('hud-game-play-btn'), 'src/index.html has .hud-game-play-btn class');
 assert(indexHtmlSrc.includes('🎮'), 'src/index.html has 🎮 game play icon');
+
+// ----------------------------------------------------
+// TEST 17: Leaderboard Cookie Storage & Pilot Callsign Name
+// ----------------------------------------------------
+console.log('\n[Test 17: Leaderboard Cookie Storage & Pilot Callsign Name]');
+
+// 1. Initial pilot name state
+assert(getPilotName() === 'Player' || typeof getPilotName() === 'string', 'Initial pilot name is defined and valid string');
+
+// 2. Set custom pilot name
+const customName = setPilotName('Cmdr. Nova');
+assert(customName === 'Cmdr. Nova', 'setPilotName returns formatted name');
+assert(getPilotName() === 'Cmdr. Nova', 'getPilotName returns updated pilot name');
+assert(localStorage.getItem('space_pilot_name') === 'Cmdr. Nova', 'localStorage space_pilot_name holds updated name');
+
+// 3. Cookie storage toggle
+assert(typeof isLeaderboardCookieAllowed() === 'boolean', 'isLeaderboardCookieAllowed returns boolean');
+
+// Enable leaderboard cookies
+setLeaderboardCookieAllowed(true);
+assert(isLeaderboardCookieAllowed() === true, 'isLeaderboardCookieAllowed returns true after enabling');
+assert(getCookie('cookie_lb_consent') === 'true', 'cookie_lb_consent cookie is "true"');
+
+// Save a high test score
+saveLeaderboardScore({
+  name: getPilotName(),
+  score: 2500,
+  rankKey: 'game.rank_space_cadet',
+  avatar: '👨‍🚀'
+});
+
+const lbEntries = loadLeaderboard();
+assert(Array.isArray(lbEntries), 'loadLeaderboard returns an array');
+assert(lbEntries.length > 0, 'Leaderboard has entries');
+assert(lbEntries[0].name === 'Cmdr. Nova', 'First entry name matches custom pilot name');
+assert(getCookie('space_game_leaderboard') !== null, 'space_game_leaderboard cookie is stored when allowed');
+assert(getCookie('pilot_name') === 'Cmdr. Nova', 'pilot_name cookie is stored when allowed');
+
+// Disable leaderboard cookies
+setLeaderboardCookieAllowed(false);
+assert(isLeaderboardCookieAllowed() === false, 'isLeaderboardCookieAllowed returns false after disabling');
+assert(getCookie('space_game_leaderboard') === null, 'space_game_leaderboard cookie is deleted when disallowed');
+assert(getCookie('pilot_name') === null, 'pilot_name cookie is deleted when disallowed');
+assert(getCookie('cookie_lb_consent') === 'false', 'cookie_lb_consent cookie is "false"');
+
+// 4. Modal DOM test
+showLeaderboardModal();
+const lbModal = document.getElementById('game-leaderboard-modal');
+assert(lbModal !== null, 'showLeaderboardModal rendered #game-leaderboard-modal in DOM');
+const pilotInput = document.getElementById('lb-pilot-input');
+assert(pilotInput !== null, 'Leaderboard modal contains #lb-pilot-input');
+assert(pilotInput.value === 'Cmdr. Nova', '#lb-pilot-input defaults to current pilot name');
+const lbCookieToggle = document.getElementById('lb-cookie-pref-toggle');
+assert(lbCookieToggle !== null, 'Leaderboard modal contains #lb-cookie-pref-toggle');
+assert(lbCookieToggle.checked === false, '#lb-cookie-pref-toggle reflects isLeaderboardCookieAllowed state (false)');
+
+// Change name via input and save button
+const saveBtn = document.getElementById('lb-save-name-btn');
+assert(saveBtn !== null, 'Leaderboard modal contains #lb-save-name-btn');
+pilotInput.value = 'Captain Orion';
+saveBtn.click();
+assert(getPilotName() === 'Captain Orion', 'Saving via button updates getPilotName() to Captain Orion');
+
+// Close modal
+const lbCloseBtn = document.getElementById('lb-close-btn');
+assert(lbCloseBtn !== null, 'Leaderboard modal contains #lb-close-btn');
+lbCloseBtn.click();
+assert(document.getElementById('game-leaderboard-modal') === null, 'Clicking close removes modal from DOM');
+
+// 5. Test clearAllCookiesAndStorage()
+clearAllCookiesAndStorage();
+assert(localStorage.getItem('space_pilot_name') === null, 'clearAllCookiesAndStorage wipes space_pilot_name');
+assert(localStorage.getItem('space_game_leaderboard') === null, 'clearAllCookiesAndStorage wipes space_game_leaderboard');
+assert(getCookie('cookie_lb_consent') === null, 'clearAllCookiesAndStorage wipes cookie_lb_consent');
 
 console.log('\n====================================================');
 console.log(`🎉 ALL TESTS PASSED: ${passedTests} / ${totalTests} assertions verified!`);

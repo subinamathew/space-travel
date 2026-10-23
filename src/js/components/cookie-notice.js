@@ -39,6 +39,23 @@ export function initCookieNotice() {
     });
   }
 
+  // Hook leaderboard cookie toggle
+  const lbToggle = document.getElementById('cookie-lb-toggle');
+  if (lbToggle) {
+    lbToggle.checked = isLeaderboardCookieAllowed();
+    lbToggle.addEventListener('change', () => {
+      setLeaderboardCookieAllowed(lbToggle.checked);
+      if (toast) {
+        const msg = lbToggle.checked
+          ? (t('ui.cookie_lb_enabled') || 'Leaderboard & Pilot stats cookie storage enabled!')
+          : (t('ui.cookie_lb_disabled') || 'Leaderboard cookies cleared and disabled.');
+        toast.textContent = msg;
+        toast.classList.add('is-active');
+        setTimeout(() => toast.classList.remove('is-active'), 2500);
+      }
+    });
+  }
+
   // Accept / Got it
   if (acceptBtn) {
     acceptBtn.addEventListener('click', () => {
@@ -156,7 +173,12 @@ export function clearAllCookiesAndStorage() {
       'space_calc_weight_unit',
       'space_calc_height_unit',
       'space_calc_minimized',
-      'space_calc_astronaut'
+      'space_calc_astronaut',
+      'space_game_leaderboard',
+      'space_pilot_name',
+      'space_lb_cookie_consent',
+      'space_game_mode',
+      'space_game_freeplay'
     ];
     keysToRemove.forEach(k => {
       try {
@@ -165,6 +187,34 @@ export function clearAllCookiesAndStorage() {
     });
   } catch (e) {
     console.warn('Could not clear storage:', e);
+  }
+}
+
+/**
+ * Check if leaderboard cookie storage is allowed
+ */
+export function isLeaderboardCookieAllowed() {
+  const cookieVal = getCookie('cookie_lb_consent');
+  if (cookieVal !== null) return cookieVal !== 'false' && cookieVal !== 'off';
+  try {
+    const localVal = localStorage.getItem('space_lb_cookie_consent');
+    if (localVal !== null) return localVal !== 'false' && localVal !== 'off';
+  } catch {}
+  return true;
+}
+
+/**
+ * Set leaderboard cookie storage permission
+ */
+export function setLeaderboardCookieAllowed(allowed) {
+  const val = allowed ? 'true' : 'false';
+  setCookie('cookie_lb_consent', val, 365);
+  try {
+    localStorage.setItem('space_lb_cookie_consent', val);
+  } catch {}
+  if (!allowed) {
+    deleteCookie('space_game_leaderboard');
+    deleteCookie('pilot_name');
   }
 }
 
@@ -194,6 +244,18 @@ function ensureCookieMarkup() {
       <p id="cookie-desc" class="cookie-desc" data-i18n="ui.cookie_desc">
         RocketRun uses zero tracking or advertising cookies. We only use strictly necessary local storage to remember your language, units, and orrery preferences.
       </p>
+      <div class="cookie-options">
+        <div class="cookie-option-row">
+          <label class="cookie-option-label" for="cookie-lb-toggle">
+            <span class="cookie-option-title" data-i18n="ui.cookie_leaderboard_title">Leaderboard & Pilot Stats:</span>
+            <span class="cookie-option-desc" data-i18n="ui.cookie_leaderboard_desc">Save high scores, pilot name, and space ranks in a first-party cookie.</span>
+          </label>
+          <label class="hud-switch" for="cookie-lb-toggle">
+            <input type="checkbox" id="cookie-lb-toggle" ${isLeaderboardCookieAllowed() ? 'checked' : ''} aria-label="Toggle Leaderboard Cookie" />
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
       <div class="cookie-actions">
         <button type="button" class="cookie-btn cookie-btn-accept" id="cookie-accept-btn" data-i18n="ui.cookie_accept">Got it / Accept</button>
         <button type="button" class="cookie-btn cookie-btn-clear" id="cookie-clear-btn" data-i18n="ui.cookie_clear">Clear Stored Data</button>
