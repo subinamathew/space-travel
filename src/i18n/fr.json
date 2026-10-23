@@ -142,7 +142,11 @@
     "roadmap_dec_date": "Déc 2026",
     "roadmap_status_goal": "Objectif Accessibilité Totale",
     "roadmap_dec_item1_title": "Accessibilité Complète",
-    "roadmap_dec_item1_desc": "Conformité complète aux normes WCAG 2.2 AAA, télémétrie lecteur d'écran et accès universel"
+    "roadmap_dec_item1_desc": "Conformité complète aux normes WCAG 2.2 AAA, télémétrie lecteur d'écran et accès universel",
+    "impressum_link": "Mentions légales / Impressum",
+    "impressum_page_title": "Mentions Légales & Impressum — RocketRun",
+    "impressum_heading": "Mentions Légales & Impressum",
+    "impressum_subheading": "Informations sur le prestataire selon le § 5 DDG, § 18 MStV et conformité RGPD"
   },
   "planets": {
     "sun": {

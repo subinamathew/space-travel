@@ -110,6 +110,20 @@ if (fs.existsSync(srcFeatures)) {
   console.log(`Generated: public/features.html (commit: ${gitCommit}, version: ${appVersion})`);
 }
 
+// 5c. Compile src/impressum.html -> public/impressum.html with Git commit and version
+const srcImpressum = path.resolve(__dirname, '../src/impressum.html');
+const pubImpressum = path.resolve(pubDir, 'impressum.html');
+if (fs.existsSync(srcImpressum)) {
+  let impressumContent = fs.readFileSync(srcImpressum, 'utf8');
+  impressumContent = impressumContent
+    .replace(/\{\{APP_VERSION\}\}/g, appVersion)
+    .replace(/\{\{GIT_COMMIT\}\}/g, gitCommit)
+    .replace(/\{\{COMMIT_URL\}\}/g, commitUrl)
+    .replace(/\{\{BUILD_DATE\}\}/g, buildDate);
+  fs.writeFileSync(pubImpressum, impressumContent, 'utf8');
+  console.log(`Generated: public/impressum.html (commit: ${gitCommit}, version: ${appVersion})`);
+}
+
 // Write public/version.json
 fs.writeFileSync(
   path.resolve(pubDir, 'version.json'),
@@ -428,6 +442,9 @@ allBodies.forEach((p, idx) => {
                     </div>
                 </div>
             </aside>
+            <footer class="subpage-tiny-footer">
+                <a href="../impressum.html" class="tiny-footer-link" data-i18n="ui.impressum_link">Impressum / Imprint</a>
+            </footer>
         </div>
     </main>
 

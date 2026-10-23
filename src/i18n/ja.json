@@ -142,7 +142,11 @@
     "roadmap_dec_date": "2026年12月",
     "roadmap_status_goal": "完全アクセシビリティ目標",
     "roadmap_dec_item1_title": "完全なアクセシビリティ",
-    "roadmap_dec_item1_desc": "WCAG 2.2 AAA基準の完全準拠、スクリーンリーダー対応、すべての人に届く設計"
+    "roadmap_dec_item1_desc": "WCAG 2.2 AAA基準の完全準拠、スクリーンリーダー対応、すべての人に届く設計",
+    "impressum_link": "法律情報 / インプリント",
+    "impressum_page_title": "法律情報とインプリント — RocketRun",
+    "impressum_heading": "法律情報とインプリント",
+    "impressum_subheading": "ドイツデジタルサービス法（§ 5 DDG）、メディア国家協定（§ 18 MStV）およびGDPRに基づく情報開示"
   },
   "planets": {
     "sun": {

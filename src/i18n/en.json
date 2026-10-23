@@ -142,7 +142,11 @@
     "roadmap_dec_date": "Dec 2026",
     "roadmap_status_goal": "Full Accessibility Target",
     "roadmap_dec_item1_title": "Full Accessibility",
-    "roadmap_dec_item1_desc": "Complete WCAG 2.2 AAA standard compliance, screen-reader telemetry, and universal sensory access"
+    "roadmap_dec_item1_desc": "Complete WCAG 2.2 AAA standard compliance, screen-reader telemetry, and universal sensory access",
+    "impressum_link": "Impressum / Imprint",
+    "impressum_page_title": "Impressum & Legal Notice — RocketRun",
+    "impressum_heading": "Impressum & Legal Notice",
+    "impressum_subheading": "Provider information according to § 5 DDG, § 18 MStV and GDPR compliance"
   },
   "planets": {
     "sun": {

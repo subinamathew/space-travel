@@ -142,7 +142,11 @@
     "roadmap_dec_date": "2026年12月",
     "roadmap_status_goal": "全面无障碍目标",
     "roadmap_dec_item1_title": "全面无障碍",
-    "roadmap_dec_item1_desc": "完全符合WCAG 2.2 AAA标准，支持屏幕朗读与全民无障碍体验"
+    "roadmap_dec_item1_desc": "完全符合WCAG 2.2 AAA标准，支持屏幕朗读与全民无障碍体验",
+    "impressum_link": "法律声明 / 印章",
+    "impressum_page_title": "法律声明与印章 — RocketRun",
+    "impressum_heading": "法律声明与印章",
+    "impressum_subheading": "根据德国数字服务法（§ 5 DDG）、国家媒体条约（§ 18 MStV）及通用数据保护条例（GDPR）所载之信息"
   },
   "planets": {
     "sun": {

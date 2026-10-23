@@ -142,7 +142,11 @@
     "roadmap_dec_date": "Dez 2026",
     "roadmap_status_goal": "Ziel für volle Barrierefreiheit",
     "roadmap_dec_item1_title": "Vollständige Barrierefreiheit",
-    "roadmap_dec_item1_desc": "Vollständige WCAG 2.2 AAA-Konformität, Screenreader-Telemetrie und barrierefreier Zugang für alle"
+    "roadmap_dec_item1_desc": "Vollständige WCAG 2.2 AAA-Konformität, Screenreader-Telemetrie und barrierefreier Zugang für alle",
+    "impressum_link": "Impressum / Imprint",
+    "impressum_page_title": "Impressum & Rechtliche Hinweise — RocketRun",
+    "impressum_heading": "Impressum & Rechtliche Hinweise",
+    "impressum_subheading": "Angaben gemäß § 5 Digitale-Dienste-Gesetz (DDG), § 18 Abs. 2 MStV und Datenschutz-Grundverordnung (DSGVO)"
   },
   "planets": {
     "sun": {
