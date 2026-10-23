@@ -9,6 +9,10 @@ export function buildOrrery(sceneEl, planets, onPlanetSelect) {
   if (!sceneEl) return;
 
   planets.forEach((p, i) => {
+    if (p.slug === 'jupiter') {
+      const belt = createAsteroidBeltOrbit();
+      sceneEl.appendChild(belt);
+    }
     const o = document.createElement('div');
     o.className = 'orbit';
     const r = p.orbitR;
@@ -182,4 +186,26 @@ export function initSettingsSwitches() {
     applyOrbits(savedOrbit);
     orbitToggle.addEventListener('change', () => applyOrbits(orbitToggle.checked));
   }
+}
+
+function createAsteroidBeltOrbit() {
+  const o = document.createElement('div');
+  o.className = 'orbit asteroid-belt';
+  o.id = 'asteroid-belt-orbit';
+  const r = 25.5; // Mean radius between Mars (22.5) and Jupiter (29)
+  const periodSeconds = 4.6 * BASE_EARTH_SECONDS; // ~4.6 Earth years
+  o.style.setProperty('--orbit-a', `${r}vmin`);
+  o.style.setProperty('--orbit-b-3d', `${(r * 0.98).toFixed(2)}vmin`);
+  o.style.setProperty('--orbit-scale-y', '0.98');
+  o.style.setProperty('--focal-offset', '1.2vmin');
+  o.style.setProperty('--orbit-peri', '71deg');
+  o.style.setProperty('--orbit-inc', '1.8deg');
+  o.style.setProperty('--orbit-peri-inv', '-71deg');
+  o.style.setProperty('--orbit-inc-inv', '-1.8deg');
+  o.style.setProperty('--orbit-period', `${periodSeconds.toFixed(2)}s`);
+  o.style.setProperty('--orbit-delay', '0s');
+  o.style.setProperty('--orbit-period-game', `${(periodSeconds * 2.5).toFixed(2)}s`);
+  o.style.setProperty('--orbit-delay-game', '0s');
+  o.title = 'Main Asteroid Belt (~2.7 AU)';
+  return o;
 }

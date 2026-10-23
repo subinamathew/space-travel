@@ -197,6 +197,22 @@
   will-change: transform;
   transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1),
               border-color 0.4s ease;
+
+  &.asteroid-belt {
+    border: 1px dashed rgba(220, 190, 150, 0.22);
+    box-shadow: inset 0 0 10px rgba(210, 175, 135, 0.08), 0 0 10px rgba(210, 175, 135, 0.08);
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: -1.2vmin;
+      border-radius: 50%;
+      border: 1.6vmin dotted rgba(230, 195, 155, 0.28);
+      opacity: 0.8;
+      pointer-events: none;
+      animation: orbit-spin var(--orbit-period, 45s) linear infinite;
+    }
+  }
 }
 
 /* Rotating orbital carrier — pure CSS hardware animation */

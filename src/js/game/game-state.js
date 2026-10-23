@@ -13,25 +13,44 @@ export const GAME_STATES = {
 };
 
 export const MISSIONS = [
-  { id: 'moon', name: 'Luna (The Moon)', clueKey: 'game.mission_clue_moon', targetSlug: 'moon' },
-  { id: 'mars', name: 'Mars', clueKey: 'game.mission_clue_mars', targetSlug: 'mars' },
-  { id: 'jupiter', name: 'Jupiter', clueKey: 'game.mission_clue_jupiter', targetSlug: 'jupiter', crossesAsteroids: true },
-  { id: 'saturn', name: 'Saturn', clueKey: 'game.mission_clue_saturn', targetSlug: 'saturn' },
-  { id: 'uranus', name: 'Uranus', clueKey: 'game.mission_clue_uranus', targetSlug: 'uranus' },
-  { id: 'neptune', name: 'Neptune', clueKey: 'game.mission_clue_neptune', targetSlug: 'neptune' },
-  { id: 'earth', name: 'Earth', clueKey: 'game.mission_clue_earth_slingshot', targetSlug: 'earth', isSlingshot: true }
+  { id: 'moon', name: 'Luna (The Moon)', clueKey: 'game.mission_clue_mixed_moon', targetSlug: 'moon' },
+  { id: 'jupiter', name: 'Jupiter', clueKey: 'game.mission_clue_mixed_jupiter', targetSlug: 'jupiter', crossesAsteroids: true },
+  { id: 'venus', name: 'Venus', clueKey: 'game.mission_clue_mixed_venus', targetSlug: 'venus' },
+  { id: 'mars', name: 'Mars', clueKey: 'game.mission_clue_mixed_mars', targetSlug: 'mars' },
+  { id: 'neptune', name: 'Neptune', clueKey: 'game.mission_clue_mixed_neptune', targetSlug: 'neptune', crossesAsteroids: true },
+  { id: 'mercury', name: 'Mercury', clueKey: 'game.mission_clue_mixed_mercury', targetSlug: 'mercury' },
+  { id: 'saturn', name: 'Saturn', clueKey: 'game.mission_clue_mixed_saturn', targetSlug: 'saturn', crossesAsteroids: true },
+  { id: 'earth', name: 'Earth', clueKey: 'game.mission_clue_mixed_earth', targetSlug: 'earth', isSlingshot: true }
 ];
+
+export const ADVANCED_RIDDLES = {
+  mercury: 'game.riddle_adv_mercury',
+  venus: 'game.riddle_adv_venus',
+  earth: 'game.riddle_adv_earth',
+  moon: 'game.riddle_adv_moon',
+  mars: 'game.riddle_adv_mars',
+  jupiter: 'game.riddle_adv_jupiter',
+  saturn: 'game.riddle_adv_saturn',
+  uranus: 'game.riddle_adv_uranus',
+  neptune: 'game.riddle_adv_neptune'
+};
 
 export const RANKS = [
   { minMissions: 0, titleKey: 'game.rank_cadet', icon: '🚀' },
   { minMissions: 1, titleKey: 'game.rank_scout', icon: '🛸' },
   { minMissions: 3, titleKey: 'game.rank_navigator', icon: '🛰️' },
   { minMissions: 5, titleKey: 'game.rank_pioneer', icon: '🌌' },
-  { minMissions: 7, titleKey: 'game.rank_master', icon: '👑' }
+  { minMissions: 8, titleKey: 'game.rank_master', icon: '👑' },
+  { minMissions: 12, titleKey: 'game.rank_explorer', icon: '🔭' },
+  { minMissions: 16, titleKey: 'game.rank_voyager', icon: '🌠' },
+  { minMissions: 20, titleKey: 'game.rank_legend', icon: '⭐' }
 ];
+
+const ALL_DESTINATIONS = ['moon', 'mercury', 'venus', 'earth', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune'];
 
 export class GameState {
   constructor() {
+    this.dynamicMission = null;
     this.reset();
   }
 
@@ -45,13 +64,35 @@ export class GameState {
     this.energy = 50;
     this.fuel = 100;
     this.solarBoostActive = false;
+    this.dynamicMission = null;
   }
 
   getCurrentMission() {
-    if (this.missionIndex >= MISSIONS.length) {
-      return MISSIONS[MISSIONS.length - 1];
+    if (this.missionIndex < MISSIONS.length) {
+      return MISSIONS[this.missionIndex];
     }
-    return MISSIONS[this.missionIndex];
+    if (!this.dynamicMission) {
+      this.generateNextRandomMission();
+    }
+    return this.dynamicMission;
+  }
+
+  generateNextRandomMission() {
+    const candidates = ALL_DESTINATIONS.filter(slug => slug !== this.currentPlanet);
+    const target = candidates[Math.floor(Math.random() * candidates.length)] || 'mars';
+    this.dynamicMission = {
+      id: `expedition-${this.missionIndex}`,
+      name: target,
+      clueKey: ADVANCED_RIDDLES[target] || 'game.mission_clue_mixed_mars',
+      targetSlug: target
+    };
+    return this.dynamicMission;
+  }
+
+  getSolarRechargeRate() {
+    if (['mercury', 'venus'].includes(this.currentPlanet)) return 15;
+    if (['earth', 'moon', 'mars'].includes(this.currentPlanet)) return 10;
+    return 7;
   }
 
   getRank() {
@@ -83,7 +124,8 @@ export class GameState {
   advanceMission() {
     this.currentPlanet = this.targetPlanet || this.currentPlanet;
     this.targetPlanet = null;
-    this.missionIndex = Math.min(this.missionIndex + 1, MISSIONS.length);
+    this.missionIndex++;
+    this.dynamicMission = null;
     this.fuel = 100;
     this.state = GAME_STATES.STANDBY;
   }

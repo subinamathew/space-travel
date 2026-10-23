@@ -5,7 +5,7 @@
  * Cyclomatic Complexity <= 5 per function.
  */
 
-import { GameState, GAME_STATES, MISSIONS } from './game-state.js';
+import { GameState, GAME_STATES } from './game-state.js';
 import {
   calculateOrbitalWindow,
   evaluateLaunchOutcome,
@@ -33,9 +33,9 @@ export function initGameEngine() {
   gameState = new GameState();
   window.RocketRun = gameState;
 
-  // Expose canvas tap selection bridge
   window.RocketRun.selectDestinationFromCanvas = selectDestinationFromCanvas;
   window.RocketRun.isGameActive = isGameActive;
+  window.RocketRun.exitGameMode = exitGameMode;
 
   bindGlobalShortcuts();
 }
@@ -73,6 +73,17 @@ export function stopGame() {
   teardownGameUI();
 }
 
+export function exitGameMode() {
+  const gameToggle = document.getElementById('settings-game-toggle');
+  if (gameToggle) {
+    gameToggle.checked = false;
+  }
+  if (typeof localStorage !== 'undefined') {
+    localStorage.setItem('space_game_mode', 'false');
+  }
+  stopGame();
+}
+
 function clearFlightTimeout() {
   if (activeFlightTimeout) {
     clearTimeout(activeFlightTimeout);
@@ -106,7 +117,8 @@ function startOrbitalTelemetry() {
     if (!gameActive) return;
     if (gameState.state !== GAME_STATES.TRANSIT && gameState.state !== GAME_STATES.LAUNCHING) {
       if (gameState.fuel < 100) {
-        gameState.addFuel(4);
+        const fluxRate = gameState.getSolarRechargeRate ? gameState.getSolarRechargeRate() : 10;
+        gameState.addFuel(fluxRate * 0.4);
         updateFuelUI();
         updateLaunchButtonState();
       }
@@ -162,8 +174,6 @@ function dockRocketAtCurrentPlanet() {
   rocket.style.removeProperty('animation');
   rocket.style.removeProperty('--flight-duration');
   bodyEl.appendChild(rocket);
-
-  removeFlightPathSvg();
 }
 
 function renderGameUI() {
@@ -178,20 +188,15 @@ function renderGameUI() {
         <span class="hud-avatar" id="hud-avatar">${getAstronautAvatar()}</span>
         <span class="hud-rank" id="hud-rank">Cadet</span>
       </div>
-      <div class="hud-col mission-col">
-        <div class="hud-label" data-i18n="game.mission_label">ACTIVE MISSION</div>
-        <div class="hud-clue" id="hud-mission-clue">Loading mission...</div>
-        <div class="hud-window-status" id="hud-orbital-status">
-          <span class="status-pip"></span>
-          <span class="status-text" id="hud-status-text">Calculating...</span>
-        </div>
-      </div>
       <div class="hud-col stats-col">
         <div class="hud-lives" id="hud-lives" aria-label="Lives">🚀 🚀 🚀</div>
         <div class="hud-stars" id="hud-stars">⭐ 0</div>
         <div class="hud-fuel" id="hud-fuel-gauge" title="Fuel Tank">⛽ 100%</div>
       </div>
-      <button type="button" class="hud-lb-btn" id="hud-lb-btn" title="View Leaderboard" aria-label="Leaderboard">🏆</button>
+      <div class="hud-col actions-col">
+        <button type="button" class="hud-lb-btn" id="hud-lb-btn" title="View Leaderboard" aria-label="Leaderboard">🏆</button>
+        <button type="button" class="hud-close-btn" id="hud-close-btn" title="${t('game.exit_game_aria') || 'Exit Game Mode'}" aria-label="${t('game.exit_game_aria') || 'Exit Game Mode'}">✕</button>
+      </div>
     </div>
   `;
   document.body.appendChild(hud);
@@ -205,13 +210,12 @@ function renderGameUI() {
         <span class="sidebar-icon">🚀</span>
         <span data-i18n="game.launch_control">Launch Control</span>
       </div>
-      <div class="current-loc" id="current-location-indicator">Earth 🌍</div>
+      <div class="sidebar-header-actions">
+        <div class="current-loc" id="current-location-indicator">Earth 🌍</div>
+        <button type="button" class="sidebar-close-btn" id="sidebar-close-btn" title="${t('game.exit_game_aria') || 'Exit Game Mode'}" aria-label="${t('game.exit_game_aria') || 'Exit Game Mode'}">✕</button>
+      </div>
     </div>
     <div class="sidebar-body">
-      <div class="sidebar-mission-card">
-        <span class="sidebar-mission-tag">🎯 <span data-i18n="game.mission_label">ACTIVE MISSION</span></span>
-        <div class="sidebar-mission-clue" id="sidebar-mission-clue">Loading mission...</div>
-      </div>
       <label class="sidebar-label" data-i18n="game.select_destination">Select Destination:</label>
       <div class="planet-select-list" id="planet-select-list"></div>
 
@@ -226,6 +230,7 @@ function renderGameUI() {
           <span>50% (Cruise)</span>
           <span>100% (Max)</span>
         </div>
+        <div class="energy-feedback-hint" id="energy-feedback-hint"></div>
       </div>
 
       <div class="sidebar-fuel-block" id="sidebar-fuel-block">
@@ -236,12 +241,46 @@ function renderGameUI() {
         <div class="fuel-progress-track">
           <div class="fuel-progress-fill" id="fuel-progress-fill" style="width: 100%;"></div>
         </div>
+        <div class="solar-recharge-indicator" id="solar-recharge-indicator" style="display:none;">
+          <span class="solar-icon">☀️</span>
+          <span class="solar-text" id="solar-recharge-text">${t('game.solar_charging_status') || '☀️ Solar Array Charging: Active'}</span>
+        </div>
       </div>
 
       <button type="button" id="launch-btn" class="big-launch-btn">
         <span class="btn-glow"></span>
         <span class="btn-text" id="launch-btn-text" data-i18n="game.big_launch_btn">BIG LAUNCH 🚀</span>
       </button>
+
+      <div class="sidebar-mission-card">
+        <span class="sidebar-mission-tag">🎯 <span data-i18n="game.mission_label">ACTIVE MISSION</span></span>
+        <div class="sidebar-mission-clue" id="sidebar-mission-clue">Loading mission...</div>
+      </div>
+
+      <div class="sidebar-telemetry-block" id="sidebar-orbit-telemetry">
+        <div class="telemetry-header">
+          <span class="telemetry-title" data-i18n="game.orbital_telemetry">ORBITAL TELEMETRY</span>
+          <span class="telemetry-window-tag" id="telemetry-window-tag">🟢 Perigee Window</span>
+        </div>
+        <div class="telemetry-grid">
+          <div class="telemetry-item">
+            <span class="telemetry-label" data-i18n="game.perigee_label">Perigee (Min):</span>
+            <span class="telemetry-val" id="telemetry-perigee-val">--</span>
+          </div>
+          <div class="telemetry-item">
+            <span class="telemetry-label" data-i18n="game.apogee_label">Apogee (Max):</span>
+            <span class="telemetry-val" id="telemetry-apogee-val">--</span>
+          </div>
+          <div class="telemetry-item">
+            <span class="telemetry-label" data-i18n="game.current_separation">Current Distance:</span>
+            <span class="telemetry-val" id="telemetry-dist-val">--</span>
+          </div>
+          <div class="telemetry-item">
+            <span class="telemetry-label" data-i18n="game.target_orbit_zone">Target Orbit Zone:</span>
+            <span class="telemetry-val" id="telemetry-energy-req">--</span>
+          </div>
+        </div>
+      </div>
     </div>
   `;
   document.body.appendChild(sidebar);
@@ -273,6 +312,10 @@ function bindHUDEvents() {
   if (lbBtn) {
     lbBtn.addEventListener('click', showLeaderboardModal);
   }
+  const closeBtn = document.getElementById('hud-close-btn');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', exitGameMode);
+  }
 }
 
 function bindSidebarEvents() {
@@ -294,6 +337,7 @@ function bindSidebarEvents() {
         readout.textContent = `${slider.value}%`;
         gameState.setEnergy(slider.value);
         updateLaunchButtonState();
+        updateEnergyFeedbackHint();
       },
       { passive: true }
     );
@@ -302,6 +346,11 @@ function bindSidebarEvents() {
   const launchBtn = document.getElementById('launch-btn');
   if (launchBtn) {
     launchBtn.addEventListener('click', handleLaunchClick);
+  }
+
+  const closeBtn = document.getElementById('sidebar-close-btn');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', exitGameMode);
   }
 }
 
@@ -315,12 +364,6 @@ function updateHUD() {
   if (rankEl) {
     const r = gameState.getRank();
     rankEl.textContent = `${r.icon} ${t(r.titleKey)}`;
-  }
-
-  const clueEl = document.getElementById('hud-mission-clue');
-  if (clueEl) {
-    const mission = gameState.getCurrentMission();
-    clueEl.textContent = t(mission.clueKey);
   }
 
   const livesEl = document.getElementById('hud-lives');
@@ -376,15 +419,31 @@ function updateSidebar() {
 
 function updateFuelUI() {
   if (!gameState) return;
+  const f = Math.round(gameState.fuel);
+
   const fuelEl = document.getElementById('hud-fuel-gauge');
-  if (fuelEl) fuelEl.textContent = `⛽ ${Math.round(gameState.fuel)}%`;
+  if (fuelEl) fuelEl.textContent = `⛽ ${f}%`;
 
   const fuelVal = document.getElementById('fuel-val-readout');
   const fuelFill = document.getElementById('fuel-progress-fill');
   if (fuelVal && fuelFill) {
-    const f = Math.round(gameState.fuel);
     fuelVal.textContent = `${f}%`;
     fuelFill.style.width = `${f}%`;
+  }
+
+  const solarInd = document.getElementById('solar-recharge-indicator');
+  const solarText = document.getElementById('solar-recharge-text');
+  const isCharging = gameState.fuel < gameState.energy;
+
+  if (solarInd) {
+    solarInd.style.display = isCharging ? 'flex' : 'none';
+  }
+  if (solarText && isCharging) {
+    const rate = gameState.getSolarRechargeRate ? gameState.getSolarRechargeRate() : 10;
+    solarText.textContent = `${t('game.solar_charging_status')} (+${rate}%/s)`;
+  }
+  if (fuelFill) {
+    fuelFill.classList.toggle('is-charging', isCharging);
   }
 }
 
@@ -396,9 +455,10 @@ function updateLaunchButtonState() {
 
   if (gameState.fuel < gameState.energy) {
     const deficit = gameState.energy - gameState.fuel;
-    const waitSec = Math.ceil(deficit / 10);
+    const fluxRate = gameState.getSolarRechargeRate ? gameState.getSolarRechargeRate() : 10;
+    const waitSec = Math.ceil(deficit / fluxRate);
     btn.disabled = true;
-    const template = t('game.refueling_wait') || 'REFUELING ({sec}s)... ⛽';
+    const template = t('game.solar_charging_wait') || '☀️ SOLAR CHARGING ({sec}s)... ⚡';
     btnText.textContent = template.replace('{sec}', waitSec);
   } else {
     btn.disabled = false;
@@ -437,19 +497,50 @@ function selectDestination(slug) {
 }
 
 function updateOrbitalWindowUI() {
-  const statusEl = document.getElementById('hud-orbital-status');
-  const textEl = document.getElementById('hud-status-text');
-  if (!statusEl || !textEl || !gameState.targetPlanet) return;
-
+  if (!gameState.targetPlanet) return;
   const metrics = calculateOrbitalWindow(gameState.currentPlanet, gameState.targetPlanet, getElapsedSec());
-  statusEl.className = `hud-window-status status-${metrics.status}`;
 
-  if (metrics.status === 'perigee') {
-    textEl.textContent = `🟢 Perigee (Closest Window: ${metrics.minReq}%-${metrics.maxCap}%)`;
-  } else if (metrics.status === 'apogee') {
-    textEl.textContent = `🔴 Apogee (Furthest: Needs ${metrics.minReq}%+ Energy)`;
+  const tagEl = document.getElementById('telemetry-window-tag');
+  if (tagEl) {
+    tagEl.className = `telemetry-window-tag status-${metrics.status}`;
+    if (metrics.status === 'perigee') tagEl.textContent = t('game.perigee_window') || '🟢 Perigee Window';
+    else if (metrics.status === 'apogee') tagEl.textContent = t('game.apogee_window') || '🔴 Apogee Window';
+    else tagEl.textContent = t('game.moderate_window') || '🟡 Mid-Orbit';
+  }
+
+  const pVal = document.getElementById('telemetry-perigee-val');
+  if (pVal) pVal.textContent = `${metrics.minAu.toFixed(2)} AU`;
+
+  const aVal = document.getElementById('telemetry-apogee-val');
+  if (aVal) aVal.textContent = `${metrics.maxAu.toFixed(2)} AU`;
+
+  const dVal = document.getElementById('telemetry-dist-val');
+  if (dVal) dVal.textContent = `${metrics.currentAu.toFixed(2)} AU`;
+
+  const zVal = document.getElementById('telemetry-energy-req');
+  if (zVal) zVal.textContent = `${metrics.minReq}% – ${metrics.maxCap}%`;
+
+  updateEnergyFeedbackHint(metrics);
+}
+
+function updateEnergyFeedbackHint(optMetrics) {
+  const hintEl = document.getElementById('energy-feedback-hint');
+  if (!hintEl || !gameState || !gameState.targetPlanet) return;
+
+  const metrics = optMetrics || calculateOrbitalWindow(gameState.currentPlanet, gameState.targetPlanet, getElapsedSec());
+  const e = gameState.energy;
+
+  if (e < metrics.minReq) {
+    hintEl.className = 'energy-feedback-hint is-low';
+    const tmpl = t('game.apogee_short_warning') || '⚠️ Apogee will fall short of target orbit (Need {minReq}%+)';
+    hintEl.textContent = tmpl.replace('{minReq}', metrics.minReq);
+  } else if (e > metrics.maxCap) {
+    hintEl.className = 'energy-feedback-hint is-high';
+    const tmpl = t('game.apogee_overshoot_warning') || '⚠️ Apogee exceeds capture limit (Max {maxCap}%)';
+    hintEl.textContent = tmpl.replace('{maxCap}', metrics.maxCap);
   } else {
-    textEl.textContent = `🟡 Orbital Distance: Moderate (${metrics.minReq}%-${metrics.maxCap}%)`;
+    hintEl.className = 'energy-feedback-hint is-optimal';
+    hintEl.textContent = t('game.apogee_optimal_hint') || '✅ Optimal thrust: Apogee will match target orbit!';
   }
 }
 
@@ -475,7 +566,7 @@ function handleLaunchClick() {
   if (!gameState.hasSufficientFuel(gameState.energy)) {
     const rawFuelAlert =
       t('game.insufficient_fuel_alert') ||
-      '⚠️ Insufficient Propellant: This launch requires {energy}% fuel, but only {fuel}% is available. Please wait for ground refueling!';
+      '⚠️ Insufficient Propellant: This launch requires {energy}% fuel, but only {fuel}% is available. Please wait for solar recharging!';
     alert(
       rawFuelAlert
         .replace('{energy}', Math.round(gameState.energy))
@@ -484,7 +575,6 @@ function handleLaunchClick() {
     return;
   }
 
-  // 3-2-1 Ignition Countdown
   gameState.setState(GAME_STATES.LAUNCHING);
   const btn = document.getElementById('launch-btn');
   const btnText = document.getElementById('launch-btn-text');
@@ -527,13 +617,9 @@ function executeFlightTransit() {
   const isMoon = gameState.targetPlanet === 'moon' || gameState.currentPlanet === 'moon';
   const isOuter = ['jupiter', 'saturn', 'uranus', 'neptune'].includes(gameState.targetPlanet);
 
-  // Slower, graceful, scientific duration (3.8s to 6.5s)
   const durationSec = isMoon ? 3.8 : (isOuter ? 6.5 : 5.2);
-
-  // Calculate authentic Keplerian transfer trajectory
   const points = generateScientificTransferArc(p1, p2, isMoon);
 
-  // Inject CSS Keyframes & Render Path SVG
   injectFlightKeyframes(points);
   renderFlightPathSvg(points, sceneEl);
 
@@ -643,7 +729,6 @@ function handleTransitOutcome(rocket, outcomeData, durationSec) {
     return;
   }
 
-  // Capture / Successful Landing
   activeFlightTimeout = setTimeout(() => {
     triggerTouchdown(rocket);
   }, durationSec * 1000);
@@ -693,7 +778,6 @@ function triggerOvershoot(rocket, reasonKey) {
 function triggerTouchdown(rocket) {
   playTouchdownSound();
 
-  // Check Solar Boost
   if (checkSolarBoost(gameState.currentPlanet, gameState.targetPlanet)) {
     gameState.addScore(50);
     gameState.addFuel(50);
@@ -721,7 +805,7 @@ function showTouchdownQuizModal(planetSlug) {
   if (existing) existing.remove();
 
   const noteKey = getTouchdownNoteKey(planetSlug);
-  const quiz = getPlanetQuiz(planetSlug);
+  const quiz = getPlanetQuiz(planetSlug, gameState.missionIndex);
 
   const modal = document.createElement('div');
   modal.id = 'game-quiz-modal';
@@ -740,7 +824,6 @@ function showTouchdownQuizModal(planetSlug) {
           ${t(quiz.options[1].key)}
         </button>
       </div>
-      <div class="quiz-hint" id="quiz-hint-box" style="display:none;"></div>
     </div>
   `;
   document.body.appendChild(modal);
@@ -762,11 +845,8 @@ function showTouchdownQuizModal(planetSlug) {
           date: new Date().toISOString().slice(0, 10)
         });
       } else {
-        const hintBox = document.getElementById('quiz-hint-box');
-        if (hintBox) {
-          hintBox.style.display = 'block';
-          hintBox.textContent = `💡 Hint: ${t(quiz.hintKey)}`;
-        }
+        btn.classList.add('is-incorrect');
+        btn.disabled = true;
       }
     });
   });
@@ -818,7 +898,7 @@ function showLeaderboardModal() {
         <span class="lb-avatar">${e.avatar || '👨‍🚀'}</span>
         <span class="lb-name">${e.name}</span>
         <span class="lb-rank-title">${t(e.rankKey)}</span>
-        <span class="lb-score">⭐ ${e.score}</span>
+        <span class="lb-stars">⭐ ${e.score}</span>
       </div>
     `
     )
@@ -829,25 +909,23 @@ function showLeaderboardModal() {
   modal.className = 'game-modal-overlay';
   modal.innerHTML = `
     <div class="game-modal-card lb-card">
-      <div class="modal-badge">🏆 ASTRONAUT LEADERBOARD</div>
-      <div class="lb-list">${rows}</div>
-      <button type="button" class="close-lb-btn" id="close-lb-btn">Close ✕</button>
+      <div class="modal-badge">🏆 TOP COSMIC NAVIGATORS</div>
+      <div class="lb-list">${rows || '<div class="lb-empty">No flights logged yet! Launch a mission to join the ranks!</div>'}</div>
+      <button type="button" class="lb-close-btn" id="lb-close-btn">Close ✕</button>
     </div>
   `;
   document.body.appendChild(modal);
 
-  const closeBtn = document.getElementById('close-lb-btn');
+  const closeBtn = document.getElementById('lb-close-btn');
   if (closeBtn) closeBtn.addEventListener('click', () => modal.remove());
 }
 
 function bindGlobalShortcuts() {
   window.addEventListener('keydown', e => {
-    if (!gameActive) return;
     if (e.shiftKey && (e.key === 'D' || e.key === 'd')) {
-      const rocket = document.getElementById('rocket-actor');
-      if (rocket && gameState.state === GAME_STATES.TRANSIT) {
+      if (gameActive && gameState.state === GAME_STATES.TRANSIT) {
         clearFlightTimeout();
-        triggerTouchdown(rocket);
+        triggerTouchdown(document.getElementById('rocket-actor'));
       }
     }
   });
