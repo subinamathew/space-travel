@@ -187,13 +187,20 @@ allBodies.forEach((p, idx) => {
 
   const cardsHtml = stats
     .map(
-      (s, sIdx) => `
-        <div class="info-card" role="button" tabindex="0" aria-haspopup="dialog" aria-label="${s.label}: ${s.value}. Click for kids science explanation" data-stat-idx="${sIdx}" data-body="${p.slug}" title="Click for kids science explanation">
+      (s, sIdx) => {
+        const isEarthMoon = p.slug === 'earth' && sIdx === 6;
+        return `
+        <div class="info-card ${isEarthMoon ? 'info-card-earth-moon' : ''}" role="button" tabindex="0" aria-haspopup="dialog" aria-label="${s.label}: ${s.value}. Click for kids science explanation" data-stat-idx="${sIdx}" data-body="${p.slug}" title="${isEarthMoon ? 'Click to visit Luna (The Moon)' : 'Click for kids science explanation'}">
             <span class="info-label" data-i18n="planets.${p.slug}.stats.${sIdx}.label">${s.label}</span>
             <span class="info-val" data-i18n="planets.${p.slug}.stats.${sIdx}.value">${s.value}</span>
             <span class="info-sub" data-i18n="planets.${p.slug}.stats.${sIdx}.sub">${s.sub}</span>
-            <span class="info-hint-badge" data-i18n="ui.tap_kids_explainer">💡 Tap for Kids Explainer</span>
-        </div>`
+            ${isEarthMoon ? `
+            <a href="luna.html" class="info-moon-quick-link" id="earth-card-moon-link" aria-label="Explore Luna (The Moon)" title="Explore Luna (The Moon)">
+              <span>🚀 <span data-i18n="ui.visit_luna_btn">Explore Luna (The Moon) →</span></span>
+            </a>` : `
+            <span class="info-hint-badge" data-i18n="ui.tap_kids_explainer">💡 Tap for Kids Explainer</span>`}
+        </div>`;
+      }
     )
     .join('');
 
@@ -374,7 +381,7 @@ allBodies.forEach((p, idx) => {
     <main class="planet-subpage">
         <div class="subpage-layout">
             <div class="planet-stage">
-                <div class="subpage-planet-preview">
+                <div class="subpage-planet-preview ${p.slug === 'earth' ? 'has-moon-companion' : ''}">
                     <img
                         src="../images/${p.slug}.png"
                         alt="${p.name}"
@@ -384,6 +391,14 @@ allBodies.forEach((p, idx) => {
                         loading="lazy"
                         decoding="async"
                     />
+                    ${p.slug === 'earth' ? `
+                    <a href="luna.html" class="earth-subpage-moon-track" id="earth-moon-companion" title="Luna (The Moon) — Click to explore" aria-label="Luna (The Moon) — Click to explore">
+                        <span class="subpage-moon-orbit-line"></span>
+                        <span class="subpage-moon-body">
+                            <img src="../images/luna.png" alt="Luna" class="subpage-moon-img" width="38" height="38" />
+                            <span class="subpage-moon-badge">Luna 🌙</span>
+                        </span>
+                    </a>` : ''}
                 </div>
 
                 <div class="planet-title-group">

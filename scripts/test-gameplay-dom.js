@@ -441,6 +441,16 @@ assert(lunaHtml.includes('href="earth.html"'), 'luna.html has previous link to e
 assert(lunaHtml.includes('href="mars.html"'), 'luna.html has next link to mars.html');
 assert(lunaHtml.includes('images/luna.png'), 'luna.html references images/luna.png');
 
+// Check Earth subpage moon links to luna.html
+const earthPath = path.resolve(__dirname, '../public/planets/earth.html');
+assert(fs.existsSync(earthPath), 'public/planets/earth.html exists on disk');
+const earthHtml = fs.readFileSync(earthPath, 'utf8');
+assert(earthHtml.includes('id="earth-moon-companion"'), 'earth.html includes #earth-moon-companion in preview');
+assert(earthHtml.includes('href="luna.html" class="earth-subpage-moon-track"'), 'earth.html moon companion links to luna.html');
+assert(earthHtml.includes('class="info-card info-card-earth-moon"'), 'earth.html Moons & Rings card has .info-card-earth-moon class');
+assert(earthHtml.includes('id="earth-card-moon-link"'), 'earth.html has #earth-card-moon-link inside Moons card');
+assert(earthHtml.includes('href="luna.html" class="info-moon-quick-link"'), 'earth.html card moon quick link points to luna.html');
+
 // ----------------------------------------------------
 // TEST 14: Cookie Gamemode State & Subpage Isolation
 // ----------------------------------------------------

@@ -477,6 +477,19 @@ function initStatCardPopups() {
   // Attach event listeners to all info cards
   const cards = document.querySelectorAll('.info-card');
   cards.forEach(card => {
+    if (card.classList.contains('info-card-earth-moon')) {
+      card.addEventListener('click', () => {
+        window.location.href = 'luna.html';
+      });
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          window.location.href = 'luna.html';
+        }
+      });
+      return;
+    }
+
     card.addEventListener('click', () => openPopup(card));
     card.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {

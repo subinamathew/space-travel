@@ -87,6 +87,105 @@
   }
 }
 
+/* Orbiting Moon Companion on Earth Subpage */
+.earth-subpage-moon-track {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 290px;
+  height: 290px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10;
+  text-decoration: none;
+
+  .subpage-moon-orbit-line {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 1px dashed rgba(147, 197, 253, 0.35);
+    box-shadow: 0 0 15px rgba(96, 165, 250, 0.12);
+    pointer-events: none;
+  }
+
+  .subpage-moon-body {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    pointer-events: auto;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.25s ease;
+
+    &:hover,
+    &:focus-visible {
+      transform: translate(-50%, -50%) scale(1.18);
+      outline: none;
+    }
+
+    &:hover .subpage-moon-img,
+    &:focus-visible .subpage-moon-img {
+      filter: drop-shadow(0 0 18px rgba(220, 235, 255, 1)) brightness(1.25);
+    }
+
+    &:hover .subpage-moon-badge,
+    &:focus-visible .subpage-moon-badge {
+      background: rgba(30, 64, 175, 0.95);
+      border-color: #93c5fd;
+      color: #ffffff;
+      box-shadow: 0 0 12px rgba(147, 197, 253, 0.75);
+    }
+  }
+
+  .subpage-moon-img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 12px rgba(200, 225, 255, 0.75));
+    transition: filter 0.25s ease, transform 0.25s ease;
+  }
+
+  .subpage-moon-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #e2e8f0;
+    background: rgba(15, 23, 42, 0.88);
+    border: 1px solid rgba(148, 163, 184, 0.45);
+    border-radius: 12px;
+    white-space: nowrap;
+    backdrop-filter: blur(4px);
+    transition: all 0.2s ease;
+  }
+}
+
+@media (max-width: 640px) {
+  .earth-subpage-moon-track {
+    width: 230px;
+    height: 230px;
+
+    .subpage-moon-img {
+      width: 34px;
+      height: 34px;
+    }
+
+    .subpage-moon-badge {
+      font-size: 0.66rem;
+      padding: 1px 6px;
+    }
+  }
+}
+
 @keyframes planet-float {
   0% {
     transform: translateY(0px) rotate(0deg);
@@ -262,6 +361,46 @@
     align-items: center;
     gap: 4px;
     transition: background 0.2s ease, border-color 0.2s ease;
+  }
+}
+
+/* Earth Subpage Moons Card Special Link */
+.info-card-earth-moon {
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+
+  &:hover,
+  &:focus-visible {
+    border-color: rgba(96, 165, 250, 0.8) !important;
+    background: rgba(30, 58, 138, 0.2) !important;
+    box-shadow: 0 0 25px rgba(59, 130, 246, 0.4) !important;
+    transform: translateY(-4px) scale(1.02);
+
+    .info-moon-quick-link {
+      background: rgba(37, 99, 235, 0.7);
+      border-color: #93c5fd;
+      color: #ffffff;
+      box-shadow: 0 0 10px rgba(147, 197, 253, 0.5);
+    }
+  }
+
+  .info-moon-quick-link {
+    align-self: flex-start;
+    margin-top: auto;
+    font-size: 0.76rem;
+    font-weight: 700;
+    color: #93c5fd;
+    background: rgba(30, 58, 138, 0.4);
+    border: 1px solid rgba(96, 165, 250, 0.5);
+    border-radius: 6px;
+    padding: 4px 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    pointer-events: auto;
   }
 }
 
