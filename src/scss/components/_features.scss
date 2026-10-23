@@ -177,6 +177,172 @@
   gap: 1.5rem;
 }
 
+// Roadmap Section & Timeline
+.roadmap-timeline {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+
+  @media screen and (max-width: 992px) {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+.roadmap-milestone-card {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: transparent;
+    transition: background 0.3s ease;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.5);
+  }
+
+  &.milestone-current {
+    border-color: rgba(56, 189, 248, 0.35);
+    background: linear-gradient(180deg, rgba(14, 165, 233, 0.08) 0%, rgba(15, 23, 42, 0.75) 100%);
+
+    &::before {
+      background: linear-gradient(90deg, #38bdf8, #0ea5e9);
+    }
+  }
+
+  &.milestone-upcoming {
+    border-color: rgba(245, 158, 11, 0.3);
+    background: linear-gradient(180deg, rgba(245, 158, 11, 0.06) 0%, rgba(15, 23, 42, 0.75) 100%);
+
+    &::before {
+      background: linear-gradient(90deg, #fbbf24, #f59e0b);
+    }
+  }
+
+  &.milestone-target {
+    border-color: rgba(168, 85, 247, 0.35);
+    background: linear-gradient(180deg, rgba(168, 85, 247, 0.07) 0%, rgba(15, 23, 42, 0.75) 100%);
+
+    &::before {
+      background: linear-gradient(90deg, #c084fc, #a855f7);
+    }
+  }
+
+  .milestone-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 1rem;
+  }
+
+  .milestone-date-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    .milestone-badge-icon {
+      font-size: 1.35rem;
+    }
+
+    .milestone-date {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: #ffffff;
+    }
+  }
+
+  .milestone-status-badge {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.25rem 0.65rem;
+    border-radius: 9999px;
+
+    &.status-live {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #34d399;
+    }
+
+    &.status-next {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: #fbbf24;
+    }
+
+    &.status-goal {
+      background: rgba(168, 85, 247, 0.15);
+      border: 1px solid rgba(168, 85, 247, 0.4);
+      color: #c084fc;
+    }
+  }
+
+  .milestone-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+
+    li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+
+      .milestone-bullet {
+        font-size: 1.1rem;
+        flex-shrink: 0;
+        line-height: 1.3;
+      }
+
+      .milestone-item-body {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+
+        .milestone-item-title {
+          font-size: 0.95rem;
+          font-weight: 700;
+          color: #f3f4f6;
+          line-height: 1.3;
+        }
+
+        .milestone-item-desc {
+          font-size: 0.82rem;
+          color: #9ca3af;
+          line-height: 1.4;
+        }
+      }
+    }
+  }
+}
+
 // 1. Accessibility Cards
 .feature-card {
   background: rgba(15, 23, 42, 0.75);
