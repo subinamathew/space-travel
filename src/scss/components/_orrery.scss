@@ -456,9 +456,21 @@ body.orbits-paused #scene {
   .planet-btn {
     animation-duration: var(--orbit-period-game, 25s) !important;
     animation-delay: var(--orbit-delay-game, 0s) !important;
+    pointer-events: none !important;
+    cursor: default !important;
   }
 
   .moon-orbit {
     animation-duration: 10s !important; // 2.5x slower moon orbit
+  }
+
+  .moon {
+    pointer-events: none !important;
+    cursor: default !important;
+  }
+
+  #sun {
+    pointer-events: none !important;
+    cursor: default !important;
   }
 }

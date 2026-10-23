@@ -49,9 +49,9 @@ export function buildOrrery(sceneEl, planets, onPlanetSelect) {
     b.title = `🚀 Click to land & explore ${p.name}! (Orbit: ${p.periodYears >= 1 ? p.periodYears.toFixed(1) + ' Earth yrs' : (p.periodYears * 365.25).toFixed(0) + ' Earth days'})`;
     b.addEventListener('click', e => {
       e.stopPropagation();
-      if (window.RocketRun && typeof window.RocketRun.selectDestinationFromCanvas === 'function') {
-        const handled = window.RocketRun.selectDestinationFromCanvas(p.slug);
-        if (handled) return;
+      if (window.RocketRun && typeof window.RocketRun.isGameActive === 'function' && window.RocketRun.isGameActive()) {
+        e.preventDefault();
+        return;
       }
       if (p.slug) {
         window.location.href = `planets/${p.slug}.html`;
@@ -110,8 +110,8 @@ export function buildOrrery(sceneEl, planets, onPlanetSelect) {
         moonEl.setAttribute('aria-label', `${m.name}, moon of ${p.name}`);
         moonEl.addEventListener('click', e => {
           e.stopPropagation();
-          if (window.RocketRun && typeof window.RocketRun.selectDestinationFromCanvas === 'function') {
-            window.RocketRun.selectDestinationFromCanvas(moonEl.dataset.slug);
+          if (window.RocketRun && typeof window.RocketRun.isGameActive === 'function' && window.RocketRun.isGameActive()) {
+            e.preventDefault();
           }
         });
 
@@ -133,6 +133,17 @@ export function buildOrrery(sceneEl, planets, onPlanetSelect) {
     o.appendChild(carrier);
     sceneEl.appendChild(o);
   });
+
+  const sunEl = document.getElementById('sun');
+  if (sunEl && !sunEl.dataset.gameGuarded) {
+    sunEl.dataset.gameGuarded = 'true';
+    sunEl.addEventListener('click', e => {
+      if (window.RocketRun && typeof window.RocketRun.isGameActive === 'function' && window.RocketRun.isGameActive()) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    });
+  }
 }
 
 /**
