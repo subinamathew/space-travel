@@ -106,7 +106,7 @@ export class GameState {
 
   getSolarRechargeRate() {
     if (['mercury', 'venus'].includes(this.currentPlanet)) return 15;
-    if (['earth', 'moon', 'mars'].includes(this.currentPlanet)) return 10;
+    if (['earth', 'moon', 'luna', 'mars'].includes(this.currentPlanet)) return 10;
     return 7;
   }
 

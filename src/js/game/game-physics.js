@@ -9,6 +9,7 @@ export const ORBIT_SPECS = {
   venus: { r: 13, period: 0.615197, phase: 0.45, ecc: 0.0068, au: 0.723 },
   earth: { r: 17.5, period: 1.0, phase: 0.70, ecc: 0.0167, au: 1.000 },
   moon: { r: 17.5, period: 1.0, phase: 0.70, ecc: 0.0549, au: 1.000, moonDist: 2.8, moonAu: 0.00257 },
+  luna: { r: 17.5, period: 1.0, phase: 0.70, ecc: 0.0549, au: 1.000, moonDist: 2.8, moonAu: 0.00257 },
   mars: { r: 22.5, period: 1.880848, phase: 0.30, ecc: 0.0934, au: 1.524 },
   asteroid_belt: { r: 25.5, period: 4.6, phase: 0.0, ecc: 0.08, au: 2.700 },
   jupiter: { r: 29, period: 11.8626, phase: 0.85, ecc: 0.0484, au: 5.204 },
@@ -36,7 +37,7 @@ export function getBodyCoordinates(slug, elapsedSec) {
   let x = spec.r * Math.cos(rad);
   let y = spec.r * Math.sin(rad);
 
-  if (slug === 'moon') {
+  if (slug === 'moon' || slug === 'luna') {
     const moonAngle = (elapsedSec / 2.8) * 360;
     const moonRad = (moonAngle * Math.PI) / 180;
     x += spec.moonDist * Math.cos(moonRad);
@@ -63,7 +64,7 @@ function calculateSeparationBounds(s1, s2, isMoon) {
 }
 
 function computeEnergyWindow(targetSlug, normDist) {
-  const isMoon = targetSlug === 'moon';
+  const isMoon = targetSlug === 'moon' || targetSlug === 'luna';
   const isInner = ['mercury', 'venus'].includes(targetSlug);
   const isFar = ['uranus', 'neptune'].includes(targetSlug);
   const isMid = ['mars', 'jupiter', 'saturn'].includes(targetSlug);
@@ -82,7 +83,7 @@ function computeEnergyWindow(targetSlug, normDist) {
 }
 
 export function getFlightDuration(originSlug, targetSlug) {
-  if (targetSlug === 'moon' || originSlug === 'moon') return 3.8;
+  if (targetSlug === 'moon' || targetSlug === 'luna' || originSlug === 'moon' || originSlug === 'luna') return 3.8;
   if (['jupiter', 'saturn', 'uranus', 'neptune'].includes(targetSlug)) return 6.5;
   return 5.2;
 }
@@ -128,7 +129,7 @@ export function calculateFutureOrbitalIntercept(originSlug, targetSlug, elapsedS
 export function calculateOrbitalWindow(originSlug, targetSlug, elapsedSec, futureOffsetSec = 0) {
   const s1 = ORBIT_SPECS[originSlug] ?? ORBIT_SPECS.earth;
   const s2 = ORBIT_SPECS[targetSlug] ?? ORBIT_SPECS.mars;
-  const isMoon = targetSlug === 'moon' || originSlug === 'moon';
+  const isMoon = targetSlug === 'moon' || targetSlug === 'luna' || originSlug === 'moon' || originSlug === 'luna';
 
   const simTime = elapsedSec + (Number(futureOffsetSec) || 0);
   const bounds = calculateSeparationBounds(s1, s2, isMoon);

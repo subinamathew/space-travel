@@ -701,6 +701,67 @@
           "kids": "Porcentaje (%) significa partes de cada 100 cucharadas de atmósfera helada:\n• H₂ (80 cucharadas) es gas Hidrógeno.\n• He (19 cucharadas) es gas Helio (gas de globos).\n• CH₄ (1.5 cucharadas) es gas Metano: traga la luz roja y refleja un azul marino profundo mientras rugen tormentas a más de 2.100 km/h."
         }
       ]
+    },
+    "luna": {
+      "name": "Luna (La Luna)",
+      "greeting": "¡Hola, Compañera Plateada!",
+      "fact": "El único satélite natural de la Tierra. En rotación sincrónica, Luna controla las mareas oceánicas y es el único otro mundo visitado por seres humanos.",
+      "kids": {
+        "badge": "🚀 Misión Niños",
+        "title": "¡Parque de Salto Lunar!",
+        "jump": "¡Saltas 6× más alto que en la Tierra! De un solo bote puedes superar el techo de una casa de dos pisos.",
+        "fact": "¡Las huellas de los astronautas del Apolo durarán millones de años porque en la Luna no hay viento ni lluvia que las borre!"
+      },
+      "stats": [
+        {
+          "label": "Distancia desde la Tierra",
+          "value": "384.400 km",
+          "sub": "0,00257 UA (~1,28 segundos-luz)",
+          "kids": "¡La Luna está a 384.400 km de la Tierra! En ese espacio cabrían todos los demás 7 planetas del sistema solar alineados."
+        },
+        {
+          "label": "Período Orbital",
+          "value": "27,32 días",
+          "sub": "Bloqueo gravitacional sincrónico",
+          "kids": "La Luna tarda 27,3 días en dar una vuelta a la Tierra. Como rota exactamente al mismo ritmo, ¡siempre vemos la misma cara lunar!"
+        },
+        {
+          "label": "Duración del Día",
+          "value": "29,53 días terrestres",
+          "sub": "1 Día Lunar (Mes sinódico)",
+          "kids": "¡Un día lunar completo dura casi un mes terrestre! Dos semanas de sol brillante seguidas de dos semanas de noche helada."
+        },
+        {
+          "label": "Radio Ecuatorial",
+          "value": "1.737,4 km",
+          "sub": "0,273 × Tierra (más de 1/4)",
+          "kids": "La Luna mide más de una cuarta parte de la Tierra. Si la Tierra fuera un balón de baloncesto, ¡la Luna sería una pelota de tenis!"
+        },
+        {
+          "label": "Masa",
+          "value": "7,342 × 10²² kg",
+          "sub": "0,0123 × Tierra (1,2% masa terrestre)",
+          "kids": "La Luna tiene apenas el 1,2% de la masa terrestre. Su gravedad es 1/6 de la terrestre: ¡pesas seis veces menos y flotas como un superhéroe!"
+        },
+        {
+          "label": "Temperatura Superficial",
+          "value": "−130°C a 120°C",
+          "sub": "Media: −20°C (cambios extremos)",
+          "kids": "Sin atmósfera que conserve el calor, la Luna oscila entre 120°C al sol y −130°C a la sombra. Los trajes espaciales mantienen a los astronautas a temperatura ideal."
+        },
+        {
+          "label": "Lunas y Anillos",
+          "value": "0 Lunas · 0 Anillos",
+          "sub": "Satélite natural fiel de la Tierra",
+          "kids": "¡La Luna no tiene lunas propias! En cambio, produce las mareas en los océanos de la Tierra dos veces al día."
+        },
+        {
+          "label": "Atmósfera",
+          "value": "Exosfera / Vacío",
+          "sub": "Trazas de He, Ne, H₂, Ar (< 10⁻¹⁰ Pa)",
+          "kids": "En la Luna no hay aire para respirar: es un vacío cósmico silencioso. Como el sonido necesita aire, ¡los astronautas se hablan por radio!"
+        }
+      ]
     }
   },
   "game": {

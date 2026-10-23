@@ -10,6 +10,7 @@ import { initCookieNotice } from './components/cookie-notice.js';
 import { initFeaturesPage } from './components/features.js';
 import { init3DOrbitInteraction } from './components/orbit-3d.js';
 import { startGame, stopGame, initGameEngine, setFreePlayMode } from './game/game-engine.js';
+import { getGameModeCookie, setGameModeCookie } from './components/cookie-notice.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize i18n translation system
@@ -62,11 +63,14 @@ function initGameModeSettings() {
   const urlParams = new URLSearchParams(window.location.search);
   const isFreePlayParam = urlParams.get('mode') === 'freeplay';
   const dockedParam = urlParams.get('docked');
+  const cookieMode = getGameModeCookie();
+  const isCookieOff = cookieMode === 'off';
+  const isCookieOn = cookieMode === 'on' || cookieMode === 'freeplay';
   const savedGame = localStorage.getItem('space_game_mode') === 'true';
   const savedFreePlay = localStorage.getItem('space_game_freeplay') === 'true';
 
-  const shouldStartGame = isFreePlayParam || savedGame;
-  const isFreePlayActive = isFreePlayParam || savedFreePlay;
+  const shouldStartGame = isFreePlayParam || (isCookieOn && !isCookieOff) || (savedGame && !isCookieOff);
+  const isFreePlayActive = isFreePlayParam || (cookieMode === 'freeplay') || (savedFreePlay && !isCookieOff);
 
   if (gameToggle) gameToggle.checked = shouldStartGame;
   if (freePlayToggle) freePlayToggle.checked = isFreePlayActive;
@@ -85,6 +89,7 @@ function bindGameModeToggles(gameToggle, freePlayToggle) {
     gameToggle.addEventListener('change', () => {
       const active = gameToggle.checked;
       localStorage.setItem('space_game_mode', active ? 'true' : 'false');
+      setGameModeCookie(active ? (freePlayToggle?.checked ? 'freeplay' : 'on') : 'off');
       if (active) {
         const isFp = freePlayToggle ? freePlayToggle.checked : false;
         startGame({ freeplay: isFp });
@@ -101,8 +106,10 @@ function bindGameModeToggles(gameToggle, freePlayToggle) {
       if (fpActive && (!gameToggle || !gameToggle.checked)) {
         if (gameToggle) gameToggle.checked = true;
         localStorage.setItem('space_game_mode', 'true');
+        setGameModeCookie('freeplay');
         startGame({ freeplay: true });
       } else {
+        setGameModeCookie(fpActive ? 'freeplay' : (gameToggle?.checked ? 'on' : 'off'));
         setFreePlayMode(fpActive);
       }
     });

@@ -19,6 +19,7 @@ import {
 import { getTouchdownNoteKey, getPlanetQuiz } from './game-quiz.js';
 import { loadLeaderboard, saveLeaderboardScore } from './game-leaderboard.js';
 import { playLaunchSound, playTouchdownSound, playExplosionSound, playWarningSound } from './game-audio.js';
+import { setGameModeCookie } from '../components/cookie-notice.js';
 import { t } from '../i18n.js';
 
 let gameState = null;
@@ -50,6 +51,7 @@ export function startGame(options = {}) {
   gameActive = true;
   gameState.reset(options);
   startTime = Date.now();
+  setGameModeCookie(options.freeplay ? 'freeplay' : 'on');
 
   if (!gameState.isFreePlay && !gameState.targetPlanet) {
     const curMission = gameState.getCurrentMission();
@@ -98,6 +100,7 @@ function syncFreePlayUI(isFree) {
 
 export function stopGame() {
   gameActive = false;
+  setGameModeCookie('off');
   stopOrbitalTelemetry();
   clearFlightTimeout();
   enforce2DMode(false);
@@ -123,6 +126,11 @@ export function exitGameMode() {
     localStorage.setItem('space_game_mode', 'false');
     localStorage.setItem('space_game_freeplay', 'false');
   }
+  if (typeof sessionStorage !== 'undefined') {
+    sessionStorage.removeItem('rocketrun_freeplay');
+    sessionStorage.removeItem('rocketrun_docked');
+  }
+  setGameModeCookie('off');
   stopGame();
 }
 
@@ -187,8 +195,8 @@ function getAstronautAvatar() {
 
 function getBodyElement(slug) {
   if (slug === 'sun') return document.getElementById('sun');
-  if (slug === 'moon') {
-    return document.getElementById('moon-btn-moon') || document.querySelector('.moon[data-slug="moon"]');
+  if (slug === 'moon' || slug === 'luna') {
+    return document.getElementById('moon-btn-moon') || document.querySelector('.moon[data-slug="moon"]') || document.querySelector('.moon');
   }
   return document.getElementById(`planet-btn-${slug}`) || document.querySelector(`.planet-btn[data-slug="${slug}"]`);
 }
@@ -763,6 +771,7 @@ function updateLaunchButtonState() {
 function formatBodyName(slug) {
   const map = {
     moon: 'Luna 🌙',
+    luna: 'Luna 🌙',
     mercury: 'Mercury ☿',
     venus: 'Venus ♀',
     earth: 'Earth 🌍',
@@ -1303,6 +1312,7 @@ function handleFreePlayTouchdown(planetSlug) {
   `;
   document.body.appendChild(banner);
 
+  setGameModeCookie('freeplay');
   if (typeof sessionStorage !== 'undefined') {
     sessionStorage.setItem('rocketrun_freeplay', 'true');
     sessionStorage.setItem('rocketrun_docked', planetSlug);
@@ -1312,7 +1322,7 @@ function handleFreePlayTouchdown(planetSlug) {
     localStorage.setItem('space_game_freeplay', 'true');
   }
 
-  const targetFile = planetSlug === 'moon' ? 'earth.html' : `${planetSlug}.html`;
+  const targetFile = (planetSlug === 'moon' || planetSlug === 'luna') ? 'luna.html' : `${planetSlug}.html`;
   setTimeout(() => {
     window.location.href = `planets/${targetFile}?mode=freeplay&docked=${encodeURIComponent(planetSlug)}`;
   }, 1200);

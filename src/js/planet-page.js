@@ -1,7 +1,7 @@
 import { initStarfield } from './components/starfield.js';
 import { initHuds } from './components/hud.js';
 import { initI18n, t } from './i18n.js';
-import { initCookieNotice } from './components/cookie-notice.js';
+import { initCookieNotice, getGameModeCookie } from './components/cookie-notice.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Initialize i18n translation system
@@ -490,11 +490,21 @@ function initStatCardPopups() {
 /**
  * Free Play Mode: Floating return navigation button
  * Allows the astronaut to read planet specifications and jump directly back to game mode docked at this planet.
+ * Only displayed when gamemode cookie is explicitly 'on' or 'freeplay'.
  */
 function initFreePlayReturnBanner() {
+  const cookieMode = getGameModeCookie();
+  // If gamemode cookie is 'off' or missing, ensure no game mode banner is shown on subpages
+  if (cookieMode !== 'on' && cookieMode !== 'freeplay') {
+    const existing = document.getElementById('freeplay-floating-banner');
+    if (existing) existing.remove();
+    return;
+  }
+
   const urlParams = new URLSearchParams(window.location.search);
-  const isFreePlay = urlParams.get('mode') === 'freeplay' ||
-    (typeof sessionStorage !== 'undefined' && sessionStorage.getItem('rocketrun_freeplay') === 'true');
+  const isFreePlayParam = urlParams.get('mode') === 'freeplay';
+  const isSessionFreePlay = typeof sessionStorage !== 'undefined' && sessionStorage.getItem('rocketrun_freeplay') === 'true';
+  const isFreePlay = cookieMode === 'freeplay' || isFreePlayParam || isSessionFreePlay;
   if (!isFreePlay) return;
 
   const currentSlug = urlParams.get('docked') ||
@@ -502,7 +512,8 @@ function initFreePlayReturnBanner() {
     window.location.pathname.split('/').pop().replace('.html', '') ||
     'earth';
 
-  const planetName = t(`planets.${currentSlug}.name`) || currentSlug.toUpperCase();
+  const lookupSlug = (currentSlug === 'moon') ? 'luna' : currentSlug;
+  const planetName = t(`planets.${lookupSlug}.name`) || t(`planets.${currentSlug}.name`) || currentSlug.toUpperCase();
   const rawTemplate = t('game.freeplay_return_btn') || '🚀 Back to Game (Docked at {name}) →';
   const returnBtnText = rawTemplate.replace('{name}', planetName);
 

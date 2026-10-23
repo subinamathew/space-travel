@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { execSync } from 'child_process';
-import { planets, sunData } from '../src/js/data/planets.js';
+import { planets, sunData, lunaData } from '../src/js/data/planets.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -144,8 +144,15 @@ console.log('Generated: public/version.json');
 // Load Single Source of Truth for English stats and copy
 const enI18n = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../src/i18n/en.json'), 'utf8'));
 
-// Celestial bodies in order: Sun -> Mercury -> ... -> Neptune
-const allBodies = [sunData, ...planets];
+// Celestial bodies in order: Sun -> Mercury -> Venus -> Earth -> Luna (The Moon) -> Mars -> Jupiter -> Saturn -> Uranus -> Neptune
+const allBodies = [
+  sunData,
+  planets[0], // Mercury
+  planets[1], // Venus
+  planets[2], // Earth
+  lunaData,   // Luna (The Moon)
+  ...planets.slice(3) // Mars, Jupiter, Saturn, Uranus, Neptune
+];
 
 allBodies.forEach((p, idx) => {
   const prevIdx = (idx - 1 + allBodies.length) % allBodies.length;
@@ -478,6 +485,11 @@ allBodies.forEach((p, idx) => {
   const targetFile = path.join(outputDir, `${p.slug}.html`);
   fs.writeFileSync(targetFile, htmlContent, 'utf-8');
   console.log(`Generated: public/planets/${p.slug}.html`);
+  if (p.slug === 'luna') {
+    const moonTarget = path.join(outputDir, 'moon.html');
+    fs.writeFileSync(moonTarget, htmlContent, 'utf-8');
+    console.log(`Generated: public/planets/moon.html (alias)`);
+  }
 });
 
-console.log('All celestial subpages (The Sun + 8 Planets) generated successfully.');
+console.log('All celestial subpages (The Sun + 8 Planets + Luna) generated successfully.');

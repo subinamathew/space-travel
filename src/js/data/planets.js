@@ -22,6 +22,21 @@ export const sunData = {
   gravityRatio: 27.9
 };
 
+export const lunaData = {
+  slug: 'luna',
+  name: 'Luna (The Moon)',
+  greeting: 'Hello, Silver Companion!',
+  fact: "Earth's only natural satellite. Tidally locked in synchronous rotation, Luna controls Earth's ocean tides and is the only other world humans have walked upon.",
+  c1: '#e2e8f0',
+  c2: '#64748b',
+  glow: '#cbd5e1',
+  bg: 'radial-gradient(ellipse at 60% 20%, #111827 0%, #020510 70%)',
+  pvSize: 140,
+  isMoon: true,
+  gravityRatio: 0.166,
+  moons: []
+};
+
 export const planets = [
   {
     slug: 'mercury',

@@ -701,6 +701,67 @@
           "kids": "Le pourcentage (%) représente des parts sur 100 louches d'atmosphère glacée :\n• H₂ (80 louches) est le gaz Hydrogène.\n• He (19 louches) est le gaz Hélium (gaz de ballons).\n• CH₄ (1,5 louche) est le Méthane : il avale la lumière rouge et renvoie un magnifique bleu océan profond sous des tempêtes à plus de 2 100 km/h !"
         }
       ]
+    },
+    "luna": {
+      "name": "Luna (La Lune)",
+      "greeting": "Bonjour, Compagne Argentée !",
+      "fact": "L'unique satellite naturel de la Terre. En rotation synchrone, Luna rythme les marées océaniques et reste le seul autre monde foulé par l'humanité.",
+      "kids": {
+        "badge": "🚀 Mission Enfants",
+        "title": "Le Terrain de Jeu Super-Rebond !",
+        "jump": "Tu sautes 6× plus haut que sur Terre ! Un seul bond te propulse par-dessus une maison à deux étages.",
+        "fact": "Les empreintes des astronautes d'Apollo resteront intactes pendant des millions d'années car il n'y a ni vent ni pluie sur la Lune !"
+      },
+      "stats": [
+        {
+          "label": "Distance de la Terre",
+          "value": "384 400 km",
+          "sub": "0,00257 UA (~1,28 seconde-lumière)",
+          "kids": "La Lune est à 384 400 km de la Terre. Tous les 7 autres planètes du système solaire pourraient tenir côte à côte dans cet espace !"
+        },
+        {
+          "label": "Période Orbitale",
+          "value": "27,32 jours",
+          "sub": "Verrouillage gravitationnel synchrone",
+          "kids": "La Lune met 27,3 jours pour faire le tour de la Terre. Comme elle tourne sur elle-même au même rythme, elle nous montre toujours le même visage !"
+        },
+        {
+          "label": "Durée du Jour",
+          "value": "29,53 jours terrestres",
+          "sub": "1 Jour Lunaire (Mois synodique)",
+          "kids": "Un jour entier sur la Lune dure près d'un mois terrestre : deux semaines de soleil éclatant suivies de deux semaines de nuit glacée !"
+        },
+        {
+          "label": "Rayon Équatorial",
+          "value": "1 737,4 km",
+          "sub": "0,273 × Terre (plus d'un quart)",
+          "kids": "La Lune mesure plus d'un quart de la taille de la Terre. Si la Terre était un ballon de basket, la Lune serait une balle de tennis !"
+        },
+        {
+          "label": "Masse",
+          "value": "7,342 × 10²² kg",
+          "sub": "0,0123 × Terre (1,2% de la Terre)",
+          "kids": "La Lune ne pèse que 1,2% de la Terre. Sa gravité est six fois plus faible : tu te sens léger comme un super-héros volant !"
+        },
+        {
+          "label": "Température de Surface",
+          "value": "−130°C à 120°C",
+          "sub": "Moyenne : −20°C (écarts extrêmes)",
+          "kids": "Sans atmosphère pour retenir la chaleur, la Lune passe de 120°C en plein soleil à −130°C à l'ombre. Les combinaisons protègent parfaitement les astronautes."
+        },
+        {
+          "label": "Lunes & Anneaux",
+          "value": "0 Lune · 0 Anneau",
+          "sub": "Fidèle satellite naturel de la Terre",
+          "kids": "La Lune n'a pas de lune à elle ! Mais elle fait monter et descendre les marées des océans terrestres deux fois par jour."
+        },
+        {
+          "label": "Atmosphère",
+          "value": "Exosphère / Vide",
+          "sub": "Traces de He, Ne, H₂, Ar (< 10⁻¹⁰ Pa)",
+          "kids": "La Lune n'a pas d'air respirable : c'est le vide spatial silencieux. Comme le son ne voyage pas dans le vide, les astronautes utilisent la radio !"
+        }
+      ]
     }
   },
   "game": {

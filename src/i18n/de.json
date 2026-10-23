@@ -701,6 +701,67 @@
           "kids": "Prozent (%) bedeutet Teile von 100 Schaufeln eisiger Atmosphäre:\n• H₂ (80 Schaufeln) ist Wasserstoffgas.\n• He (19 Schaufeln) ist Heliumgas (Ballongas).\n• CH₄ (1,5 Schaufeln) ist Methangas: dieses Gas schluckt rotes Licht und wirft tiefes, wunderschönes Meeresblau zurück!\nStürme jagen mit über 2.100 km/h durch dieses blaue Gas!"
         }
       ]
+    },
+    "luna": {
+      "name": "Luna (Der Mond)",
+      "greeting": "Hallo, silberner Begleiter!",
+      "fact": "Der einzige natürliche Satellit der Erde. In gebundener Rotation steuert Luna die irdischen Gezeiten und ist der einzige andere Himmelskörper, den Menschen je betreten haben.",
+      "kids": {
+        "badge": "🚀 Kinder-Mission",
+        "title": "Super-Sprung Mond-Spielplatz!",
+        "jump": "Du springst 6× höher als auf der Erde! Mit einem einzigen Sprung fliegst du über ein zweistöckiges Haus.",
+        "fact": "Die Fußspuren der Apollo-Astronauten bleiben Millionen Jahre erhalten, weil es auf dem Mond weder Wind noch Regen gibt!"
+      },
+      "stats": [
+        {
+          "label": "Entfernung zur Erde",
+          "value": "384.400 km",
+          "sub": "0,00257 AE (~1,28 Lichtsekunden)",
+          "kids": "Der Mond ist 384.400 km von der Erde entfernt. In diese Lücke würden alle anderen 7 Planeten unseres Sonnensystems nebeneinander hineinpassen!"
+        },
+        {
+          "label": "Umlaufzeit",
+          "value": "27,32 Tage",
+          "sub": "Gebundene synchrone Rotation",
+          "kids": "Der Mond braucht 27,3 Tage für eine Umkreisung der Erde. Weil er sich im gleichen Tempo dreht, zeigt er uns immer dieselbe Seite!"
+        },
+        {
+          "label": "Tageslänge",
+          "value": "29,53 Erdtage",
+          "sub": "1 Mondtag (Synodischer Monat)",
+          "kids": "Ein voller Tag auf dem Mond dauert fast einen ganzen Erdmonat! Zwei Wochen glühender Sonnenschein gefolgt von zwei Wochen eisiger Sternennacht."
+        },
+        {
+          "label": "Äquatorradius",
+          "value": "1.737,4 km",
+          "sub": "0,273 × Erde (über 1/4 Erdgröße)",
+          "kids": "Der Mond hat mehr als ein Viertel der Erdgröße. Wäre die Erde ein Basketball, wäre der Mond ein Tennisball!"
+        },
+        {
+          "label": "Masse",
+          "value": "7,342 × 10²² kg",
+          "sub": "0,0123 × Erde (1,2% Erdmasse)",
+          "kids": "Der Mond wiegt nur 1,2% der Erde. Geringere Masse bedeutet weniger Schwerkraft: Du wiegst nur 1/6 deines Erdgewichts!"
+        },
+        {
+          "label": "Oberflächentemperatur",
+          "value": "−130°C bis 120°C",
+          "sub": "Mittel: −20°C (extreme Schwankungen)",
+          "kids": "Ohne Lufthülle schwankt der Mond zwischen kochend heißen 120°C im Sonnenlicht und eisigen −130°C im Schatten. Raumanzüge halten Astronauten wohlig warm."
+        },
+        {
+          "label": "Monde & Ringe",
+          "value": "0 Monde · 0 Ringe",
+          "sub": "Der treue natürliche Satellit der Erde",
+          "kids": "Der Mond hat keine eigenen Monde! Dafür schenkt er uns Ebbe und Flut im Meer."
+        },
+        {
+          "label": "Atmosphäre",
+          "value": "Exosphäre / Vakuum",
+          "sub": "Spuren von He, Ne, H₂, Ar (< 10⁻¹⁰ Pa)",
+          "kids": "Auf dem Mond gibt es keine atembare Luft, sondern kosmisches Vakuum. Weil Schall Luft braucht, sprechen Astronauten über Funk!"
+        }
+      ]
     }
   },
   "game": {

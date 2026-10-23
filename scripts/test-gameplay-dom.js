@@ -106,6 +106,7 @@ import {
   ORBIT_SPECS
 } from '../src/js/game/game-physics.js';
 import { getPlanetQuiz, getTouchdownNoteKey } from '../src/js/game/game-quiz.js';
+import { getGameModeCookie, setGameModeCookie, getCookie } from '../src/js/components/cookie-notice.js';
 
 let passedTests = 0;
 let totalTests = 0;
@@ -394,6 +395,41 @@ assert(document.getElementById('rocketrun-hud') === null, '#rocketrun-hud remove
 assert(document.getElementById('rocketrun-sidebar') === null, '#rocketrun-sidebar removed from DOM');
 assert(document.querySelectorAll('.is-game-target').length === 0, 'All .is-game-target highlights cleaned from canvas');
 assert(!document.getElementById('solar-system').classList.contains('game-active'), '#solar-system .game-active class removed');
+
+// ----------------------------------------------------
+// TEST 13: Dedicated Luna (Moon) Subpage Verification
+// ----------------------------------------------------
+console.log('\n[Test 13: Dedicated Luna (Moon) Subpage & Free Play Routing]');
+const lunaPath = path.resolve(__dirname, '../public/planets/luna.html');
+const moonPath = path.resolve(__dirname, '../public/planets/moon.html');
+assert(fs.existsSync(lunaPath), 'public/planets/luna.html exists on disk');
+assert(fs.existsSync(moonPath), 'public/planets/moon.html exists on disk (alias)');
+
+const lunaHtml = fs.readFileSync(lunaPath, 'utf8');
+assert(lunaHtml.includes('data-gravity="0.166"'), 'luna.html has gravity ratio data-gravity="0.166" (~1.62 m/s²)');
+assert(lunaHtml.includes('data-slug="luna"'), 'luna.html has data-slug="luna"');
+assert(lunaHtml.includes('Luna (The Moon)'), 'luna.html includes full celestial name "Luna (The Moon)"');
+assert(lunaHtml.includes('href="earth.html"'), 'luna.html has previous link to earth.html');
+assert(lunaHtml.includes('href="mars.html"'), 'luna.html has next link to mars.html');
+assert(lunaHtml.includes('images/luna.png'), 'luna.html references images/luna.png');
+
+// ----------------------------------------------------
+// TEST 14: Cookie Gamemode State & Subpage Isolation
+// ----------------------------------------------------
+console.log('\n[Test 14: Gamemode Cookie State & Subpage Isolation]');
+// After teardown, gamemode cookie must be 'off'
+assert(getGameModeCookie() === 'off', 'gamemode cookie is "off" after exiting game mode');
+assert(getCookie('gsmemode') === 'off', 'gsmemode cookie alias is also "off"');
+
+// Start game in Free Play mode
+startGame({ freeplay: true });
+assert(getGameModeCookie() === 'freeplay', 'Starting game in Free Play sets gamemode cookie to "freeplay"');
+assert(getCookie('gsmemode') === 'freeplay', 'gsmemode cookie alias is "freeplay"');
+
+// Teardown again
+exitGameMode();
+assert(getGameModeCookie() === 'off', 'exitGameMode() resets gamemode cookie to "off"');
+assert(getCookie('gsmemode') === 'off', 'exitGameMode() resets gsmemode cookie to "off"');
 
 console.log('\n====================================================');
 console.log(`🎉 ALL TESTS PASSED: ${passedTests} / ${totalTests} assertions verified!`);

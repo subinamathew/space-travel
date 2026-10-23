@@ -86,9 +86,14 @@ function resolveKey(obj, path) {
   if (!obj || !path) return undefined;
   const parts = path.split('.');
   let curr = obj;
-  for (const p of parts) {
+  for (let i = 0; i < parts.length; i++) {
+    const p = parts[i];
     if (curr === undefined || curr === null) return undefined;
-    curr = curr[p];
+    if (i === 1 && parts[0] === 'planets' && p === 'moon' && curr[p] === undefined) {
+      curr = curr['luna'];
+    } else {
+      curr = curr[p];
+    }
   }
   return curr;
 }

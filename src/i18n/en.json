@@ -701,6 +701,67 @@
           "kids": "Percent (%) means parts out of 100 scoops of icy atmosphere:\n• H₂ (80 scoops) is Hydrogen gas.\n• He (19 scoops) is Helium gas (party balloon gas).\n• CH₄ (1.5 scoops) is Methane gas: this magical gas swallows red sunlight and reflects deep, gorgeous ocean-blue light!\nWild storms whip through this blue gas at over 2,100 km/h!"
         }
       ]
+    },
+    "luna": {
+      "name": "Luna (The Moon)",
+      "greeting": "Hello, Silver Companion!",
+      "fact": "Earth's only natural satellite. Tidally locked in synchronous rotation, Luna controls Earth's ocean tides and is the only other world humans have walked upon.",
+      "kids": {
+        "badge": "🚀 Kids Mission",
+        "title": "Super-Bouncing Lunar Playground!",
+        "jump": "You jump 6× higher than on Earth! A single bounce can launch you over a two-story house.",
+        "fact": "Apollo astronaut footprints in the lunar dust will last for millions of years because there is no wind or rain to erase them!"
+      },
+      "stats": [
+        {
+          "label": "Distance from Earth",
+          "value": "384,400 km",
+          "sub": "0.00257 AU (~1.28 light-seconds)",
+          "kids": "The Moon is 384,400 km from Earth. That is far enough that all other 7 planets in our solar system could fit side-by-side in between Earth and the Moon!"
+        },
+        {
+          "label": "Orbital Period",
+          "value": "27.32 days",
+          "sub": "Synchronous tidal locking",
+          "kids": "The Moon takes 27.3 days to orbit around Earth. Because it spins at the exact same rate as it orbits, we always see the same face of the Moon from Earth!"
+        },
+        {
+          "label": "Day Length",
+          "value": "29.53 Earth days",
+          "sub": "1 Lunar Day (Synodic Month)",
+          "kids": "A full day on the Moon lasts nearly 30 Earth days! That means two weeks of blazing sunshine followed by two weeks of freezing, star-filled night."
+        },
+        {
+          "label": "Equatorial Radius",
+          "value": "1,737.4 km",
+          "sub": "0.273 × Earth (over 1/4 size)",
+          "kids": "The Moon is more than a quarter the width of Earth. If Earth were the size of a basketball, the Moon would be the size of a tennis ball!"
+        },
+        {
+          "label": "Mass",
+          "value": "7.342 × 10²² kg",
+          "sub": "0.0123 × Earth (1.2% Earth mass)",
+          "kids": "The Moon has only about 1.2% of Earth's mass. Lower mass means lower gravity: you weigh only 1/6th of your Earth weight and feel like a flying superhero!"
+        },
+        {
+          "label": "Surface Temperature",
+          "value": "−130°C to 120°C",
+          "sub": "Mean: −20°C (extreme swings)",
+          "kids": "Without an atmosphere to trap heat, the Moon swings from 120°C in direct sunlight down to −130°C in dark shadows. Spacesuits keep astronauts at a comfortable room temperature."
+        },
+        {
+          "label": "Moons & Rings",
+          "value": "0 Moons · 0 Rings",
+          "sub": "Earth's single natural satellite",
+          "kids": "The Moon has no moons of its own! Instead, it is Earth's loyal companion, creating our ocean tides twice every day."
+        },
+        {
+          "label": "Atmosphere",
+          "value": "Exosphere / Vacuum",
+          "sub": "Trace He, Ne, H₂, Ar (< 10⁻¹⁰ Pa)",
+          "kids": "The Moon has no breathable air—it is a silent vacuum. Sound needs air to travel, so astronauts must talk to each other using radios inside their helmets!"
+        }
+      ]
     }
   },
   "game": {
