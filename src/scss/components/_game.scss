@@ -189,6 +189,32 @@
     -webkit-overflow-scrolling: touch;
   }
 
+  .sidebar-mission-card {
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    border-radius: 10px;
+    padding: 9px 11px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+
+    .sidebar-mission-tag {
+      font-size: 10px;
+      font-weight: 800;
+      color: #facc15;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+    }
+
+    .sidebar-mission-clue {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #f8fafc;
+      line-height: 1.35;
+    }
+  }
+
   .sidebar-label {
     font-size: 11px;
     font-weight: 700;

@@ -200,6 +200,10 @@ function renderGameUI() {
       <div class="current-loc" id="current-location-indicator">Earth 🌍</div>
     </div>
     <div class="sidebar-body">
+      <div class="sidebar-mission-card">
+        <span class="sidebar-mission-tag">🎯 <span data-i18n="game.mission_label">ACTIVE MISSION</span></span>
+        <div class="sidebar-mission-clue" id="sidebar-mission-clue">Loading mission...</div>
+      </div>
       <label class="sidebar-label" data-i18n="game.select_destination">Select Destination:</label>
       <div class="planet-select-list" id="planet-select-list"></div>
 
@@ -319,19 +323,23 @@ function updateSidebar() {
     locEl.textContent = `${formatBodyName(gameState.currentPlanet)}`;
   }
 
+  const currentMission = gameState.getCurrentMission();
+  const sidebarClueEl = document.getElementById('sidebar-mission-clue');
+  if (sidebarClueEl && currentMission) {
+    sidebarClueEl.textContent = t(currentMission.clueKey);
+  }
+
   const listEl = document.getElementById('planet-select-list');
   if (!listEl) return;
 
-  const currentMission = gameState.getCurrentMission();
   const destinations = ['moon', 'mercury', 'venus', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune', 'earth'];
 
   listEl.innerHTML = destinations
     .filter(slug => slug !== gameState.currentPlanet)
     .map(slug => {
       const isTarget = gameState.targetPlanet === slug;
-      const isMissionGoal = currentMission.targetSlug === slug;
-      const highlightClass = isTarget ? 'is-selected' : isMissionGoal ? 'is-mission-goal' : '';
-      const badge = isMissionGoal ? '🎯' : '';
+      const highlightClass = isTarget ? 'is-selected' : '';
+      const badge = isTarget ? '🚀' : '';
       return `
         <button type="button" class="dest-btn ${highlightClass}" data-slug="${slug}">
           <span class="dest-badge">${badge}</span>
@@ -395,6 +403,18 @@ function handleLaunchClick() {
     return;
   }
   if (gameState.state === GAME_STATES.TRANSIT) return;
+
+  const currentMission = gameState.getCurrentMission();
+  if (currentMission && gameState.targetPlanet !== currentMission.targetSlug) {
+    const rawTemplate =
+      t('game.mission_target_mismatch') ||
+      'Mission Control Alert: Objective is "{clue}". You targeted {target}. Check the clue and select the correct planet before launch!';
+    const alertMsg = rawTemplate
+      .replace('{clue}', t(currentMission.clueKey))
+      .replace('{target}', formatBodyName(gameState.targetPlanet));
+    alert(alertMsg);
+    return;
+  }
 
   // 3-2-1 Ignition Countdown
   gameState.setState(GAME_STATES.LAUNCHING);
