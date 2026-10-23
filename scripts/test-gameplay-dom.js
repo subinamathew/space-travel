@@ -37,6 +37,16 @@ const dom = new JSDOM(`
   </button>
   <input type="checkbox" id="settings-game-toggle" />
   <input type="checkbox" id="settings-freeplay-toggle" />
+  <footer class="site-tiny-footer" role="contentinfo">
+    <a href="impressum.html" class="tiny-footer-link imprint-link" data-i18n="ui.impressum_link">Impressum / Imprint</a>
+  </footer>
+  <div class="card-actions">
+    <a href="impressum.html" class="btn-secondary-action imprint-link" title="Impressum / Imprint">Imprint</a>
+  </div>
+  <p class="features-copy">
+    © 2026 rocketrun.org<span class="imprint-sep"> · </span>
+    <a href="impressum.html" class="tiny-footer-link imprint-link">Impressum / Imprint</a>
+  </p>
 </body>
 </html>
 `, {
@@ -81,7 +91,7 @@ dom.window.AudioContext = class {
 global.window.AudioContext = dom.window.AudioContext;
 
 // Load translations
-import { translations, supportedLanguages } from '../src/js/i18n.js';
+import { translations, supportedLanguages, setLanguage, updateImprintVisibility } from '../src/js/i18n.js';
 const i18nDir = path.resolve(__dirname, '../src/i18n');
 for (const langObj of supportedLanguages) {
   const code = langObj.code;
@@ -684,6 +694,64 @@ function scanDirectoryForAlerts(dir) {
 }
 const alertOccurrences = scanDirectoryForAlerts(path.resolve(__dirname, '../src'));
 assert(alertOccurrences === 0, 'Codebase audit: 0 native alert() occurrences in src/');
+
+// ----------------------------------------------------
+// TEST 19: German-Only Imprint Visibility Standard
+// ----------------------------------------------------
+console.log('\n[Test 19: German-Only Imprint Visibility Standard]');
+
+const siteFooter = document.querySelector('.site-tiny-footer');
+const imprintBtn = document.querySelector('.card-actions .imprint-link');
+const imprintSep = document.querySelector('.imprint-sep');
+
+// 1. Verify hidden in English
+await setLanguage('en');
+assert(document.documentElement.getAttribute('lang') === 'en', 'Active document lang is "en"');
+assert(siteFooter.style.display === 'none', 'Site tiny footer is hidden (display: none) in English');
+assert(siteFooter.hasAttribute('hidden'), 'Site tiny footer has hidden attribute in English');
+assert(imprintBtn.style.display === 'none', 'Imprint button is hidden in English');
+assert(imprintSep.style.display === 'none', 'Imprint separator is hidden in English');
+
+// 2. Verify hidden across all other non-German languages
+const nonGermanLangs = ['fr', 'es', 'it', 'ja', 'zh', 'ml', 'ta'];
+for (const lang of nonGermanLangs) {
+  updateImprintVisibility(lang);
+  assert(siteFooter.style.display === 'none', `Imprint footer hidden in ${lang}`);
+  assert(imprintBtn.style.display === 'none', `Imprint button hidden in ${lang}`);
+  assert(imprintSep.style.display === 'none', `Imprint separator hidden in ${lang}`);
+}
+
+// 3. Verify visible in German
+await setLanguage('de');
+assert(document.documentElement.getAttribute('lang') === 'de', 'Active document lang is "de"');
+assert(siteFooter.style.display === '', 'Site tiny footer is visible in German');
+assert(!siteFooter.hasAttribute('hidden'), 'Site tiny footer hidden attribute removed in German');
+assert(imprintBtn.style.display === '', 'Imprint button is visible in German');
+assert(!imprintBtn.hasAttribute('hidden'), 'Imprint button hidden attribute removed in German');
+assert(imprintSep.style.display === '', 'Imprint separator is visible in German');
+
+// Reset back to English
+await setLanguage('en');
+assert(siteFooter.style.display === 'none', 'Imprint footer re-hidden after switching back to English');
+
+// 4. Verify CSS rule exists in SCSS
+const scssContent = fs.readFileSync(path.resolve(__dirname, '../src/scss/components/_impressum.scss'), 'utf8');
+assert(scssContent.includes('html:not([lang="de"])'), '_impressum.scss contains html:not([lang="de"]) rule');
+assert(scssContent.includes('.site-tiny-footer'), '_impressum.scss targets .site-tiny-footer');
+assert(scssContent.includes('display: none !important'), '_impressum.scss sets display: none !important');
+
+// 5. Test redirection when switching language on impressum.html
+let redirectedTo = null;
+dom.reconfigure({ url: 'https://rocketrun.org/impressum.html' });
+assert(dom.window.location.pathname.includes('impressum.html'), 'Simulated URL is impressum.html');
+dom.window.RocketRunNavigate = (url) => { redirectedTo = url; };
+
+updateImprintVisibility('en');
+assert(redirectedTo === 'index.html', 'Switching to non-German on impressum.html redirects to index.html');
+delete dom.window.RocketRunNavigate;
+
+// Restore URL
+dom.reconfigure({ url: 'https://rocketrun.org/' });
 
 console.log('\n====================================================');
 console.log(`🎉 ALL TESTS PASSED: ${passedTests} / ${totalTests} assertions verified!`);

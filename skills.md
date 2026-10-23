@@ -282,6 +282,10 @@ Educational content must be universally accessible worldwide regardless of langu
    - Provide explicit `aria-label` attributes on icon-only buttons (e.g., `👥`, `⚙️`, `✕`).
    - Maintain color contrast ratios of at least **4.5:1** for regular text against dark cosmic backgrounds.
    - Ensure focus visible rings (`:focus-visible`) are prominent and unobstructed for keyboard accessibility.
+4. **German-Only Legal Imprint Standard (§ 5 DDG)**:
+   - The legal Impressum / Imprint link (`.site-tiny-footer`, `.subpage-tiny-footer`, `.imprint-link`, `a[href*="impressum.html"]`) must be displayed exclusively when the active language is German (`de`).
+   - In all other languages (`en`, `fr`, `es`, `it`, `ja`, `zh`, `ml`, `ta`), the imprint link is strictly hidden via declarative CSS (`html:not([lang="de"])`) and `applyTranslations()`.
+   - If a user changes their active language to a non-German language while on `impressum.html`, they are seamlessly redirected back to `index.html`.
 
 ---
 
@@ -529,6 +533,7 @@ Before pushing any commit or releasing to production, verify:
   - [ ] Root `LICENSE` present with MIT license and explicit attribution clause.
   - [ ] `package.json` contains `"license": "MIT"`.
 - [ ] **i18n Parity**: `npm test` passes with 100% parity across all 9 language files.
+- [ ] **German-Only Imprint**: Imprint / Impressum is strictly hidden in all non-German languages and visible in German.
 - [ ] **Build Validation**: `npm run build` generates all pages and bundles without errors or warnings.
 - [ ] **Mobile & Handheld Test**: Tested on narrow mobile screen (360px–414px) with touch-friendly tap targets (≥ 44px).
 - [ ] **Reduced Motion**: Verified that `@media (prefers-reduced-motion: reduce)` disables heavy 3D motion cleanly.

@@ -147,3 +147,18 @@
     }
   }
 }
+
+// =============================================================================
+// Hide Imprint / Impressum in all languages except German (de)
+// =============================================================================
+html:not([lang="de"]) {
+  .site-tiny-footer,
+  .subpage-tiny-footer,
+  .imprint-link,
+  .imprint-sep,
+  a[href*="impressum.html"],
+  .btn-secondary-action[href*="impressum.html"] {
+    display: none !important;
+  }
+}
+

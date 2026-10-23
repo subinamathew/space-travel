@@ -166,9 +166,50 @@ export function applyTranslations() {
     });
   });
 
+  // Update visibility of Imprint / Impressum (German only)
+  updateImprintVisibility(currentLang);
+
   // Dispatch event so live JavaScript controllers (calculator, viewer, orrery) can update
   if (typeof window !== 'undefined') {
     window.dispatchEvent(new CustomEvent('space:langchange', { detail: { lang: currentLang } }));
+  }
+}
+
+/**
+ * Update visibility of Imprint / Impressum elements across the DOM:
+ * Visible ONLY when German (de) is the active language.
+ * In all other languages, hidden completely via display:none and hidden attribute.
+ * If user changes language on impressum.html to non-German, redirect to index.html.
+ */
+export function updateImprintVisibility(lang = currentLang) {
+  if (typeof document === 'undefined') return;
+  const isGerman = lang === 'de';
+
+  const imprintEls = document.querySelectorAll(
+    '.site-tiny-footer, .subpage-tiny-footer, .imprint-link, .imprint-sep, a[href*="impressum.html"], .btn-secondary-action[href*="impressum.html"]'
+  );
+  imprintEls.forEach(el => {
+    if (!el) return;
+    if (isGerman) {
+      el.removeAttribute('hidden');
+      el.style.display = '';
+    } else {
+      el.setAttribute('hidden', '');
+      el.style.display = 'none';
+    }
+  });
+
+  // If user on impressum.html switches to a non-German language, redirect to home page
+  if (typeof window !== 'undefined' && window.location && window.location.pathname) {
+    if (window.location.pathname.includes('impressum.html') && !isGerman) {
+      if (typeof window.RocketRunNavigate === 'function') {
+        window.RocketRunNavigate('index.html');
+      } else if (typeof window.location.replace === 'function') {
+        window.location.replace('index.html');
+      } else {
+        window.location.href = 'index.html';
+      }
+    }
   }
 }
 
@@ -190,7 +231,8 @@ export async function setLanguage(lang) {
  * Initialize i18n subsystem
  */
 export async function initI18n() {
-  currentLang = getLanguage();
+  const isImpressumPage = typeof window !== 'undefined' && window.location && window.location.pathname && window.location.pathname.includes('impressum.html');
+  currentLang = isImpressumPage ? 'de' : getLanguage();
 
   if (typeof document !== 'undefined') {
     document.addEventListener('change', e => {
@@ -207,3 +249,4 @@ export async function initI18n() {
 
   applyTranslations();
 }
+

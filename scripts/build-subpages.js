@@ -531,7 +531,7 @@ allBodies.forEach((p, idx) => {
                 </div>
             </aside>
             <footer class="subpage-tiny-footer">
-                <a href="../impressum.html" class="tiny-footer-link" data-i18n="ui.impressum_link">Impressum / Imprint</a>
+                <a href="../impressum.html" class="tiny-footer-link imprint-link" data-i18n="ui.impressum_link">Impressum / Imprint</a>
             </footer>
         </div>
     </main>
