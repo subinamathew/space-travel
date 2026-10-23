@@ -150,7 +150,9 @@
     "game_mode_label": "火箭漫游游戏：",
     "game_toggle_aria": "切换火箭漫游游戏模式",
     "freeplay_mode_label": "自由探索模式：",
-    "freeplay_toggle_aria": "切换自由探索模式"
+    "freeplay_toggle_aria": "切换自由探索模式",
+    "play_game_btn": "游玩火箭漫游游戏",
+    "exit_game_btn": "退出游戏模式"
   },
   "planets": {
     "sun": {

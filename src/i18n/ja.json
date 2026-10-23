@@ -150,7 +150,9 @@
     "game_mode_label": "ロケットラン・ゲーム:",
     "game_toggle_aria": "ロケットラン・ゲームモードの切り替え",
     "freeplay_mode_label": "フリープレイモード:",
-    "freeplay_toggle_aria": "フリープレイモードの切り替え"
+    "freeplay_toggle_aria": "フリープレイモードの切り替え",
+    "play_game_btn": "ロケットラン・ゲームをプレイ",
+    "exit_game_btn": "ゲームモードを終了"
   },
   "planets": {
     "sun": {

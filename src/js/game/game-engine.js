@@ -75,6 +75,13 @@ export function startGame(options = {}) {
   updateSidebar();
   syncFreePlayUI(gameState.isFreePlay);
   startOrbitalTelemetry();
+
+  const playBtn = document.getElementById('game-play-btn');
+  if (playBtn) {
+    playBtn.classList.add('is-playing');
+    playBtn.setAttribute('title', t('ui.exit_game_btn') || 'Exit Game Mode');
+    playBtn.setAttribute('aria-label', t('ui.exit_game_btn') || 'Exit Game Mode');
+  }
 }
 
 export function setFreePlayMode(active) {
@@ -109,6 +116,13 @@ export function stopGame() {
   const sceneEl = document.getElementById('scene');
   if (solarSystem) solarSystem.classList.remove('game-active');
   if (sceneEl) sceneEl.classList.remove('game-active');
+
+  const playBtn = document.getElementById('game-play-btn');
+  if (playBtn) {
+    playBtn.classList.remove('is-playing');
+    playBtn.setAttribute('title', t('ui.play_game_btn') || 'Play RocketRun Game');
+    playBtn.setAttribute('aria-label', t('ui.play_game_btn') || 'Play RocketRun Game');
+  }
 
   teardownGameUI();
 }
@@ -958,7 +972,7 @@ function renderFutureInterceptMarker(metrics) {
   const reticleLabel = reticleTemplate.replace('{sec}', metrics.flightDurationSec);
   reticle.innerHTML = `
     <span class="reticle-ring"></span>
-    <span class="reticle-ghost-badge">🪐</span>
+    <span class="reticle-crosshair">🎯</span>
     <span class="reticle-label">${reticleLabel}</span>
   `;
 
@@ -1297,7 +1311,7 @@ function handleFreePlayTouchdown(planetSlug) {
   if (existing) existing.remove();
 
   const name = formatBodyName(planetSlug);
-  const rawMsg = t('game.freeplay_touchdown_opening') || '🎉 TOUCHDOWN! Opening planetary briefing for {name}... 🪐';
+  const rawMsg = t('game.freeplay_touchdown_opening') || '🎉 TOUCHDOWN! Opening planetary briefing for {name}... 🚀';
   const msg = rawMsg.replace('{name}', name);
 
   const banner = document.createElement('div');
@@ -1307,7 +1321,7 @@ function handleFreePlayTouchdown(planetSlug) {
     <div class="game-modal-card freeplay-touchdown-card">
       <div class="modal-badge">🎉 TOUCHDOWN ON ${name.toUpperCase()}!</div>
       <p class="touchdown-note">${msg}</p>
-      <div class="touchdown-spinner" aria-hidden="true">🪐 🚀 ✨</div>
+      <div class="touchdown-spinner" aria-hidden="true">🚀 🌌 ✨</div>
     </div>
   `;
   document.body.appendChild(banner);

@@ -54,9 +54,10 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function initGameModeSettings() {
+  const playBtn = document.getElementById('game-play-btn');
   const gameToggle = document.getElementById('settings-game-toggle');
   const freePlayToggle = document.getElementById('settings-freeplay-toggle');
-  if (!gameToggle && !freePlayToggle) return;
+  if (!playBtn && !gameToggle && !freePlayToggle) return;
 
   initGameEngine();
 
@@ -79,6 +80,17 @@ function initGameModeSettings() {
     const sessionDocked = typeof sessionStorage !== 'undefined' ? sessionStorage.getItem('rocketrun_docked') : null;
     const docked = dockedParam || (isFreePlayActive ? sessionDocked : null) || 'earth';
     startGame({ freeplay: isFreePlayActive, docked });
+  }
+
+  if (playBtn) {
+    playBtn.addEventListener('click', () => {
+      if (isGameActive()) {
+        exitGameMode();
+      } else {
+        const isFp = localStorage.getItem('space_game_freeplay') === 'true';
+        startGame({ freeplay: isFp });
+      }
+    });
   }
 
   bindGameModeToggles(gameToggle, freePlayToggle);

@@ -203,24 +203,15 @@
                         <span class="slider"></span>
                     </label>
                 </div>
-                <div class="settings-row" id="game-settings-row">
-                    <label for="settings-game-toggle" class="settings-label" data-i18n="ui.game_mode_label">RocketRun Game:</label>
-                    <label class="hud-switch" for="settings-game-toggle">
-                        <input type="checkbox" id="settings-game-toggle" aria-label="Toggle RocketRun Game Mode"
-                            data-i18n-attr="aria-label:ui.game_toggle_aria" />
-                        <span class="slider"></span>
-                    </label>
-                </div>
-                <div class="settings-row" id="freeplay-settings-row">
-                    <label for="settings-freeplay-toggle" class="settings-label" data-i18n="ui.freeplay_mode_label">Free Play Mode:</label>
-                    <label class="hud-switch" for="settings-freeplay-toggle">
-                        <input type="checkbox" id="settings-freeplay-toggle" aria-label="Toggle Free Play Mode"
-                            data-i18n-attr="aria-label:ui.freeplay_toggle_aria" />
-                        <span class="slider"></span>
-                    </label>
-                </div>
             </div>
         </div>
+
+        <!-- Quick Access Game Play Button (1 Tap to Play) -->
+        <button type="button" id="game-play-btn" class="hud-circle-btn hud-game-play-btn in-stack"
+            aria-label="Play RocketRun Game" title="Play RocketRun Game"
+            data-i18n-attr="aria-label:ui.play_game_btn,title:ui.play_game_btn">
+            <span class="hud-play-icon">🎮</span>
+        </button>
 
         <!-- Mobile & Tablet Orbit Pause Button -->
         <button type="button" id="orbit-pause-btn" class="hud-circle-btn hud-pause-btn in-stack"

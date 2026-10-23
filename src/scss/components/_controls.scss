@@ -358,6 +358,38 @@
   }
 }
 
+.hud-game-play-btn {
+  border-color: rgba(56, 189, 248, 0.45);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), 0 0 14px rgba(56, 189, 248, 0.25);
+
+  .hud-play-icon {
+    font-size: 1.25rem;
+    line-height: 1;
+    filter: drop-shadow(0 0 5px rgba(56, 189, 248, 0.6));
+    transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: inline-block;
+  }
+
+  &:hover .hud-play-icon,
+  &:focus-visible .hud-play-icon {
+    transform: scale(1.22);
+    filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.9));
+  }
+
+  &.is-playing {
+    border-color: #38bdf8;
+    background: rgba(14, 165, 233, 0.28);
+    box-shadow: 0 0 18px rgba(56, 189, 248, 0.6), inset 0 0 8px rgba(56, 189, 248, 0.3);
+    animation: gamePlayPulse 2s infinite ease-in-out;
+  }
+}
+
+@keyframes gamePlayPulse {
+  0% { box-shadow: 0 0 12px rgba(56, 189, 248, 0.4); }
+  50% { box-shadow: 0 0 22px rgba(56, 189, 248, 0.8), 0 0 32px rgba(56, 189, 248, 0.4); }
+  100% { box-shadow: 0 0 12px rgba(56, 189, 248, 0.4); }
+}
+
 .hud-pause-btn {
   // Mobile & tablet feature: hidden on desktop where mouse hover and keyboard shortcuts are available
   @media screen and (min-width: 1024px) {

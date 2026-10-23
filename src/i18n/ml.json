@@ -150,7 +150,9 @@
     "game_mode_label": "റോക്കറ്റ് റൺ ഗെയിം:",
     "game_toggle_aria": "റോക്കറ്റ് റൺ ഗെയിം മോഡ് മാറ്റുക",
     "freeplay_mode_label": "ഫ്രീ പ്ലേ മോഡ്:",
-    "freeplay_toggle_aria": "ഫ്രീ പ്ലേ മോഡ് മാറ്റുക"
+    "freeplay_toggle_aria": "ഫ്രീ പ്ലേ മോഡ് മാറ്റുക",
+    "play_game_btn": "റോക്കറ്റ് റൺ ഗെയിം കളിക്കുക",
+    "exit_game_btn": "ഗെയിം മോഡിൽ നിന്ന് പുറത്തുകടക്കുക"
   },
   "planets": {
     "sun": {

@@ -995,12 +995,13 @@
     animation: reticlePulse 2s infinite ease-in-out;
   }
 
+  .reticle-crosshair,
   .reticle-ghost-badge,
   .ghost-planet-badge {
     font-size: 16px;
     line-height: 1;
-    opacity: 0.85;
-    filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.6));
+    opacity: 0.95;
+    filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.7));
   }
 
   .reticle-label {

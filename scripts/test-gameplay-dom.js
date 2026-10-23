@@ -32,6 +32,9 @@ const dom = new JSDOM(`
       <button id="planet-btn-neptune" class="planet-btn" data-slug="neptune"></button>
     </div>
   </div>
+  <button type="button" id="game-play-btn" class="hud-circle-btn hud-game-play-btn in-stack">
+    <span class="hud-play-icon">🎮</span>
+  </button>
   <input type="checkbox" id="settings-game-toggle" />
   <input type="checkbox" id="settings-freeplay-toggle" />
 </body>
@@ -154,6 +157,10 @@ for (const secId of expectedSections) {
   assert(document.getElementById(secId) !== null, `Accordion section #${secId} exists`);
 }
 
+const playBtn = document.getElementById('game-play-btn');
+assert(playBtn !== null, '#game-play-btn exists in DOM');
+assert(playBtn.classList.contains('is-playing'), '#game-play-btn has .is-playing class while game is active');
+
 // ----------------------------------------------------
 // TEST 2: Auto-Targeting & Canvas Highlight
 // ----------------------------------------------------
@@ -235,6 +242,12 @@ assert(document.getElementById('acc-summary-planner').textContent === '+10s', 'A
 const btnLive = planner.querySelector('.planner-btn[data-offset="0"]');
 btnLive.click();
 assert(document.getElementById('planner-offset-badge').textContent.includes('T+0s'), 'Offset badge reset to LIVE');
+
+const reticleEl = document.getElementById('future-intercept-reticle');
+if (reticleEl) {
+  assert(!reticleEl.innerHTML.includes('🪐'), 'future-intercept-reticle does NOT contain Saturn emoji 🪐');
+  assert(reticleEl.querySelector('.reticle-crosshair') !== null, 'future-intercept-reticle contains .reticle-crosshair');
+}
 
 // ----------------------------------------------------
 // TEST 6: Thrust Energy Slider Throttling & Guidance
@@ -395,6 +408,7 @@ assert(document.getElementById('rocketrun-hud') === null, '#rocketrun-hud remove
 assert(document.getElementById('rocketrun-sidebar') === null, '#rocketrun-sidebar removed from DOM');
 assert(document.querySelectorAll('.is-game-target').length === 0, 'All .is-game-target highlights cleaned from canvas');
 assert(!document.getElementById('solar-system').classList.contains('game-active'), '#solar-system .game-active class removed');
+assert(!document.getElementById('game-play-btn').classList.contains('is-playing'), '#game-play-btn .is-playing class removed after teardown');
 
 // ----------------------------------------------------
 // TEST 13: Dedicated Luna (Moon) Subpage Verification
@@ -474,6 +488,17 @@ for (const p of pagesToCheck) {
   assert(content.includes('<meta name="keywords"'), `${p.name} contains <meta name="keywords"`);
   assert(content.includes('<script type="application/ld+json">'), `${p.name} contains Schema.org JSON-LD`);
 }
+
+// ----------------------------------------------------
+// TEST 16: Settings Simplification & 1-Tap Play Button
+// ----------------------------------------------------
+console.log('\n[Test 16: Settings Simplification & 1-Tap Play Button]');
+const indexHtmlSrc = fs.readFileSync(path.resolve(__dirname, '../src/index.html'), 'utf8');
+assert(!indexHtmlSrc.includes('id="settings-game-toggle"'), 'src/index.html settings does NOT contain settings-game-toggle');
+assert(!indexHtmlSrc.includes('id="settings-freeplay-toggle"'), 'src/index.html settings does NOT contain settings-freeplay-toggle');
+assert(indexHtmlSrc.includes('id="game-play-btn"'), 'src/index.html contains #game-play-btn');
+assert(indexHtmlSrc.includes('hud-game-play-btn'), 'src/index.html has .hud-game-play-btn class');
+assert(indexHtmlSrc.includes('🎮'), 'src/index.html has 🎮 game play icon');
 
 console.log('\n====================================================');
 console.log(`🎉 ALL TESTS PASSED: ${passedTests} / ${totalTests} assertions verified!`);

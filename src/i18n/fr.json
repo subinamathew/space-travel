@@ -150,7 +150,9 @@
     "game_mode_label": "Jeu RocketRun :",
     "game_toggle_aria": "Basculer le mode jeu RocketRun",
     "freeplay_mode_label": "Mode Jeu Libre :",
-    "freeplay_toggle_aria": "Basculer en mode jeu libre"
+    "freeplay_toggle_aria": "Basculer en mode jeu libre",
+    "play_game_btn": "Jouer au jeu RocketRun",
+    "exit_game_btn": "Quitter le mode jeu"
   },
   "planets": {
     "sun": {
