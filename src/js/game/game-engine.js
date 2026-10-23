@@ -13,6 +13,7 @@ import {
   checkSolarBoost,
   generateScientificTransferArc,
   getFlightDuration,
+  calculateFlightFuelBurn,
   ORBIT_SPECS,
   BASE_EARTH_SECONDS
 } from './game-physics.js';
@@ -34,6 +35,7 @@ let gameActive = false;
 let startTime = Date.now();
 let orbitalTimer = null;
 let activeFlightTimeout = null;
+let activeDrainTimer = null;
 let futureOffsetSec = 0;
 
 export function isGameActive() {
@@ -117,6 +119,7 @@ export function stopGame() {
   setGameModeCookie('off');
   stopOrbitalTelemetry();
   clearFlightTimeout();
+  clearDrainTimer();
   enforce2DMode(false);
 
   const solarSystem = document.getElementById('solar-system');
@@ -155,6 +158,13 @@ export function exitGameMode() {
   stopGame();
 }
 
+function clearDrainTimer() {
+  if (activeDrainTimer) {
+    clearInterval(activeDrainTimer);
+    activeDrainTimer = null;
+  }
+}
+
 function clearFlightTimeout() {
   if (activeFlightTimeout) {
     clearTimeout(activeFlightTimeout);
@@ -188,7 +198,7 @@ function startOrbitalTelemetry() {
     if (!gameActive) return;
     if (gameState.state !== GAME_STATES.TRANSIT && gameState.state !== GAME_STATES.LAUNCHING) {
       if (gameState.fuel < 100) {
-        const fluxRate = gameState.getSolarRechargeRate ? gameState.getSolarRechargeRate() : 10;
+        const fluxRate = gameState.getSolarRechargeRate ? gameState.getSolarRechargeRate() : 1.67;
         gameState.addFuel(fluxRate * 0.4);
         updateFuelUI();
         updateLaunchButtonState();
@@ -756,13 +766,13 @@ function updateFuelUI() {
 
   const solarInd = document.getElementById('solar-recharge-indicator');
   const solarText = document.getElementById('solar-recharge-text');
-  const isCharging = gameState.fuel < gameState.energy;
+  const isCharging = gameState.fuel < 100;
 
   if (solarInd) {
     solarInd.style.display = isCharging ? 'flex' : 'none';
   }
   if (solarText && isCharging) {
-    const rate = gameState.getSolarRechargeRate ? gameState.getSolarRechargeRate() : 10;
+    const rate = gameState.getSolarRechargeRate ? gameState.getSolarRechargeRate() : 1.67;
     solarText.textContent = `${t('game.solar_charging_status')} (+${rate}%/s)`;
   }
   if (fuelFill) {
@@ -776,15 +786,24 @@ function updateLaunchButtonState() {
   const btnText = document.getElementById('launch-btn-text');
   if (!btn || !btnText) return;
 
-  if (gameState.fuel < gameState.energy) {
+  const fluxRate = gameState.getSolarRechargeRate ? gameState.getSolarRechargeRate() : 1.67;
+
+  if (gameState.fuel <= 0) {
+    const req = gameState.energy || 50;
+    const waitSec = Math.ceil(req / fluxRate);
+    btn.disabled = true;
+    btn.classList.add('is-fuel-empty');
+    btnText.textContent = `⛽ FUEL EMPTY — REFUELING (${waitSec}s)...`;
+  } else if (gameState.fuel < gameState.energy) {
     const deficit = gameState.energy - gameState.fuel;
-    const fluxRate = gameState.getSolarRechargeRate ? gameState.getSolarRechargeRate() : 10;
     const waitSec = Math.ceil(deficit / fluxRate);
     btn.disabled = true;
+    btn.classList.remove('is-fuel-empty');
     const template = t('game.solar_charging_wait') || '☀️ SOLAR CHARGING ({sec}s)... ⚡';
     btnText.textContent = template.replace('{sec}', waitSec);
   } else {
     btn.disabled = false;
+    btn.classList.remove('is-fuel-empty');
     btnText.textContent = t('game.big_launch_btn') || 'BIG LAUNCH 🚀';
   }
 }
@@ -1117,11 +1136,11 @@ function handleLaunchClick() {
     showGameNotification(t('game.select_destination_alert') || 'Please select a destination planet first!', 'warning');
     return;
   }
-  if (gameState.state === GAME_STATES.TRANSIT) return;
+  if (gameState.state === GAME_STATES.TRANSIT || gameState.state === GAME_STATES.LAUNCHING) return;
 
   if (isDestinationBlockedByMission()) return;
 
-  if (!gameState.hasSufficientFuel(gameState.energy)) {
+  if (gameState.fuel <= 0 || !gameState.hasSufficientFuel(gameState.energy)) {
     alertInsufficientFuel();
     return;
   }
@@ -1130,6 +1149,10 @@ function handleLaunchClick() {
 }
 
 function alertInsufficientFuel() {
+  if (gameState.fuel <= 0) {
+    showGameNotification('⚠️ Propellant Tank Empty: Waiting for solar recharge to generate fuel!', 'warning');
+    return;
+  }
   const rawFuelAlert =
     t('game.insufficient_fuel_alert') ||
     '⚠️ Insufficient Propellant: This launch requires {energy}% fuel, but only {fuel}% is available. Please wait for solar recharging!';
@@ -1173,8 +1196,6 @@ function startLaunchCountdown() {
     } else {
       clearInterval(countdown);
       btnText.textContent = 'BLASTOFF! 🚀';
-      gameState.consumeFuel(gameState.energy);
-      updateFuelUI();
       executeFlightTransit();
     }
   }, 400);
@@ -1198,6 +1219,31 @@ function executeFlightTransit() {
   const durationSec = getFlightDuration(gameState.currentPlanet, gameState.targetPlanet);
   const p2 = calculateArrivalScenePoint(gameState.targetPlanet, sceneEl, durationSec);
   const isMoon = gameState.targetPlanet === 'moon' || gameState.currentPlanet === 'moon';
+
+  // Smooth continuous fuel drain scaling with power and travel duration/distance
+  const totalBurn = calculateFlightFuelBurn(gameState.energy, gameState.currentPlanet, gameState.targetPlanet);
+  const startFuel = gameState.fuel;
+  const targetFuel = Math.max(0, startFuel - totalBurn);
+
+  clearDrainTimer();
+  const drainIntervalMs = 100;
+  const totalSteps = Math.max(1, Math.round((durationSec * 1000) / drainIntervalMs));
+  const drainPerStep = (startFuel - targetFuel) / totalSteps;
+
+  activeDrainTimer = setInterval(() => {
+    if (gameState.state !== GAME_STATES.TRANSIT) {
+      clearDrainTimer();
+      return;
+    }
+    if (gameState.fuel > targetFuel) {
+      gameState.fuel = Math.max(targetFuel, gameState.fuel - drainPerStep);
+      updateFuelUI();
+    } else {
+      gameState.fuel = targetFuel;
+      updateFuelUI();
+      clearDrainTimer();
+    }
+  }, drainIntervalMs);
 
   removeFutureInterceptMarker();
   const points = generateScientificTransferArc(p1, p2, isMoon);
@@ -1317,6 +1363,7 @@ function handleTransitOutcome(rocket, outcomeData, durationSec) {
 }
 
 function triggerExplosion(rocket, reasonKey) {
+  clearDrainTimer();
   playExplosionSound();
   rocket.innerHTML = `<span class="explosion-sprite">💥</span>`;
   rocket.className = 'rocket-actor is-exploded';
@@ -1338,6 +1385,7 @@ function triggerExplosion(rocket, reasonKey) {
 }
 
 function triggerOvershoot(rocket, reasonKey) {
+  clearDrainTimer();
   rocket.className = 'rocket-actor is-overshot';
   playWarningSound();
 
@@ -1358,6 +1406,7 @@ function triggerOvershoot(rocket, reasonKey) {
 }
 
 function triggerTouchdown(rocket) {
+  clearDrainTimer();
   playTouchdownSound();
 
   if (checkSolarBoost(gameState.currentPlanet, gameState.targetPlanet)) {

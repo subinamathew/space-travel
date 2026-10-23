@@ -652,6 +652,13 @@
       cursor: not-allowed;
       filter: grayscale(0.5);
     }
+
+    &.is-fuel-empty {
+      background: linear-gradient(135deg, #7f1d1d 0%, #450a0a 100%);
+      border-color: rgba(239, 68, 68, 0.5);
+      box-shadow: 0 4px 14px rgba(239, 68, 68, 0.25);
+      color: #fca5a5;
+    }
   }
 
   .sidebar-mission-card {

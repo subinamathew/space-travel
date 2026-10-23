@@ -88,6 +88,28 @@ export function getFlightDuration(originSlug, targetSlug) {
   return 5.2;
 }
 
+/**
+ * Calculates propellant fuel consumption for a voyage:
+ * - Scales with "longer power" (energy thrust level 0-100%).
+ * - Scales with "longer travel" (orbital distance / transit duration).
+ */
+export function calculateFlightFuelBurn(energy, originSlug, targetSlug) {
+  const s1 = ORBIT_SPECS[originSlug] || ORBIT_SPECS.earth;
+  const s2 = ORBIT_SPECS[targetSlug] || ORBIT_SPECS.mars;
+  const isMoon = (targetSlug === 'moon' || targetSlug === 'luna') || (originSlug === 'moon' || originSlug === 'luna');
+
+  let travelFactor = 0.85;
+  if (isMoon) {
+    travelFactor = 0.65;
+  } else {
+    const dr = Math.abs((s2.r || 17.5) - (s1.r || 17.5));
+    travelFactor = 0.65 + (dr / 35);
+  }
+
+  const burn = Math.round(Number(energy) * travelFactor);
+  return Math.min(100, Math.max(10, burn));
+}
+
 export function findNextOptimalWindow(originSlug, targetSlug, elapsedSec) {
   let bestDt = 0;
   let minDist = Infinity;

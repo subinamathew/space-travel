@@ -105,9 +105,11 @@ export class GameState {
   }
 
   getSolarRechargeRate() {
-    if (['mercury', 'venus'].includes(this.currentPlanet)) return 15;
-    if (['earth', 'moon', 'luna', 'mars'].includes(this.currentPlanet)) return 10;
-    return 7;
+    // 100% tank fills over a wait of 1 minute (60 seconds)
+    // Moderate solar flux scaling centered at 1.67%/s on Earth/Moon/Mars (60s = 1 min)
+    if (['mercury', 'venus'].includes(this.currentPlanet)) return 2.0; // ~50s near Sun
+    if (['earth', 'moon', 'luna', 'mars'].includes(this.currentPlanet)) return 1.67; // exactly 60s (1 min)
+    return 1.43; // ~70s outer gas giants
   }
 
   getRank() {
@@ -141,7 +143,7 @@ export class GameState {
     this.targetPlanet = null;
     this.missionIndex++;
     this.dynamicMission = null;
-    this.fuel = 100;
+    // Fuel is preserved so it keeps decreasing across journeys until recharged
     this.state = GAME_STATES.STANDBY;
   }
 
@@ -166,6 +168,7 @@ export class GameState {
   }
 
   hasSufficientFuel(req) {
+    if (this.fuel <= 0) return false;
     return this.fuel >= (Number(req) || 0);
   }
 

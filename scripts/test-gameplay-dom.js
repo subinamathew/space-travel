@@ -118,6 +118,7 @@ import {
   checkAsteroidHazard,
   checkSolarBoost,
   calculateFutureOrbitalIntercept,
+  calculateFlightFuelBurn,
   ORBIT_SPECS
 } from '../src/js/game/game-physics.js';
 import { getPlanetQuiz, getTouchdownNoteKey } from '../src/js/game/game-quiz.js';
@@ -320,13 +321,13 @@ assert(launchBtn.textContent.includes('SOLAR CHARGING'), 'Launch button displays
 const rechargeIndicator = document.getElementById('solar-recharge-indicator');
 assert(rechargeIndicator.style.display !== 'none', 'Solar recharge indicator is displayed');
 
-// Test Solar Flux Proximity Math:
+// Test Solar Flux Proximity Math (100% tank fills in 1 min / 60s at 1.67%/s):
 gameState.currentPlanet = 'mercury';
-assert(gameState.getSolarRechargeRate() === 15, 'Solar flux at Mercury is +15%/s (near Sun)');
+assert(gameState.getSolarRechargeRate() === 2.0, 'Solar flux at Mercury is +2.0%/s (near Sun, ~50s)');
 gameState.currentPlanet = 'earth';
-assert(gameState.getSolarRechargeRate() === 10, 'Solar flux at Earth is +10%/s (moderate distance)');
+assert(gameState.getSolarRechargeRate() === 1.67, 'Solar flux at Earth is +1.67%/s (exactly 60s = 1 min)');
 gameState.currentPlanet = 'saturn';
-assert(gameState.getSolarRechargeRate() === 7, 'Solar flux at Saturn is +7%/s (outer deep space)');
+assert(gameState.getSolarRechargeRate() === 1.43, 'Solar flux at Saturn is +1.43%/s (outer deep space, ~70s)');
 
 // Restore fuel for flight test
 gameState.currentPlanet = 'earth';
@@ -752,6 +753,62 @@ delete dom.window.RocketRunNavigate;
 
 // Restore URL
 dom.reconfigure({ url: 'https://rocketrun.org/' });
+
+// ----------------------------------------------------
+// TEST 20: Power & Distance Fuel Consumption, 1-Min Refuel, Disabled Launch When Empty
+// ----------------------------------------------------
+console.log('\n[Test 20: Dynamic Fuel Burn Scaling, 1-Min Full Tank Recharge & Launch Guard]');
+startGame();
+const activeSlider = document.getElementById('energy-slider');
+const activeLaunchBtn = document.getElementById('launch-btn');
+
+// 1. Higher power burns more fuel
+const burnLowPower = calculateFlightFuelBurn(25, 'earth', 'mars');
+const burnHighPower = calculateFlightFuelBurn(90, 'earth', 'mars');
+assert(burnHighPower > burnLowPower, `Higher thrust burns more fuel (90%=${burnHighPower}% vs 25%=${burnLowPower}%)`);
+
+// 2. Longer travel distance burns more fuel
+const burnShortTravel = calculateFlightFuelBurn(60, 'earth', 'moon');
+const burnLongTravel = calculateFlightFuelBurn(60, 'earth', 'neptune');
+assert(burnLongTravel > burnShortTravel, `Longer distance burns more fuel (Neptune=${burnLongTravel}% vs Moon=${burnShortTravel}%)`);
+
+// 3. Depleted fuel persists across advanceMission()
+gameState.fuel = 45;
+gameState.advanceMission();
+assert(gameState.fuel === 45, 'advanceMission() preserves depleted fuel across planetary voyages');
+
+// 4. Exactly 60s recharge time for 100% tank on Earth/Moon/Mars
+const rechargeRate = gameState.getSolarRechargeRate(); // 1.67
+const timeToFill100 = 100 / rechargeRate;
+assert(Math.round(timeToFill100) === 60, `100% fuel tank refills in exactly 60s (1 min) at ${rechargeRate}%/s`);
+
+// 5. When fuel is empty (<= 0), launch button is disabled with empty state
+gameState.fuel = 0;
+assert(!gameState.hasSufficientFuel(50), 'hasSufficientFuel(50) returns false when fuel is 0');
+assert(!gameState.hasSufficientFuel(0), 'hasSufficientFuel(0) returns false when fuel is <= 0');
+
+activeSlider.value = '50';
+activeSlider.dispatchEvent(new Event('input'));
+assert(activeLaunchBtn.disabled === true, 'Launch button is disabled when fuel <= 0');
+assert(activeLaunchBtn.classList.contains('is-fuel-empty'), 'Launch button has .is-fuel-empty class when fuel is 0');
+assert(activeLaunchBtn.textContent.includes('FUEL EMPTY'), 'Launch button text displays FUEL EMPTY indicator');
+
+// 6. Refilling fuel re-enables launch once fuel >= energy
+gameState.addFuel(60);
+activeSlider.dispatchEvent(new Event('input'));
+assert(activeLaunchBtn.disabled === false, 'Launch button is re-enabled once fuel is recharged above requested thrust');
+assert(!activeLaunchBtn.classList.contains('is-fuel-empty'), 'Launch button removes .is-fuel-empty when refueled');
+
+// 7. Silent 100% full capacity (no alerts triggered)
+let alertsTriggered = false;
+const originalAlert = dom.window.alert;
+dom.window.alert = () => { alertsTriggered = true; };
+gameState.addFuel(50); // reaches 100 clamped
+assert(gameState.fuel === 100, 'Fuel clamped at 100%');
+assert(alertsTriggered === false, 'Zero alerts triggered upon reaching 100% fuel');
+dom.window.alert = originalAlert;
+
+exitGameMode();
 
 console.log('\n====================================================');
 console.log(`🎉 ALL TESTS PASSED: ${passedTests} / ${totalTests} assertions verified!`);
