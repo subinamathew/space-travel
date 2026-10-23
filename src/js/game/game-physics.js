@@ -28,7 +28,8 @@ export const ORBIT_PERIODS = {
   neptune: 164.8
 };
 
-const BASE_EARTH_SECONDS = 20;
+// In Game Mode, Earth orbit is 50s (2.5x slower) to match rocket flight pace
+const BASE_EARTH_SECONDS = 50;
 
 export function getBodyCoordinates(slug, elapsedSec) {
   const r = ORBIT_RADII[slug] ?? 24;

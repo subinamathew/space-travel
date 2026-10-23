@@ -444,3 +444,21 @@ body.orbits-paused #scene {
     box-shadow: 0 0 8px #ffffff !important;
   }
 }
+
+// In Game Mode: planets move 2.5x slower so orbital windows match the rocket flight pace
+#solar-system.game-active,
+#scene.game-active {
+  .orbit-carrier {
+    animation-duration: var(--orbit-period-game, 25s) !important;
+    animation-delay: var(--orbit-delay-game, 0s) !important;
+  }
+
+  .planet-btn {
+    animation-duration: var(--orbit-period-game, 25s) !important;
+    animation-delay: var(--orbit-delay-game, 0s) !important;
+  }
+
+  .moon-orbit {
+    animation-duration: 10s !important; // 2.5x slower moon orbit
+  }
+}

@@ -32,6 +32,8 @@ export function buildOrrery(sceneEl, planets, onPlanetSelect) {
     o.style.setProperty('--orbit-inc-inv', `${(-inc).toFixed(2)}deg`);
     o.style.setProperty('--orbit-period', `${periodSeconds.toFixed(2)}s`);
     o.style.setProperty('--orbit-delay', `${delay.toFixed(2)}s`);
+    o.style.setProperty('--orbit-period-game', `${(periodSeconds * 2.5).toFixed(2)}s`);
+    o.style.setProperty('--orbit-delay-game', `${(delay * 2.5).toFixed(2)}s`);
 
     const carrier = document.createElement('div');
     carrier.className = 'orbit-carrier';
