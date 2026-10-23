@@ -924,6 +924,16 @@
     "target_label": "目標:",
     "target_luna_btn": "🌙 月（ルナ）を目標に設定",
     "tap_planet_map_hint": "マップ上の惑星をタップして選択！",
-    "select_target_prompt": "マップで選択または月をタップ"
+    "select_target_prompt": "マップで選択または月をタップ",
+    "target_earth": "地球を目標に設定",
+    "target_moon": "月を目標に設定",
+    "debrief_perigee_title": "近地点（最接近）",
+    "debrief_perigee_desc": "出発地と目的地の惑星が最も接近する軌道上の位置です。近地点付近で打ち上げることで、最小の推力（Δv）と燃料で軌道投入できます。",
+    "debrief_apogee_title": "遠地点（最遠距離）",
+    "debrief_apogee_desc": "惑星間の距離が最大となる位置です。ロケットの遷移軌道において、遠地点は太陽から最も離れる最高高度を表します。",
+    "debrief_why_matters_title": "ミッション失敗の理由",
+    "debrief_why_matters_fuel": "推力が不足していました（{thrust}%）。軌道の遠地点が目的地の軌道に届きませんでした。緑の適正ウィンドウまで推力を上げてください！",
+    "debrief_why_matters_overshoot": "推力が過大でした（{thrust}%）。目標の重力圏を突き抜けて深宇宙へ飛び去ってしまいました。緑のウィンドウに推力を調整してください。",
+    "debrief_why_matters_general": "宇宙航行の軌道は直線ではなく楕円です！目標惑星とランデブーするには、到達時の目標位置に軌道の遠地点を正確に合わせる必要があります。"
   }
 }

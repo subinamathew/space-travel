@@ -924,6 +924,16 @@
     "target_label": "Target:",
     "target_luna_btn": "🌙 Target Luna (Moon)",
     "tap_planet_map_hint": "Tap any planet on map to target!",
-    "select_target_prompt": "Select on Map or tap Luna"
+    "select_target_prompt": "Select on Map or tap Luna",
+    "target_earth": "Target Earth",
+    "target_moon": "Target Moon",
+    "debrief_perigee_title": "Perigee (Closest Approach)",
+    "debrief_perigee_desc": "The orbital point where origin and destination planets are closest together. Launching near Perigee requires minimum thrust (delta-v) and fuel for orbital capture.",
+    "debrief_apogee_title": "Apogee (Farthest Distance)",
+    "debrief_apogee_desc": "The orbital point of maximum separation. In your trajectory, Apogee is the peak altitude your rocket reaches before falling back toward the Sun.",
+    "debrief_why_matters_title": "Why It Caused Mission Failure",
+    "debrief_why_matters_fuel": "Your thrust was too low ({thrust}%), so your orbit's apogee fell short of the target planet. Increase thrust into the green window or wait for Perigee!",
+    "debrief_why_matters_overshoot": "Your thrust was too high ({thrust}%), blasting your apogee beyond planetary gravity into deep space. Dial back into the green window.",
+    "debrief_why_matters_general": "Orbits are ellipses, not straight lines! To rendezvous with a planet, your trajectory's apogee must intersect the target's orbit at the exact arrival time."
   }
 }

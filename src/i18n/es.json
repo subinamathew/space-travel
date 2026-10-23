@@ -924,6 +924,16 @@
     "target_label": "Objetivo:",
     "target_luna_btn": "🌙 Apuntar a Luna",
     "tap_planet_map_hint": "¡Toca cualquier planeta en el mapa!",
-    "select_target_prompt": "Selecciona en el mapa o toca Luna"
+    "select_target_prompt": "Selecciona en el mapa o toca Luna",
+    "target_earth": "Apuntar a la Tierra",
+    "target_moon": "Apuntar a la Luna",
+    "debrief_perigee_title": "Perigeo (Distancia Mínima)",
+    "debrief_perigee_desc": "El punto orbital donde el origen y el destino están más cerca. Lanzar cerca del Perigeo requiere el menor empuje (delta-v) y combustible.",
+    "debrief_apogee_title": "Apogeo (Distancia Máxima)",
+    "debrief_apogee_desc": "El punto de máxima separación. En su trayectoria, el Apogeo es la altitud máxima que alcanza su cohete antes de descender hacia el Sol.",
+    "debrief_why_matters_title": "Por qué causó el fallo de la misión",
+    "debrief_why_matters_fuel": "Su empuje fue insuficiente ({thrust}%), por lo que el apogeo de su órbita no alcanzó el planeta objetivo. ¡Aumente el empuje a la zona verde!",
+    "debrief_why_matters_overshoot": "Su empuje fue excesivo ({thrust}%), enviando su cohete más allá de la gravedad del planeta hacia el espacio profundo. Reduzca el empuje.",
+    "debrief_why_matters_general": "¡Las órbitas son elipses, no líneas rectas! Para lograr el encuentro, el apogeo debe coincidir con la órbita de destino en el momento exacto."
   }
 }

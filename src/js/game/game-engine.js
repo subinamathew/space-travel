@@ -30,6 +30,8 @@ import { playLaunchSound, playTouchdownSound, playExplosionSound, playWarningSou
 import { setGameModeCookie } from '../components/cookie-notice.js';
 import { t } from '../i18n.js';
 
+export { ALL_DESTINATIONS, getRandomDestination, shuffleDestinations } from './game-state.js';
+
 let gameState = null;
 let gameActive = false;
 let startTime = Date.now();
@@ -293,7 +295,34 @@ function renderGameUI() {
     <div class="sidebar-header">
       <div class="sidebar-title">
         <span class="sidebar-icon">🚀</span>
-        <span data-i18n="game.launch_control">Launch Control</span>
+        <span class="sidebar-title-text" data-i18n="game.launch_control">Launch Control</span>
+      </div>
+      <div class="sidebar-min-bar" id="sidebar-min-bar">
+        <div class="min-route-widget" id="min-route-widget" title="Active Route">
+          <img id="min-origin-img" class="min-planet-img" src="${getBodyImagePath(gameState.currentPlanet)}" alt="Origin Planet" />
+          <span class="min-route-arrow" aria-hidden="true">➔</span>
+          <img id="min-dest-img" class="min-planet-img" src="${getBodyImagePath(gameState.targetPlanet || (gameState.currentPlanet === 'moon' ? 'earth' : 'moon'))}" alt="Destination Planet" />
+        </div>
+        <button type="button" class="luna-dest-btn min-luna-btn" id="min-luna-btn" title="${t('game.target_moon') || 'Target Moon'}" aria-label="${t('game.target_moon') || 'Target Moon'}">
+          <span class="luna-icon" aria-hidden="true">${gameState.currentPlanet === 'moon' ? '🌍' : '🌙'}</span>
+        </button>
+        <div class="min-thrust-widget" id="min-thrust-widget" title="${t('game.thrust_energy') || 'Thrust Energy'}">
+          <span class="min-thrust-icon" aria-hidden="true">⚡</span>
+          <span class="min-thrust-num is-green" id="min-thrust-num">50%</span>
+        </div>
+        <div class="min-fuel-signal" id="min-fuel-signal" title="${t('game.fuel_label') || 'Fuel Tank Level'}">
+          <span class="min-fuel-icon" aria-hidden="true">⛽</span>
+          <div class="signal-bars" id="min-signal-bars" aria-label="Fuel Tank Signal">
+            <span class="signal-bar bar-1 is-active"></span>
+            <span class="signal-bar bar-2 is-active"></span>
+            <span class="signal-bar bar-3 is-active"></span>
+            <span class="signal-bar bar-4 is-active"></span>
+          </div>
+          <span class="min-fuel-pct" id="min-fuel-pct">100%</span>
+        </div>
+        <button type="button" class="min-launch-btn" id="min-launch-btn" title="${t('game.big_launch_btn') || 'Launch Rocket'}">
+          <span class="btn-text" id="min-launch-btn-text">LAUNCH 🚀</span>
+        </button>
       </div>
       <div class="sidebar-header-actions">
         <div class="current-loc" id="current-location-indicator">Earth 🌍</div>
@@ -306,6 +335,7 @@ function renderGameUI() {
       <div class="sidebar-route-block" id="sidebar-route-block">
         <div class="sidebar-route-banner" id="sidebar-route-banner">
           <div class="route-point route-origin" id="route-origin" title="${t('game.current_location') || 'Current Location'}">
+            <img class="route-body-img" id="route-origin-img" src="${getBodyImagePath(gameState.currentPlanet)}" alt="Origin Planet" />
             <span class="route-icon" id="route-origin-icon">${getBodyIcon(gameState.currentPlanet)}</span>
             <span class="route-name" id="route-origin-name">${getBodyPlainName(gameState.currentPlanet)}</span>
           </div>
@@ -314,14 +344,15 @@ function renderGameUI() {
             <span class="route-target-icon" title="Target">🎯</span>
           </div>
           <div class="route-point route-dest" id="route-dest" title="${t('game.next_destination') || 'Next Destination'}">
+            <img class="route-body-img" id="route-dest-img" src="${getBodyImagePath(gameState.targetPlanet || (gameState.currentPlanet === 'moon' ? 'earth' : 'moon'))}" alt="Destination Planet" />
             <span class="route-icon" id="route-dest-icon">${gameState.targetPlanet ? getBodyIcon(gameState.targetPlanet) : '🎯'}</span>
             <span class="route-name" id="dest-target-name">${gameState.targetPlanet ? getBodyPlainName(gameState.targetPlanet) : (t('game.select_target_prompt') || 'Select Target')}</span>
           </div>
         </div>
 
         <div class="destination-control-block">
-          <button type="button" class="luna-dest-btn" id="luna-dest-btn">
-            <span>🌙</span> <span id="luna-dest-btn-text" data-i18n="game.target_luna_btn">${t('game.target_luna_btn') || 'Target Luna (Moon)'}</span>
+          <button type="button" class="luna-dest-btn" id="luna-dest-btn" title="${t('game.target_moon') || 'Target Moon'}" aria-label="${t('game.target_moon') || 'Target Moon'}">
+            <span class="luna-icon" aria-hidden="true">${gameState.currentPlanet === 'moon' ? '🌍' : '🌙'}</span>
           </button>
           <div class="dest-map-hint">
             <span>👆</span> <span data-i18n="game.tap_planet_map_hint">${t('game.tap_planet_map_hint') || 'Tap any planet on map to target!'}</span>
@@ -565,13 +596,12 @@ function bindSidebarEvents() {
     });
   }
 
-  const lunaBtn = document.getElementById('luna-dest-btn');
-  if (lunaBtn) {
-    lunaBtn.addEventListener('click', () => {
+  document.querySelectorAll('.luna-dest-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
       const target = gameState.currentPlanet === 'moon' ? 'earth' : 'moon';
       selectDestination(target);
     });
-  }
+  });
 
   const minBtn = document.getElementById('sidebar-min-btn');
   if (minBtn) {
@@ -594,6 +624,7 @@ function bindSidebarEvents() {
         updateLaunchButtonState();
         updateEnergyFeedbackHint();
         updateFuelUI();
+        updateThrustMinUI();
         const sumThrust = document.getElementById('acc-summary-thrust');
         if (sumThrust) sumThrust.textContent = `${slider.value}%`;
       },
@@ -604,6 +635,11 @@ function bindSidebarEvents() {
   const launchBtn = document.getElementById('launch-btn');
   if (launchBtn) {
     launchBtn.addEventListener('click', handleLaunchClick);
+  }
+
+  const minLaunchBtn = document.getElementById('min-launch-btn');
+  if (minLaunchBtn) {
+    minLaunchBtn.addEventListener('click', handleLaunchClick);
   }
 
   const closeBtn = document.getElementById('sidebar-close-btn');
@@ -675,9 +711,39 @@ function updateSidebar() {
     originNameEl.textContent = getBodyPlainName(gameState.currentPlanet);
   }
 
+  const originImgEl = document.getElementById('route-origin-img');
+  if (originImgEl) {
+    originImgEl.src = getBodyImagePath(gameState.currentPlanet);
+    originImgEl.alt = getBodyPlainName(gameState.currentPlanet);
+  }
+
   const destIconEl = document.getElementById('route-dest-icon');
   if (destIconEl) {
     destIconEl.textContent = gameState.targetPlanet ? getBodyIcon(gameState.targetPlanet) : '🎯';
+  }
+
+  const destImgEl = document.getElementById('route-dest-img');
+  if (destImgEl) {
+    const destSlug = gameState.targetPlanet || (gameState.currentPlanet === 'moon' ? 'earth' : 'moon');
+    destImgEl.src = getBodyImagePath(destSlug);
+    destImgEl.alt = gameState.targetPlanet ? getBodyPlainName(gameState.targetPlanet) : 'Destination';
+  }
+
+  // Minimized view route images
+  const minOriginImg = document.getElementById('min-origin-img');
+  if (minOriginImg) {
+    minOriginImg.src = getBodyImagePath(gameState.currentPlanet);
+    minOriginImg.alt = getBodyPlainName(gameState.currentPlanet);
+    minOriginImg.title = `Origin: ${getBodyPlainName(gameState.currentPlanet)}`;
+  }
+
+  const minDestImg = document.getElementById('min-dest-img');
+  if (minDestImg) {
+    const destSlug = gameState.targetPlanet || (gameState.currentPlanet === 'moon' ? 'earth' : 'moon');
+    minDestImg.src = getBodyImagePath(destSlug);
+    minDestImg.alt = gameState.targetPlanet ? getBodyPlainName(gameState.targetPlanet) : 'Destination';
+    minDestImg.title = `Destination: ${gameState.targetPlanet ? getBodyPlainName(gameState.targetPlanet) : 'Select Target'}`;
+    minDestImg.classList.toggle('has-no-target', !gameState.targetPlanet);
   }
 
   const tagEl = document.getElementById('sidebar-mission-tag');
@@ -687,21 +753,10 @@ function updateSidebar() {
       const fpText = `🚀 ${t('game.freeplay_tag') || 'FREE PLAY EXPLORATION'}`;
       tagEl.textContent = fpText;
       if (sumModeEl) sumModeEl.textContent = t('game.mode_freeplay') || 'Free Play';
-    } else if (gameState.missionIndex < 7) {
-      const tmpl = t('game.mission_tag_format') || 'Mission {num} of 8';
-      const mText = `🎯 ${tmpl.replace('{num}', gameState.missionIndex + 1)}`;
+    } else {
+      const mText = `🎯 ${t('game.mission_label') || 'MISSION'} #${gameState.missionIndex + 1}`;
       tagEl.textContent = mText;
       if (sumModeEl) sumModeEl.textContent = `🎯 Mission ${gameState.missionIndex + 1}`;
-    } else if (gameState.missionIndex === 7) {
-      const hcText = `🌍 ${t('game.homecoming_tag') || 'Earth Homecoming (Mission 8)'}`;
-      tagEl.textContent = hcText;
-      if (sumModeEl) sumModeEl.textContent = '🌍 Homecoming';
-    } else {
-      const expNum = gameState.missionIndex - 7;
-      const tmpl = t('game.infinite_expedition_tag') || 'Infinite Expedition #{num}';
-      const expText = `🌌 ${tmpl.replace('{num}', expNum)}`;
-      tagEl.textContent = expText;
-      if (sumModeEl) sumModeEl.textContent = `🌌 #${expNum}`;
     }
   }
 
@@ -718,19 +773,21 @@ function updateSidebar() {
   if (sumDestEl) sumDestEl.textContent = gameState.targetPlanet ? formatBodyName(gameState.targetPlanet) : (t('game.select_target_prompt') || 'Select on Map');
 
   const isMoonOrigin = gameState.currentPlanet === 'moon';
-  const lunaText = document.getElementById('luna-dest-btn-text');
-  if (lunaText) {
-    lunaText.textContent = isMoonOrigin ? '🌍 Target Earth' : (t('game.target_luna_btn') || 'Target Luna (Moon)');
-  }
-  const lunaBtn = document.getElementById('luna-dest-btn');
-  if (lunaBtn) {
-    const isLunaTargeted = gameState.targetPlanet === (isMoonOrigin ? 'earth' : 'moon');
-    lunaBtn.classList.toggle('is-selected', isLunaTargeted);
-  }
+  const lunaIcon = isMoonOrigin ? '🌍' : '🌙';
+  const lunaLabel = isMoonOrigin ? (t('game.target_earth') || 'Target Earth') : (t('game.target_moon') || 'Target Moon');
+  const isLunaTargeted = gameState.targetPlanet === (isMoonOrigin ? 'earth' : 'moon');
+
+  document.querySelectorAll('.luna-dest-btn').forEach(btn => {
+    btn.innerHTML = `<span class="luna-icon" aria-hidden="true">${lunaIcon}</span>`;
+    btn.setAttribute('aria-label', lunaLabel);
+    btn.setAttribute('title', lunaLabel);
+    btn.classList.toggle('is-selected', isLunaTargeted);
+  });
 
   updateCanvasTargetHighlight();
   updateFuelUI();
   updateLaunchButtonState();
+  updateThrustMinUI();
 }
 
 function updateFuelUI() {
@@ -761,33 +818,111 @@ function updateFuelUI() {
   if (fuelFill) {
     fuelFill.classList.toggle('is-charging', isCharging);
   }
+
+  // Minimized fuel signal meter
+  const minSignalBars = document.getElementById('min-signal-bars');
+  const minFuelPct = document.getElementById('min-fuel-pct');
+  if (minSignalBars) {
+    const bars = minSignalBars.querySelectorAll('.signal-bar');
+    bars.forEach((b, idx) => {
+      // 4 bars: bar 1 (>0%), bar 2 (>=25%), bar 3 (>=50%), bar 4 (>=75%)
+      const threshold = idx === 0 ? 1 : idx * 25;
+      b.classList.toggle('is-active', f >= threshold);
+    });
+    minSignalBars.classList.toggle('is-empty', f <= 0);
+    minSignalBars.classList.toggle('is-low', f > 0 && f < 25);
+  }
+  if (minFuelPct) {
+    minFuelPct.textContent = `${f}%`;
+  }
 }
 
 function updateLaunchButtonState() {
   if (!gameState || gameState.state === GAME_STATES.TRANSIT || gameState.state === GAME_STATES.LAUNCHING) return;
   const btn = document.getElementById('launch-btn');
   const btnText = document.getElementById('launch-btn-text');
-  if (!btn || !btnText) return;
+  const minBtn = document.getElementById('min-launch-btn');
+  const minBtnText = document.getElementById('min-launch-btn-text');
+  if (!btn && !minBtn) return;
 
   const fluxRate = gameState.getSolarRechargeRate ? gameState.getSolarRechargeRate() : 1.67;
 
   if (gameState.fuel <= 0) {
     const req = gameState.energy || 50;
     const waitSec = Math.ceil(req / fluxRate);
-    btn.disabled = true;
-    btn.classList.add('is-fuel-empty');
-    btnText.textContent = `⛽ FUEL EMPTY — REFUELING (${waitSec}s)...`;
+    if (btn) {
+      btn.disabled = true;
+      btn.classList.add('is-fuel-empty');
+      if (btnText) btnText.textContent = `⛽ FUEL EMPTY — REFUELING (${waitSec}s)...`;
+    }
+    if (minBtn) {
+      minBtn.disabled = true;
+      minBtn.classList.add('is-fuel-empty');
+      if (minBtnText) minBtnText.textContent = 'EMPTY ⛽';
+      else minBtn.textContent = 'EMPTY ⛽';
+    }
   } else if (gameState.fuel < gameState.energy) {
     const deficit = gameState.energy - gameState.fuel;
     const waitSec = Math.ceil(deficit / fluxRate);
-    btn.disabled = true;
-    btn.classList.remove('is-fuel-empty');
-    const template = t('game.solar_charging_wait') || '☀️ SOLAR CHARGING ({sec}s)... ⚡';
-    btnText.textContent = template.replace('{sec}', waitSec);
+    if (btn) {
+      btn.disabled = true;
+      btn.classList.remove('is-fuel-empty');
+      const template = t('game.solar_charging_wait') || '☀️ SOLAR CHARGING ({sec}s)... ⚡';
+      if (btnText) btnText.textContent = template.replace('{sec}', waitSec);
+    }
+    if (minBtn) {
+      minBtn.disabled = true;
+      minBtn.classList.remove('is-fuel-empty');
+      if (minBtnText) minBtnText.textContent = 'CHARGE ⚡';
+      else minBtn.textContent = 'CHARGE ⚡';
+    }
   } else {
-    btn.disabled = false;
-    btn.classList.remove('is-fuel-empty');
-    btnText.textContent = t('game.big_launch_btn') || 'BIG LAUNCH 🚀';
+    if (btn) {
+      btn.disabled = false;
+      btn.classList.remove('is-fuel-empty');
+      if (btnText) btnText.textContent = t('game.big_launch_btn') || 'BIG LAUNCH 🚀';
+    }
+    if (minBtn) {
+      minBtn.disabled = false;
+      minBtn.classList.remove('is-fuel-empty');
+      if (minBtnText) minBtnText.textContent = 'LAUNCH 🚀';
+      else minBtn.textContent = 'LAUNCH 🚀';
+    }
+  }
+}
+
+export function getBodyImagePath(slug) {
+  if (!slug) return 'images/moon.png';
+  const clean = String(slug).toLowerCase().trim();
+  if (clean === 'moon' || clean === 'luna') {
+    return 'images/moon.png';
+  }
+  return `images/${clean}.png`;
+}
+
+export function updateThrustMinUI(optMetrics) {
+  const minThrustNum = document.getElementById('min-thrust-num');
+  if (!minThrustNum || !gameState) return;
+  const e = Number(gameState.energy) || 50;
+  minThrustNum.textContent = `${e}%`;
+
+  minThrustNum.classList.remove('is-green', 'is-yellow', 'is-red');
+
+  if (!gameState.targetPlanet) {
+    minThrustNum.classList.add('is-green');
+    return;
+  }
+
+  const metrics = optMetrics || calculateOrbitalWindow(gameState.currentPlanet, gameState.targetPlanet, getElapsedSec());
+  if (e >= metrics.minReq && e <= metrics.maxCap) {
+    minThrustNum.classList.add('is-green');
+  } else if (
+    (e >= metrics.minReq - 6 && e < metrics.minReq) ||
+    (e > metrics.maxCap && e <= metrics.maxCap + 6)
+  ) {
+    minThrustNum.classList.add('is-yellow');
+  } else {
+    minThrustNum.classList.add('is-red');
   }
 }
 
@@ -881,6 +1016,7 @@ function updateOrbitalWindowUI() {
   updateTelemetryHeaderAndTag(metrics);
   updateTelemetryGridValues(metrics);
   updateEnergyFeedbackHint(metrics);
+  updateThrustMinUI(metrics);
   renderFutureInterceptMarker(metrics);
 }
 
@@ -1520,16 +1656,8 @@ function showTouchdownQuizModal(planetSlug) {
       if (isCorrect) {
         modal.remove();
         gameState.addScore(100);
-
-        const isGrandTourCompletion = gameState.missionIndex === 7 && planetSlug === 'earth';
-        if (isGrandTourCompletion) {
-          gameState.addScore(250);
-          showGrandTourVictoryModal(() => {
-            handleMissionAdvancement();
-          });
-        } else {
-          handleMissionAdvancement();
-        }
+        showGameNotification(`✨ Mission #${gameState.missionIndex + 1} Accomplished! ⭐ +100`, 'success', 3000);
+        handleMissionAdvancement();
       } else {
         btn.classList.add('is-incorrect');
         btn.disabled = true;
@@ -1588,18 +1716,55 @@ function showGrandTourVictoryModal(onContinue) {
   }
 }
 
-function showDebriefModal(reasonKey) {
+export function showDebriefModal(reasonKey) {
   const existing = document.getElementById('game-debrief-modal');
   if (existing) existing.remove();
+
+  const energy = gameState ? gameState.energy : 50;
+  let whyMattersKey = 'game.debrief_why_matters_general';
+  if (reasonKey === 'game.fuel_exhausted_detail') {
+    whyMattersKey = 'game.debrief_why_matters_fuel';
+  } else if (reasonKey === 'game.overshoot_detail') {
+    whyMattersKey = 'game.debrief_why_matters_overshoot';
+  }
+
+  const whyMattersTmpl = t(whyMattersKey) || '';
+  const whyMattersText = whyMattersTmpl.replace('{thrust}', energy);
 
   const modal = document.createElement('div');
   modal.id = 'game-debrief-modal';
   modal.className = 'game-modal-overlay';
   modal.innerHTML = `
     <div class="game-modal-card debrief-card">
-      <div class="modal-badge debrief-badge">⚠️ MISSION DEBRIEF</div>
+      <div class="modal-badge debrief-badge">⚠️ MISSION DEBRIEF: ORBITAL MECHANICS</div>
       <p class="debrief-reason">${t(reasonKey)}</p>
-      <p class="debrief-lesson">${t('game.debrief_lesson')}</p>
+
+      <div class="debrief-orbital-guide" id="debrief-orbital-guide">
+        <div class="orbital-concept-card concept-perigee">
+          <div class="concept-header">
+            <span class="concept-icon" aria-hidden="true">🟢</span>
+            <span class="concept-title" data-i18n="game.debrief_perigee_title">${t('game.debrief_perigee_title') || 'Perigee (Closest Approach)'}</span>
+          </div>
+          <p class="concept-desc" data-i18n="game.debrief_perigee_desc">${t('game.debrief_perigee_desc') || 'The orbital point where origin and destination planets are closest together. Launching near Perigee requires minimum thrust (delta-v) and fuel for orbital capture.'}</p>
+        </div>
+
+        <div class="orbital-concept-card concept-apogee">
+          <div class="concept-header">
+            <span class="concept-icon" aria-hidden="true">🔴</span>
+            <span class="concept-title" data-i18n="game.debrief_apogee_title">${t('game.debrief_apogee_title') || 'Apogee (Farthest Distance)'}</span>
+          </div>
+          <p class="concept-desc" data-i18n="game.debrief_apogee_desc">${t('game.debrief_apogee_desc') || 'The orbital point of maximum separation. In your trajectory, Apogee is the peak altitude your rocket reaches before falling back toward the Sun.'}</p>
+        </div>
+
+        <div class="orbital-concept-card concept-why-matters">
+          <div class="concept-header">
+            <span class="concept-icon" aria-hidden="true">💡</span>
+            <span class="concept-title" data-i18n="game.debrief_why_matters_title">${t('game.debrief_why_matters_title') || 'Why It Caused Mission Failure'}</span>
+          </div>
+          <p class="concept-desc" id="debrief-why-matters-text">${whyMattersText}</p>
+        </div>
+      </div>
+
       <div class="debrief-stats">Final Cosmic Score: ⭐ ${gameState.score}</div>
       <button type="button" class="retry-mission-btn" id="retry-mission-btn">
         Refuel & Try Again 🚀

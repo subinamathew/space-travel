@@ -98,7 +98,12 @@ import {
   selectDestinationFromCanvas,
   isGameActive,
   showLeaderboardModal,
-  showGameNotification
+  showGameNotification,
+  showDebriefModal,
+  getBodyImagePath,
+  ALL_DESTINATIONS,
+  shuffleDestinations,
+  getRandomDestination
 } from '../src/js/game/game-engine.js';
 import {
   calculateOrbitalWindow,
@@ -194,11 +199,14 @@ assert(gameToggle.checked === true, '#settings-game-toggle is checked while game
 // ----------------------------------------------------
 console.log('\n[Test 2: Auto-Targeting & Canvas Highlighting]');
 const gameState = window.RocketRun;
-assert(gameState.targetPlanet === 'moon', 'Initial target is automatically set to Luna (Moon)');
+assert(gameState.currentPlanet === 'earth', 'Game start is ALWAYS Earth');
+assert(gameState.targetPlanet !== null && gameState.targetPlanet !== 'earth', `Initial target is randomized to non-Earth body: ${gameState.targetPlanet}`);
+assert(ALL_DESTINATIONS.includes(gameState.targetPlanet), `Initial target is one of the 9 celestial destinations: ${gameState.targetPlanet}`);
 
-const moonEl = document.getElementById('moon');
-assert(moonEl.classList.contains('is-game-target'), 'Canvas Moon element has .is-game-target pulsing glow');
-assert(document.getElementById('dest-target-name').textContent.includes('Luna'), 'Target status readout shows Luna');
+const targetCanvasEl = gameState.targetPlanet === 'moon' ? document.getElementById('moon') : document.getElementById(`planet-btn-${gameState.targetPlanet}`);
+if (targetCanvasEl) {
+  assert(targetCanvasEl.classList.contains('is-game-target'), `Target element on canvas for ${gameState.targetPlanet} has .is-game-target`);
+}
 
 // ----------------------------------------------------
 // TEST 3: Direct Canvas Planet Selection & Luna Button
@@ -208,12 +216,14 @@ selectDestinationFromCanvas('mars');
 
 assert(gameState.targetPlanet === 'mars', 'selectDestinationFromCanvas("mars") sets target to mars');
 assert(document.getElementById('planet-btn-mars').classList.contains('is-game-target'), 'Mars on canvas receives .is-game-target');
+const moonEl = document.getElementById('moon');
 assert(!moonEl.classList.contains('is-game-target'), 'Moon loses .is-game-target');
 assert(document.getElementById('dest-target-name').textContent.includes('Mars'), 'Target status readout updates to Mars');
 
 // Test Luna quick target button
 const lunaBtn = document.getElementById('luna-dest-btn');
 assert(lunaBtn !== null, '#luna-dest-btn button exists');
+assert(lunaBtn.textContent.trim() === '🌙' || lunaBtn.textContent.trim() === '🌍', '#luna-dest-btn displays only crescent moon icon without text');
 lunaBtn.click();
 assert(gameState.targetPlanet === 'moon', 'Clicking #luna-dest-btn retargets Luna');
 assert(moonEl.classList.contains('is-game-target'), 'Moon regains .is-game-target');
@@ -239,6 +249,33 @@ assert(minBtn.textContent === '−', 'Minimize button initially displays "−"')
 minBtn.click();
 assert(sidebar.classList.contains('is-minimized'), 'Sidebar has .is-minimized class');
 assert(minBtn.textContent === '+', 'Minimize button displays "+" when minimized');
+
+// Verify Minimized Telemetry Bar Widgets
+const minBar = document.getElementById('sidebar-min-bar');
+assert(minBar !== null, '#sidebar-min-bar exists in sidebar header');
+
+const minLaunchBtn = document.getElementById('min-launch-btn');
+assert(minLaunchBtn !== null, '#min-launch-btn exists on minimized bar');
+assert(minLaunchBtn.textContent.includes('LAUNCH'), '#min-launch-btn displays LAUNCH text');
+
+const minLunaBtn = document.getElementById('min-luna-btn');
+assert(minLunaBtn !== null, '#min-luna-btn exists on minimized bar');
+assert(minLunaBtn.textContent.trim() === '🌙' || minLunaBtn.textContent.trim() === '🌍', '#min-luna-btn contains crescent moon icon without text');
+
+const minOriginImg = document.getElementById('min-origin-img');
+const minDestImg = document.getElementById('min-dest-img');
+assert(minOriginImg !== null && minOriginImg.getAttribute('src').includes('earth.png'), 'min-origin-img points to earth.png');
+assert(minDestImg !== null && minDestImg.getAttribute('src').length > 0, 'min-dest-img has image asset path');
+
+const minSignalBars = document.getElementById('min-signal-bars');
+assert(minSignalBars !== null, '#min-signal-bars container exists');
+assert(minSignalBars.querySelectorAll('.signal-bar').length === 4, 'Signal bar has 4 vertical meter bars');
+assert(minSignalBars.querySelectorAll('.signal-bar.is-active').length === 4, 'All 4 signal bars active at 100% fuel');
+
+const minThrustNum = document.getElementById('min-thrust-num');
+assert(minThrustNum !== null, '#min-thrust-num exists');
+assert(minThrustNum.classList.contains('is-green') || minThrustNum.classList.contains('is-yellow') || minThrustNum.classList.contains('is-red'), '#min-thrust-num has color rating class');
+
 minBtn.click();
 assert(!sidebar.classList.contains('is-minimized'), 'Sidebar restored from minimized state');
 assert(minBtn.textContent === '−', 'Minimize button displays "−" when restored');
@@ -381,24 +418,26 @@ assert(document.querySelector('.touchdown-hint') === null, 'No spoiler hint box 
 gameState.advanceMission();
 const nextMission = gameState.getCurrentMission();
 assert(gameState.missionIndex === 1, 'Mission advanced to Mission 2 (Index 1)');
-assert(nextMission.targetSlug === 'jupiter', 'Mission 2 target is Jupiter (mixed inward/outward route)');
+assert(nextMission.targetSlug !== gameState.currentPlanet, `Mission 2 target is a randomized destination: ${nextMission.targetSlug}`);
+assert(ALL_DESTINATIONS.includes(nextMission.targetSlug), 'Mission 2 target is a valid celestial body');
 
 // ----------------------------------------------------
-// TEST 9: Grand Tour Earth Homecoming & Infinite Loop
+// TEST 9: Randomized Infinite Journey across Planets & Luna
 // ----------------------------------------------------
-console.log('\n[Test 9: Grand Tour Earth Homecoming & Infinite Loop]');
-// Simulate reaching Mission 8 (Grand Tour finale on Earth)
+console.log('\n[Test 9: Randomized Infinite Journey across Planets & Luna]');
 gameState.missionIndex = 7;
 gameState.currentPlanet = 'saturn';
-gameState.setTarget('earth');
-assert(gameState.getCurrentMission().targetSlug === 'earth', 'Mission 8 destination is Earth');
+gameState.dynamicMission = null;
+const m8 = gameState.getCurrentMission();
+assert(m8 !== null && ALL_DESTINATIONS.includes(m8.targetSlug), `Mission 8 destination is dynamically randomized: ${m8.targetSlug}`);
+assert(m8.targetSlug !== 'saturn', 'Mission 8 target is not current planet');
 
-// Advance past Earth finale
+// Advance past mission 8
 gameState.advanceMission();
-assert(gameState.missionIndex === 8, 'Mission index advanced to 8 (Infinite loop threshold)');
+assert(gameState.missionIndex === 8, 'Mission index advanced to 8 in infinite loop');
 const infMission = gameState.getCurrentMission();
 assert(infMission !== null, 'Infinite mission dynamically generated');
-assert(infMission.targetSlug !== 'earth', `Dynamic mission targets non-origin planet: ${infMission.targetSlug}`);
+assert(infMission.targetSlug !== gameState.currentPlanet, `Dynamic mission targets non-origin planet: ${infMission.targetSlug}`);
 
 // ----------------------------------------------------
 // TEST 10: Lives Depletion & Debrief Modal
@@ -772,6 +811,7 @@ gameState.advanceMission();
 assert(gameState.fuel === 45, 'advanceMission() preserves depleted fuel across planetary voyages');
 
 // 4. Exactly 60s recharge time for 100% tank on Earth/Moon/Mars
+gameState.currentPlanet = 'earth';
 const rechargeRate = gameState.getSolarRechargeRate(); // 1.67
 const timeToFill100 = 100 / rechargeRate;
 assert(Math.round(timeToFill100) === 60, `100% fuel tank refills in exactly 60s (1 min) at ${rechargeRate}%/s`);
@@ -800,7 +840,81 @@ dom.window.alert = () => { alertsTriggered = true; };
 gameState.addFuel(50); // reaches 100 clamped
 assert(gameState.fuel === 100, 'Fuel clamped at 100%');
 assert(alertsTriggered === false, 'Zero alerts triggered upon reaching 100% fuel');
-dom.window.alert = originalAlert;
+// ----------------------------------------------------
+// TEST 21: Mission Debrief Modal — Apogee & Perigee Mechanics at End of Failed Game
+// ----------------------------------------------------
+console.log('\n[Test 21: Apogee & Perigee Explanation at End of Failed Game]');
+startGame();
+// Trigger debrief modal for fuel exhaustion (undershot apogee)
+showDebriefModal('game.fuel_exhausted_detail');
+const debriefModal = document.getElementById('game-debrief-modal');
+assert(debriefModal !== null, '#game-debrief-modal rendered in DOM');
+
+const orbitalGuide = document.getElementById('debrief-orbital-guide');
+assert(orbitalGuide !== null, '#debrief-orbital-guide container rendered in debrief modal');
+
+const perigeeCard = orbitalGuide.querySelector('.concept-perigee');
+assert(perigeeCard !== null, '.concept-perigee card exists');
+assert(perigeeCard.textContent.includes('Perigee') || perigeeCard.textContent.includes('Closest'), 'Perigee card explains closest approach and minimal fuel requirement');
+
+const apogeeCard = orbitalGuide.querySelector('.concept-apogee');
+assert(apogeeCard !== null, '.concept-apogee card exists');
+assert(apogeeCard.textContent.includes('Apogee') || apogeeCard.textContent.includes('Farthest'), 'Apogee card explains peak orbital altitude and maximum distance');
+
+const whyMattersCard = orbitalGuide.querySelector('.concept-why-matters');
+assert(whyMattersCard !== null, '.concept-why-matters card exists');
+const whyMattersText = document.getElementById('debrief-why-matters-text');
+assert(whyMattersText !== null, '#debrief-why-matters-text element exists');
+assert(whyMattersText.textContent.length > 20, 'Why-it-matters section clearly explains why this flight failed and how to adjust thrust');
+
+const retryBtn = document.getElementById('retry-mission-btn');
+assert(retryBtn !== null, '#retry-mission-btn exists');
+retryBtn.click();
+assert(document.getElementById('game-debrief-modal') === null, 'Clicking retry removes debrief modal from DOM');
+assert(gameState.lives === 3, 'Clicking retry restores 3 lives');
+assert(gameState.currentPlanet === 'earth', 'Rocket docked at Earth after retry');
+
+// ----------------------------------------------------
+// TEST 22: Challenge Mode Randomizer across 9 Planets + Earth & Infinite Loop
+// ----------------------------------------------------
+console.log('\n[Test 22: Challenge Mode Randomizer & Infinite Solar Journey]');
+// 1. Verify ALL_DESTINATIONS contains 9 celestial destinations (8 planets + moon)
+assert(ALL_DESTINATIONS.length === 9, 'ALL_DESTINATIONS has exactly 9 celestial destinations');
+assert(ALL_DESTINATIONS.includes('earth'), 'Destinations include Earth');
+assert(ALL_DESTINATIONS.includes('moon'), 'Destinations include Moon (Luna)');
+assert(ALL_DESTINATIONS.includes('jupiter'), 'Destinations include Jupiter');
+
+// 2. Verify shuffleDestinations randomizer produces permutations of array
+const sampleList = ['mercury', 'venus', 'mars', 'jupiter'];
+const shuffled = shuffleDestinations(sampleList);
+assert(shuffled.length === sampleList.length, 'shuffleDestinations preserves item count');
+assert(sampleList.every(item => shuffled.includes(item)), 'shuffleDestinations contains all original items');
+
+// 3. Verify getRandomDestination always avoids the current planet
+for (const origin of ALL_DESTINATIONS) {
+  const dest = getRandomDestination(origin);
+  assert(dest !== origin, `getRandomDestination('${origin}') never returns origin`);
+  assert(ALL_DESTINATIONS.includes(dest), `getRandomDestination('${origin}') returns valid destination`);
+}
+
+// 4. Verify game starting at Earth generates non-Earth randomized target
+gameState.reset();
+assert(gameState.currentPlanet === 'earth', 'Challenge mode always starts on Earth');
+const mission1 = gameState.getCurrentMission();
+assert(mission1.targetSlug !== 'earth', `First mission target is non-Earth body: ${mission1.targetSlug}`);
+assert(ALL_DESTINATIONS.includes(mission1.targetSlug), 'First mission is valid celestial body');
+
+// 5. Verify advancing missions runs infinitely without a final stopping destination
+for (let i = 0; i < 25; i++) {
+  const target = gameState.getCurrentMission().targetSlug;
+  gameState.targetPlanet = target;
+  gameState.advanceMission();
+  assert(gameState.currentPlanet === target, `Mission ${i + 1} touchdown on ${target}`);
+  assert(gameState.missionIndex === i + 1, `Mission index increments infinitely to ${gameState.missionIndex}`);
+  const next = gameState.getCurrentMission();
+  assert(next !== null && next.targetSlug !== null, `Mission ${i + 2} has active target: ${next.targetSlug}`);
+}
+assert(gameState.missionIndex === 25, 'Infinite game progresses past 25 missions with zero termination cap');
 
 exitGameMode();
 

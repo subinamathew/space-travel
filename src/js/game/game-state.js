@@ -46,17 +46,33 @@ export const RANKS = [
   { minMissions: 20, titleKey: 'game.rank_legend', icon: '⭐' }
 ];
 
-const ALL_DESTINATIONS = ['moon', 'mercury', 'venus', 'earth', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune'];
+export const ALL_DESTINATIONS = ['moon', 'mercury', 'venus', 'earth', 'mars', 'jupiter', 'saturn', 'uranus', 'neptune'];
+
+export function shuffleDestinations(items) {
+  const arr = [...items];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+
+export function getRandomDestination(currentPlanet, excludeSlug = null) {
+  const pool = ALL_DESTINATIONS.filter(slug => slug !== currentPlanet && slug !== excludeSlug);
+  const candidates = pool.length > 0 ? pool : ALL_DESTINATIONS.filter(slug => slug !== currentPlanet);
+  return candidates[Math.floor(Math.random() * candidates.length)] || 'moon';
+}
 
 export class GameState {
   constructor() {
     this.dynamicMission = null;
+    this.missionQueue = [];
     this.reset();
   }
 
   reset(options = {}) {
     this.state = GAME_STATES.STANDBY;
-    this.currentPlanet = options.docked || 'earth';
+    this.currentPlanet = options.docked || 'earth'; // start is always earth
     this.targetPlanet = null;
     this.missionIndex = 0;
     this.lives = 3;
@@ -65,6 +81,7 @@ export class GameState {
     this.fuel = 100;
     this.solarBoostActive = false;
     this.dynamicMission = null;
+    this.missionQueue = [];
     this.isFreePlay = Boolean(options.freeplay);
   }
 
@@ -83,9 +100,6 @@ export class GameState {
         isFreePlay: true
       };
     }
-    if (this.missionIndex < MISSIONS.length) {
-      return MISSIONS[this.missionIndex];
-    }
     if (!this.dynamicMission) {
       this.generateNextRandomMission();
     }
@@ -93,11 +107,21 @@ export class GameState {
   }
 
   generateNextRandomMission() {
-    const candidates = ALL_DESTINATIONS.filter(slug => slug !== this.currentPlanet);
-    const target = candidates[Math.floor(Math.random() * candidates.length)] || 'mars';
+    if (this.missionQueue && this.missionQueue.length > 0) {
+      this.missionQueue = this.missionQueue.filter(slug => slug !== this.currentPlanet);
+    }
+    if (!this.missionQueue || this.missionQueue.length === 0) {
+      const candidates = ALL_DESTINATIONS.filter(slug => slug !== this.currentPlanet);
+      this.missionQueue = shuffleDestinations(candidates);
+    }
+    let target = this.missionQueue.shift();
+    if (!target || target === this.currentPlanet) {
+      target = getRandomDestination(this.currentPlanet);
+    }
+    const isMoon = target === 'moon';
     this.dynamicMission = {
-      id: `expedition-${this.missionIndex}`,
-      name: target,
+      id: `mission-${this.missionIndex}`,
+      name: isMoon ? 'Luna (The Moon)' : (target.charAt(0).toUpperCase() + target.slice(1)),
       clueKey: ADVANCED_RIDDLES[target] || 'game.mission_clue_mixed_mars',
       targetSlug: target
     };

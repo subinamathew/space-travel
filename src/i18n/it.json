@@ -924,6 +924,16 @@
     "target_label": "Obiettivo:",
     "target_luna_btn": "🌙 Seleziona Luna",
     "tap_planet_map_hint": "Tocca un pianeta sulla mappa!",
-    "select_target_prompt": "Seleziona sulla mappa o tocca Luna"
+    "select_target_prompt": "Seleziona sulla mappa o tocca Luna",
+    "target_earth": "Seleziona Terra",
+    "target_moon": "Seleziona Luna",
+    "debrief_perigee_title": "Perigeo (Minima Distanza)",
+    "debrief_perigee_desc": "Il punto orbitale in cui i pianeti sono più vicini. Il lancio vicino al Perigeo richiede la minima spinta (delta-v) e il minor consumo di carburante.",
+    "debrief_apogee_title": "Apogeo (Massima Distanza)",
+    "debrief_apogee_desc": "Il punto di massimo allontanamento. Nella traiettoria, l'Apogeo è la quota massima raggiunta dal razzo prima di ripiegare verso il Sole.",
+    "debrief_why_matters_title": "Perché la missione è fallita",
+    "debrief_why_matters_fuel": "La spinta era troppo bassa ({thrust}%), quindi l'apogeo dell'orbita non ha raggiunto il pianeta bersaglio. Aumenta la spinta nella zona verde!",
+    "debrief_why_matters_overshoot": "La spinta era troppo alta ({thrust}%), scagliando il razzo nello spazio profondo oltre la gravità del pianeta. Riduci la spinta.",
+    "debrief_why_matters_general": "Le orbite sono ellissi, non linee rette! Per intercettare un pianeta, l'apogeo deve intersecare l'orbita di destinazione al momento esatto dell'arrivo."
   }
 }

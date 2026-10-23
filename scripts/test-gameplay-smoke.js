@@ -91,10 +91,11 @@ check(hud !== null, '#rocketrun-hud successfully mounted in DOM');
 check(sidebar !== null, '#rocketrun-sidebar successfully mounted in DOM');
 check(launchBtn !== null, '#launch-btn successfully mounted in DOM');
 
-// 4. Verify initial target is Luna and game state is operational
+// 4. Verify initial target is randomized and game state is operational
 const state = window.RocketRun;
 check(state !== undefined, 'window.RocketRun state exists');
-check(state.targetPlanet === 'moon', 'Initial target is Luna (moon)');
+check(state.currentPlanet === 'earth', 'Game start is always Earth');
+check(state.targetPlanet !== null && state.targetPlanet !== 'earth', `Initial target is randomized to celestial destination: ${state.targetPlanet}`);
 check(state.fuel === 100, 'Initial propellant tank is 100%');
 check(launchBtn.disabled === false, 'Launch button is active with full fuel');
 

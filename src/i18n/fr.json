@@ -924,6 +924,16 @@
     "target_label": "Cible :",
     "target_luna_btn": "🌙 Cibler la Lune (Luna)",
     "tap_planet_map_hint": "Touchez une planète sur la carte !",
-    "select_target_prompt": "Choisir sur la carte ou toucher Luna"
+    "select_target_prompt": "Choisir sur la carte ou toucher Luna",
+    "target_earth": "Cibler la Terre",
+    "target_moon": "Cibler la Lune",
+    "debrief_perigee_title": "Périgée (Distance Minimale)",
+    "debrief_perigee_desc": "Le point orbital où les planètes de départ et d'arrivée sont les plus proches. Lancer près du Périgée requiert un minimum de poussée et de carburant.",
+    "debrief_apogee_title": "Apogée (Distance Maximale)",
+    "debrief_apogee_desc": "Le point d'éloignement maximal. Dans votre trajectoire, l'Apogée est l'altitude maximale atteinte par la fusée avant de retomber.",
+    "debrief_why_matters_title": "Pourquoi la mission a échoué",
+    "debrief_why_matters_fuel": "Votre poussée était trop faible ({thrust}%), l'apogée de votre trajectoire n'a donc pas atteint l'orbite cible. Augmentez la poussée dans la zone verte !",
+    "debrief_why_matters_overshoot": "Votre poussée était excessive ({thrust}%), propulsant votre fusée au-delà de la gravité planétaire dans l'espace lointain. Réduisez la poussée.",
+    "debrief_why_matters_general": "Les orbites sont des ellipses, pas des lignes droites ! Pour réussir l'interception, l'apogée doit couper l'orbite cible à l'instant précis de l'arrivée."
   }
 }

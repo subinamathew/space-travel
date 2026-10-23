@@ -924,6 +924,16 @@
     "target_label": "Ziel:",
     "target_luna_btn": "🌙 Ziel: Luna (Mond)",
     "tap_planet_map_hint": "Tippe einen Planeten auf der Karte an!",
-    "select_target_prompt": "Auf Karte wählen oder Luna tippen"
+    "select_target_prompt": "Auf Karte wählen oder Luna tippen",
+    "target_earth": "Ziel: Erde",
+    "target_moon": "Ziel: Mond",
+    "debrief_perigee_title": "Perigäum (Kürzeste Distanz)",
+    "debrief_perigee_desc": "Der Bahnpunkt, an dem sich Start- und Zielplanet am nächsten sind. Ein Start nahe dem Perigäum benötigt den geringsten Schub (Delta-v) und minimalen Treibstoff.",
+    "debrief_apogee_title": "Apogäum (Größte Distanz)",
+    "debrief_apogee_desc": "Der Bahnpunkt der maximalen Entfernung. In Ihrer Flugbahn ist das Apogäum die maximale Höhe, die Ihre Rakete erreicht, bevor sie zurückfällt.",
+    "debrief_why_matters_title": "Warum es zum Missionsabbruch führte",
+    "debrief_why_matters_fuel": "Ihr Schub war zu gering ({thrust}%), wodurch das Apogäum Ihrer Bahn den Zielplaneten nicht erreichte. Erhöhen Sie den Schub in das grüne Fenster!",
+    "debrief_why_matters_overshoot": "Ihr Schub war zu hoch ({thrust}%), wodurch Ihre Rakete über die Gravitation des Zielplaneten in den Tiefraum hinausschoss. Reduzieren Sie den Schub.",
+    "debrief_why_matters_general": "Umlaufbahnen sind Ellipsen, keine Geraden! Für ein Rendezvous muss das Apogäum Ihrer Flugbahn die Zielbahn exakt zum Ankunftszeitpunkt schneiden."
   }
 }

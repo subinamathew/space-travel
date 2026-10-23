@@ -924,6 +924,16 @@
     "target_label": "目标：",
     "target_luna_btn": "🌙 锁定月球（Luna）",
     "tap_planet_map_hint": "点击太阳系地图上的任意行星以锁定！",
-    "select_target_prompt": "在地图上选择或点击月球"
+    "select_target_prompt": "在地图上选择或点击月球",
+    "target_earth": "锁定地球",
+    "target_moon": "锁定月球",
+    "debrief_perigee_title": "近地点（最近距离）",
+    "debrief_perigee_desc": "始发星与目标星在轨道上相距最近的点。在近地点附近发射所需推力（Delta-v）与燃料最少，最易实现引力捕获。",
+    "debrief_apogee_title": "远地点（最远距离）",
+    "debrief_apogee_desc": "行星相隔最远的轨道位置。在转移轨道中，远地点是飞船向外飞行的最高点。",
+    "debrief_why_matters_title": "为什么会导致任务失败",
+    "debrief_why_matters_fuel": "推力过低（{thrust}%），转移轨道的远地点未达到目标行星轨道。请将推力提升至绿色最佳区间或等待近地点！",
+    "debrief_why_matters_overshoot": "推力过高（{thrust}%），飞船冲出目标引力圈进入深空。请回调推力至绿色区间。",
+    "debrief_why_matters_general": "轨道运行是椭圆而非直线！要实现行星交会，必须使飞船轨道的远地点在到达时刻精确交汇于目标行星的未来位置。"
   }
 }
