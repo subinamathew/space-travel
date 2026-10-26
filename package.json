@@ -17,18 +17,17 @@
     "test:smoke": "node scripts/test-gameplay-smoke.js",
     "test:auth": "node scripts/test-site-auth.js",
     "test:dom": "node scripts/test-gameplay-dom.js",
-    "test": "node scripts/test-i18n.js && node scripts/test-site-auth.js && node scripts/test-gameplay-dom.js",
+    "test": "node scripts/test-i18n.js && node scripts/test-site-auth.js && node scripts/test-gameplay-dom.js && node scripts/test-gameplay-smoke.js",
     "watch:css": "sass --watch src/scss:public/css --style=compressed",
     "watch:js": "esbuild src/js/script.js --bundle --minify --outfile=public/js/script.min.js --watch",
     "dev": "npm run build && node -e \"console.log('Build complete. Watching for changes...');\""
-  },
-  "dependencies": {
-    "esbuild": "^0.25.0",
-    "sass": "^1.85.0"
   },
   "devDependencies": {
     "esbuild": "^0.25.0",
     "jsdom": "^29.1.1",
     "sass": "^1.85.0"
+  },
+  "engines": {
+    "node": ">=20.19 <21"
   }
 }

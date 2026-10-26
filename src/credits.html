@@ -12,16 +12,8 @@
     <meta name="application-name" content="RocketRun" />
     <meta name="theme-color" content="#030712" />
     <link rel="canonical" href="https://rocketrun.org/credits.html" />
-
     <!-- Pre-render Site Auth Gate FOUC Prevention -->
-    <script>
-      (function(){
-        try {
-          var a = document.cookie.indexOf('site_auth=authenticated') !== -1 || localStorage.getItem('site_auth') === 'authenticated';
-          if (!a) { document.documentElement.classList.add('site-locked'); }
-        } catch(e) {}
-      })();
-    </script>
+    <script src="js/auth-guard.js"></script>
 
     <!-- Robots & Search Engine Indexing Directives (Closed Private Access) -->
     <meta name="robots" content="noindex, nofollow" />
