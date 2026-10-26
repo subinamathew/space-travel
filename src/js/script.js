@@ -82,9 +82,6 @@ async function initGameModeSettings() {
   const freePlayToggle = document.getElementById('settings-freeplay-toggle');
   if (!playBtn && !gameToggle && !freePlayToggle) return;
 
-  const game = await loadGameEngine();
-  game.initGameEngine();
-
   const urlParams = new URLSearchParams(window.location.search);
   const isFreePlayParam = urlParams.get('mode') === 'freeplay';
   const dockedParam = urlParams.get('docked');
@@ -101,6 +98,8 @@ async function initGameModeSettings() {
   if (freePlayToggle) freePlayToggle.checked = isFreePlayActive;
 
   if (shouldStartGame) {
+    const game = await loadGameEngine();
+    game.initGameEngine();
     const sessionDocked = typeof sessionStorage !== 'undefined' ? sessionStorage.getItem('rocketrun_docked') : null;
     const docked = dockedParam || (isFreePlayActive ? sessionDocked : null) || 'earth';
     game.startGame({ freeplay: isFreePlayActive, docked });
@@ -108,6 +107,8 @@ async function initGameModeSettings() {
 
   if (playBtn) {
     playBtn.addEventListener('click', async () => {
+      const game = await loadGameEngine();
+      game.initGameEngine();
       if (game.isGameActive()) {
         game.exitGameMode();
       } else {
@@ -117,12 +118,14 @@ async function initGameModeSettings() {
     });
   }
 
-  bindGameModeToggles(gameToggle, freePlayToggle, game);
+  bindGameModeToggles(gameToggle, freePlayToggle);
 }
 
-function bindGameModeToggles(gameToggle, freePlayToggle, game) {
+function bindGameModeToggles(gameToggle, freePlayToggle) {
   if (gameToggle) {
     gameToggle.addEventListener('change', async () => {
+      const game = await loadGameEngine();
+      game.initGameEngine();
       const active = gameToggle.checked;
       localStorage.setItem('space_game_mode', active ? 'true' : 'false');
       setGameModeCookie(active ? (freePlayToggle?.checked ? 'freeplay' : 'on') : 'off');
@@ -137,6 +140,8 @@ function bindGameModeToggles(gameToggle, freePlayToggle, game) {
 
   if (freePlayToggle) {
     freePlayToggle.addEventListener('change', async () => {
+      const game = await loadGameEngine();
+      game.initGameEngine();
       const fpActive = freePlayToggle.checked;
       localStorage.setItem('space_game_freeplay', fpActive ? 'true' : 'false');
       if (fpActive && (!gameToggle || !gameToggle.checked)) {
