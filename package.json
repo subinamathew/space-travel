@@ -8,7 +8,7 @@
   "type": "module",
   "scripts": {
     "build:changelog": "node scripts/generate-changelog.js",
-    "build:css": "sass src/scss/main.scss public/css/style.css --style=compressed --no-source-map && sass src/scss/game.scss public/css/game.css --style=compressed --no-source-map",
+    "build:css": "sass src/scss/main.scss public/css/style.css --style=compressed --no-source-map && sass src/scss/game.scss public/css/game.css --style=compressed --no-source-map && sass src/scss/preloader.scss public/css/preloader.css --style=compressed --no-source-map && sass src/scss/features.scss public/css/features.css --style=compressed --no-source-map && sass src/scss/planet.scss public/css/planet.css --style=compressed --no-source-map",
     "build:js": "esbuild src/js/script.js --bundle --minify --target=es2022 --tree-shaking=true --legal-comments=none --charset=utf8 --external:./game.min.js --outfile=public/js/script.min.js",
     "build:planet-js": "esbuild src/js/planet-page.js --bundle --minify --target=es2022 --tree-shaking=true --legal-comments=none --charset=utf8 --outfile=public/js/planet.min.js",
     "build:pages": "node scripts/build-subpages.js",
