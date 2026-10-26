@@ -2133,3 +2133,326 @@
   }
 }
 
+/* ==========================================================================
+   Responsive Game HUD Viewport Budget
+   Keep the solar-system canvas readable while preserving the glass/cyan HUD.
+   These rules intentionally come after the legacy responsive blocks.
+   ========================================================================== */
+
+.rocketrun-hud-overlay {
+  min-width: 0;
+}
+
+@media (max-width: 767px) and (orientation: portrait) {
+  .rocketrun-hud-overlay {
+    top: 4px;
+    width: calc(100vw - 8px);
+    max-width: none;
+    border-radius: 10px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    .hud-inner {
+      min-height: 32px;
+      padding: 3px 6px;
+      gap: 5px;
+    }
+
+    .astronaut-col {
+      gap: 4px;
+
+      .hud-avatar { font-size: 16px; }
+      .hud-rank { font-size: 9px; letter-spacing: 0.2px; }
+    }
+
+    .stats-col {
+      gap: 6px;
+      font-size: 10px;
+    }
+
+    .actions-col {
+      gap: 4px;
+    }
+
+    .hud-lb-btn,
+    .hud-close-btn {
+      width: 26px;
+      height: 26px;
+      border-radius: 7px;
+      font-size: 12px;
+    }
+  }
+
+  .rocketrun-launch-sidebar {
+    bottom: 4px;
+    width: calc(100vw - 8px);
+    max-width: calc(100vw - 8px);
+    max-height: min(32vh, 250px);
+    border-radius: 10px;
+    backdrop-filter: blur(9px);
+    -webkit-backdrop-filter: blur(9px);
+
+    &.is-minimized {
+      max-height: 38px;
+    }
+
+    .sidebar-header {
+      min-height: 34px;
+      padding: 3px 6px;
+      gap: 5px;
+
+      .sidebar-title {
+        font-size: 9px;
+        letter-spacing: 0.3px;
+      }
+
+      .sidebar-route-banner {
+        gap: 3px;
+        padding: 2px 5px;
+
+        .route-icon { font-size: 13px; }
+        .route-arrow { font-size: 9px; }
+      }
+
+      > .big-launch-btn {
+        min-height: 30px;
+        height: 30px;
+        margin: 0 4px;
+        padding: 0 8px;
+        font-size: 10.5px;
+        border-radius: 7px;
+      }
+
+      .sidebar-header-actions {
+        gap: 4px;
+
+        .current-loc {
+          display: none;
+        }
+
+        .sidebar-min-btn,
+        .sidebar-close-btn {
+          width: 26px;
+          height: 26px;
+          font-size: 12px;
+        }
+      }
+    }
+
+    .sidebar-body {
+      padding: 4px 6px 6px;
+      gap: 4px;
+      max-height: calc(min(32vh, 250px) - 34px);
+      overflow-y: auto;
+    }
+
+    .launch-accordion {
+      gap: 4px;
+
+      .accordion-header {
+        min-height: 34px;
+        min-width: 34px;
+        padding: 2px;
+
+        .accordion-icon {
+          font-size: 16px;
+        }
+      }
+
+      .accordion-content {
+        max-height: calc(min(32vh, 250px) - 82px);
+        padding: 6px;
+      }
+    }
+  }
+}
+
+@media (max-width: 767px) and (orientation: landscape) {
+  .rocketrun-hud-overlay {
+    top: 3px;
+    width: calc(100vw - 6px);
+    max-width: none;
+    border-radius: 9px;
+
+    .hud-inner {
+      min-height: 28px;
+      padding: 2px 6px;
+      gap: 5px;
+    }
+
+    .astronaut-col {
+      gap: 3px;
+
+      .hud-avatar { font-size: 14px; }
+      .hud-rank { display: none; }
+    }
+
+    .stats-col {
+      gap: 6px;
+      font-size: 9.5px;
+    }
+
+    .hud-lb-btn,
+    .hud-close-btn {
+      width: 24px;
+      height: 24px;
+      font-size: 11px;
+    }
+  }
+
+  .rocketrun-launch-sidebar {
+    bottom: 3px;
+    width: min(760px, calc(100vw - 6px));
+    max-width: calc(100vw - 6px);
+    max-height: min(27vh, 118px);
+    border-radius: 9px;
+
+    &.is-minimized {
+      max-height: 32px;
+    }
+
+    .sidebar-header {
+      min-height: 28px;
+      padding: 2px 6px;
+
+      .sidebar-title {
+        font-size: 9px;
+      }
+
+      .sidebar-route-banner {
+        padding: 1px 5px;
+
+        .route-icon { font-size: 12px; }
+      }
+
+      > .big-launch-btn {
+        min-height: 26px;
+        height: 26px;
+        max-width: 180px;
+        margin: 0 4px;
+        padding: 0 8px;
+        font-size: 9.5px;
+      }
+
+      .sidebar-header-actions {
+        gap: 3px;
+
+        .current-loc { display: none; }
+
+        .sidebar-min-btn,
+        .sidebar-close-btn {
+          width: 22px;
+          height: 22px;
+          font-size: 10px;
+        }
+      }
+    }
+
+    .sidebar-body {
+      padding: 3px 5px 4px;
+      gap: 3px;
+      max-height: calc(min(27vh, 118px) - 28px);
+      overflow-y: auto;
+    }
+
+    .launch-accordion {
+      gap: 3px;
+
+      .accordion-header {
+        min-height: 30px;
+        min-width: 32px;
+        padding: 2px;
+
+        .accordion-icon { font-size: 15px; }
+      }
+
+      .accordion-content {
+        max-height: calc(min(27vh, 118px) - 64px);
+        padding: 5px 7px;
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) and (orientation: portrait) {
+  .rocketrun-hud-overlay {
+    top: 6px;
+    max-width: min(88vw, 520px);
+
+    .hud-inner {
+      min-height: 34px;
+      padding: 4px 9px;
+    }
+  }
+
+  .rocketrun-launch-sidebar {
+    bottom: 6px;
+    width: min(760px, calc(100vw - 16px));
+    max-width: calc(100vw - 16px);
+    max-height: min(30vh, 280px);
+
+    .sidebar-body {
+      max-height: calc(min(30vh, 280px) - 46px);
+      overflow-y: auto;
+    }
+
+    .launch-accordion .accordion-content {
+      max-height: calc(min(30vh, 280px) - 108px);
+    }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1180px) and (orientation: landscape) {
+  .rocketrun-hud-overlay {
+    top: 4px;
+    max-width: min(72vw, 520px);
+
+    .hud-inner {
+      min-height: 30px;
+      padding: 3px 8px;
+    }
+  }
+
+  .rocketrun-launch-sidebar {
+    bottom: 4px;
+    width: min(820px, calc(100vw - 12px));
+    max-height: min(24vh, 170px);
+
+    .sidebar-header {
+      min-height: 30px;
+      padding: 3px 8px;
+    }
+
+    .sidebar-body {
+      max-height: calc(min(24vh, 170px) - 34px);
+      overflow-y: auto;
+    }
+
+    .launch-accordion .accordion-content {
+      max-height: calc(min(24vh, 170px) - 72px);
+    }
+  }
+}
+
+@media (min-width: 1024px) and (orientation: portrait) {
+  .rocketrun-launch-sidebar {
+    max-height: min(28vh, 300px);
+
+    .sidebar-body {
+      max-height: calc(min(28vh, 300px) - 48px);
+      overflow-y: auto;
+    }
+  }
+}
+
+@media (min-width: 1181px) and (orientation: landscape) {
+  .rocketrun-launch-sidebar {
+    max-height: min(26vh, 260px);
+
+    .sidebar-body {
+      max-height: calc(min(26vh, 260px) - 48px);
+      overflow-y: auto;
+    }
+  }
+}
+
