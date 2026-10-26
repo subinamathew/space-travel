@@ -82,7 +82,7 @@ space/
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) (v18+)
+- [Node.js](https://nodejs.org/) (v20.19+)
 - `npm`
 
 ### Installation
@@ -169,14 +169,12 @@ Breakpoints are defined in [`src/scss/abstracts/_breakpoints.scss`](./src/scss/a
 
 ## 📄 License & Attribution
 
-This project is licensed under the **MIT License with Attribution Requirement** — see the [`LICENSE`](./LICENSE) file for complete details.
+RocketRun is licensed under the **Apache License 2.0**. See [LICENSE](./LICENSE) for the license terms and [NOTICE](./NOTICE) for attribution information.
 
-### Copying & Attribution Terms
-You are welcome to explore, learn from, fork, and adapt the code, architectural ideas, and pedagogical concepts of RocketRun. Under the terms of the license:
-1. **Preserve Copyright**: You must retain the original copyright notice and permission notice in all copies or substantial portions of the Software.
-2. **Prominent Attribution**: Any derivative work, fork, reuse of the idea/pedagogical explainers, or redistribution must visibly and prominently provide credit and attribution:
-   > **"RocketRun by Zachary David Mathew + Papa ([https://rocketrun.org](https://rocketrun.org))"**
+If you redistribute RocketRun or a derivative work, preserve the applicable copyright and attribution notices required by Apache-2.0, including the RocketRun NOTICE attribution.
+
+> **RocketRun by Zachary David Mathew + Papa (https://rocketrun.org)**
 
 ---
 
-Copyright © 2026 rocketrun.org. All rights reserved.
+Copyright © 2026 Zachary David Mathew + Papa (rocketrun.org).
