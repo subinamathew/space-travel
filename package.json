@@ -16,7 +16,7 @@
     "test:smoke": "node scripts/test-gameplay-smoke.js",
     "test:auth": "node scripts/test-site-auth.js",
     "test:dom": "npm run build:pages && node scripts/test-gameplay-dom.js",
-    "test": "npm run test:i18n && npm run test:auth && npm run test:dom && npm run test:smoke && npm run test:csp && npm run test:a11y",
+    "test": "npm run test:i18n && npm run test:auth && npm run test:dom && npm run test:smoke && npm run test:csp && npm run test:a11y && npm run test:responsive-game",
     "watch:css": "sass --watch src/scss:public/css --style=compressed",
     "watch:js": "esbuild src/js/script.js --bundle --minify --external:./game.min.js --outfile=public/js/script.min.js --watch",
     "dev": "npm run build && node -e \"console.log('Build complete. Watching for changes...');\"",
@@ -24,7 +24,8 @@
     "test:csp": "npm run build:pages && node scripts/test-csp.js",
     "check": "npm test && npm run build",
     "release:changelog": "node scripts/generate-changelog.js",
-    "test:a11y": "npm run build:pages && node scripts/test-a11y.js"
+    "test:a11y": "npm run build:pages && node scripts/test-a11y.js",
+    "test:responsive-game": "node scripts/test-responsive-game-layout.js"
   },
   "devDependencies": {
     "esbuild": "^0.25.0",
