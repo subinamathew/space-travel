@@ -5,6 +5,7 @@ All notable changes, continuous deployment milestones, and feature evolutions fo
 ## [v3.2.0] - 2026-10-26
 
 ### ✨ Features & Missions
+- feat(game): add live apogee and perigee orbit coach ([c9d86eb](https://github.com/subinamathew/space-travel/commit/c9d86eb3d96b811bc697f9b376f71821ad066639))
 - feat(release): bump v3.2.0, center launch sidebar below with 5px margins, automate changelog, and revoke auth session on cookie clear ([28bc153](https://github.com/subinamathew/space-travel/commit/28bc1539bb5b65c5f1d81f045d122759cc6ef6eb))
 - feat(ui): dock launch button and 3-emoji route banner in header, restyle luna button and long mission note ([89102cf](https://github.com/subinamathew/space-travel/commit/89102cfcc585dfbfa87c16b7c7d0115ad65a7c25))
 - feat(game): add telemetry minibar, apogee-perigee debrief guide, and randomized infinite mode ([0972a12](https://github.com/subinamathew/space-travel/commit/0972a1200f57562fdae050d1effcc653426f0ccb))
