@@ -107,6 +107,16 @@ npm install
 
 ---
 
+## 🔐 Access Model
+
+RocketRun intentionally uses a lightweight shared-passcode gate to keep the experience within an invited/closed-circle audience. This is a **participation and access-positioning mechanism**, not a security boundary for confidential information.
+
+The project owner uses the restricted-access design as part of the site's intended closed-circle legal position, including its treatment of German imprint obligations. Legal applicability depends on the actual deployment and circumstances; the client-side implementation itself does not make that determination.
+
+See [ACCESS_MODEL.md](./ACCESS_MODEL.md) before changing the gate or storing any non-public data behind it.
+
+---
+
 ## 🌐 Deploying to Netlify
 
 This project includes a ready-to-use [`netlify.toml`](./netlify.toml) configured for zero-configuration continuous deployment.
