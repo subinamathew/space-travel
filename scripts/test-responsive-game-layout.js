@@ -42,6 +42,9 @@ assert(scss.includes('max-height: min(24vh, 170px);'), 'tablet landscape dock is
 assert(scss.includes('max-height: min(28vh, 300px);'), 'desktop portrait dock is capped');
 assert(scss.includes('max-height: min(26vh, 260px);'), 'desktop landscape dock is capped');
 assert(scss.includes('.hud-rank { display: none; }'), 'phone landscape removes nonessential rank text');
+assert(scss.includes('@media (max-width: 420px)'), 'small-phone telemetry compaction exists');
+assert(scss.includes('.orbit-coach-card'), 'Orbit Coach has compact responsive styling');
+assert(scss.includes('grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);'), 'Orbit Coach concepts stay visible in two compact columns');
 
 if (failures) process.exit(1);
 console.log('Responsive layout checks passed for 6 viewport/orientation profiles.');
