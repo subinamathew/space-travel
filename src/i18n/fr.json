@@ -793,6 +793,7 @@
     "launch_control": "Contrôle de Lancement",
     "select_destination": "Choisir la Destination :",
     "thrust_energy": "Énergie de Poussée :",
+    "propulsion_title": "Propulsion & Carburant",
     "big_launch_btn": "GRAND DÉCOLLAGE 🚀",
     "select_destination_alert": "Veuillez d'abord sélectionner une planète de destination !",
     "try_again_life_lost": "1 fusée perdue ! Recalibrage des coordonnées...",

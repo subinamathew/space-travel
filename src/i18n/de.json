@@ -793,6 +793,7 @@
     "launch_control": "Startkontrolle",
     "select_destination": "Ziel wählen:",
     "thrust_energy": "Schubenergie:",
+    "propulsion_title": "Antrieb & Treibstoff",
     "big_launch_btn": "GROSSER START 🚀",
     "select_destination_alert": "Bitte wähle zuerst einen Zielplaneten aus!",
     "try_again_life_lost": "1 Rakete verloren! Koordinaten werden neu kalibriert...",

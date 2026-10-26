@@ -793,6 +793,7 @@
     "launch_control": "发射指挥台",
     "select_destination": "选择目标天体：",
     "thrust_energy": "推进能量：",
+    "propulsion_title": "推进与燃料",
     "big_launch_btn": "点火起飞 🚀",
     "select_destination_alert": "请先选择目标天体！",
     "try_again_life_lost": "损失1枚火箭！正在重新校准坐标...",

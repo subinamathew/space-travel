@@ -1,6 +1,7 @@
 /**
- * Interactive 3D Orbit Manipulation Controller
- * Enables mouse drag / touch rotation and wheel / pinch zoom in 3D orbit mode.
+ * Interactive Orbit Manipulation Controller
+ * Enables mouse drag / touch rotation, wheel / pinch zoom in 3D orbit mode,
+ * and intuitive mouse wheel scrolling, drag panning, and pinch zoom in Game Mode.
  * Does not add any buttons; relies purely on direct DOM manipulation.
  */
 
@@ -17,6 +18,8 @@ export function init3DOrbitInteraction() {
   let rotX = DEFAULT_ROT_X;
   let rotZ = DEFAULT_ROT_Z;
   let zoom = DEFAULT_ZOOM;
+  let panX = 0;
+  let panY = 0;
 
   let isDragging = false;
   let hasMoved = false;
@@ -24,6 +27,8 @@ export function init3DOrbitInteraction() {
   let startY = 0;
   let initialRotX = DEFAULT_ROT_X;
   let initialRotZ = DEFAULT_ROT_Z;
+  let initialPanX = 0;
+  let initialPanY = 0;
 
   // Pinch-to-zoom tracking
   let initialPinchDist = null;
@@ -39,28 +44,36 @@ export function init3DOrbitInteraction() {
     sceneEl.style.setProperty('--orbit-rot-x', `${rotX.toFixed(2)}deg`);
     sceneEl.style.setProperty('--orbit-rot-z', `${rotZ.toFixed(2)}deg`);
     sceneEl.style.setProperty('--orbit-zoom', zoom.toFixed(3));
+    sceneEl.style.setProperty('--orbit-pan-x', `${panX.toFixed(1)}px`);
+    sceneEl.style.setProperty('--orbit-pan-y', `${panY.toFixed(1)}px`);
   }
 
   function resetTransform() {
     rotX = DEFAULT_ROT_X;
     rotZ = DEFAULT_ROT_Z;
     zoom = DEFAULT_ZOOM;
+    panX = 0;
+    panY = 0;
     updateTransform(true);
   }
 
-  // Check if 3D orbit mode is currently enabled
-  function is3DActive() {
+  // Check if 3D orbit mode or Game Mode is currently interactive
+  function isInteractive() {
     const pv = document.getElementById('planet-view');
     if (pv && pv.classList.contains('active')) return false;
-    return sceneEl.classList.contains('real-orbits');
+    return sceneEl.classList.contains('real-orbits') || sceneEl.classList.contains('game-active');
   }
 
-  // 1. Mouse Drag & Touch Rotation
-  solarSystem.addEventListener('pointerdown', e => {
-    if (!is3DActive()) return;
+  function isGameActive() {
+    return sceneEl.classList.contains('game-active') && !sceneEl.classList.contains('real-orbits');
+  }
 
-    // Do not interfere with interactive inputs, HUD controls, or modals
-    if (e.target && e.target.closest('.hud-stack, #galaxy-hud, #settings-hud, #cookie-notice, .planet-view')) {
+  // 1. Mouse Drag & Touch Rotation / 2D Panning
+  solarSystem.addEventListener('pointerdown', e => {
+    if (!isInteractive()) return;
+
+    // Do not interfere with interactive inputs, HUD controls, sidebar, or modals
+    if (e.target && e.target.closest('.hud-stack, #galaxy-hud, #settings-hud, #cookie-notice, .planet-view, #rocketrun-sidebar, #rocketrun-hud, .game-modal')) {
       return;
     }
 
@@ -70,13 +83,15 @@ export function init3DOrbitInteraction() {
     startY = e.clientY;
     initialRotX = rotX;
     initialRotZ = rotZ;
+    initialPanX = panX;
+    initialPanY = panY;
 
     solarSystem.classList.add('is-dragging');
     sceneEl.classList.add('is-manipulating');
   });
 
   window.addEventListener('pointermove', e => {
-    if (!isDragging || !is3DActive()) return;
+    if (!isDragging || !isInteractive()) return;
 
     const dx = e.clientX - startX;
     const dy = e.clientY - startY;
@@ -85,11 +100,16 @@ export function init3DOrbitInteraction() {
       hasMoved = true;
     }
 
-    // Horizontal drag rotates azimuth (yaw)
-    rotZ = initialRotZ + dx * 0.35;
-
-    // Vertical drag rotates elevation (pitch, clamped between 12deg and 84deg)
-    rotX = Math.min(84, Math.max(12, initialRotX - dy * 0.3));
+    if (isGameActive()) {
+      // 2D Pan in Game Mode
+      panX = initialPanX + dx;
+      panY = initialPanY + dy;
+    } else {
+      // Horizontal drag rotates azimuth (yaw)
+      rotZ = initialRotZ + dx * 0.35;
+      // Vertical drag rotates elevation (pitch, clamped between 12deg and 84deg)
+      rotX = Math.min(84, Math.max(12, initialRotX - dy * 0.3));
+    }
 
     updateTransform(false);
   });
@@ -106,7 +126,7 @@ export function init3DOrbitInteraction() {
   window.addEventListener('pointerup', endDrag);
   window.addEventListener('pointercancel', endDrag);
 
-  // Suppress accidental planet navigation if user dragged
+  // Suppress accidental planet navigation if user dragged to scroll/pan
   solarSystem.addEventListener(
     'click',
     e => {
@@ -119,22 +139,36 @@ export function init3DOrbitInteraction() {
     true
   );
 
-  // 2. Mouse Wheel Zoom In / Out
+  // 2. Mouse Wheel Zoom In / Out & Trackpad Scrolling
   solarSystem.addEventListener(
     'wheel',
     e => {
-      if (!is3DActive()) return;
+      if (!isInteractive()) return;
 
-      // Allow scrolling inside HUD bodies or open modals
-      if (e.target && e.target.closest('.hud-body, #cookie-notice, #planet-view')) {
+      // Allow scrolling inside HUD bodies, sidebar, or open modals
+      if (e.target && e.target.closest('.hud-body, #cookie-notice, #planet-view, #rocketrun-sidebar, .game-modal, .sidebar-body, .accordion-content')) {
         return;
       }
 
       e.preventDefault();
 
-      // Delta sensitivity
-      const zoomStep = -e.deltaY * 0.0012;
-      zoom = Math.min(2.5, Math.max(0.5, zoom + zoomStep));
+      if (isGameActive()) {
+        if (e.ctrlKey) {
+          // Pinch-to-zoom on trackpad
+          const zoomStep = -e.deltaY * 0.01;
+          zoom = Math.min(2.5, Math.max(0.35, zoom + zoomStep));
+        } else if (Math.abs(e.deltaX) > Math.abs(e.deltaY) && Math.abs(e.deltaX) > 10) {
+          // Trackpad two-finger horizontal panning
+          panX -= e.deltaX * 0.8;
+        } else {
+          // Wheel zoom
+          const zoomStep = -e.deltaY * 0.0012;
+          zoom = Math.min(2.5, Math.max(0.35, zoom + zoomStep));
+        }
+      } else {
+        const zoomStep = -e.deltaY * 0.0012;
+        zoom = Math.min(2.5, Math.max(0.5, zoom + zoomStep));
+      }
 
       updateTransform(false);
     },
@@ -145,7 +179,7 @@ export function init3DOrbitInteraction() {
   solarSystem.addEventListener(
     'touchstart',
     e => {
-      if (!is3DActive()) return;
+      if (!isInteractive()) return;
       if (e.touches.length === 2) {
         const t1 = e.touches[0];
         const t2 = e.touches[1];
@@ -159,14 +193,15 @@ export function init3DOrbitInteraction() {
   solarSystem.addEventListener(
     'touchmove',
     e => {
-      if (!is3DActive()) return;
+      if (!isInteractive()) return;
       if (e.touches.length === 2 && initialPinchDist) {
         e.preventDefault();
         const t1 = e.touches[0];
         const t2 = e.touches[1];
         const currentDist = Math.hypot(t2.clientX - t1.clientX, t2.clientY - t1.clientY);
         const factor = currentDist / initialPinchDist;
-        zoom = Math.min(2.5, Math.max(0.5, initialPinchZoom * factor));
+        const minZ = isGameActive() ? 0.35 : 0.5;
+        zoom = Math.min(2.5, Math.max(minZ, initialPinchZoom * factor));
         updateTransform(false);
       }
     },
@@ -181,8 +216,8 @@ export function init3DOrbitInteraction() {
 
   // 4. Double Click or Double Tap to Reset
   solarSystem.addEventListener('dblclick', e => {
-    if (!is3DActive()) return;
-    if (e.target && e.target.closest('.planet-btn, #sun, .hud-stack, #cookie-notice')) return;
+    if (!isInteractive()) return;
+    if (e.target && e.target.closest('.planet-btn, #sun, .hud-stack, #cookie-notice, #rocketrun-sidebar, .game-modal')) return;
     resetTransform();
   });
 
@@ -195,4 +230,9 @@ export function init3DOrbitInteraction() {
       }
     });
   }
+
+  // Reset when game mode ends
+  window.addEventListener('rocketrun-exit', () => {
+    resetTransform();
+  });
 }

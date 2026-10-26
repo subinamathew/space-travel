@@ -793,6 +793,7 @@
     "launch_control": "Control de Lanzamiento",
     "select_destination": "Elegir Destino:",
     "thrust_energy": "Energía de Empuje:",
+    "propulsion_title": "Propulsión y Combustible",
     "big_launch_btn": "GRAN LANZAMIENTO 🚀",
     "select_destination_alert": "¡Por favor selecciona primero un planeta de destino!",
     "try_again_life_lost": "¡1 cohete perdido! Recalibrando coordenadas...",

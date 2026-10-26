@@ -9,6 +9,7 @@
   overflow: visible;
   transform-style: preserve-3d;
   transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+  transform: translate(var(--orbit-pan-x, 0px), var(--orbit-pan-y, 0px)) scale(var(--orbit-zoom, 1));
 
   @include mobile {
     width: min(94vw, 94vh);
@@ -26,7 +27,7 @@
 
   // Realistic 3D Spatial Ecliptic View
   &.real-orbits {
-    transform: scale(var(--orbit-zoom, 1)) rotateX(var(--orbit-rot-x, 58deg)) rotateZ(var(--orbit-rot-z, -20deg));
+    transform: translate(var(--orbit-pan-x, 0px), var(--orbit-pan-y, 0px)) scale(var(--orbit-zoom, 1)) rotateX(var(--orbit-rot-x, 58deg)) rotateZ(var(--orbit-rot-z, -20deg));
 
     #sun {
       transform: translate(-50%, -50%) rotateZ(calc(-1 * var(--orbit-rot-z, -20deg))) rotateX(calc(-1 * var(--orbit-rot-x, 58deg)));

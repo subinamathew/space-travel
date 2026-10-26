@@ -93,7 +93,8 @@ body {
     pointer-events: none;
   }
 
-  &.real-orbits {
+  &.real-orbits,
+  &.game-active {
     cursor: grab;
     user-select: none;
     -webkit-user-select: none;

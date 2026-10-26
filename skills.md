@@ -622,6 +622,38 @@ RocketRun tracks project evolution with continuous automated changelogs and sema
 
 ---
 
+## Skill 20: Minimal Launch Control Dock, Solar System Interactive Scrolling, and Compact Mission Note Layout
+
+### Core Rule
+The Launch Control interface must provide maximum canvas visibility and minimal UI obstruction while granting the player full navigational freedom across the solar system:
+
+1. **Telemetry & Planner UI Streamlining**:
+   - The presentation DOM sections `#sec-telemetry` and `#sec-planner` and their accordion headers/buttons are completely removed from all screens.
+   - **Physics Invariance**: All underlying orbital physics calculations (Keplerian orbits, flight duration, perigee/apogee detection, arrival intercept points, and post-flight failure diagnostics) continue running in full in the background. Only redundant DOM clutter is eliminated.
+
+2. **Combined Minimal Propulsion Section (`#sec-propulsion`)**:
+   - Combines Thrust Energy and Fuel Tank into a single unified accordion section `#sec-propulsion`.
+   - The header displays a live composite summary: `⚡ {energy}% | ⛽ {fuel}%`.
+   - Inside the drawer, controls are laid out minimally (`.propulsion-combined-block`), presenting the energy slider and fuel progress meter side by side on desktop and stacked compactly on mobile.
+
+3. **Solar System Interactive Scrolling in Game Mode**:
+   - In Game Mode (`.game-active`), players can freely explore the solar system via:
+     - **Mouse Wheel / Trackpad Scroll**: Smoothly zooms in/out between `0.35x` and `2.5x` (`--orbit-zoom`).
+     - **Pointer / Touch Drag**: Pans the 2D solar system across X and Y axes (`--orbit-pan-x`, `--orbit-pan-y`).
+     - **Multi-Touch Pinch-to-Zoom**: Supports standard two-finger pinch zoom on mobile devices and Amazon Fire tablets.
+     - **Double-Click / Double-Tap**: Immediately resets pan and zoom to default origin (`0px, 0px, 1.0`).
+   - Coordinate calculations (`getBodyCenterRelativeToScene()`, reticles, lead arcs, flight paths) automatically adjust for scale and pan so all visual overlays stay aligned with celestial bodies.
+
+4. **Compact Mission Card on Small Screens**:
+   - On small screens (`@media (max-width: 768px)` and landscape `@media (orientation: landscape) and (max-height: 640px)`), `.sidebar-mission-card` scales down:
+     - Padding is reduced from `10px 14px` down to `4px 8px`.
+     - Gap is tightened to `3px - 4px`.
+     - Clue text font size drops from `12px` to `10px - 11px`.
+     - Luna target button scales down to `22px - 24px` height.
+     - Preserves full readability while minimizing vertical viewport occlusion.
+
+---
+
 ## Pre-Flight Verification Checklist
 
 Before pushing any commit or releasing to production, verify:

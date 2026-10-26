@@ -131,7 +131,12 @@ export function stopGame() {
   const solarSystem = document.getElementById('solar-system');
   const sceneEl = document.getElementById('scene');
   if (solarSystem) solarSystem.classList.remove('game-active');
-  if (sceneEl) sceneEl.classList.remove('game-active');
+  if (sceneEl) {
+    sceneEl.classList.remove('game-active');
+    sceneEl.style.removeProperty('--orbit-pan-x');
+    sceneEl.style.removeProperty('--orbit-pan-y');
+    sceneEl.style.removeProperty('--orbit-zoom');
+  }
 
   const playBtn = document.getElementById('game-play-btn');
   if (playBtn) {
@@ -242,9 +247,10 @@ function getBodyCenterRelativeToScene(bodyEl, sceneEl) {
   if (!bodyEl || !sceneEl) return { x: 0, y: 0 };
   const bRect = bodyEl.getBoundingClientRect();
   const sRect = sceneEl.getBoundingClientRect();
+  const zoom = (sceneEl.offsetWidth > 0 && sRect.width > 0) ? (sRect.width / sceneEl.offsetWidth) : 1;
   return {
-    x: bRect.left + bRect.width / 2 - (sRect.left + sRect.width / 2),
-    y: bRect.top + bRect.height / 2 - (sRect.top + sRect.height / 2)
+    x: (bRect.left + bRect.width / 2 - (sRect.left + sRect.width / 2)) / zoom,
+    y: (bRect.top + bRect.height / 2 - (sRect.top + sRect.height / 2)) / zoom
   };
 }
 
@@ -362,151 +368,49 @@ function renderGameUI() {
 
       <div class="launch-accordion" id="launch-accordion">
 
-        <!-- Accordion 3: Thrust Energy -->
-        <div class="accordion-section" id="sec-thrust">
-          <button type="button" class="accordion-header" aria-expanded="false" aria-controls="acc-content-thrust" title="${t('game.thrust_energy') || 'Thrust Energy:'}">
+        <!-- Combined Accordion: Propulsion & Energy (Thrust + Fuel Tank) -->
+        <div class="accordion-section" id="sec-propulsion">
+          <button type="button" class="accordion-header" aria-expanded="false" aria-controls="acc-content-propulsion" title="${t('game.propulsion_title') || 'Propulsion & Fuel'}">
             <span class="accordion-header-left">
               <span class="accordion-icon">⚡</span>
-              <span class="accordion-title" data-i18n="game.thrust_energy">${t('game.thrust_energy') || 'Thrust Energy:'}</span>
+              <span class="accordion-title" data-i18n="game.propulsion_title">${t('game.propulsion_title') || 'Propulsion & Fuel'}</span>
             </span>
             <span class="accordion-header-right">
-              <span class="accordion-summary" id="acc-summary-thrust">50%</span>
+              <span class="accordion-summary" id="acc-summary-propulsion">⚡ 50% | ⛽ 100%</span>
               <span class="accordion-chevron" aria-hidden="true">▾</span>
             </span>
           </button>
-          <div class="accordion-content" id="acc-content-thrust">
-            <div class="energy-control-block">
-              <div class="energy-header">
-                <span class="sidebar-label" data-i18n="game.thrust_energy">${t('game.thrust_energy') || 'Thrust Energy:'}</span>
-                <span class="energy-val" id="energy-val-readout">50%</span>
+          <div class="accordion-content" id="acc-content-propulsion">
+            <div class="propulsion-combined-block">
+              <!-- Minimal Thrust Energy -->
+              <div class="energy-control-block minimal-block">
+                <div class="energy-header">
+                  <span class="sidebar-label" data-i18n="game.thrust_energy">${t('game.thrust_energy') || 'Thrust Energy:'}</span>
+                  <span class="energy-val" id="energy-val-readout">50%</span>
+                </div>
+                <input type="range" id="energy-slider" class="energy-slider" min="5" max="100" value="50" step="1" aria-label="Thrust Energy Slider" />
+                <div class="energy-hints">
+                  <span>10% (Low)</span>
+                  <span>50% (Cruise)</span>
+                  <span>100% (Max)</span>
+                </div>
+                <div class="energy-feedback-hint" id="energy-feedback-hint"></div>
               </div>
-              <input type="range" id="energy-slider" class="energy-slider" min="5" max="100" value="50" step="1" aria-label="Thrust Energy Slider" />
-              <div class="energy-hints">
-                <span>10% (Low)</span>
-                <span>50% (Cruise)</span>
-                <span>100% (Max)</span>
-              </div>
-              <div class="energy-feedback-hint" id="energy-feedback-hint"></div>
-            </div>
-          </div>
-        </div>
 
-        <!-- Accordion 4: Fuel Tank -->
-        <div class="accordion-section" id="sec-fuel">
-          <button type="button" class="accordion-header" aria-expanded="false" aria-controls="acc-content-fuel" title="${t('game.fuel_label') || 'Fuel Tank:'}">
-            <span class="accordion-header-left">
-              <span class="accordion-icon">⛽</span>
-              <span class="accordion-title" data-i18n="game.fuel_label">${t('game.fuel_label') || 'Fuel Tank:'}</span>
-            </span>
-            <span class="accordion-header-right">
-              <span class="accordion-summary" id="acc-summary-fuel">100%</span>
-              <span class="accordion-chevron" aria-hidden="true">▾</span>
-            </span>
-          </button>
-          <div class="accordion-content" id="acc-content-fuel">
-            <div class="sidebar-fuel-block" id="sidebar-fuel-block">
-              <div class="fuel-header">
-                <span class="sidebar-label" data-i18n="game.fuel_label">${t('game.fuel_label') || 'Fuel Tank:'}</span>
-                <span class="fuel-val" id="fuel-val-readout">100%</span>
-              </div>
-              <div class="fuel-progress-track">
-                <div class="fuel-progress-fill" id="fuel-progress-fill" style="width: 100%;"></div>
-              </div>
-              <div class="solar-recharge-indicator" id="solar-recharge-indicator" style="display:none;">
-                <span class="solar-icon">☀️</span>
-                <span class="solar-text" id="solar-recharge-text">${t('game.solar_charging_status') || '☀️ Solar Array Charging: Active'}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Accordion 5: Orbital Telemetry -->
-        <div class="accordion-section" id="sec-telemetry">
-          <button type="button" class="accordion-header" aria-expanded="false" aria-controls="acc-content-telemetry" title="${t('game.orbital_telemetry') || 'Orbital Telemetry'}">
-            <span class="accordion-header-left">
-              <span class="accordion-icon">📡</span>
-              <span class="accordion-title" data-i18n="game.orbital_telemetry">${t('game.orbital_telemetry') || 'Orbital Telemetry'}</span>
-            </span>
-            <span class="accordion-header-right">
-              <span class="accordion-summary" id="acc-summary-telemetry">🟢 Window</span>
-              <span class="accordion-chevron" aria-hidden="true">▾</span>
-            </span>
-          </button>
-          <div class="accordion-content" id="acc-content-telemetry">
-            <div class="sidebar-telemetry-block" id="sidebar-orbit-telemetry">
-              <div class="telemetry-header">
-                <span class="telemetry-title" data-i18n="game.orbital_telemetry">ORBITAL TELEMETRY</span>
-                <span class="telemetry-window-tag" id="telemetry-window-tag">🟢 Perigee Window</span>
-              </div>
-              <div class="telemetry-physics-banner" id="telemetry-physics-banner">
-                <span class="banner-icon">🪐</span>
-                <span class="banner-text" id="telemetry-physics-text">${(t('game.future_rendezvous_principle') || '🚀 Keplerian Rendezvous: Planets orbit continuously while you fly! You must aim for where the planet will be upon arrival (T+{sec}s), not where it is today.').replace('{sec}', '5.2')}</span>
-              </div>
-              <div class="telemetry-grid">
-                <div class="telemetry-item">
-                  <span class="telemetry-label" data-i18n="game.perigee_label">Perigee (Min):</span>
-                  <span class="telemetry-val" id="telemetry-perigee-val">--</span>
+              <!-- Minimal Fuel Tank -->
+              <div class="sidebar-fuel-block minimal-block" id="sidebar-fuel-block">
+                <div class="fuel-header">
+                  <span class="sidebar-label" data-i18n="game.fuel_label">${t('game.fuel_label') || 'Fuel Tank:'}</span>
+                  <span class="fuel-val" id="fuel-val-readout">100%</span>
                 </div>
-                <div class="telemetry-item">
-                  <span class="telemetry-label" data-i18n="game.apogee_label">Apogee (Max):</span>
-                  <span class="telemetry-val" id="telemetry-apogee-val">--</span>
+                <div class="fuel-progress-track">
+                  <div class="fuel-progress-fill" id="fuel-progress-fill" style="width: 100%;"></div>
                 </div>
-                <div class="telemetry-item">
-                  <span class="telemetry-label" data-i18n="game.current_separation">Current Distance:</span>
-                  <span class="telemetry-val" id="telemetry-dist-val">--</span>
-                </div>
-                <div class="telemetry-item highlight-item">
-                  <span class="telemetry-label" data-i18n="game.future_intercept_label">Arrival Intercept:</span>
-                  <span class="telemetry-val" id="telemetry-arrival-val">--</span>
-                </div>
-                <div class="telemetry-item highlight-item">
-                  <span class="telemetry-label" data-i18n="game.future_lead_label">Transit Orbit Motion:</span>
-                  <span class="telemetry-val" id="telemetry-lead-val">--</span>
-                </div>
-                <div class="telemetry-item highlight-item">
-                  <span class="telemetry-label" data-i18n="game.future_landing_location_label">Future Landing Orbit:</span>
-                  <span class="telemetry-val" id="telemetry-landing-loc-val">--</span>
-                </div>
-                <div class="telemetry-item">
-                  <span class="telemetry-label" data-i18n="game.next_window_label">Next Window:</span>
-                  <span class="telemetry-val" id="telemetry-next-window-val">--</span>
-                </div>
-                <div class="telemetry-item">
-                  <span class="telemetry-label" data-i18n="game.target_orbit_zone">Target Orbit Zone:</span>
-                  <span class="telemetry-val" id="telemetry-energy-req">--</span>
+                <div class="solar-recharge-indicator" id="solar-recharge-indicator" style="display:none;">
+                  <span class="solar-icon">☀️</span>
+                  <span class="solar-text" id="solar-recharge-text">${t('game.solar_charging_status') || '☀️ Solar Array Charging: Active'}</span>
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Accordion 6: Future Orbit Planner -->
-        <div class="accordion-section" id="sec-planner">
-          <button type="button" class="accordion-header" aria-expanded="false" aria-controls="acc-content-planner" title="${t('game.future_orbit_planner') || 'Future Orbit Planner'}">
-            <span class="accordion-header-left">
-              <span class="accordion-icon">🔮</span>
-              <span class="accordion-title" data-i18n="game.future_orbit_planner">${t('game.future_orbit_planner') || 'Future Orbit Planner'}</span>
-            </span>
-            <span class="accordion-header-right">
-              <span class="accordion-summary" id="acc-summary-planner">Live</span>
-              <span class="accordion-chevron" aria-hidden="true">▾</span>
-            </span>
-          </button>
-          <div class="accordion-content" id="acc-content-planner">
-            <div class="future-orbit-planner" id="future-orbit-planner">
-              <div class="planner-header">
-                <span class="planner-title" data-i18n="game.future_orbit_planner">🔮 FUTURE ORBIT PLANNER</span>
-                <span class="planner-offset-badge" id="planner-offset-badge">T+0s (LIVE)</span>
-              </div>
-              <p class="planner-subtitle" data-i18n="game.planner_subtitle">
-                ${t('game.planner_subtitle') || 'Planets advance along orbits over time. Preview future orbital alignments to pick optimal transfer windows.'}
-              </p>
-              <div class="planner-buttons">
-                <button type="button" class="planner-btn is-active" data-offset="0">Live</button>
-                <button type="button" class="planner-btn" data-offset="5">+5s</button>
-                <button type="button" class="planner-btn" data-offset="10">+10s</button>
-                <button type="button" class="planner-btn" data-offset="15">+15s</button>
-                <button type="button" class="planner-btn" data-offset="20">+20s</button>
             </div>
           </div>
         </div>
@@ -616,6 +520,7 @@ function bindSidebarEvents() {
         updateThrustMinUI();
         const sumThrust = document.getElementById('acc-summary-thrust');
         if (sumThrust) sumThrust.textContent = `${slider.value}%`;
+        updatePropulsionSummary();
       },
       { passive: true }
     );
@@ -823,6 +728,18 @@ function updateFuelUI() {
   }
   if (minFuelPct) {
     minFuelPct.textContent = `${f}%`;
+  }
+
+  const sumFuel = document.getElementById('acc-summary-fuel');
+  if (sumFuel) sumFuel.textContent = `${f}%`;
+  updatePropulsionSummary();
+}
+
+function updatePropulsionSummary() {
+  const sumProp = document.getElementById('acc-summary-propulsion');
+  if (sumProp && gameState) {
+    const f = Math.round(gameState.fuel);
+    sumProp.textContent = `⚡ ${gameState.energy}% | ⛽ ${f}%`;
   }
 }
 
@@ -1121,9 +1038,10 @@ function renderFutureInterceptMarker(metrics) {
   }
 
   const arrivalPt = calculateArrivalScenePoint(gameState.targetPlanet, sceneEl, metrics.flightDurationSec);
-  const sRect = sceneEl.getBoundingClientRect();
-  const left = sRect.width / 2 + arrivalPt.x;
-  const top = sRect.height / 2 + arrivalPt.y;
+  const cx = sceneEl.offsetWidth / 2;
+  const cy = sceneEl.offsetHeight / 2;
+  const left = cx + arrivalPt.x;
+  const top = cy + arrivalPt.y;
 
   let reticle = document.getElementById('future-intercept-reticle');
   if (!reticle) {
@@ -1154,9 +1072,8 @@ function renderPlanetaryLeadArc(arrivalPt, sceneEl) {
   svg.id = 'future-lead-arc-svg';
   svg.setAttribute('class', 'future-lead-arc-svg');
 
-  const sRect = sceneEl.getBoundingClientRect();
-  const cx = sRect.width / 2;
-  const cy = sRect.height / 2;
+  const cx = sceneEl.offsetWidth / 2;
+  const cy = sceneEl.offsetHeight / 2;
   const r = arrivalPt.r;
 
   const x1 = cx + arrivalPt.currentPos.x;
@@ -1442,9 +1359,8 @@ function renderFlightPathSvg(points, sceneEl) {
   svg.id = 'flight-path-svg';
   svg.setAttribute('class', 'flight-path-svg');
 
-  const sRect = sceneEl.getBoundingClientRect();
-  const cx = sRect.width / 2;
-  const cy = sRect.height / 2;
+  const cx = sceneEl.offsetWidth / 2;
+  const cy = sceneEl.offsetHeight / 2;
 
   const d = points
     .map((p, i) => {

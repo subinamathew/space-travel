@@ -793,6 +793,7 @@
     "launch_control": "Launch Control",
     "select_destination": "Select Destination:",
     "thrust_energy": "Thrust Energy:",
+    "propulsion_title": "Propulsion & Fuel",
     "big_launch_btn": "BIG LAUNCH 🚀",
     "select_destination_alert": "Please select a destination planet first!",
     "try_again_life_lost": "Lost 1 Rocket! Recalibrating coordinates...",

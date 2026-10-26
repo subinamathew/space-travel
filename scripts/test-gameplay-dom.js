@@ -185,11 +185,14 @@ assert(document.getElementById('route-origin-icon') !== null, '#route-origin-ico
 assert(document.getElementById('route-dest-icon') !== null, '#route-dest-icon exists');
 assert(document.getElementById('sec-mode') === null, '#sec-mode accordion section is removed');
 assert(document.getElementById('sec-dest') === null, '#sec-dest accordion section is removed');
+assert(document.getElementById('sec-telemetry') === null, '#sec-telemetry accordion section is removed');
+assert(document.getElementById('sec-planner') === null, '#sec-planner accordion section is removed');
+assert(document.getElementById('acc-content-telemetry') === null, '#acc-content-telemetry DOM element is removed');
+assert(document.getElementById('acc-content-planner') === null, '#acc-content-planner DOM element is removed');
 
-const expectedSections = ['sec-thrust', 'sec-fuel', 'sec-telemetry', 'sec-planner'];
-for (const secId of expectedSections) {
-  assert(document.getElementById(secId) !== null, `Accordion section #${secId} exists`);
-}
+assert(document.getElementById('sec-propulsion') !== null, 'Combined accordion section #sec-propulsion exists');
+assert(document.getElementById('energy-slider') !== null, '#energy-slider exists inside #sec-propulsion');
+assert(document.getElementById('sidebar-fuel-block') !== null, '#sidebar-fuel-block exists inside #sec-propulsion');
 
 const gameToggle = document.getElementById('settings-game-toggle');
 assert(gameToggle !== null, '#settings-game-toggle exists in Settings');
@@ -233,16 +236,16 @@ assert(moonEl.classList.contains('is-game-target'), 'Moon regains .is-game-targe
 // TEST 4: Accordion Header Toggle & Sidebar Minimization
 // ----------------------------------------------------
 console.log('\n[Test 4: Accordion Interaction & Sidebar Minimization]');
-const secFuel = document.getElementById('sec-fuel');
-const fuelHeader = secFuel.querySelector('.accordion-header');
-assert(!secFuel.classList.contains('is-open'), '#sec-fuel is closed initially');
+const secProp = document.getElementById('sec-propulsion');
+const propHeader = secProp.querySelector('.accordion-header');
+assert(!secProp.classList.contains('is-open'), '#sec-propulsion is closed initially');
 
-fuelHeader.click();
-assert(secFuel.classList.contains('is-open'), '#sec-fuel is open after clicking header');
-assert(fuelHeader.getAttribute('aria-expanded') === 'true', '#sec-fuel header aria-expanded is true');
+propHeader.click();
+assert(secProp.classList.contains('is-open'), '#sec-propulsion is open after clicking header');
+assert(propHeader.getAttribute('aria-expanded') === 'true', '#sec-propulsion header aria-expanded is true');
 
-fuelHeader.click();
-assert(!secFuel.classList.contains('is-open'), '#sec-fuel closes on second header click');
+propHeader.click();
+assert(!secProp.classList.contains('is-open'), '#sec-propulsion closes on second header click');
 
 // Minimize sidebar
 const minBtn = document.getElementById('sidebar-min-btn');
@@ -296,18 +299,14 @@ assert(winMars.flightDurationSec === 5.2, 'Flight duration to Mars is 5.2s');
 assert(typeof winMars.futureArrivalCoords.x === 'number', 'Future arrival X coordinate is valid');
 assert(typeof winMars.futureArrivalCoords.y === 'number', 'Future arrival Y coordinate is valid');
 
-// Scrubber test (+10s projection)
-const planner = document.getElementById('future-orbit-planner');
-const btn10s = planner.querySelector('.planner-btn[data-offset="10"]');
-assert(btn10s !== null, 'Future planner +10s button exists');
-btn10s.click();
-assert(document.getElementById('planner-offset-badge').textContent.includes('T+10s'), 'Offset badge updates to T+10s (PROJECTED)');
-assert(document.getElementById('acc-summary-planner').textContent === '+10s', 'Accordion summary updates to +10s');
+// Verify future planner DOM elements are removed while underlying physics calculation persists
+assert(document.getElementById('future-orbit-planner') === null, '#future-orbit-planner DOM element is removed');
+assert(document.getElementById('planner-offset-badge') === null, '#planner-offset-badge is removed');
+assert(document.getElementById('acc-summary-planner') === null, '#acc-summary-planner is removed');
 
-// Reset to live
-const btnLive = planner.querySelector('.planner-btn[data-offset="0"]');
-btnLive.click();
-assert(document.getElementById('planner-offset-badge').textContent.includes('T+0s'), 'Offset badge reset to LIVE');
+const winMarsProjected = calculateOrbitalWindow('earth', 'mars', 0, 10);
+assert(typeof winMarsProjected.futureArrivalCoords.x === 'number', 'Projected arrival X coordinate is valid');
+assert(typeof winMarsProjected.futureArrivalCoords.y === 'number', 'Projected arrival Y coordinate is valid');
 
 const reticleEl = document.getElementById('future-intercept-reticle');
 if (reticleEl) {

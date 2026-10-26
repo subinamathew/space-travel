@@ -5,7 +5,7 @@ All notable changes, continuous deployment milestones, and feature evolutions fo
 ## [v3.2.0] - 2026-10-26
 
 ### ✨ Features & Missions
-- feat(release): bump v3.2.0, center launch sidebar below with 5px margins, automate changelog, and revoke auth session on cookie clear ([28bc153](https://github.com/subinamathew/space-travel/commit/28bc1539bb5b65c5f1d81f045d122759cc6ef6eb))
+- feat(release): bump v3.2.0, center launch sidebar below with 5px margins, automate changelog, and revoke auth session on cookie clear ([d81f9d0](https://github.com/subinamathew/space-travel/commit/d81f9d031ad535e9c340ff7596bac6608eadbe64))
 - feat(ui): dock launch button and 3-emoji route banner in header, restyle luna button and long mission note ([89102cf](https://github.com/subinamathew/space-travel/commit/89102cfcc585dfbfa87c16b7c7d0115ad65a7c25))
 - feat(game): add telemetry minibar, apogee-perigee debrief guide, and randomized infinite mode ([0972a12](https://github.com/subinamathew/space-travel/commit/0972a1200f57562fdae050d1effcc653426f0ccb))
 - feat(auth): add site-wide password protection ('[SITE_PASSCODE]') and remove impressum ([3a6ceb3](https://github.com/subinamathew/space-travel/commit/3a6ceb393525007da7de310b4a217b9964ca35a1))

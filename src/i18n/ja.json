@@ -793,6 +793,7 @@
     "launch_control": "打ち上げ管制",
     "select_destination": "目的地を選択:",
     "thrust_energy": "推進エネルギー:",
+    "propulsion_title": "推進と燃料",
     "big_launch_btn": "ロケット発射！ 🚀",
     "select_destination_alert": "最初に目的地の天体を選択してください！",
     "try_again_life_lost": "ロケットを1機失いました！ 座標を再計算中...",
