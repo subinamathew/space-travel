@@ -22,7 +22,8 @@
     "watch:js": "esbuild src/js/script.js --bundle --minify --external:./game.min.js --outfile=public/js/script.min.js --watch",
     "dev": "npm run build && node -e \"console.log('Build complete. Watching for changes...');\"",
     "build:game-js": "esbuild src/js/game/game-engine.js --bundle --minify --format=esm --target=es2022 --tree-shaking=true --legal-comments=none --charset=utf8 --outfile=public/js/game.min.js",
-    "test:csp": "npm run build:pages && node scripts/test-csp.js"
+    "test:csp": "npm run build:pages && node scripts/test-csp.js",
+    "check": "npm test && npm run build"
   },
   "devDependencies": {
     "esbuild": "^0.25.0",
