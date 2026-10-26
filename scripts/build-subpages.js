@@ -466,7 +466,7 @@ allBodies.forEach((p, idx) => {
                 </div>
 
                 <div class="sidebar-body" id="sidebar-body">
-                    <form class="calc-form" onsubmit="return false;">
+                    <form class="calc-form">
                         <div class="calc-field calc-field-avatar">
                             <div class="field-label-row">
                                 <label data-i18n="ui.choose_astronaut">Explorer Avatar</label>
