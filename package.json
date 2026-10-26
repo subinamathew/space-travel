@@ -16,8 +16,8 @@
     "test:i18n": "node scripts/test-i18n.js",
     "test:smoke": "node scripts/test-gameplay-smoke.js",
     "test:auth": "node scripts/test-site-auth.js",
-    "test:dom": "node scripts/test-gameplay-dom.js",
-    "test": "node scripts/test-i18n.js && node scripts/test-site-auth.js && node scripts/test-gameplay-dom.js && node scripts/test-gameplay-smoke.js",
+    "test:dom": "npm run build:pages && node scripts/test-gameplay-dom.js",
+    "test": "npm run test:i18n && npm run test:auth && npm run test:dom && npm run test:smoke",
     "watch:css": "sass --watch src/scss:public/css --style=compressed",
     "watch:js": "esbuild src/js/script.js --bundle --minify --outfile=public/js/script.min.js --watch",
     "dev": "npm run build && node -e \"console.log('Build complete. Watching for changes...');\""
