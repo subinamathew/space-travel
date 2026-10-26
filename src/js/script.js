@@ -10,8 +10,27 @@ import { initCookieNotice } from './components/cookie-notice.js';
 import { initFeaturesPage } from './components/features.js';
 import { init3DOrbitInteraction } from './components/orbit-3d.js';
 import { initAuthGate } from './components/auth-gate.js';
-import { startGame, stopGame, exitGameMode, isGameActive, initGameEngine, setFreePlayMode } from './game/game-engine.js';
 import { getGameModeCookie, setGameModeCookie } from './components/cookie-notice.js';
+
+
+let gameEnginePromise = null;
+
+function ensureGameStyles() {
+  if (document.getElementById('rocketrun-game-styles')) return;
+  const link = document.createElement('link');
+  link.id = 'rocketrun-game-styles';
+  link.rel = 'stylesheet';
+  link.href = 'css/game.css';
+  document.head.appendChild(link);
+}
+
+function loadGameEngine() {
+  ensureGameStyles();
+  if (!gameEnginePromise) {
+    gameEnginePromise = import('./game.min.js');
+  }
+  return gameEnginePromise;
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize site-wide access gate
@@ -57,13 +76,14 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-function initGameModeSettings() {
+async function initGameModeSettings() {
   const playBtn = document.getElementById('game-play-btn');
   const gameToggle = document.getElementById('settings-game-toggle');
   const freePlayToggle = document.getElementById('settings-freeplay-toggle');
   if (!playBtn && !gameToggle && !freePlayToggle) return;
 
-  initGameEngine();
+  const game = await loadGameEngine();
+  game.initGameEngine();
 
   const urlParams = new URLSearchParams(window.location.search);
   const isFreePlayParam = urlParams.get('mode') === 'freeplay';
@@ -83,50 +103,50 @@ function initGameModeSettings() {
   if (shouldStartGame) {
     const sessionDocked = typeof sessionStorage !== 'undefined' ? sessionStorage.getItem('rocketrun_docked') : null;
     const docked = dockedParam || (isFreePlayActive ? sessionDocked : null) || 'earth';
-    startGame({ freeplay: isFreePlayActive, docked });
+    game.startGame({ freeplay: isFreePlayActive, docked });
   }
 
   if (playBtn) {
-    playBtn.addEventListener('click', () => {
-      if (isGameActive()) {
-        exitGameMode();
+    playBtn.addEventListener('click', async () => {
+      if (game.isGameActive()) {
+        game.exitGameMode();
       } else {
         const isFp = localStorage.getItem('space_game_freeplay') === 'true';
-        startGame({ freeplay: isFp });
+        game.startGame({ freeplay: isFp });
       }
     });
   }
 
-  bindGameModeToggles(gameToggle, freePlayToggle);
+  bindGameModeToggles(gameToggle, freePlayToggle, game);
 }
 
-function bindGameModeToggles(gameToggle, freePlayToggle) {
+function bindGameModeToggles(gameToggle, freePlayToggle, game) {
   if (gameToggle) {
-    gameToggle.addEventListener('change', () => {
+    gameToggle.addEventListener('change', async () => {
       const active = gameToggle.checked;
       localStorage.setItem('space_game_mode', active ? 'true' : 'false');
       setGameModeCookie(active ? (freePlayToggle?.checked ? 'freeplay' : 'on') : 'off');
       if (active) {
         const isFp = freePlayToggle ? freePlayToggle.checked : false;
-        startGame({ freeplay: isFp });
+        game.startGame({ freeplay: isFp });
       } else {
-        exitGameMode();
+        game.exitGameMode();
       }
     });
   }
 
   if (freePlayToggle) {
-    freePlayToggle.addEventListener('change', () => {
+    freePlayToggle.addEventListener('change', async () => {
       const fpActive = freePlayToggle.checked;
       localStorage.setItem('space_game_freeplay', fpActive ? 'true' : 'false');
       if (fpActive && (!gameToggle || !gameToggle.checked)) {
         if (gameToggle) gameToggle.checked = true;
         localStorage.setItem('space_game_mode', 'true');
         setGameModeCookie('freeplay');
-        startGame({ freeplay: true });
+        game.startGame({ freeplay: true });
       } else {
         setGameModeCookie(fpActive ? 'freeplay' : (gameToggle?.checked ? 'on' : 'off'));
-        setFreePlayMode(fpActive);
+        game.setFreePlayMode(fpActive);
       }
     });
   }

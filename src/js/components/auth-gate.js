@@ -112,12 +112,19 @@ export function mountAuthGateUI() {
   gate.setAttribute('aria-modal', 'true');
   gate.setAttribute('aria-labelledby', 'auth-gate-title');
 
-  const badgeText = t('ui.auth_badge', '🔒 RESTRICTED EXPEDITION');
-  const titleText = t('ui.auth_title', 'Expedition Access Gate');
-  const subtitleText = t('ui.auth_subtitle', 'Private access for authorized space explorers.');
-  const labelText = t('ui.auth_label', 'Expedition Passcode');
-  const placeholderText = t('ui.auth_placeholder', 'Enter mission passcode...');
-  const btnText = t('ui.auth_btn', 'Unlock Mission 🚀');
+  const escapeHtml = (value) => String(value ?? '')
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+
+  const badgeText = escapeHtml(t('ui.auth_badge', '🔒 RESTRICTED EXPEDITION'));
+  const titleText = escapeHtml(t('ui.auth_title', 'Expedition Access Gate'));
+  const subtitleText = escapeHtml(t('ui.auth_subtitle', 'Private access for authorized space explorers.'));
+  const labelText = escapeHtml(t('ui.auth_label', 'Expedition Passcode'));
+  const placeholderText = escapeHtml(t('ui.auth_placeholder', 'Enter mission passcode...'));
+  const btnText = escapeHtml(t('ui.auth_btn', 'Unlock Mission 🚀'));
 
   gate.innerHTML = `
     <div class="auth-gate-backdrop"></div>

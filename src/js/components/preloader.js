@@ -54,12 +54,24 @@ export function initPreloader(onComplete) {
   let cx = width / 2;
   let cy = height / 2;
 
-  const numStars = 480;
+  const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false;
+  const lowMemoryDevice = typeof navigator !== 'undefined' && 'deviceMemory' in navigator && navigator.deviceMemory <= 4;
+  const numStars = prefersReducedMotion ? 0 : (lowMemoryDevice || window.innerWidth < 768 ? 240 : 360);
   const maxZ = 1200;
   const fov = 300;
   let animId = null;
   let isDone = false;
   let hasTriggeredArrival = false;
+
+  if (prefersReducedMotion) {
+    preloaderEl.classList.add('loaded');
+    preloaderEl.style.display = 'none';
+    if (galaxyHud) galaxyHud.classList.add('visible');
+    if (settingsHud) settingsHud.classList.add('visible');
+    sessionStorage.setItem('rocketrun_visited', 'true');
+    if (onComplete) onComplete();
+    return;
+  }
 
   const stars = Array.from({ length: numStars }, () => resetStar({}, true));
 
