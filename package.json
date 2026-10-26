@@ -7,12 +7,11 @@
   "main": "src/js/script.js",
   "type": "module",
   "scripts": {
-    "build:changelog": "node scripts/generate-changelog.js",
     "build:css": "sass src/scss/main.scss public/css/style.css --style=compressed --no-source-map && sass src/scss/game.scss public/css/game.css --style=compressed --no-source-map && sass src/scss/preloader.scss public/css/preloader.css --style=compressed --no-source-map && sass src/scss/features.scss public/css/features.css --style=compressed --no-source-map && sass src/scss/planet.scss public/css/planet.css --style=compressed --no-source-map",
     "build:js": "esbuild src/js/script.js --bundle --minify --target=es2022 --tree-shaking=true --legal-comments=none --charset=utf8 --external:./game.min.js --outfile=public/js/script.min.js",
     "build:planet-js": "esbuild src/js/planet-page.js --bundle --minify --target=es2022 --tree-shaking=true --legal-comments=none --charset=utf8 --outfile=public/js/planet.min.js",
     "build:pages": "node scripts/build-subpages.js",
-    "build": "npm run build:changelog && npm run build:pages && npm run build:css && npm run build:js && npm run build:game-js && npm run build:planet-js",
+    "build": "npm run build:pages && npm run build:css && npm run build:js && npm run build:game-js && npm run build:planet-js",
     "test:i18n": "node scripts/test-i18n.js",
     "test:smoke": "node scripts/test-gameplay-smoke.js",
     "test:auth": "node scripts/test-site-auth.js",
@@ -23,7 +22,8 @@
     "dev": "npm run build && node -e \"console.log('Build complete. Watching for changes...');\"",
     "build:game-js": "esbuild src/js/game/game-engine.js --bundle --minify --format=esm --target=es2022 --tree-shaking=true --legal-comments=none --charset=utf8 --outfile=public/js/game.min.js",
     "test:csp": "npm run build:pages && node scripts/test-csp.js",
-    "check": "npm test && npm run build"
+    "check": "npm test && npm run build",
+    "release:changelog": "node scripts/generate-changelog.js"
   },
   "devDependencies": {
     "esbuild": "^0.25.0",

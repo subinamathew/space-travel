@@ -99,11 +99,17 @@ npm install
 
 | Command | Description |
 | :--- | :--- |
-| `npm run build` | Compiles Sass to compressed CSS and bundles/minifies JS into `public/` |
+| `npm run build` | Produces the deployable `public/` site without modifying tracked source files |
 | `npm run build:css` | Compiles Sass (`src/scss/main.scss`) into `public/css/style.css` |
-| `npm run build:js` | Bundles and minifies JS (`src/js/script.js`) into `public/js/script.min.js` |
+| `npm run build:js` | Bundles and minifies the core JS (`src/js/script.js`) into `public/js/script.min.js` |
+| `npm run build:game-js` | Builds the lazy-loaded game bundle into `public/js/game.min.js` |
+| `npm run release:changelog` | Regenerates tracked changelog source files from Git history; run intentionally for release updates |
 | `npm run watch:css` | Watches `src/scss/` for changes and automatically recompiles |
 | `npm run watch:js` | Watches `src/js/` for changes and rebuilds via `esbuild` |
+
+### Release hygiene
+
+Normal builds are source-pure: `npm run build` writes deployable artifacts under `public/` and does not regenerate tracked changelog sources. Run `npm run release:changelog` intentionally when preparing release notes, review the resulting diff, then commit it with the release.
 
 ---
 
