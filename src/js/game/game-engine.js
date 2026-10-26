@@ -29,8 +29,21 @@ import {
 import { playLaunchSound, playTouchdownSound, playExplosionSound, playWarningSound } from './game-audio.js';
 import { setGameModeCookie } from '../components/cookie-notice.js';
 import { t } from '../i18n.js';
+import {
+  getBodyImagePath,
+  getBodyIcon,
+  getBodyPlainName,
+  formatBodyName,
+  createRocketActor,
+  injectFlightKeyframes,
+  renderFlightPathSvg,
+  removeFlightPathSvg,
+  removeFutureInterceptMarker,
+  removePlanetaryLeadArc
+} from './game-view.js';
 
 export { ALL_DESTINATIONS, getRandomDestination, shuffleDestinations } from './game-state.js';
+export { getBodyImagePath, getBodyIcon, getBodyPlainName, formatBodyName } from './game-view.js';
 
 let gameState = null;
 let gameActive = false;
@@ -880,14 +893,7 @@ function updateLaunchButtonState() {
   }
 }
 
-export function getBodyImagePath(slug) {
-  if (!slug) return 'images/moon.png';
-  const clean = String(slug).toLowerCase().trim();
-  if (clean === 'moon' || clean === 'luna') {
-    return 'images/moon.png';
-  }
-  return `images/${clean}.png`;
-}
+
 
 export function updateThrustMinUI(optMetrics) {
   const minThrustNum = document.getElementById('min-thrust-num');
@@ -915,54 +921,11 @@ export function updateThrustMinUI(optMetrics) {
   }
 }
 
-export function getBodyIcon(slug) {
-  const map = {
-    moon: '🌙',
-    luna: '🌙',
-    mercury: '🟤',
-    venus: '🟡',
-    earth: '🌍',
-    mars: '🔴',
-    jupiter: '🟠',
-    saturn: '🪐',
-    uranus: '🔵',
-    neptune: '🔷',
-    sun: '☀️'
-  };
-  return map[slug] || '🪐';
-}
 
-export function getBodyPlainName(slug) {
-  const map = {
-    moon: 'Luna',
-    luna: 'Luna',
-    mercury: 'Mercury',
-    venus: 'Venus',
-    earth: 'Earth',
-    mars: 'Mars',
-    jupiter: 'Jupiter',
-    saturn: 'Saturn',
-    uranus: 'Uranus',
-    neptune: 'Neptune'
-  };
-  return map[slug] || (slug ? slug.charAt(0).toUpperCase() + slug.slice(1) : '');
-}
 
-function formatBodyName(slug) {
-  const map = {
-    moon: 'Luna 🌙',
-    luna: 'Luna 🌙',
-    mercury: 'Mercury ☿',
-    venus: 'Venus ♀',
-    earth: 'Earth 🌍',
-    mars: 'Mars ♂',
-    jupiter: 'Jupiter ♃',
-    saturn: 'Saturn ♄',
-    uranus: 'Uranus ♅',
-    neptune: 'Neptune ♆'
-  };
-  return map[slug] || slug;
-}
+
+
+
 
 export function selectDestinationFromCanvas(slug) {
   if (!gameActive || gameState.state === GAME_STATES.TRANSIT) return false;
@@ -1172,16 +1135,9 @@ function renderPlanetaryLeadArc(arrivalPt, sceneEl) {
   sceneEl.appendChild(svg);
 }
 
-function removeFutureInterceptMarker() {
-  const existing = document.getElementById('future-intercept-reticle');
-  if (existing) existing.remove();
-  removePlanetaryLeadArc();
-}
 
-function removePlanetaryLeadArc() {
-  const existing = document.getElementById('future-lead-arc-svg');
-  if (existing) existing.remove();
-}
+
+
 
 function updateEnergyFeedbackHint(optMetrics) {
   const hintEl = document.getElementById('energy-feedback-hint');
@@ -1402,70 +1358,13 @@ function executeFlightTransit() {
   handleTransitOutcome(rocket, outcomeData, durationSec);
 }
 
-function createRocketActor() {
-  const existing = document.getElementById('rocket-actor');
-  if (existing) existing.remove();
 
-  const rocket = document.createElement('div');
-  rocket.id = 'rocket-actor';
-  rocket.className = 'rocket-actor is-docked';
-  rocket.innerHTML = `<span class="rocket-sprite">🚀</span><span class="thruster-flame">🔥</span>`;
-  return rocket;
-}
 
-function injectFlightKeyframes(points) {
-  let styleEl = document.getElementById('rocket-flight-keyframes');
-  if (!styleEl) {
-    styleEl = document.createElement('style');
-    styleEl.id = 'rocket-flight-keyframes';
-    document.head.appendChild(styleEl);
-  }
 
-  const keyframeRules = points
-    .map((p, i) => {
-      const pct = ((i / (points.length - 1)) * 100).toFixed(1);
-      return `${pct}% { transform: translate3d(${p.x.toFixed(1)}px, ${p.y.toFixed(1)}px, 0) rotate(${p.angle.toFixed(1)}deg); }`;
-    })
-    .join('\n');
 
-  styleEl.textContent = `
-    @keyframes rocket-transfer-flight {
-      ${keyframeRules}
-    }
-  `;
-}
 
-function renderFlightPathSvg(points, sceneEl) {
-  removeFlightPathSvg();
 
-  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  svg.id = 'flight-path-svg';
-  svg.setAttribute('class', 'flight-path-svg');
 
-  const sRect = sceneEl.getBoundingClientRect();
-  const cx = sRect.width / 2;
-  const cy = sRect.height / 2;
-
-  const d = points
-    .map((p, i) => {
-      const x = (cx + p.x).toFixed(1);
-      const y = (cy + p.y).toFixed(1);
-      return `${i === 0 ? 'M' : 'L'} ${x} ${y}`;
-    })
-    .join(' ');
-
-  const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-  path.setAttribute('class', 'flight-transfer-path');
-  path.setAttribute('d', d);
-
-  svg.appendChild(path);
-  sceneEl.appendChild(svg);
-}
-
-function removeFlightPathSvg() {
-  const existing = document.getElementById('flight-path-svg');
-  if (existing) existing.remove();
-}
 
 function triggerAsteroidWarning() {
   playWarningSound();
