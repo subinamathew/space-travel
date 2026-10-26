@@ -41,7 +41,7 @@ const buildDate = new Date().toISOString().split('T')[0];
 
 if (fs.existsSync(srcIndex)) {
   const indexContent = fs.readFileSync(srcIndex, 'utf8')
-    .replace(/\\{\\{APP_VERSION\\}\\}/g, appVersion);
+    .replace(/\{\{APP_VERSION\}\}/g, appVersion);
   fs.writeFileSync(pubIndex, indexContent, 'utf8');
   fs.writeFileSync(path.resolve(__dirname, '../index.html'), indexContent, 'utf8');
   console.log(`Rendered: src/index.html -> public/index.html & ./index.html (v${appVersion})`);
