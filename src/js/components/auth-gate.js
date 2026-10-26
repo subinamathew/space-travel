@@ -3,8 +3,9 @@
  *
  * Implements an encoded closed-circle access passcode barrier persisted via
  * a 30-day SameSite=Lax cookie and mirrored in localStorage.
- * Restricts access to invited users, legally exempting the site from
- * § 5 DDG and § 18 MStV German Impressum mandates.
+ * Restricts the experience to invited users and supports the site's
+ * intended closed-circle/private-access model. Legal applicability is
+ * deployment-specific and is not asserted by this client-side module.
  */
 
 import { t } from '../i18n.js';
@@ -134,7 +135,7 @@ export function mountAuthGateUI() {
       <h1 id="auth-gate-title" class="auth-gate-title">${titleText}</h1>
       <p class="auth-gate-subtitle">${subtitleText}</p>
 
-      <form id="auth-gate-form" class="auth-gate-form" novalidate onsubmit="return false;">
+      <form id="auth-gate-form" class="auth-gate-form" novalidate>
         <label for="auth-passcode-input" class="auth-label">${labelText}</label>
         <div class="auth-input-wrap">
           <input

@@ -9,16 +9,8 @@
     <meta name="description"
         content="RocketRun release notes, continuous commit tracking, and astrophysical gameplay feature milestones." />
     <link rel="canonical" href="https://rocketrun.org/changelog.html" />
-
-    <!-- Synchronous Pre-Render Guard: Eliminates FOUC for Unauthenticated Visitors -->
-    <script id="head-guard">
-      (function(){
-        try {
-          var a = document.cookie.indexOf('site_auth=authenticated') !== -1 || localStorage.getItem('site_auth') === 'authenticated';
-          if (!a) { document.documentElement.classList.add('site-locked'); }
-        } catch(e) {}
-      })();
-    </script>
+    <!-- CSP-compatible pre-render access-state guard -->
+    <script src="js/auth-guard.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
