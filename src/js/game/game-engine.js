@@ -455,6 +455,13 @@ function renderGameUI() {
                 <span class="banner-icon">🪐</span>
                 <span class="banner-text" id="telemetry-physics-text">${(t('game.future_rendezvous_principle') || '🚀 Keplerian Rendezvous: Planets orbit continuously while you fly! You must aim for where the planet will be upon arrival (T+{sec}s), not where it is today.').replace('{sec}', '5.2')}</span>
               </div>
+              <div class="orbit-coach-card is-neutral" id="orbit-coach-card" role="status" aria-live="polite">
+                <div class="orbit-coach-concepts">
+                  <span class="orbit-coach-chip concept-perigee">🟢 ${t('game.debrief_perigee_title') || 'Perigee (Closest Approach)'}</span>
+                  <span class="orbit-coach-chip concept-apogee">🔴 ${t('game.debrief_apogee_title') || 'Apogee (Farthest Distance)'}</span>
+                </div>
+                <span class="orbit-coach-text" id="orbit-coach-text"></span>
+              </div>
               <div class="telemetry-grid">
                 <div class="telemetry-item">
                   <span class="telemetry-label" data-i18n="game.perigee_label">Perigee (Min):</span>
@@ -1139,12 +1146,38 @@ function renderPlanetaryLeadArc(arrivalPt, sceneEl) {
 
 
 
+function updateOrbitCoach(metrics, energy) {
+  const card = document.getElementById('orbit-coach-card');
+  const textEl = document.getElementById('orbit-coach-text');
+  if (!card || !textEl) return;
+
+  let state = 'matched';
+  let key = 'game.apogee_optimal_hint';
+  let fallback = '✅ Optimal thrust: Apogee will match target orbit!';
+
+  if (energy < metrics.minReq) {
+    state = 'short';
+    key = 'game.apogee_short_warning';
+    fallback = '⚠️ Apogee will fall short of target orbit (Need {minReq}%+)';
+  } else if (energy > metrics.maxCap) {
+    state = 'overshoot';
+    key = 'game.apogee_overshoot_warning';
+    fallback = '⚠️ Apogee exceeds capture limit (Max {maxCap}%)';
+  }
+
+  textEl.textContent = (t(key) || fallback)
+    .replace('{minReq}', metrics.minReq)
+    .replace('{maxCap}', metrics.maxCap);
+  card.className = `orbit-coach-card is-${state}`;
+}
+
 function updateEnergyFeedbackHint(optMetrics) {
   const hintEl = document.getElementById('energy-feedback-hint');
   if (!hintEl || !gameState || !gameState.targetPlanet) return;
 
   const metrics = optMetrics || calculateOrbitalWindow(gameState.currentPlanet, gameState.targetPlanet, getElapsedSec());
   const e = gameState.energy;
+  updateOrbitCoach(metrics, e);
 
   if (e < metrics.minReq) {
     hintEl.className = 'energy-feedback-hint is-low';

@@ -321,6 +321,11 @@ if (reticleEl) {
 console.log('\n[Test 6: Thrust Energy Slider & Dynamic Guidance]');
 const slider = document.getElementById('energy-slider');
 const hintEl = document.getElementById('energy-feedback-hint');
+const orbitCoach = document.getElementById('orbit-coach-card');
+const orbitCoachText = document.getElementById('orbit-coach-text');
+assert(orbitCoach !== null && orbitCoachText !== null, 'Live Orbit Coach mounts in telemetry');
+assert(orbitCoach.querySelectorAll('.orbit-coach-chip').length === 2, 'Orbit Coach shows Perigee and Apogee concept chips');
+
 
 // Target Mars
 selectDestinationFromCanvas('mars');
@@ -330,16 +335,20 @@ slider.value = '10';
 slider.dispatchEvent(new Event('input'));
 assert(document.getElementById('energy-val-readout').textContent === '10%', 'Readout displays 10%');
 assert(hintEl.classList.contains('is-low'), '10% thrust triggers .is-low warning');
+assert(orbitCoach.classList.contains('is-short'), 'Low thrust sets Orbit Coach to short-apogee state');
 
 // Optimal thrust (within window)
 slider.value = String(winMars.minReq + 5);
 slider.dispatchEvent(new Event('input'));
 assert(hintEl.classList.contains('is-optimal'), `Optimal thrust (${slider.value}%) triggers .is-optimal guidance`);
+assert(orbitCoach.classList.contains('is-matched'), 'Optimal thrust sets Orbit Coach to matched-apogee state');
 
 // High thrust (95%)
 slider.value = '95';
 slider.dispatchEvent(new Event('input'));
 assert(hintEl.classList.contains('is-high'), '95% thrust triggers .is-high overshoot warning');
+assert(orbitCoach.classList.contains('is-overshoot'), 'High thrust sets Orbit Coach to overshoot state');
+assert(orbitCoachText.textContent.length > 10, 'Orbit Coach keeps a readable live explanation');
 
 // ----------------------------------------------------
 // TEST 7: Fuel Consumption & Solar Array Flux Math
