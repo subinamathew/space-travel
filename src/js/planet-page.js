@@ -5,7 +5,7 @@ import { initCookieNotice, getGameModeCookie } from './components/cookie-notice.
 import { initAuthGate } from './components/auth-gate.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 0. Initialize site-wide access gate ('gorocket')
+  // 0. Initialize site-wide access gate
   initAuthGate();
 
   // 1. Initialize i18n translation system

@@ -135,8 +135,10 @@
   position: fixed;
   bottom: 12px;
   left: 50%;
+  right: auto;
   transform: translateX(-50%);
-  width: min(880px, calc(100vw - 20px));
+  width: min(880px, calc(100vw - 10px));
+  max-width: calc(100vw - 10px);
   max-height: calc(100vh - 80px);
   background: rgba(11, 17, 32, 0.94);
   border: 1px solid rgba(56, 189, 248, 0.35);
@@ -1774,12 +1776,13 @@
   }
 
   .rocketrun-launch-sidebar {
-    right: 8px;
-    left: 8px;
-    transform: none;
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
     bottom: 8px;
     top: auto;
-    width: calc(100vw - 16px);
+    width: min(880px, calc(100vw - 10px));
+    max-width: calc(100vw - 10px);
     max-height: calc(100vh - 90px);
     border-radius: 14px;
 
@@ -1906,11 +1909,13 @@
   }
 
   .rocketrun-launch-sidebar {
-    right: 8px;
+    right: auto;
     bottom: 6px;
-    left: 8px;
+    left: 50%;
+    transform: translateX(-50%);
     top: auto;
-    width: calc(100vw - 16px);
+    width: min(880px, calc(100vw - 10px));
+    max-width: calc(100vw - 10px);
     max-height: calc(100vh - 10px);
     border-radius: 12px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.85);

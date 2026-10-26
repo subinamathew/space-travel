@@ -131,6 +131,20 @@ if (fs.existsSync(srcFeatures)) {
   console.log(`Generated: public/features.html (commit: ${gitCommit}, version: ${appVersion})`);
 }
 
+// 5c. Compile src/changelog.html -> public/changelog.html with Git commit and version
+const srcChangelog = path.resolve(__dirname, '../src/changelog.html');
+const pubChangelog = path.resolve(pubDir, 'changelog.html');
+if (fs.existsSync(srcChangelog)) {
+  let changelogContent = fs.readFileSync(srcChangelog, 'utf8');
+  changelogContent = changelogContent
+    .replace(/\{\{APP_VERSION\}\}/g, appVersion)
+    .replace(/\{\{GIT_COMMIT\}\}/g, gitCommit)
+    .replace(/\{\{COMMIT_URL\}\}/g, commitUrl)
+    .replace(/\{\{BUILD_DATE\}\}/g, buildDate);
+  fs.writeFileSync(pubChangelog, changelogContent, 'utf8');
+  console.log(`Generated: public/changelog.html (commit: ${gitCommit}, version: ${appVersion})`);
+}
+
 
 // Write public/version.json
 fs.writeFileSync(

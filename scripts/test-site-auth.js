@@ -1,7 +1,8 @@
 /**
  * RocketRun Site-Wide Passcode Authentication Test Suite
- * Validates 'gorocket' access gate, FOUC prevention, cookie and storage persistence,
- * accessible error feedback, zero native popups, and lock/unlock lifecycle.
+ * Validates access gate, FOUC prevention, cookie and storage persistence,
+ * accessible error feedback, zero native popups, lock/unlock lifecycle,
+ * and session revocation upon clearing cookies.
  */
 
 import { JSDOM } from 'jsdom';
@@ -57,6 +58,7 @@ const {
   AUTH_COOKIE_NAME,
   AUTH_COOKIE_VALUE
 } = await import('../src/js/components/auth-gate.js');
+const { clearAllCookiesAndStorage } = await import('../src/js/components/cookie-notice.js');
 
 let passed = 0;
 function check(condition, msg) {
@@ -84,8 +86,8 @@ const badge = gate.querySelector('.auth-gate-badge');
 
 check(input !== null, 'Passcode input exists');
 check(feedback !== null, 'Accessible feedback region exists');
-check(!badge.textContent.includes('gorocket'), 'Passcode is strictly NOT exposed in public badge text');
-check(!gate.textContent.includes('gorocket'), 'Passcode is strictly NOT exposed anywhere in gate text content');
+check(!badge.textContent.includes(SITE_PASSCODE), 'Passcode is strictly NOT exposed in public badge text');
+check(!gate.textContent.includes(SITE_PASSCODE), 'Passcode is strictly NOT exposed anywhere in gate text content');
 
 // 3. Test wrong passcodes
 const wrong1 = authenticateSite('wrongpassword');
@@ -101,14 +103,15 @@ check(feedback.textContent.length > 0, 'Error message is rendered in feedback el
 check(alertCalls === 0, 'Zero window.alert() calls on failed authentication');
 check(promptCalls === 0, 'Zero window.prompt() calls on failed authentication');
 
-// 4. Test correct passcode variations ('gorocket', '  GoRocket  ')
+// 4. Test correct passcode variations (trimmed & case-insensitive)
 let eventDispatched = false;
 window.addEventListener('site:unlocked', () => {
   eventDispatched = true;
 });
 
-const correct = authenticateSite('  GoRocket  ');
-check(correct === true, 'authenticateSite("  GoRocket  ") returns true (trimmed & case-insensitive)');
+const mixedCasePass = '  ' + SITE_PASSCODE.slice(0, 2).toUpperCase() + SITE_PASSCODE.slice(2).toLowerCase() + '  ';
+const correct = authenticateSite(mixedCasePass);
+check(correct === true, 'authenticateSite() returns true for padded & mixed-case passcode');
 check(isSiteAuthenticated() === true, 'isSiteAuthenticated() returns true after unlock');
 check(!document.documentElement.classList.contains('site-locked'), '.site-locked class removed from html element');
 check(document.cookie.includes('site_auth=authenticated'), 'Cookie site_auth=authenticated is set');
@@ -149,5 +152,14 @@ check(isSiteAuthenticated() === false, 'lockSite() clears authentication state')
 check(document.documentElement.classList.contains('site-locked'), 'lockSite() re-applies .site-locked');
 check(!document.cookie.includes('site_auth=authenticated'), 'lockSite() cleared site_auth cookie');
 check(localStorage.getItem('site_auth') === null, 'lockSite() cleared localStorage site_auth');
+
+// 7. Test clearAllCookiesAndStorage() revokes authentication & removes cookie/storage
+authenticateSite(SITE_PASSCODE);
+check(isSiteAuthenticated() === true, 'Re-authenticated for cookie clearing test');
+clearAllCookiesAndStorage();
+check(isSiteAuthenticated() === false, 'clearAllCookiesAndStorage() revokes site authentication');
+check(document.documentElement.classList.contains('site-locked'), 'clearAllCookiesAndStorage() re-applies .site-locked to html');
+check(!document.cookie.includes('site_auth=authenticated'), 'clearAllCookiesAndStorage() wiped site_auth cookie');
+check(localStorage.getItem('site_auth') === null, 'clearAllCookiesAndStorage() wiped localStorage site_auth');
 
 console.log(`\n🎉 AUTH GATE TESTS PASSED: ${passed} / ${passed} checks verified!\n`);

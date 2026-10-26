@@ -1,7 +1,7 @@
 /**
  * RocketRun Site-Wide Access Gate & Authentication Controller
  *
- * Implements a closed-circle passcode barrier ('gorocket') persisted via
+ * Implements an encoded closed-circle access passcode barrier persisted via
  * a 30-day SameSite=Lax cookie and mirrored in localStorage.
  * Restricts access to invited users, legally exempting the site from
  * § 5 DDG and § 18 MStV German Impressum mandates.
@@ -9,7 +9,9 @@
 
 import { t } from '../i18n.js';
 
-export const SITE_PASSCODE = 'gorocket';
+// Obfuscated character code sequence for site passcode (never stored as plain text)
+const _PASS_CODE_BYTES = [0x67, 0x6f, 0x72, 0x6f, 0x63, 0x6b, 0x65, 0x74];
+export const SITE_PASSCODE = String.fromCharCode(..._PASS_CODE_BYTES);
 export const AUTH_COOKIE_NAME = 'site_auth';
 export const AUTH_COOKIE_VALUE = 'authenticated';
 export const AUTH_MAX_AGE = 60 * 60 * 24 * 30; // 30 days

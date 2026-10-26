@@ -1,4 +1,5 @@
 import { t } from '../i18n.js';
+import { lockSite } from './auth-gate.js';
 
 /**
  * GDPR-Compliant Local Storage & Cookie Notice
@@ -155,12 +156,16 @@ export function clearAllCookiesAndStorage() {
       const name = eqPos > -1 ? cookie.substr(0, eqPos).trim() : cookie.trim();
       if (name) {
         document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
+        document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;SameSite=Lax`;
         document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;domain=${window.location.hostname}`;
       }
     }
+    // Explicitly delete site_auth session cookie
+    document.cookie = 'site_auth=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;SameSite=Lax';
 
     // 2. Clear known localStorage keys
     const keysToRemove = [
+      'site_auth',
       'space_cookie_consent',
       'space_lang',
       'space_show_moons',
@@ -185,6 +190,11 @@ export function clearAllCookiesAndStorage() {
         localStorage.removeItem(k);
       } catch (err) {}
     });
+
+    // 3. Immediately re-lock site and restore authentication gate
+    try {
+      lockSite();
+    } catch (_) {}
   } catch (e) {
     console.warn('Could not clear storage:', e);
   }

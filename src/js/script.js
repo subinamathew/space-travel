@@ -14,7 +14,7 @@ import { startGame, stopGame, exitGameMode, isGameActive, initGameEngine, setFre
 import { getGameModeCookie, setGameModeCookie } from './components/cookie-notice.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize site-wide access gate ('gorocket')
+  // Initialize site-wide access gate
   initAuthGate();
 
   // Initialize i18n translation system

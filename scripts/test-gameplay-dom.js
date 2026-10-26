@@ -134,7 +134,8 @@ import {
   isSiteAuthenticated,
   authenticateSite,
   lockSite,
-  initAuthGate
+  initAuthGate,
+  SITE_PASSCODE
 } from '../src/js/components/auth-gate.js';
 
 let passedTests = 0;
@@ -777,8 +778,8 @@ assert(isSiteAuthenticated() === false, 'Initially unauthenticated');
 assert(authenticateSite('wrongpassword') === false, 'Incorrect passcode rejected');
 assert(isSiteAuthenticated() === false, 'Remains unauthenticated after failed attempt');
 
-const unlockOk = authenticateSite('gorocket');
-assert(unlockOk === true, 'Correct passcode "gorocket" accepted');
+const unlockOk = authenticateSite(SITE_PASSCODE);
+assert(unlockOk === true, 'Correct passcode accepted');
 assert(isSiteAuthenticated() === true, 'isSiteAuthenticated() returns true after unlock');
 assert(dom.window.document.cookie.includes('site_auth=authenticated'), 'site_auth cookie set');
 assert(dom.window.localStorage.getItem('site_auth') === 'authenticated', 'site_auth localStorage set');

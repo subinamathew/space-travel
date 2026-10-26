@@ -156,7 +156,10 @@
                     </div>
                     <div class="badge-item">
                         <span class="badge-label" data-i18n="ui.version_label">App Version</span>
-                        <span class="badge-value app-version-val">v{{APP_VERSION}}</span>
+                        <a href="changelog.html" class="badge-value app-version-val" title="View Version Changelog" style="text-decoration: none; display: inline-flex; align-items: center; gap: 4px; color: #38bdf8;">
+                            <span>v{{APP_VERSION}}</span>
+                            <span class="external-icon" style="font-size: 11px;">→</span>
+                        </a>
                     </div>
                     <div class="badge-item">
                         <span class="badge-label" data-i18n="ui.commit_label">Git Commit</span>
@@ -238,6 +241,22 @@
                     <a href="features.html#roadmap-section" class="btn-primary-action" title="View Our Roadmap & Plans">
                         <span>🚀</span>
                         <span data-i18n="ui.roadmap_btn">Our Roadmap & Plans</span>
+                        <span class="external-icon">→</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Card 5b: Full Changelog & Release Notes -->
+            <div class="credits-card changelog-spotlight-card">
+                <div class="card-badge" data-i18n="ui.changelog_badge">RELEASE HISTORY & COMMITS</div>
+                <h2 class="card-title" data-i18n="ui.changelog_title">Changelog & Version History</h2>
+                <p class="card-desc" data-i18n="ui.changelog_desc">
+                    Explore continuous mission deployments, UI layout innovations, astrophysics engine upgrades, and release milestones.
+                </p>
+                <div class="card-actions">
+                    <a href="changelog.html" class="btn-primary-action" title="View Full Changelog">
+                        <span>📜</span>
+                        <span data-i18n="ui.changelog_btn">View Full Changelog</span>
                         <span class="external-icon">→</span>
                     </a>
                 </div>
