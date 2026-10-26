@@ -30,7 +30,7 @@ for (const sub of ['css', 'js', 'planets', 'images', 'i18n']) {
   }
 }
 
-// 1. Copy src/index.html -> public/index.html
+// 1. Render src/index.html -> public/index.html and root index.html
 const srcIndex = path.resolve(__dirname, '../src/index.html');
 const pubIndex = path.resolve(pubDir, 'index.html');
 const pkg = JSON.parse(fs.readFileSync(path.resolve(__dirname, '../package.json'), 'utf8'));
@@ -40,9 +40,11 @@ const commitUrl = `https://github.com/subinamathew/space-travel/commit/${gitComm
 const buildDate = new Date().toISOString().split('T')[0];
 
 if (fs.existsSync(srcIndex)) {
-  fs.copyFileSync(srcIndex, pubIndex);
-  fs.copyFileSync(srcIndex, path.resolve(__dirname, '../index.html'));
-  console.log('Copied: src/index.html -> public/index.html & ./index.html');
+  const indexContent = fs.readFileSync(srcIndex, 'utf8')
+    .replace(/\{\{APP_VERSION\}\}/g, appVersion);
+  fs.writeFileSync(pubIndex, indexContent, 'utf8');
+  fs.writeFileSync(path.resolve(__dirname, '../index.html'), indexContent, 'utf8');
+  console.log(`Rendered: src/index.html -> public/index.html & ./index.html (v${appVersion})`);
 }
 
 // 2. Copy images/ -> public/images/
@@ -101,6 +103,14 @@ if (fs.existsSync(srcI18nDir)) {
     }
   });
   console.log('Copied: src/i18n/ -> public/i18n/');
+}
+
+// 4b. Copy CSP-compatible pre-render auth guard
+const srcAuthGuard = path.resolve(__dirname, '../src/js/auth-guard.js');
+const pubAuthGuard = path.resolve(pubDir, 'js/auth-guard.js');
+if (fs.existsSync(srcAuthGuard)) {
+  fs.copyFileSync(srcAuthGuard, pubAuthGuard);
+  console.log('Copied: src/js/auth-guard.js -> public/js/auth-guard.js');
 }
 
 // 5. Compile src/credits.html -> public/credits.html with Git commit and version
@@ -229,16 +239,8 @@ allBodies.forEach((p, idx) => {
     <meta name="application-name" content="RocketRun" />
     <meta name="theme-color" content="#030712" />
     <link rel="canonical" href="https://rocketrun.org/planets/${p.slug}.html" />
-
     <!-- Pre-render Site Auth Gate FOUC Prevention -->
-    <script>
-      (function(){
-        try {
-          var a = document.cookie.indexOf('site_auth=authenticated') !== -1 || localStorage.getItem('site_auth') === 'authenticated';
-          if (!a) { document.documentElement.classList.add('site-locked'); }
-        } catch(e) {}
-      })();
-    </script>
+    <script src="../js/auth-guard.js"></script>
 
     <!-- Robots & Search Engine Indexing Directives (Closed Private Access) -->
     <meta name="robots" content="noindex, nofollow" />
@@ -312,6 +314,7 @@ allBodies.forEach((p, idx) => {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="../css/style.css?v=${appVersion}" />
+    <link rel="stylesheet" href="../css/planet.css?v=${appVersion}" />
     <script src="../js/planet.min.js?v=${appVersion}" defer></script>
 </head>
 

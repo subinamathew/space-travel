@@ -13,16 +13,8 @@
     <meta name="application-name" content="RocketRun" />
     <meta name="theme-color" content="#030712" />
     <link rel="canonical" href="https://rocketrun.org/" />
-
     <!-- Pre-render Site Auth Gate FOUC Prevention -->
-    <script>
-      (function(){
-        try {
-          var a = document.cookie.indexOf('site_auth=authenticated') !== -1 || localStorage.getItem('site_auth') === 'authenticated';
-          if (!a) { document.documentElement.classList.add('site-locked'); }
-        } catch(e) {}
-      })();
-    </script>
+    <script src="js/auth-guard.js"></script>
 
     <!-- Robots & Search Engine Indexing Directives (Closed Private Access) -->
     <meta name="robots" content="noindex, nofollow" />
@@ -104,8 +96,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="css/style.css?v=3.1.1" />
-    <script src="js/script.min.js?v=3.1.1" defer></script>
+    <link rel="stylesheet" href="css/style.css?v={{APP_VERSION}}" />
+    <link rel="stylesheet" href="css/preloader.css?v={{APP_VERSION}}" />
+    <script src="js/script.min.js?v={{APP_VERSION}}" defer></script>
 </head>
 
 <body class="home-page">
