@@ -1,180 +1,72 @@
-# RocketRun — Solar System Tour 🚀🪐
+# RocketRun — Solar System Tour (Android)
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/df0b00d7-6873-4a27-9269-eb8daee2a50c/deploy-status)](https://app.netlify.com/projects/zachandappa/deploys)
+Interactive 3D Solar System exploration and space flight simulator featuring authentic Keplerian orbital physics, planetary science metrics, gravity & jump height calculator, and kids space missions.
 
-An interactive, animated 3D-styled solar system explorer available at [rocketrun.org](https://rocketrun.org). Tour the planets, discover scientific facts, and experience smooth transitions powered by CSS animations, HTML5 Canvas, and modular modern tooling. Copyright © 2026 rocketrun.org.
-
----
-
-- **Centered Planet Detail View**: The full celestial stage (planet image, title, scientific specs grid, and navigation) is centered horizontally in the viewport with responsive maximum widths.
-- **Floating Cosmic Explorer Lab**:
-  - Live on-the-fly JavaScript calculator for planetary weight and jump height floating over the viewport with frosted glassmorphism.
-  - Dual unit toggles (`kg` / `lbs` and `cm` / `in`) with instant conversions.
-  - Minimizable header toggle button with cross-page `localStorage` persistence and internal cosmic scrolling.
-- **Settings HUD & Multi-Language i18n**:
-  - **Settings HUD**: Positioned below the Galactic HUD with minimize/expand toggle and styled cosmic language selector.
-  - **9 Popular Languages**: English (🇬🇧), German (🇩🇪), French (🇫🇷), Spanish (🇪🇸), Italian (🇮🇹), Japanese (🇯🇵), Chinese (🇨🇳), Malayalam (🇮🇳), and Tamil (🇮🇳).
-  - **100% Translation Coverage**: Translates UI, preloader, coordinates, planet greetings/facts, scientific metrics, dynamic gravity calculations, and NASA Kids Mission cards without page reload.
-  - **Extensible Architecture**: Modular `src/i18n/<lang>.json` files make adding future translations as simple as creating a single JSON file.
-- **Rewritten NASA Kids Mission Notes**:
-  - Engaging, accessible educational notes tailored for 5–9 year olds on every celestial body.
-  - Clear real-world jump analogies and authentic NASA discoveries.
-- **Minimizable Galactic HUD Badge**:
-  - Displays Sector, Galactic Coordinates, and Core Distance with a collapsible header toggle button (`−` / `+`).
-- **Dedicated Celestial Subpages**: The Sun and all 8 planets each have their own dedicated subpage (`planets/<slug>.html`) equipped with rich scientific specification cards, authentic high-resolution 3D planetary photography with zero-CLS asynchronous lazy loading, and unified styling.
-- **Authentic Planetary Photography**:
-  - Transparent 3D photography of the Sun and all 8 planets downloaded directly into `public/images/`.
-  - Native browser `loading="lazy"` and `decoding="async"` for instantaneous initial page loads.
-  - Floating cosmic micro-animations and contoured atmospheric glow filters.
-- **Interactive Clickable Sun**: The central star (Sol) is fully clickable and interactive, pausing orbits upon proximity/hover with an expanded coronal glow, and navigating to its dedicated scientific profile.
-- **Warp Speed Preloader & Galactic HUD**: Hyperspace 3D starfield sequence announcing arrival at the Solar System with clean cosmic cyan radiance.
-- **Dynamic Orrery**: Pure CSS orbital mechanics and counter-spinning planetary bodies mathematically scaled to real astronomical orbital periods (Earth = 5.00s base reference).
-- **Proximity Hover Pause**: Approaching any planet with the mouse automatically freezes orbital animation, allowing easy reading and effortless clicking. As soon as the mouse moves away, planets resume their orbits smoothly in synchronized astronomical proportion.
-- **Canvas Starfield**: Procedurally generated, twinkling starfield backdrop dynamically responsive to window resizing.
-- **Responsive Across Devices**: Built-in Sass breakpoints tailored for mobile (`< 768px`), tablet (`768px - 1023px`), and desktop (`≥ 1024px`) viewports.
-- **Ergonomic Navigation**:
-  - Click or tap any orbiting planet or pagination dot.
-  - Arrow buttons (`←` / `→`) to browse adjacent planets.
-  - Keyboard shortcuts: `ArrowLeft` / `ArrowRight` to cycle planets, and `Escape` to return to the solar system view.
-- **High Performance**: Dart Sass compiles compressed stylesheets and `esbuild` bundles and minifies JavaScript down to 6.6 KB in milliseconds.
+Rewritten from the original web application into a modern native **Android (Kotlin + Jetpack Compose)** app.
 
 ---
 
-## 📁 Project Structure
+## 🌟 Key Features
 
-```text
-space/
-├── public/                     # Production build artifacts
-│   ├── css/
-│   │   └── style.css           # Compiled & compressed Sass stylesheet
-│   ├── js/
-│   │   └── script.min.js       # Bundled & minified JavaScript
-│   └── index.html              # Production HTML distribution
-├── src/
-│   ├── scss/                   # Modular Sass source tree
-│   │   ├── abstracts/
-│   │   │   ├── _breakpoints.scss # Mobile, tablet & desktop mixins
-│   │   │   └── _variables.scss   # Colors, tokens, and typography
-│   │   ├── base/
-│   │   │   └── _reset.scss       # Box-sizing & reset styles
-│   │   ├── components/
-│   │   │   ├── _controls.scss    # Back button, nav buttons, dots & hint
-│   │   │   ├── _orrery.scss      # Orbits, sun, and planet triggers
-│   │   │   └── _planet-view.scss # Planet detail view & animations
-│   │   └── main.scss             # Central Sass manifest
-│   └── js/                     # Modular JavaScript (ES modules)
-│       ├── components/
-│       │   ├── orrery.js         # Dynamic orbit & button builder
-│       │   ├── starfield.js      # Canvas starfield loop
-│       │   └── viewer.js         # Navigation, view state & keyboard listeners
-│       ├── data/
-│       │   └── planets.js        # Planetary data & color themes
-│       └── script.js             # Main application entry point
-├── index.html                  # Root HTML entry point
-├── netlify.toml                # Netlify deployment configuration
-├── package.json                # Project dependencies & build scripts
-└── README.md
-```
+### 1. Interactive 2D & 3D Solar System Orrery
+- Real-time Keplerian planetary orbits for the Sun, Mercury, Venus, Earth (+ Moon), Mars (+ Phobos, Deimos), Asteroid Belt, Jupiter (+ Galilean moons), Saturn (+ iconic rings, Titan), Uranus, and Neptune.
+- Toggle between planar 2D and tilted 3D perspective views.
+- Speed controls (0.5×, 1×, 2×, 5×) and Play/Pause orbital simulation.
+- Pinch-to-zoom and pan gestures across the solar system with touch detection on celestial bodies.
+- Live Galactic HUD telemetry: Milky Way Orion Arm sector, galactic coordinates, distance to the galactic core (26,000 light-years), and Earth UTC clock.
+
+### 2. Planetary Atlas & Specifications
+- High-resolution celestial body inspection with glowing visual palettes and facts.
+- Detailed astronomical specifications:
+  - Orbit distance (AU)
+  - Orbital period (Earth years)
+  - Surface gravity (vs Earth)
+  - Atmospheric composition and temperature extremes
+  - Day/night rotational duration and moon counts
+- **Cosmic Explorer Lab**:
+  - Live interactive gravity and vertical jump height calculator.
+  - Weight & height sliders with preset shortcuts (Kid, Teen, Adult) and kg/lbs, cm/in unit conversions.
+  - Calculates exact weight on any world with relatable physical comparisons.
+  - Interactive jumping astronaut simulator animation with male/female pilot avatar selection.
+- Deep astrophysical lore and expandable Kid Science Explainer cards.
+
+### 3. Flight Simulator & Mission Game
+- Interplanetary space flight simulator operating under orbital mechanics.
+- Mission briefing riddles guiding pilots to target destinations.
+- Real-time orbital intercept telemetry: transfer distance, optimal launch window countdown, and hazard warnings (Asteroid belt crossings).
+- Variable thrust power slider (10% to 100%) and fuel consumption burn calculations.
+- Live solar recharge mechanism that replenishes fuel tank when orbiting near the Sun.
+- Animated Keplerian elliptical transfer arcs during interplanetary transit.
+- Touchdown Quiz Challenges: planetary trivia on arrival to earn bonus score points and promote pilot ranks (Cadet ➔ Scout ➔ Navigator ➔ Pioneer ➔ Master ➔ Explorer ➔ Voyager ➔ Legend).
+- Pilot callsign customization and local high score leaderboards.
+
+### 4. Cosmic Space Jokes & 2026 Roadmap
+- Interactive Cosmic Space Joke Generator with reveal card animations.
+- Curated library of kid-friendly astronomical riddles.
+- Development roadmap and December 2026 accessibility standards.
+- Collaboration credits (Zachary David Mathew + Papa, missional.eu, NASA/JPL sources).
 
 ---
 
-## 🛠️ Getting Started
+## 🛠️ Architecture & Tech Stack
 
-### Prerequisites
+- **Target OS**: Android 8.0+ (API Level 26–36)
+- **Language**: Kotlin 2.2
+- **UI Framework**: Jetpack Compose with Material Design 3 (M3)
+- **Build System**: Gradle 9.3.1 with Android Gradle Plugin 9.1.1
+- **Architecture**: MVVM (Model-View-ViewModel) with unidirectional data flow and Kotlin Coroutines/StateFlow
+- **Theme**: Deep Space theme (`#030712`, `#0B132B`, `#38BDF8`, `#FBBF24`)
+- **Assets**: Adaptive vector & high-resolution planetary illustrations with launcher icon
 
-- [Node.js](https://nodejs.org/) (v20.19+)
-- `npm`
+---
 
-### Installation
+## 🚀 Building & Running
 
-Clone the repository and install dev dependencies:
+To build the debug APK:
 
 ```bash
-git clone <repository-url>
-cd space
-npm install
+gradle :app:assembleDebug
 ```
 
-### Build Commands
-
-| Command | Description |
-| :--- | :--- |
-| `npm run build` | Compiles Sass to compressed CSS and bundles/minifies JS into `public/` |
-| `npm run build:css` | Compiles Sass (`src/scss/main.scss`) into `public/css/style.css` |
-| `npm run build:js` | Bundles and minifies JS (`src/js/script.js`) into `public/js/script.min.js` |
-| `npm run watch:css` | Watches `src/scss/` for changes and automatically recompiles |
-| `npm run watch:js` | Watches `src/js/` for changes and rebuilds via `esbuild` |
-
----
-
-## 🌐 Deploying to Netlify
-
-This project includes a ready-to-use [`netlify.toml`](./netlify.toml) configured for zero-configuration continuous deployment.
-
-### Method 1: Git Integration (Recommended)
-
-1. Push your repository to GitHub, GitLab, or Bitbucket.
-2. Log in to [Netlify](https://app.netlify.com/) and click **"Add new site"** > **"Import an existing project"**.
-3. Select your repository.
-4. Netlify will automatically detect the settings from `netlify.toml`:
-   - **Build command**: `npm run build`
-   - **Publish directory**: `public`
-5. Click **"Deploy site"**.
-
-### Method 2: Netlify CLI
-
-You can also deploy directly from your terminal using the Netlify CLI:
-
-```bash
-# Install Netlify CLI globally (if not already installed)
-npm install -g netlify-cli
-
-# Build production assets
-npm run build
-
-# Deploy to preview
-ntl deploy
-
-# Deploy to production
-ntl deploy --prod
-```
-
----
-
-## 📱 Responsive Breakpoints
-
-Breakpoints are defined in [`src/scss/abstracts/_breakpoints.scss`](./src/scss/abstracts/_breakpoints.scss) and can be used anywhere in the Sass source tree:
-
-```scss
-@use '../abstracts/breakpoints' as *;
-
-.my-element {
-  font-size: 1rem;
-
-  @include mobile {
-    font-size: 0.85rem; // Mobile phones (< 768px)
-  }
-
-  @include tablet {
-    font-size: 0.95rem; // Tablets (768px - 1023px)
-  }
-
-  @include desktop {
-    font-size: 1.1rem;  // Desktops (≥ 1024px)
-  }
-}
-```
-
----
-
-## 📄 License & Attribution
-
-RocketRun is licensed under the **Apache License 2.0**. See [LICENSE](./LICENSE) for the license terms and [NOTICE](./NOTICE) for attribution information.
-
-If you redistribute RocketRun or a derivative work, preserve the applicable copyright and attribution notices required by Apache-2.0, including the RocketRun NOTICE attribution.
-
-> **RocketRun by Zachary David Mathew + Papa (https://rocketrun.org)**
-
----
-
-Copyright © 2026 Zachary David Mathew + Papa (rocketrun.org).
+The compiled APK will be generated at:
+`app/build/outputs/apk/debug/app-debug.apk`

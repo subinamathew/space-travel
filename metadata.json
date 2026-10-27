@@ -1,0 +1,8 @@
+{
+  "name": "RocketRun",
+  "description": "Interactive 3D Solar System exploration and space flight simulator featuring realistic orbital physics, planetary science metrics, gravity calculator, and quiz missions.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

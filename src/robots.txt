@@ -1,4 +1,0 @@
-# RocketRun (rocketrun.org) Robots Directives
-# Site is restricted to authorized expedition members
-User-agent: *
-Disallow: /
