@@ -1,0 +1,945 @@
+{
+  "ui": {
+    "site_title": "RocketRun — Tour del Sistema Solare",
+    "site_description": "Esplora il sistema solare — clicca su un pianeta per visitarlo!",
+    "warp_status": "MOTORE A CURVATURA ATTIVO",
+    "sector_name": "Via Lattea • Braccio di Orione",
+    "sector_full": "Settore: Via Lattea • Braccio di Orione",
+    "galactic_coords_label": "Coordinate Galattiche:",
+    "galactic_coords_val": "AR 17h 45.6m, Dec -29°00′",
+    "core_distance_label": "Distanza dal Centro:",
+    "core_distance_val": "26.000 Anni Luce",
+    "settings_title": "Impostazioni",
+    "language_label": "Lingua:",
+    "moons_label": "Lune:",
+    "moons_toggle_aria": "Attiva/disattiva le lune planetarie",
+    "orbit_label": "Orbita (3D):",
+    "orbit_toggle_aria": "Attiva/disattiva le orbite 3D reali",
+    "back_btn": "← Sistema Solare",
+    "explore_sun_title": "Esplora il Sole (Sol)",
+    "explore_sun_aria": "Esplora il Sole",
+    "hint": "Clicca su un pianeta o sul Sole per esplorare • Passa sopra per mettere in pausa l'orbita",
+    "subpage_title": "{name} — Esplorazione del Sistema Solare RocketRun",
+    "subpage_meta_desc": "Esplora {name}: dati scientifici, proprietà fisiche, calcolatore di gravità e curiosità Missione Kids.",
+    "specs_heading": "Dati Scientifici",
+    "planet_nav_aria": "Navigazione planetaria",
+    "selector_aria": "Selettore diretto corpo celeste",
+    "prev_aria": "Precedente: {name}",
+    "next_aria": "Successivo: {name}",
+    "counter": "{current} / {total}",
+    "lab_title": "Laboratorio Esploratore Cosmico",
+    "lab_physics": "Gravità: {gravity}× Terra • Fisica dal Vivo",
+    "toggle_lab": "Comprimi / espandi laboratorio",
+    "minimize_lab": "Comprimi laboratorio",
+    "expand_lab": "Espandi laboratorio",
+    "toggle_hud": "Comprimi / espandi HUD galattico",
+    "minimize_hud": "Comprimi HUD galattico",
+    "expand_hud": "Espandi HUD galattico",
+    "toggle_settings": "Comprimi / espandi impostazioni",
+    "minimize_settings": "Comprimi impostazioni",
+    "expand_settings": "Espandi impostazioni",
+    "your_weight": "Il Tuo Peso",
+    "your_height": "La Tua Altezza",
+    "weight_short": "Peso",
+    "jump_short": "Salto",
+    "weight_placeholder": "Peso",
+    "height_placeholder": "Altezza",
+    "preset_kid": "Bambino (25kg/55lb)",
+    "preset_teen": "Ragazzo (50kg/110lb)",
+    "preset_adult": "Adulto (70kg/154lb)",
+    "preset_7yr": "7 anni (120cm)",
+    "preset_10yr": "10 anni (138cm)",
+    "preset_adult_h": "Adulto (170cm)",
+    "weight_on": "Peso su {name}",
+    "jump_on": "Salto verticale su {name}",
+    "prompt_enter_weight": "Inserisci il tuo peso per calcolare.",
+    "prompt_enter_height": "Inserisci la tua altezza per calcolare il salto.",
+    "feel_same": "Identico al tuo peso sulla Terra!",
+    "feel_heavier": "+{pct}% più pesante — come {feel}",
+    "feel_lighter": "-{pct}% più leggero — come {feel}",
+    "feel_car": "un'auto enorme sulle tue spalle!",
+    "feel_boulders": "uno zaino pieno di macigni!",
+    "feel_gear": "una pesante tuta spaziale invernale!",
+    "feel_feather": "una piuma leggerissima!",
+    "feel_boots": "stivali lunari a molla!",
+    "jump_sun": "La colossale gravità del Sole rende impossibile qualsiasi salto!",
+    "jump_higher": "{ratio}× il tuo salto sulla Terra! Vola alto nel cielo!",
+    "jump_lower": "La forte gravità ti attira subito in basso — solo {ratio}× del tuo salto terrestre.",
+    "kids_guide_title": "Guida Scientifica per Bambini",
+    "kids_guide_badge": "🚀 Spiegazione",
+    "tap_kids_explainer": "💡 Tocca per la spiegazione bimbi",
+    "visit_luna_btn": "Esplora Luna →",
+    "close_popup": "Capito!",
+    "credits_title": "Crediti e Missione — RocketRun",
+    "credits_btn": "Info e Crediti",
+    "changelog_title": "Registro delle Modifiche & Cronologia",
+    "changelog_badge": "CRONOLOGIA DELLE VERSIONI & COMMITS",
+    "changelog_desc": "Esplora i continui aggiornamenti di missione, innovazioni UI, miglioramenti del motore astrofisico e traguardi di rilascio.",
+    "changelog_btn": "Visualizza il Registro Completo",
+    "changelog_subtitle": "Registro dettagliato delle modifiche, rilasci continui Git e registri di missione.",
+    "version_label": "Versione dell'app",
+    "commit_label": "Commit Git",
+    "author_label": "Autore",
+    "author_names": "Zachary David Mathew + Papà",
+    "supported_by": "Supportato con Gemini Antigravity",
+    "creators_title": "Creatori e Collaborazione",
+    "creators_desc": "Un'esplorazione cosmica interattiva creata da Zachary David Mathew e Papà, progettata per far scoprire le meraviglie del sistema solare ai giovani esploratori di tutto il mondo. Costruito con moderni standard web e supportato con Gemini Antigravity.",
+    "missional_title": "Parte di missional.eu",
+    "missional_desc": "Siamo orgogliosi di far parte di missional.eu, un'organizzazione non profit con sede nel Regno Unito dedicata a promuovere l'istruzione, la curiosità scientifica e la meraviglia cosmica per tutti.",
+    "visit_missional": "Visita missional.eu",
+    "data_sources_title": "Dati scientifici e fonti astronomiche",
+    "data_sources_desc": "I parametri orbitali, le caratteristiche fisiche planetarie, i moltiplicatori di gravità e i fatti per bambini provengono da NASA Solar System Exploration, JPL, ESA e database astronomici verificati.",
+    "crawl_leadin": "In viaggio attraverso le meraviglie cosmiche...",
+    "crawl_pause": "Pausa",
+    "crawl_resume": "Riprendi",
+    "crawl_restart": "Riavvia",
+    "crawl_flat_view": "Vista Statica",
+    "crawl_crawl_view": "Scorri verso l'alto",
+    "copyright": "© 2026 rocketrun.org. Tutti i diritti riservati.",
+    "domain_label": "rocketrun.org",
+    "visit_rocketrun": "Visita rocketrun.org",
+    "rocketrun_tagline": "RocketRun — Esplorazione Interattiva del Sistema Solare",
+    "current_time_label": "Ora Terrestre:",
+    "pause_orbits_aria": "Metti in pausa le orbite",
+    "resume_orbits_aria": "Riprendi le orbite",
+    "pause_orbits_title": "Pausa / Riprendi orbite",
+    "cookie_btn_title": "Preferenze cookie e archiviazione",
+    "cookie_btn_aria": "Impostazioni cookie e privacy",
+    "cookie_title": "Privacy e Archiviazione Locale",
+    "cookie_desc": "RocketRun non utilizza cookie di tracciamento o pubblicitari. Usiamo solo la memoria locale strettamente necessaria per ricordare lingua, unità e preferenze del planetario.",
+    "cookie_accept": "Capito / Accetta",
+    "cookie_clear": "Cancella dati salvati",
+    "cookie_clear_note": "⚠️ La cancellazione dei dati rimuoverà definitivamente anche i punteggi record, i dettagli pilota e i ranghi.",
+    "cookie_cleared_msg": "Tutti i dati locali, i cookie, i record e i dettagli del pilota sono stati cancellati!",
+    "cookie_leaderboard_title": "Classifica e Statistiche Pilota:",
+    "cookie_leaderboard_desc": "Salva punteggi record, nome pilota e ranghi spaziali in un cookie proprietario.",
+    "cookie_lb_enabled": "Archiviazione cookie per classifica e pilota abilitata!",
+    "cookie_lb_disabled": "Cookie di classifica cancellati e disabilitati.",
+    "pilot_name_label": "Nome Pilota e Indicativo di Chiamata:",
+    "save_pilot_name": "Salva Nome",
+    "allow_lb_cookie": "Consenti statistiche di classifica nei cookie",
+    "cookie_close_aria": "Chiudi avviso cookie",
+    "features_btn": "Funzionalità e Battute",
+    "features_title": "Funzionalità, Accessibilità e Battute Cosmiche",
+    "features_subtitle": "Standard di accessibilità dicembre 2026, scienza planetaria e umorismo spaziale",
+    "accessibility_title": "Standard di Accessibilità (Dic. 2026)",
+    "deep_dive_title": "Scienza Planetaria e Curiosità",
+    "jokes_title": "Battute Spaziali Cosmiche",
+    "another_joke_btn": "🎲 Raccontami un'altra battuta!",
+    "show_punchline": "Rivela battuta finale ✨",
+    "choose_astronaut": "Avatar esploratore",
+    "astronaut_male": "👨‍🚀 Uomo",
+    "astronaut_female": "👩‍🚀 Donna",
+    "replay_preloader": "Avvia preloader velocità di curvatura",
+    "replay_preloader_short": "Velocità Warp",
+    "roadmap_title": "La Nostra Tabella di Marcia e Piani",
+    "roadmap_desc": "Scopri le tappe della nostra missione, modalità di gioco, ergonomia visiva e piano di accessibilità per il 2026.",
+    "roadmap_btn": "La Nostra Tabella di Marcia e Piani",
+    "roadmap_section_title": "La Nostra Tabella di Marcia e Piani",
+    "roadmap_section_intro": "Il nostro percorso di sviluppo per il 2026 offre gameplay interattivo, comfort visivo, umorismo cosmico e accessibilità universale.",
+    "roadmap_oct_date": "Ott 2026",
+    "roadmap_status_live": "Attivo / Completato",
+    "roadmap_oct_item1_title": "Modalità di Gioco",
+    "roadmap_oct_item1_desc": "Modalità di esplorazione interattiva con controllo della velocità e sfide orbitali",
+    "roadmap_oct_item2_title": "Miglioramenti Funzionali",
+    "roadmap_oct_item2_desc": "Ottimizzazioni di memoria, transizioni fluide e parità delle chiavi di traduzione",
+    "roadmap_oct_item3_title": "Luminosità Solare Notturna",
+    "roadmap_oct_item3_desc": "Attenuazione circadiana (18:00–07:00) per ridurre l'affaticamento visivo serale",
+    "roadmap_oct_item4_title": "Aggiunte Barzellette Cosmiche",
+    "roadmap_oct_item4_desc": "Generatore interattivo di barzellette spaziali e umorismo per giovani esploratori",
+    "roadmap_nov_date": "Nov 2026",
+    "roadmap_status_next": "Prossima Tappa",
+    "roadmap_nov_item1_title": "Leggibilità",
+    "roadmap_nov_item1_desc": "Tipografia ad alto contrasto, scale di caratteri cosmici e layout puliti",
+    "roadmap_nov_item2_title": "Accessibilità: Tooltip",
+    "roadmap_nov_item2_desc": "Tooltip interattivi accessibili al passaggio del mouse e focus con guide telemetriche",
+    "roadmap_dec_date": "Dic 2026",
+    "roadmap_status_goal": "Obiettivo Accessibilità Totale",
+    "roadmap_dec_item1_title": "Accessibilità Completa",
+    "roadmap_dec_item1_desc": "Conformità completa agli standard WCAG 2.2 AAA, telemetria per lettori di schermo e accesso universale",
+    "impressum_link": "Note Legali / Impressum",
+    "impressum_page_title": "Note Legali e Impressum — RocketRun",
+    "impressum_heading": "Note Legali e Impressum",
+    "impressum_subheading": "Informazioni sul fornitore ai sensi del § 5 DDG, § 18 MStV e conformità GDPR",
+    "auth_badge": "🔒 SPEDIZIONE RISERVATA",
+    "auth_title": "Controllo Accesso Missione",
+    "auth_subtitle": "Accesso privato per esploratori spaziali autorizzati.",
+    "auth_label": "Passcode della Missione",
+    "auth_placeholder": "Inserisci il passcode...",
+    "auth_btn": "Sblocca Missione 🚀",
+    "auth_error": "Passcode errato. Verifica le credenziali di invito.",
+    "auth_success": "Accesso consentito! Inizializzazione telemetria...",
+    "game_mode_label": "Gioco RocketRun:",
+    "game_toggle_aria": "Attiva/disattiva modalità di gioco RocketRun",
+    "freeplay_mode_label": "Modalità Gioco Libero:",
+    "freeplay_toggle_aria": "Attiva/disattiva modalità gioco libero",
+    "play_game_btn": "Gioca a RocketRun",
+    "exit_game_btn": "Esci dalla modalità gioco"
+  },
+  "planets": {
+    "sun": {
+      "name": "Il Sole (Sol)",
+      "greeting": "Ciao, Stella Dorata!",
+      "fact": "La stella nana gialla al centro del nostro sistema solare. Contiene il 99,86% della massa totale, creando luce e vita attraverso la fusione nucleare.",
+      "kids": {
+        "badge": "🚀 Missione Kids",
+        "title": "La Mega Centrale di Energia!",
+        "jump": "Altezza del salto: 0 centimetri! La gravità è 28 volte superiore alla Terra: saresti incollato a terra come un toast.",
+        "fact": "Un milione di pianeti Terra potrebbero entrare nel Sole! Contiene il 99,8% di tutta la materia del nostro sistema solare."
+      },
+      "stats": [
+        {
+          "label": "Classe Spettrale",
+          "value": "G2V (Nana Gialla)",
+          "sub": "Stella di sequenza principale; ~4,6 miliardi di anni",
+          "kids": "Anche se viene chiamato \"nana gialla\", il Sole non è affatto piccolo! G2V è un codice che significa che è una stella gialla luminosa nel fiore degli anni."
+        },
+        {
+          "label": "Temperatura Superficiale",
+          "value": "5.500 °C (5.778 K)",
+          "sub": "Superficie 55 volte l'acqua bollente; nucleo 150.000 volte più caldo dell'acqua bollente (~15M°C)",
+          "kids": "La superficie del Sole è a 5.500°C—più calda di 55 volte la tua acqua calda da bagno! Nel cuore è 150.000 volte più caldo dell'acqua che bolle (~15 milioni °C)!"
+        },
+        {
+          "label": "Diametro Equatoriale",
+          "value": "1.392.700 km",
+          "sub": "109,2 × diametro terrestre",
+          "kids": "Il Sole è enorme! Se fosse una palla da spiaggia gigante e cava, potresti farci entrare più di un milione di Terre come biglie."
+        },
+        {
+          "label": "Massa",
+          "value": "1,989 × 10³⁰ kg",
+          "sub": "333.000 × Terra (99,86% del sistema)",
+          "kids": "Il Sole detiene il 99,86% di tutta la materia del sistema solare! La percentuale (%) indica parti su 100: su 10.000 mattoncini di materia, il Sole da solo ne possiede 9.986!"
+        },
+        {
+          "label": "Velocità Galattica",
+          "value": "220 km/s",
+          "sub": "Orbita nella Via Lattea: ~230 milioni di anni",
+          "kids": "Il nostro Sole viaggia intorno alla Via Lattea a 220 chilometri al secondo! È oltre 700 volte più veloce di un treno ad altissima velocità."
+        },
+        {
+          "label": "Distanza dalla Terra",
+          "value": "149.600.000 km",
+          "sub": "1,0 UA (Tempo luce: 8m 20s)",
+          "kids": "Il Sole dista 150 milioni di chilometri. La luce solare è la più veloce dell'universo, ma impiega comunque 8 minuti e 20 secondi per arrivare sulla Terra!"
+        },
+        {
+          "label": "Periodo di Rotazione",
+          "value": "25,05 giorni (Equatore)",
+          "sub": "34,4 giorni ai poli (rotazione differenziale)",
+          "kids": "Il Sole è una sfera gigante di gas e plasma infuocato. Non essendo roccia solida, il suo equatore ruota in 25 giorni, ma i suoi poli in 34 giorni!"
+        },
+        {
+          "label": "Composizione",
+          "value": "73,4% H₂, 25,0% He",
+          "sub": "1,6% elementi più pesanti (C, N, O, Fe)",
+          "kids": "Il simbolo di percentuale (%) significa parti su 100! Se prendessi 100 cucchiai del Sole:\n• H₂ (73 cucchiai) è il gas Idrogeno: il gas più leggero dell'universo e combustibile del Sole!\n• He (25 cucchiai) è il gas Elio: il gas che fa volare i palloncini delle feste fino al soffitto!\nInsieme, H₂ ed He generano tutta la luce e il calore che mantengono viva la Terra."
+        }
+      ]
+    },
+    "mercury": {
+      "name": "Mercurio",
+      "greeting": "Ciao, Mondo Infuocato!",
+      "fact": "Il pianeta più piccolo: un giorno dura più di un anno, con temperature da −180 °C a 430 °C.",
+      "kids": {
+        "badge": "🚀 Missione Kids",
+        "title": "Il Parco degli Stivali Lunari!",
+        "jump": "Salti quasi 3 volte più in alto che sulla Terra! Con un piccolo balzo voleresti sopra il tuo letto.",
+        "fact": "Un anno su Mercurio dura solo 88 giorni, ma un singolo giorno di luce dura più di un intero anno!"
+      },
+      "stats": [
+        {
+          "label": "Distanza dal Sole",
+          "value": "57,9 mln km",
+          "sub": "0,387 UA",
+          "kids": "Mercurio è il pianeta più vicino al Sole! Da lassù il Sole sembrerebbe 3 volte più grande nel cielo rispetto a come lo vediamo noi."
+        },
+        {
+          "label": "Periodo Orbitale",
+          "value": "87,97 giorni terrestri",
+          "sub": "L'orbita più veloce del sistema solare",
+          "kids": "Mercurio è il corridore più veloce dello spazio! Gira intorno al Sole in soli 88 giorni: festeggeresti il compleanno ogni 3 mesi!"
+        },
+        {
+          "label": "Durata del Giorno",
+          "value": "175,9 giorni terrestri",
+          "sub": "Rotazione: 58,6 giorni",
+          "kids": "Mercurio ruota pianissimo su se stesso. Un solo giorno su Mercurio dura 176 giorni terrestri: più di un intero anno del pianeta!"
+        },
+        {
+          "label": "Raggio Equatoriale",
+          "value": "2.439,7 km",
+          "sub": "0,383 × Terra",
+          "kids": "Mercurio è il pianeta più piccino, poco più grande della Luna. È pieno di crateri e sembra una pallina da golf spaziale."
+        },
+        {
+          "label": "Massa",
+          "value": "3,30 × 10²³ kg",
+          "sub": "0,055 × Terra",
+          "kids": "Anche se è piccolo, Mercurio è pesantissimo perché ha all'interno un nucleo gigante di ferro solido che riempie quasi tutto il pianeta!"
+        },
+        {
+          "label": "Temperatura Superficiale",
+          "value": "−180 °C a 430 °C",
+          "sub": "Il giorno è 4 volte l'acqua bollente; la notte è 9 volte più fredda di un congelatore",
+          "kids": "Mercurio non ha aria! Di giorno fa 4 volte più caldo dell'acqua bollente, ma di notte scende a −180°C: 9 volte più freddo di un congelatore!"
+        },
+        {
+          "label": "Lune & Anelli",
+          "value": "0 Lune · 0 Anelli",
+          "sub": "Mercurio non possiede lune né satelliti naturali",
+          "kids": "Mercurio ha 0 lune e 0 anelli! È così vicino al Sole che la gravità solare strapperebbe subito qualsiasi luna."
+        },
+        {
+          "label": "Atmosfera",
+          "value": "Esosfera",
+          "sub": "Tracce di ossigeno, sodio, idrogeno",
+          "kids": "Cos'è un'esosfera? Sulla Terra, l'esosfera è lo strato più esterno dell'atmosfera (a centinaia di chilometri di altezza!), dove l'aria sfuma nel vuoto dello spazio e orbitano i satelliti.\nSu Mercurio non c'è alcuno strato d'aria inferiore né cielo blu: la sua esosfera inizia direttamente sul terreno roccioso! Il Sole colpisce le rocce sollevando un sottilissimo soffio di atomi sparsi (ossigeno, sodio, idrogeno) che non si toccano quasi mai."
+        }
+      ]
+    },
+    "venus": {
+      "name": "Venere",
+      "greeting": "Ciao, Gemello Infernale!",
+      "fact": "Un effetto serra incontrollato rende Venere il pianeta più caldo a 465 °C, più rovente di Mercurio pur essendo più lontano dal Sole.",
+      "kids": {
+        "badge": "🚀 Missione Kids",
+        "title": "Il Forno del Sistema Solare!",
+        "jump": "Salti quasi come sulla Terra, ma l'aria è gialla, pesantissima e calda abbastanza da fondere una macchinina giocattolo!",
+        "fact": "Venere gira al contrario rispetto alla Terra: il Sole sorge a ovest e tramonta a est."
+      },
+      "stats": [
+        {
+          "label": "Distanza dal Sole",
+          "value": "108,2 mln km",
+          "sub": "0,723 UA",
+          "kids": "Venere è il nostro pianeta più vicino. Riflette tanta luce da brillare nel cielo notturno più di qualunque stella, seconda solo alla Luna!"
+        },
+        {
+          "label": "Periodo Orbitale",
+          "value": "224,7 giorni terrestri",
+          "sub": "0,615 anni terrestri",
+          "kids": "Venere gira intorno al Sole in 225 giorni terrestri. Essendo più vicina al Sole della Terra, il suo anno è circa 4 mesi più corto."
+        },
+        {
+          "label": "Durata del Giorno",
+          "value": "243,0 giorni terrestri",
+          "sub": "Rotazione retrograda (gira al contrario)",
+          "kids": "Venere ruota al contrario! Mentre la Terra gira in senso antiorario, Venere gira in senso orario. Il Sole sorge a ovest e tramonta a est! Un giorno dura più di un anno intero!"
+        },
+        {
+          "label": "Raggio Equatoriale",
+          "value": "6.051,8 km",
+          "sub": "0,949 × Terra (Gemello)",
+          "kids": "Venere ha quasi la stessa taglia della Terra (il 95% del diametro). Gli scienziati la chiamano la sorella gemella della Terra, ma è una gemella bollente come un forno."
+        },
+        {
+          "label": "Massa",
+          "value": "4,87 × 10²⁴ kg",
+          "sub": "0,815 × Terra",
+          "kids": "Venere pesa quasi quanto la Terra. La gravità laggiù ti sembrerebbe quasi identica a quella di casa tua (il 91%)."
+        },
+        {
+          "label": "Temperatura Superficiale",
+          "value": "465 °C (Media)",
+          "sub": "Quasi 5 volte più caldo dell'acqua bollente — fonde il piombo!",
+          "kids": "Venere è il pianeta più bollente di tutti a 465°C, quasi 5 volte più caldo dell'acqua che bolle! Nubi gialle intrappolano il calore sciogliendo il piombo."
+        },
+        {
+          "label": "Lune & Anelli",
+          "value": "0 Lune · 0 Anelli",
+          "sub": "Venere non possiede lune né satelliti naturali",
+          "kids": "Venere ha 0 lune e 0 anelli! Proprio come per Mercurio, il Sole si porterebbe via qualsiasi luna."
+        },
+        {
+          "label": "Atmosfera",
+          "value": "96,5% CO₂, 3,5% N₂",
+          "sub": "Nubi di acido solforico; pressione di 92 bar",
+          "kids": "Percentuale (%) significa parti su 100 cucchiai d'aria di Venere:\n• CO₂ (96,5 cucchiai) è l'Anidride carbonica: il gas che intrappola il calore come un forno sigillato!\n• N₂ (3,5 cucchiai) è l'Azoto: lo stesso gas calmo del cielo terrestre.\nNon c'è alcuno O₂ (ossigeno) da respirare, e le nuvole gialle piovono acido corrosivo sotto una pressione schiacciante!"
+        }
+      ]
+    },
+    "earth": {
+      "name": "Terra",
+      "greeting": "Ciao, Mondo Natale!",
+      "fact": "L'unico mondo conosciuto che ospita la vita. Il nostro piccolo punto blu è ricoperto per il 71% da oceani, avvolto da un'atmosfera vitale.",
+      "kids": {
+        "badge": "🚀 Missione Kids",
+        "title": "L'Oasi Perfetta!",
+        "jump": "Il tuo parco giochi di casa! Gravità ideale per correre, andare in bici e saltare nelle pozzanghere.",
+        "fact": "La Terra è l'unico pianeta conosciuto con aria respirabile, mari di acqua liquida, cielo azzurro e animali viventi!"
+      },
+      "stats": [
+        {
+          "label": "Distanza dal Sole",
+          "value": "149,6 mln km",
+          "sub": "1,000 UA (Unità Astronomica)",
+          "kids": "La Terra si trova nella fascia ideale dove l'acqua resta liquida. Questa distanza si chiama 1 Unità Astronomica (AU)!"
+        },
+        {
+          "label": "Periodo Orbitale",
+          "value": "365,25 giorni",
+          "sub": "1,000 anno terrestre (Riferimento)",
+          "kids": "La Terra impiega 365 giorni e 6 ore per compiere un giro intorno al Sole. Quelle 6 ore formano un anno bisestile ogni 4 anni col 29 febbraio!"
+        },
+        {
+          "label": "Durata del Giorno",
+          "value": "23h 56m 04s",
+          "sub": "Giorno solare di 24,0 ore",
+          "kids": "La Terra compie una rotazione ogni 24 ore: giorno per giocare e notte per dormire. Giriamo in senso antiorario, quindi il Sole sorge a est!"
+        },
+        {
+          "label": "Raggio Equatoriale",
+          "value": "6.371,0 km",
+          "sub": "Unità base: 1,000 R⊕",
+          "kids": "La Terra è il più grande dei quattro pianeti rocciosi. Una galleria che passasse dal centro misurerebbe oltre 12.700 chilometri."
+        },
+        {
+          "label": "Massa",
+          "value": "5,972 × 10²⁴ kg",
+          "sub": "Unità base: 1,000 M⊕",
+          "kids": "La Terra pesa 6 sestilioni di tonnellate (un 6 con 24 zeri), regalandoci la gravità ideale per trattenere oceani e aria."
+        },
+        {
+          "label": "Temperatura Superficiale",
+          "value": "−88 °C a 58 °C",
+          "sub": "Media: 15°C — temperatura ambiente confortevole con oceani liquidi",
+          "kids": "La Terra ha una comoda temperatura media di 15°C. La nostra atmosfera ci protegge e riscalda come una morbida coperta."
+        },
+        {
+          "label": "Lune & Anelli",
+          "value": "1 Luna · 0 Anelli",
+          "sub": "L'unica luna naturale della Terra è Luna (La Luna)",
+          "kids": "La Terra ha una luna fedele di nome Luna! Causa le maree due volte al giorno e illumina le notti con bagliore argenteo."
+        },
+        {
+          "label": "Atmosfera",
+          "value": "78% N₂, 21% O₂, 1% Ar",
+          "sub": "Strato di ozono protettivo e magnetosfera",
+          "kids": "Cosa significano queste lettere e percentuali? Il simbolo di percentuale (%) indica parti su 100! Immagina un barattolo con 100 biglie d'aria :\n• N₂ (78 biglie) è l'Azoto: un gas invisibile che riempie il cielo e aiuta le piante a crescere verdi e forti.\n• O₂ (21 biglie) è l'Ossigeno: il gas della vita che tu, la tua famiglia e i cuccioli respirate per vivere!\n• Ar (1 biglia) è l'Argon: un gas nobile timido e pacifico che galleggia serenamente.\nL'atmosfera terrestre ha strati protettivi: l'aria respirabile in basso, lo strato di ozono protettivo al centro e l'esosfera in cima – lo strato più esterno che confina con lo spazio dove orbitano i satelliti!"
+        }
+      ]
+    },
+    "mars": {
+      "name": "Marte",
+      "greeting": "Ciao, Pianeta Rosso!",
+      "fact": "Ospita l'Olympus Mons, il vulcano più alto del sistema solare con i suoi 21 km. Il colore ruggine è polvere di ossido di ferro.",
+      "kids": {
+        "badge": "🚀 Missione Kids",
+        "title": "Il Mondo dei Super-Salti!",
+        "jump": "Salti 2,6 volte più in alto rispetto alla Terra! Con un solo balzo puoi scavalcare un'automobile parcheggiata.",
+        "fact": "Su Marte ci sono veri rover robotici come Curiosity e Perseverance che stanno esplorando le dune rosse proprio adesso!"
+      },
+      "stats": [
+        {
+          "label": "Distanza dal Sole",
+          "value": "227,9 mln km",
+          "sub": "1,524 UA",
+          "kids": "Marte è 1,5 volte più lontano dal Sole rispetto alla Terra ed è quindi un mondo molto più freddo."
+        },
+        {
+          "label": "Periodo Orbitale",
+          "value": "686,98 giorni terrestri",
+          "sub": "1,881 anni terrestri",
+          "kids": "Un anno su Marte dura 687 giorni terrestri, quasi due anni della Terra! Le stagioni durano il doppio che da noi."
+        },
+        {
+          "label": "Durata del Giorno",
+          "value": "24h 37m 22s",
+          "sub": "1 Sol (~1,027 giorni terrestri)",
+          "kids": "Un giorno su Marte si chiama \"Sol\" e dura 24 ore e 37 minuti, quasi come sulla Terra. I robot su Marte vanno a nanna quando il sole tramonta."
+        },
+        {
+          "label": "Raggio Equatoriale",
+          "value": "3.389,5 km",
+          "sub": "0,532 × Terra",
+          "kids": "Marte è grande la metà della Terra. Non avendo oceani, le sue terre emerse sono vaste come tutti i continenti della Terra messi insieme."
+        },
+        {
+          "label": "Massa",
+          "value": "6,42 × 10²³ kg",
+          "sub": "0,107 × Terra",
+          "kids": "Marte pesa solo un decimo della Terra. Meno gravità significa che pesi un terzo del tuo peso e puoi saltare 2,6 volte più in alto!"
+        },
+        {
+          "label": "Temperatura Superficiale",
+          "value": "−140 °C a 20 °C",
+          "sub": "Media: −63°C — oltre 3 volte più freddo del ghiaccio del congelatore",
+          "kids": "Marte è un deserto ghiacciato con −63°C di media (oltre 3 volte più freddo del congelatore). Di notte scende a −140°C."
+        },
+        {
+          "label": "Lune & Anelli",
+          "value": "2 Lune · 0 Anelli",
+          "sub": "Le due lune sono Phobos e Deimos",
+          "kids": "Marte ha due lune piccine a forma di patate spaziali, Phobos e Deimos! Phobos viaggia così rapido che sorge a ovest e tramonta a est due volte al giorno."
+        },
+        {
+          "label": "Atmosfera",
+          "value": "95,3% CO₂, 2,6% N₂",
+          "sub": "Atmosfera sottile (~0,006 bar)",
+          "kids": "Percentuale (%) significa parti su 100 cucchiai della sottile aria marziana:\n• CO₂ (95 cucchiai) è l'Anidride carbonica: il gas che espiriamo.\n• N₂ (quasi 3 cucchiai) è l'Azoto.\nNon c'è quasi O₂ (ossigeno) da respirare, e l'aria è 100 volte più sottile che sulla Terra: tute con caschi a ossigeno obbligatorie!"
+        }
+      ]
+    },
+    "jupiter": {
+      "name": "Giove",
+      "greeting": "Ciao, Re dei Giganti!",
+      "fact": "Così immenso che tutti gli altri pianeti uniti potrebbero entrare al suo interno. La Grande Macchia Rossa infuria da oltre 350 anni.",
+      "kids": {
+        "badge": "🚀 Missione Kids",
+        "title": "Il Re dei Pesi Massimi!",
+        "jump": "I tuoi salti sono dimezzati! Correre qui è come indossare stivali di piombo mentre cammini nel burro d'arachidi.",
+        "fact": "Giove è così mastodontico che 1.300 Terre ci starebbero dentro, e la sua Macchia Rossa è un uragano più grande della Terra!"
+      },
+      "stats": [
+        {
+          "label": "Distanza dal Sole",
+          "value": "778,6 mln km",
+          "sub": "5,204 UA",
+          "kids": "Giove è 5 volte più lontano dal Sole rispetto alla Terra. Qui la luce solare è 27 volte più debole e lo spazio è ghiacciato."
+        },
+        {
+          "label": "Periodo Orbitale",
+          "value": "11,86 anni terrestri",
+          "sub": "4.332,6 giorni terrestri",
+          "kids": "Giove impiega quasi 12 anni terrestri per compiere un giro intorno al Sole! Finiresti le elementari prima del tuo primo compleanno su Giove."
+        },
+        {
+          "label": "Durata del Giorno",
+          "value": "9h 55m 30s",
+          "sub": "Rotazione planetaria più rapida",
+          "kids": "Giove è il pianeta più veloce a ruotare, in meno di 10 ore! Questa rapida rotazione schiaccia i suoi poli allargando l'equatore."
+        },
+        {
+          "label": "Raggio Equatoriale",
+          "value": "69.911 km",
+          "sub": "10,97 × Terra",
+          "kids": "Giove è il Re dei Pianeti, 11 volte più largo della Terra! Ci starebbero più di 1.300 Terre al suo interno."
+        },
+        {
+          "label": "Massa",
+          "value": "1,898 × 10²⁷ kg",
+          "sub": "317,8 × Terra (2,5 volte tutti gli altri pianeti)",
+          "kids": "Giove è 2,5 volte più pesante di tutti gli altri 7 pianeti messi insieme! La sua super gravità attira comete pericolose proteggendo la Terra."
+        },
+        {
+          "label": "Temperatura Nubi",
+          "value": "−110 °C",
+          "sub": "Nubi a −110°C; il nucleo profondo è 240 volte più caldo dell'acqua bollente (~24.000°C)",
+          "kids": "Le nubi di Giove sono a −110°C, ma al centro ci sono 24.000°C: oltre 240 volte più caldo dell'acqua che bolle!"
+        },
+        {
+          "label": "Lune & Anelli",
+          "value": "95 Lune · 4 Anelli",
+          "sub": "Le lune principali sono Io, Europa, Ganimede e Callisto",
+          "kids": "Giove ha ben 95 lune! Le 4 più grandi sono Ganimede (più grande di Mercurio!), Europa (con un mare caldo nascosto!), Io (con 400 vulcani!) e Callisto."
+        },
+        {
+          "label": "Atmosfera",
+          "value": "89,8% H₂, 10,2% He",
+          "sub": "Tracce di metano, ammoniaca, vapore acqueo",
+          "kids": "Percentuale (%) significa parti su 100 cucchiai del cielo vorticoso di Giove:\n• H₂ (90 cucchiai) è l'Idrogeno: il gas più leggero dell'universo, carburante per le stelle.\n• He (10 cucchiai) è l'Elio: il gas leggero dei palloncini da festa!\nGiove non ha un terreno solido: è una sfera di gas con la Grande Macchia Rossa, un uragano più grande della Terra!"
+        }
+      ]
+    },
+    "saturn": {
+      "name": "Saturno",
+      "greeting": "Ciao, Bellezza con gli Anelli!",
+      "fact": "I suoi spettacolari anelli si estendono per 282.000 km. La sua densità è così bassa che galleggerebbe sull'acqua!",
+      "kids": {
+        "badge": "🚀 Missione Kids",
+        "title": "Il Giocattolo da Bagno dello Spazio!",
+        "jump": "Il tuo peso e i tuoi balzi sembrano quasi quelli terrestri, ma non c'è terreno solido: solo morbide nubi e anelli di ghiaccio.",
+        "fact": "Saturno è così leggero che se avessi una vasca da bagno abbastanza grande, galleggerebbe come una papera di gomma!"
+      },
+      "stats": [
+        {
+          "label": "Distanza dal Sole",
+          "value": "1,434 mld km",
+          "sub": "9,582 UA",
+          "kids": "Saturno è quasi 10 volte più lontano dal Sole della Terra. La luce del Sole impiega 80 minuti per raggiungere le sue nubi dorate."
+        },
+        {
+          "label": "Periodo Orbitale",
+          "value": "29,45 anni terrestri",
+          "sub": "10.759,2 giorni terrestri",
+          "kids": "Saturno impiega quasi 30 anni terrestri per fare un giro del Sole. In tutta la vita vedresti solo 2 o 3 anni di Saturno!"
+        },
+        {
+          "label": "Durata del Giorno",
+          "value": "10h 33m 38s",
+          "sub": "Rotazione differenziale rapida",
+          "kids": "Anche se è gigantesco, Saturno ruota su se stesso in sole 10 ore e mezza, rigonfiandosi al centro."
+        },
+        {
+          "label": "Raggio Equatoriale",
+          "value": "58.232 km",
+          "sub": "9,14 × Terra",
+          "kids": "Saturno è 9 volte più largo della Terra! Con i suoi anelli misura 282.000 chilometri, quasi la distanza dalla Terra alla Luna!"
+        },
+        {
+          "label": "Massa",
+          "value": "5,683 × 10²⁶ kg",
+          "sub": "95,2 × Terra (Densità: 0,687 g/cm³)",
+          "kids": "Saturno pesa 95 volte la Terra ma è meno denso dell'acqua: in una vasca gigante galleggerebbe come una papera di gomma!"
+        },
+        {
+          "label": "Temperatura Nubi",
+          "value": "−140 °C",
+          "sub": "Nubi superiori −140°C (7 volte più freddo di un congelatore); interno 115 volte l'acqua bollente",
+          "kids": "Le nuvole di Saturno sono a −140°C (7 volte più freddo di un congelatore), ma nel nucleo ci sono 11.500°C (115 volte l'acqua bollente)."
+        },
+        {
+          "label": "Lune & Anelli",
+          "value": "146 Lune · 7 Anelli Principali",
+          "sub": "Le lune principali sono Titano, Encelado e Mimas",
+          "kids": "Saturno ha ben 146 lune! I suoi anelli sono formati da miliardi di pezzi di ghiaccio puro splendente, da fiocchi di neve a blocchi grandi come case."
+        },
+        {
+          "label": "Atmosfera",
+          "value": "96,3% H₂, 3,25% He",
+          "sub": "Tracce di metano, ammoniaca, etano",
+          "kids": "Percentuale (%) significa parti su 100 cucchiai del cielo di Saturno:\n• H₂ (96 cucchiai) è l'Idrogeno: carburante stellare leggerissimo.\n• He (3 cucchiai) è l'Elio: gas per i palloncini!\nSaturno è meno denso dell'acqua e galleggerebbe come una papera di gomma in una vasca gigante!"
+        }
+      ]
+    },
+    "uranus": {
+      "name": "Urano",
+      "greeting": "Ciao, Gigante di Ghiaccio!",
+      "fact": "Ha un'inclinazione assiale di 98°: rotola su un fianco lungo l'orbita attorno al Sole. Il suo colore ciano è dovuto al gas metano.",
+      "kids": {
+        "badge": "🚀 Missione Kids",
+        "title": "Il Mondo che Fa le Capovolte!",
+        "jump": "Salti il 12% più in alto con un piacevole rimbalzo, fluttuando piano tra nubi celesti ghiacciate.",
+        "fact": "Urano rotola su un fianco come una palla da bowling ed è il pianeta più freddo del sistema a −224 °C!"
+      },
+      "stats": [
+        {
+          "label": "Distanza dal Sole",
+          "value": "2,871 mld km",
+          "sub": "19,191 UA",
+          "kids": "Urano è 19 volte più lontano dal Sole della Terra. È stato il primo pianeta scoperto al telescopio nel 1781."
+        },
+        {
+          "label": "Periodo Orbitale",
+          "value": "84,02 anni terrestri",
+          "sub": "30.685,4 giorni terrestres",
+          "kids": "Urano impiega 84 anni terrestri per completare un'orbita! Ogni stagione dura ben 21 anni terrestri."
+        },
+        {
+          "label": "Durata del Giorno",
+          "value": "17h 14m 24s",
+          "sub": "Inclinazione 97,77° (rotola su un fianco)",
+          "kids": "Urano rotola su un fianco come una palla da bowling con un'inclinazione di 98°! Gira all'indietro (senso orario). Un polo ha 42 anni di sole ininterrotto e l'altro 42 anni di buio polare gelido!"
+        },
+        {
+          "label": "Raggio Equatoriale",
+          "value": "25.362 km",
+          "sub": "3,98 × Terra",
+          "kids": "Urano è 4 volte più largo della Terra. Quattro Terre starebbero affiancate lungo il suo equatore, e 63 Terre al suo interno."
+        },
+        {
+          "label": "Massa",
+          "value": "8,681 × 10²⁵ kg",
+          "sub": "14,54 × Terra",
+          "kids": "Urano è un Gigante di Ghiaccio con acqua, ammoniaca e metano ghiacciati, circa 14,5 volte più pesante della Terra."
+        },
+        {
+          "label": "Temperatura Più Bassa",
+          "value": "−224 °C",
+          "sub": "Minima −224°C — 11 volte più freddo di un congelatore, atmosfera più fredda",
+          "kids": "Urano detiene il record di pianeta più freddo del sistema solare a −224°C, 11 volte più freddo di un congelatore!"
+        },
+        {
+          "label": "Lune & Anelli",
+          "value": "28 Lune · 13 Anelli",
+          "sub": "Le lune principali sono Titania, Oberon, Umbriel, Ariel e Miranda",
+          "kids": "Urano ha 28 lune con nomi presi dalle opere di Shakespeare (come Titania e Miranda) e 13 anelli scuri."
+        },
+        {
+          "label": "Atmosfera",
+          "value": "82,5% H₂, 15,2% He, 2,3% CH₄",
+          "sub": "Il metano assorbe la luce rossa donando il colore ciano",
+          "kids": "Percentuale (%) significa parti su 100 cucchiai dell'atmosfera gelida:\n• H₂ (82 cucchiai) è il gas Idrogeno.\n• He (15 cucchiai) è il gas Elio (gas dei palloncini).\n• CH₄ (oltre 2 cucchiai) è il gas Metano: lo stesso gas dei rutti delle mucche! Assorbe la luce rossa e riflette un brillante azzurro ciano."
+        }
+      ]
+    },
+    "neptune": {
+      "name": "Nettuno",
+      "greeting": "Ciao, Mondo Tempestoso!",
+      "fact": "Il pianeta più ventoso: le tempeste raggiungono i 2.100 km/h. Un'orbita attorno al Sole dura ben 165 anni terrestri.",
+      "kids": {
+        "badge": "🚀 Missione Kids",
+        "title": "Il Gigante delle Tempeste Supersoniche!",
+        "jump": "Ti senti solo un filo più pesante della Terra, come se camminassi controvento con un pesante cappotto invernale.",
+        "fact": "Su Nettuno soffiano i venti più rabbiosi dell'intero sistema: sfrecciano a 2.000 km/h, più veloci di un aereo supersonico!"
+      },
+      "stats": [
+        {
+          "label": "Distanza dal Sole",
+          "value": "4,495 mld km",
+          "sub": "30,070 UA",
+          "kids": "Nettuno è il pianeta più lontano, 30 volte più distante dal Sole della Terra! La luce solare impiega più di 4 ore per arrivarci."
+        },
+        {
+          "label": "Periodo Orbitale",
+          "value": "164,79 anni terrestri",
+          "sub": "60.189,0 giorni terrestri",
+          "kids": "Un anno su Nettuno dura ben 165 anni terrestri! Dalla sua scoperta nel 1846 ha compiuto una sola orbita completa."
+        },
+        {
+          "label": "Durata del Giorno",
+          "value": "16h 06m 36s",
+          "sub": "Rotazione differenziale",
+          "kids": "Nettuno compie una rotazione ogni 16 ore. Essendo fatto di gas e fango ghiacciato, il suo equatore gira più svelto dei poli."
+        },
+        {
+          "label": "Raggio Equatoriale",
+          "value": "24.622 km",
+          "sub": "3,86 × Terra",
+          "kids": "Nettuno è quasi 4 volte più largo della Terra e potrebbe contenere 57 sfere terrestri."
+        },
+        {
+          "label": "Massa",
+          "value": "1,024 × 10²⁶ kg",
+          "sub": "17,15 × Terra",
+          "kids": "Nettuno pesa 17 volte la Terra e custodisce un oceano di ghiaccio compresso sopra un nucleo di roccia e ferro."
+        },
+        {
+          "label": "Temperatura Nubi",
+          "value": "−201 °C",
+          "sub": "Media −201°C — 10 volte più freddo di un congelatore, congela l'azoto gassoso",
+          "kids": "Le nubi di Nettuno sono a −201°C, 10 volte più freddo di un congelatore! Il gelo solidifica persino il gas azoto."
+        },
+        {
+          "label": "Lune & Anelli",
+          "value": "16 Lune · 5 Anelli",
+          "sub": "Le lune principali sono Tritone, Proteo e Nereide",
+          "kids": "Nettuno ha 16 lune, tra cui Tritone. Tritone orbita al contrario (in senso orario/retrogrado) rispetto alla rotazione di Nettuno! Era un pianeta nano catturato che spara veri geyser di ghiaccio."
+        },
+        {
+          "label": "Atmosfera",
+          "value": "80,0% H₂, 19,0% He, 1,5% CH₄",
+          "sub": "Blu azzurro intenso con Grande Macchia Scura",
+          "kids": "Percentuale (%) significa parti su 100 cucchiai di atmosfera ghiacciata:\n• H₂ (80 cucchiai) è il gas Idrogeno.\n• He (19 cucchiai) è il gas Elio (gas dei palloncini).\n• CH₄ (1,5 cucchiai) è il gas Metano: inghiotte la luce rossa e riflette un meraviglioso blu oceano mentre infuriano tempeste a 2.100 km/h!"
+        }
+      ]
+    },
+    "luna": {
+      "name": "Luna (La Luna)",
+      "greeting": "Ciao, Compagna d'Argento!",
+      "fact": "L'unico satellite naturale della Terra. In rotazione sincrona, la Luna controlla le maree oceaniche ed è l'unico altro corpo celeste su cui gli umani abbiano camminato.",
+      "kids": {
+        "badge": "🚀 Missione Ragazzi",
+        "title": "Parco dei Salti Lunari!",
+        "jump": "Salti 6× più in alto che sulla Terra! Con un solo balzo puoi scavalcare una casa a due piani.",
+        "fact": "Le orme lasciate dagli astronauti delle missioni Apollo rimarranno intatte per milioni di anni, perché sulla Luna non ci sono né vento né pioggia!"
+      },
+      "stats": [
+        {
+          "label": "Distanza dalla Terra",
+          "value": "384.400 km",
+          "sub": "0,00257 UA (~1,28 secondi-luce)",
+          "kids": "La Luna dista 384.400 km dalla Terra. In quello spazio potrebbero entrare tutti gli altri 7 pianeti del sistema solare messi in fila!"
+        },
+        {
+          "label": "Periodo Orbitale",
+          "value": "27,32 giorni",
+          "sub": "Rotazione sincrona legata",
+          "kids": "La Luna impiega 27,3 giorni per orbitare attorno alla Terra. Poiché ruota alla stessa velocità, mostra sempre la stessa faccia!"
+        },
+        {
+          "label": "Durata del Giorno",
+          "value": "29,53 giorni terrestri",
+          "sub": "1 Giorno Lunare (Mese sinodico)",
+          "kids": "Un giorno completo sulla Luna dura quasi un mese terrestre: due settimane di sole cocente seguite da due settimane di notte gelida."
+        },
+        {
+          "label": "Raggio Equatoriale",
+          "value": "1.737,4 km",
+          "sub": "0,273 × Terra (oltre un quarto)",
+          "kids": "La Luna è larga più di un quarto della Terra. Se la Terra fosse un pallone da basket, la Luna sarebbe una pallina da tennis!"
+        },
+        {
+          "label": "Massa",
+          "value": "7,342 × 10²² kg",
+          "sub": "0,0123 × Terra (1,2% della Terra)",
+          "kids": "La Luna pesa solo l'1,2% della Terra. La sua gravità è un sesto di quella terrestre: ti senti leggero come un vero supereroe!"
+        },
+        {
+          "label": "Temperatura Superficiale",
+          "value": "da −130°C a 120°C",
+          "sub": "Media: −20°C (escursioni estreme)",
+          "kids": "Senza atmosfera, la temperatura lunare va da 120°C al sole fino a −130°C all'ombra. Le tute spaziali tengono gli astronauti al calduccio."
+        },
+        {
+          "label": "Lune & Anelli",
+          "value": "0 Lune · 0 Anelli",
+          "sub": "Fedele satellite naturale della Terra",
+          "kids": "La Luna non ha lune proprie! Ma fa salire e scendere le maree del mare due volte al giorno."
+        },
+        {
+          "label": "Atmosfera",
+          "value": "Esosfera / Vuoto",
+          "sub": "Tracce di He, Ne, H₂, Ar (< 10⁻¹⁰ Pa)",
+          "kids": "Sulla Luna non c'è aria da respirare: regna il vuoto cosmico. Poiché il suono non viaggia nel vuoto, gli astronauti comunicano via radio!"
+        }
+      ]
+    }
+  },
+  "game": {
+    "mission_label": "MISSIONE ATTIVA",
+    "launch_control": "Controllo Lancio",
+    "select_destination": "Seleziona Destinazione:",
+    "thrust_energy": "Energia di Spinta:",
+    "propulsion_title": "Propulsione e Carburante",
+    "big_launch_btn": "GRAN LANCIO 🚀",
+    "select_destination_alert": "Seleziona prima un pianeta di destinazione!",
+    "try_again_life_lost": "1 razzo perso! Ricalibrazione coordinate...",
+    "asteroid_warning": "⚠️ ATTENZIONE: Attraversamento cintura di asteroidi — Scudi attivati!",
+    "fuel_exhausted_detail": "Carburante esaurito a metà percorso! La distanza era eccessiva per la spinta scelta.",
+    "overshoot_detail": "Troppa spinta! Il razzo ha oltrepassato la gravità del pianeta nello spazio profondo.",
+    "capture_success": "Cattura orbitale e atterraggio riusciti!",
+    "debrief_lesson": "Il volo interplanetario richiede di lanciare vicino al Perigeo (distanza minima) con spinta bilanciata.",
+    "rank_cadet": "Cadetto",
+    "rank_scout": "Esploratore",
+    "rank_navigator": "Navigatore",
+    "rank_pioneer": "Pioniere",
+    "rank_master": "Maestro Solare",
+    "mission_clue_moon": "Missione 1: Lancia verso la compagna rocciosa della Terra, la Luna!",
+    "mission_clue_mars": "Missione 2: Lancia verso il Pianeta Rosso!",
+    "mission_clue_jupiter": "Missione 3: Lancia verso il pianeta più grande con la Grande Macchia Rossa!",
+    "mission_clue_saturn": "Missione 4: Lancia verso il pianeta con il maggior numero di lune!",
+    "mission_clue_uranus": "Missione 5: Lancia verso il gigante di ghiaccio che rotola sul fianco!",
+    "mission_clue_neptune": "Missione 6: Lancia verso il pianeta più ventoso e più lontano dal Sole!",
+    "mission_clue_earth_slingshot": "Tappa del Gran Tour: Lancia di nuovo verso casa sul pianeta blu con la vita!",
+    "mission_target_mismatch": "Avviso Controllo Missione: Il nostro obiettivo è: \"{clue}\". Hai puntato su {target}. Seleziona il pianeta corretto prima del lancio!",
+    "fuel_label": "Serbatoio carburante",
+    "refueling_wait": "RIFORNIMENTO ({sec}s)... ⛽",
+    "insufficient_fuel_alert": "⚠️ Carburante insufficiente: Questo lancio richiede {energy}% di propellente, ma solo {fuel}% è disponibile. Attendi il rifornimento!",
+    "touchdown_moon": "Nessuna atmosfera: frenata potente con retrorazzi al massimo!",
+    "touchdown_mars": "Atmosfera sottile: atterraggio ad alta velocità con retrorazzi accesi.",
+    "touchdown_jupiter": "Gravità enorme: inserimento orbitale ad alta accelerazione g!",
+    "touchdown_saturn": "Strati gassosi enormi: aerofrenata orbitale fluida!",
+    "touchdown_uranus": "Venti gelidi: richiesto controllo d'assetto di precisione!",
+    "touchdown_neptune": "Venti supersonici guidano la discesa finale.",
+    "touchdown_earth": "Atmosfera densa: aerofrenata naturale perfetta!",
+    "touchdown_default": "Atterraggio sicuro sul corpo celeste bersaglio!",
+    "quiz_q_moon": "Si possono sentire forti rumori sulla Luna?",
+    "quiz_moon_opt1": "🔇 Nessuna aria, silenzio totale!",
+    "quiz_moon_opt2": "📢 Sì, fortissimi!",
+    "quiz_hint_moon": "Il suono richiede onde d'aria per viaggiare, e la Luna non ha quasi atmosfera.",
+    "quiz_q_mars": "Perché Marte appare rossastro nel cielo?",
+    "quiz_mars_opt1": "🪨 Polvere di ferro arrugginita",
+    "quiz_mars_opt2": "🍓 Marmellata di fragole",
+    "quiz_hint_mars": "Il suolo marziano contiene ossido di ferro, proprio come la ruggine sulla Terra!",
+    "quiz_q_jupiter": "Cos'è la Grande Macchia Rossa di Giove?",
+    "quiz_jupiter_opt1": "🌪️ Un uragano gigantesco",
+    "quiz_jupiter_opt2": "🌋 Una pizza gigante",
+    "quiz_hint_jupiter": "È una tempesta enorme più grande dell'intero pianeta Terra!",
+    "quiz_q_saturn": "Di cosa sono fatti gli anelli di Saturno?",
+    "quiz_saturn_opt1": "❄️ Frammenti di ghiaccio e roccia",
+    "quiz_saturn_opt2": "🧀 Fette di formaggio",
+    "quiz_hint_saturn": "Miliardi di frammenti di ghiaccio d'acqua di tutte le dimensioni!",
+    "quiz_q_uranus": "Perché Urano rotola in modo così strano?",
+    "quiz_uranus_opt1": "🔄 È completamente inclinato di lato",
+    "quiz_uranus_opt2": "🛞 Ha ruote di bicicletta",
+    "quiz_hint_uranus": "Un antico impatto cosmico ha inclinato Urano di ben 98 gradi!",
+    "quiz_q_neptune": "Perché Nettuno appare blu splendente?",
+    "quiz_neptune_opt1": "💨 Gas metano nel cielo",
+    "quiz_neptune_opt2": "🌊 Un caldo oceano gigante",
+    "quiz_hint_neptune": "Il metano assorbe la luce rossa e riflette un magnifico blu azzurro!",
+    "quiz_q_earth": "Perché la Terra è piena di vita?",
+    "quiz_earth_opt1": "💧 Acqua liquida e aria fresca",
+    "quiz_earth_opt2": "🍫 Fiumi di cioccolato",
+    "quiz_hint_earth": "La Terra si trova nella zona abitabile con temperature miti e acqua liquida!",
+    "exit_game_aria": "Esci dalla Modalità Gioco",
+    "solar_charging_status": "☀️ Ricarica Pannelli Solari: Attiva",
+    "solar_charging_wait": "☀️ RICARICA SOLARE ({sec}s)... ⚡",
+    "solar_flux_label": "Flusso Solare",
+    "orbital_telemetry": "Telemetria Orbitale",
+    "perigee_label": "Perigeo (Min)",
+    "apogee_label": "Apogeo (Max)",
+    "current_separation": "Distanza Attuale",
+    "target_orbit_zone": "Zona Orbita Bersaglio",
+    "perigee_window": "🟢 Finestra di Perigeo",
+    "apogee_window": "🔴 Finestra di Apogeo",
+    "moderate_window": "🟡 Orbita Intermedia",
+    "apogee_short_warning": "⚠️ L'apogeo non raggiungerà l'orbita bersaglio (Min {minReq}%)",
+    "apogee_overshoot_warning": "⚠️ L'apogeo supera il limite di cattura (Max {maxCap}%)",
+    "apogee_optimal_hint": "✅ Spinta ottimale: l'apogeo corrisponderà all'orbita!",
+    "asteroid_belt_title": "Cintura Principale di Asteroidi",
+    "mission_clue_mixed_moon": "Missione 1: Decolla verso la luna rocciosa della Terra!",
+    "mission_clue_mixed_jupiter": "Missione 2: Attraversa la cintura di asteroidi verso il colossale gigante!",
+    "mission_clue_mixed_venus": "Missione 3: Tuffati verso il Sole verso la gemella rovente coperta di nubi!",
+    "mission_clue_mixed_mars": "Missione 4: Parti verso l'esterno verso il Pianeta Rosso!",
+    "mission_clue_mixed_neptune": "Missione 5: Viaggia ai confini verso il gigante blu ghiacciato!",
+    "mission_clue_mixed_mercury": "Missione 6: Plungiti verso l'interno sul mondo bruciato dai crateri!",
+    "mission_clue_mixed_saturn": "Missione 7: Vola verso il mondo dorato con magnifici anelli!",
+    "mission_clue_mixed_earth": "Missione 8: Fionda gravitazionale per tornare sulla Terra ricca di vita!",
+    "riddle_adv_mercury": "Enigma Spaziale: Viaggia nel mondo dove un giorno dura il doppio di un anno!",
+    "riddle_adv_venus": "Enigma Spaziale: Viaggia nel mondo infernale di acido solforico più caldo di Mercurio!",
+    "riddle_adv_earth": "Enigma Spaziale: Viaggia nell'unica oasi nota del cosmo con oceani e vita!",
+    "riddle_adv_moon": "Enigma Spaziale: Viaggia nel mondo craterizzato la cui gravità crea le maree terrestri!",
+    "riddle_adv_mars": "Enigma Spaziale: Viaggia sul pianeta dell'Olympus Mons, il vulcano più alto del sistema!",
+    "riddle_adv_jupiter": "Enigma Spaziale: Viaggia verso il gigante che gira in meno di 10 ore e ha 95 lune!",
+    "riddle_adv_saturn": "Enigma Spaziale: Viaggia sul pianeta con densità così bassa che galleggerebbe nell'acqua!",
+    "riddle_adv_uranus": "Enigma Spaziale: Viaggia sul gigante di ghiaccio inclinato di 98 gradi che rotola di lato!",
+    "riddle_adv_neptune": "Enigma Spaziale: Viaggia verso il gigante di confine con venti supersonici da 2.100 km/h!",
+    "touchdown_mercury": "Calore solare estremo e nessuna atmosfera: frenata decisa coi retrorazzi!",
+    "touchdown_venus": "Pressione schiacciante e acido solforico: scudo termico attivato!",
+    "quiz_q_mercury": "Quanto può scaldarsi Mercurio durante il giorno?",
+    "quiz_mercury_opt1": "🔥 Ben 430°C bollenti!",
+    "quiz_mercury_opt2": "🧊 0°C gelidi!",
+    "quiz_q_venus": "Perché Venere è più calda di Mercurio pur essendo più lontana dal Sole?",
+    "quiz_venus_opt1": "♨️ Spessa atmosfera ad effetto serra",
+    "quiz_venus_opt2": "🕯️ Miliardi di candele",
+    "quiz_q_mars_2": "Come si chiamano le due piccole lune di Marte?",
+    "quiz_mars_2_opt1": "🥔 Phobos & Deimos",
+    "quiz_mars_2_opt2": "🍎 Pizza & Burger",
+    "quiz_q_jupiter_2": "Quante Terre potrebbero stare dentro il gigante Giove?",
+    "quiz_jupiter_2_opt1": "🌍 Più di 1.300 Terre!",
+    "quiz_jupiter_2_opt2": "⛵ Solo 2 Terre!",
+    "rank_explorer": "Esploratore dello Spazio Profondo",
+    "rank_voyager": "Viaggiatore Cosmico",
+    "rank_legend": "Leggenda Galattica",
+    "future_intercept_label": "Intercettazione d'arrivo:",
+    "next_window_label": "Prossima finestra:",
+    "window_open_now": "🟢 Finestra aperta ora!",
+    "window_countdown": "⏳ In ~{sec}s",
+    "future_orbit_planner": "🔮 PIANIFICATORE DI ORBITA FUTURA",
+    "mission_tag_format": "Missione {num} di 8",
+    "homecoming_tag": "Ritorno sulla Terra (Missione 8)",
+    "infinite_expedition_tag": "Spedizione Infinita #{num}",
+    "grand_tour_completed_title": "🎉 GRAND TOUR DEL SISTEMA SOLARE COMPLETATO!",
+    "grand_tour_completed_desc": "Congratulazioni, Comandante! Hai esplorato l'intero Sistema Solare e sei atterrato sano e salvo sulla Terra! Guadagni +250 Stelle Cosmiche ⭐. Le Spedizioni Infinite sono ora sbloccate!",
+    "grand_tour_continue_btn": "Parti per le Spedizioni Profonde 🚀",
+    "mode_missions": "🎯 Missioni",
+    "mode_freeplay": "🚀 Gioco Libero",
+    "freeplay_tag": "ESPLORAZIONE IN GIOCO LIBERO",
+    "freeplay_clue": "Scegli qualsiasi pianeta, regola la spinta e parti! All'atterraggio esplorerai la scheda scientifica completa.",
+    "freeplay_touchdown_opening": "🎉 ATTERRAGGIO! Apertura scheda per {name}... 🪐",
+    "freeplay_return_btn": "🚀 Torna al Gioco (Attraccato a {name}) →",
+    "future_rendezvous_principle": "🚀 Rendezvous Kepleriano: I pianeti orbitano durante il volo! Devi mirare a dove si troverà il pianeta all'arrivo (T+{sec}s), non dove si trova oggi.",
+    "future_lead_label": "Moto orbitale in transito:",
+    "future_landing_location_label": "Orbita di atterraggio futura:",
+    "planner_subtitle": "I pianeti avanzano lungo le orbite nel tempo. Visualizza in anteprima gli allineamenti futuri per finestre ottimali.",
+    "future_rendezvous_reticle": "🎯 Futuro rendezvous di atterraggio (+{sec}s)",
+    "section_mode": "Missione e modalità",
+    "target_label": "Obiettivo:",
+    "target_luna_btn": "🌙 Seleziona Luna",
+    "tap_planet_map_hint": "Tocca un pianeta sulla mappa!",
+    "select_target_prompt": "Seleziona sulla mappa o tocca Luna",
+    "target_earth": "Seleziona Terra",
+    "target_moon": "Seleziona Luna",
+    "debrief_perigee_title": "Perigeo (Minima Distanza)",
+    "debrief_perigee_desc": "Il punto orbitale in cui i pianeti sono più vicini. Il lancio vicino al Perigeo richiede la minima spinta (delta-v) e il minor consumo di carburante.",
+    "debrief_apogee_title": "Apogeo (Massima Distanza)",
+    "debrief_apogee_desc": "Il punto di massimo allontanamento. Nella traiettoria, l'Apogeo è la quota massima raggiunta dal razzo prima di ripiegare verso il Sole.",
+    "debrief_why_matters_title": "Perché la missione è fallita",
+    "debrief_why_matters_fuel": "La spinta era troppo bassa ({thrust}%), quindi l'apogeo dell'orbita non ha raggiunto il pianeta bersaglio. Aumenta la spinta nella zona verde!",
+    "debrief_why_matters_overshoot": "La spinta era troppo alta ({thrust}%), scagliando il razzo nello spazio profondo oltre la gravità del pianeta. Riduci la spinta.",
+    "debrief_why_matters_general": "Le orbite sono ellissi, non linee rette! Per intercettare un pianeta, l'apogeo deve intersecare l'orbita di destinazione al momento esatto dell'arrivo."
+  }
+}

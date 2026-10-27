@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en" style="--c1: #b8a99a; --c2: #5c4a3d; --glow: #d4a574;">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title data-i18n="ui.subpage_title" data-i18n-params='{"name":"Mercury"}'>Mercury — RocketRun Solar System Exploration</title>
+    <meta name="description" content="Explore Mercury on RocketRun: scientific metrics, physical properties, gravity calculator, and kids mission facts." data-i18n-attr="content:ui.subpage_meta_desc" data-i18n-params='{"name":"Mercury"}' />
+    <meta name="author" content="Zachary David Mathew + Papa" />
+    <meta name="copyright" content="rocketrun.org" />
+    <meta name="application-name" content="RocketRun" />
+    <meta name="theme-color" content="#030712" />
+    <link rel="canonical" href="https://rocketrun.org/planets/mercury.html" />
+    <!-- Pre-render Site Auth Gate FOUC Prevention -->
+    <script src="../js/auth-guard.js"></script>
+
+    <!-- Robots & Search Engine Indexing Directives (Closed Private Access) -->
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="googlebot" content="noindex, nofollow" />
+    <meta name="bingbot" content="noindex, nofollow" />
+    <meta name="keywords" content="Mercury, mercury, solar system, planets, astronomy, orbital physics, gravity calculator, kids science, RocketRun, space exploration" />
+
+    <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
+    <meta property="og:type" content="article" />
+    <meta property="og:site_name" content="RocketRun" />
+    <meta property="og:url" content="https://rocketrun.org/planets/mercury.html" />
+    <meta property="og:title" content="Mercury — RocketRun Solar System Exploration" />
+    <meta property="og:description" content="Explore Mercury on RocketRun (rocketrun.org): real orbital physics, planetary atmosphere, gravity calculator, and kids mission facts." />
+    <meta property="og:image" content="https://rocketrun.org/images/mercury.png" />
+    <meta property="og:image:secure_url" content="https://rocketrun.org/images/mercury.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Mercury — RocketRun Solar System Exploration" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@rocketrun_de" />
+    <meta name="twitter:creator" content="@rocketrun_de" />
+    <meta name="twitter:title" content="Mercury — RocketRun Solar System Exploration" />
+    <meta name="twitter:description" content="Explore Mercury on RocketRun (rocketrun.org): real orbital physics, planetary atmosphere, gravity calculator, and kids mission facts." />
+    <meta name="twitter:image" content="https://rocketrun.org/images/mercury.png" />
+    <meta name="twitter:image:alt" content="Mercury — RocketRun Solar System Exploration" />
+
+    <!-- Schema.org JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ItemPage",
+          "@id": "https://rocketrun.org/planets/mercury.html#webpage",
+          "url": "https://rocketrun.org/planets/mercury.html",
+          "name": "Mercury — RocketRun Solar System Exploration",
+          "description": "Explore Mercury on RocketRun: scientific metrics, physical properties, gravity calculator, and kids mission facts.",
+          "isPartOf": {
+            "@type": "WebSite",
+            "@id": "https://rocketrun.org/#website",
+            "name": "RocketRun",
+            "url": "https://rocketrun.org/"
+          },
+          "primaryImageOfPage": {
+            "@type": "ImageObject",
+            "url": "https://rocketrun.org/images/mercury.png"
+          },
+          "inLanguage": ["en", "de", "fr", "es", "it", "ja", "zh", "ml", "ta"]
+        },
+        {
+          "@type": "LearningResource",
+          "@id": "https://rocketrun.org/planets/mercury.html#learning-resource",
+          "name": "Planetary Science: Mercury",
+          "description": "Educational guide and orbital facts for Mercury, including gravitational ratios, jump height calculator, and atmospheric details.",
+          "learningResourceType": "Interactive Simulation",
+          "educationalLevel": "Beginner to Intermediate",
+          "audience": {
+            "@type": "EducationalAudience",
+            "educationalRole": "student"
+          }
+        }
+      ]
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="../css/style.css?v=3.2.0" />
+    <link rel="stylesheet" href="../css/planet.css?v=3.2.0" />
+    <script src="../js/planet.min.js?v=3.2.0" defer></script>
+</head>
+
+<body class="subpage-body" style="background: radial-gradient(ellipse at 60% 20%, #1a0f08 0%, #020510 70%);">
+    <canvas id="stars"></canvas>
+
+    <a id="back-btn" class="visible" href="../index.html" aria-label="Back to solar system" data-i18n="ui.back_btn" data-i18n-attr="aria-label:ui.back_btn">← Solar System</a>
+
+    <!-- Top-Right HUD Stack: Galactic Location + Settings HUD -->
+    <div class="hud-stack">
+        <div id="galaxy-hud" class="in-stack visible is-minimized" aria-label="Galactic location">
+            <div class="hud-header" role="button" tabindex="0" aria-label="Toggle Galactic HUD" title="Minimize / Expand HUD" data-i18n-attr="aria-label:ui.toggle_hud,title:ui.toggle_hud">
+                <div class="hud-header-title">
+                    <span>🌌</span>
+                    <span class="hud-sector-name" data-i18n="ui.sector_full">Sector: Milky Way Galaxy &bull; Orion Arm</span>
+                </div>
+                <span class="hud-header-time" id="hud-header-time" aria-hidden="true">--:--:--</span>
+                <button type="button" class="hud-toggle-btn" id="hud-toggle-btn" aria-label="Expand Galactic HUD" title="Minimize / Expand HUD" data-i18n-attr="aria-label:ui.expand_hud,title:ui.toggle_hud">
+                    <span class="hud-toggle-icon">+</span>
+                </button>
+            </div>
+            <div class="hud-body" id="hud-body">
+                <div class="hud-row">
+                    <span><span data-i18n="ui.galactic_coords_label">Galactic Coordinates:</span> <strong data-i18n="ui.galactic_coords_val">RA 17h 45.6m, Dec -29°00′</strong></span>
+                </div>
+                <div class="hud-row">
+                    <span><span data-i18n="ui.core_distance_label">Core Distance:</span> <strong data-i18n="ui.core_distance_val">26,000 Light-Years</strong></span>
+                </div>
+                <div class="hud-row hud-time-row">
+                    <span><span data-i18n="ui.current_time_label">Earth Time:</span> <strong id="hud-live-time">--:--:--</strong></span>
+                </div>
+            </div>
+        </div>
+
+        <div id="settings-hud" class="in-stack visible" aria-label="Settings and Language">
+            <div class="hud-header" role="button" tabindex="0" aria-label="Toggle Settings HUD" title="Minimize / Expand Settings" data-i18n-attr="aria-label:ui.toggle_settings,title:ui.toggle_settings">
+                <div class="hud-header-title">
+                    <span>⚙️</span>
+                    <span data-i18n="ui.settings_title">Settings</span>
+                </div>
+                <button type="button" class="hud-toggle-btn" id="settings-toggle-btn" aria-label="Minimize Settings HUD" title="Minimize / Expand Settings" data-i18n-attr="aria-label:ui.minimize_settings,title:ui.minimize_settings">
+                    <span class="settings-toggle-icon">−</span>
+                </button>
+            </div>
+            <div class="hud-body" id="settings-hud-body">
+                <div class="settings-row">
+                    <label for="lang-select" class="settings-label" data-i18n="ui.language_label">Language:</label>
+                    <select id="lang-select" class="hud-lang-select" aria-label="Select Language">
+                        <option value="en">🇬🇧 English</option>
+                        <option value="de">🇩🇪 Deutsch</option>
+                        <option value="fr">🇫🇷 Français</option>
+                        <option value="es">🇪🇸 Español</option>
+                        <option value="it">🇮🇹 Italiano</option>
+                        <option value="ja">🇯🇵 日本語</option>
+                        <option value="zh">🇨🇳 中文</option>
+                        <option value="ml">🇮🇳 മലയാളം</option>
+                        <option value="ta">🇮🇳 தமிழ்</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Access RocketRun Credits Button (R🚀R) -->
+        <a href="../credits.html" class="hud-circle-btn hud-credits-btn in-stack" aria-label="About & Credits" title="About & Credits" data-i18n-attr="aria-label:ui.credits_btn,title:ui.credits_btn">
+            <span class="hud-rr-badge" aria-hidden="true">
+                <span class="rr-letter">R</span>
+                <span class="rr-rocket">🚀</span>
+                <span class="rr-letter">R</span>
+            </span>
+        </a>
+
+        <!-- Cookie & Privacy Settings Button -->
+        <button type="button" id="cookie-btn" class="hud-circle-btn hud-cookie-btn in-stack" aria-label="Cookie & Storage Preferences" title="Cookie & Storage Preferences" data-i18n-attr="aria-label:ui.cookie_btn_aria,title:ui.cookie_btn_title">
+            <span class="hud-cookie-icon">🍪</span>
+        </button>
+    </div>
+
+    <main class="planet-subpage">
+        <div class="subpage-layout">
+            <div class="planet-stage">
+                <div class="subpage-planet-preview ">
+                    <img
+                        src="../images/mercury.png"
+                        alt="Mercury"
+                        class="subpage-planet-img  "
+                        width="110"
+                        height="110"
+                        loading="lazy"
+                        decoding="async"
+                    />
+                    
+                </div>
+
+                <div class="planet-title-group">
+                    <p class="planet-tagline" data-i18n="planets.mercury.greeting">— Hello, Scorched World! —</p>
+                    <h1 data-i18n="planets.mercury.name">Mercury</h1>
+                    <p class="planet-summary" data-i18n="planets.mercury.fact">The smallest planet — a day lasts longer than a year, with temperatures ranging from −180°C to 430°C.</p>
+                </div>
+
+                <section class="planet-info-grid" aria-label="Scientific specifications" data-i18n-attr="aria-label:ui.specs_heading">
+                    
+        <div class="info-card " role="button" tabindex="0" aria-haspopup="dialog" aria-label="Distance from Sun: 57.9M km. Click for kids science explanation" data-stat-idx="0" data-body="mercury" title="Click for kids science explanation">
+            <span class="info-label" data-i18n="planets.mercury.stats.0.label">Distance from Sun</span>
+            <span class="info-val" data-i18n="planets.mercury.stats.0.value">57.9M km</span>
+            <span class="info-sub" data-i18n="planets.mercury.stats.0.sub">0.387 AU</span>
+            
+            <span class="info-hint-badge" data-i18n="ui.tap_kids_explainer">💡 Tap for Kids Explainer</span>
+        </div>
+        <div class="info-card " role="button" tabindex="0" aria-haspopup="dialog" aria-label="Orbital Period: 87.97 Earth days. Click for kids science explanation" data-stat-idx="1" data-body="mercury" title="Click for kids science explanation">
+            <span class="info-label" data-i18n="planets.mercury.stats.1.label">Orbital Period</span>
+            <span class="info-val" data-i18n="planets.mercury.stats.1.value">87.97 Earth days</span>
+            <span class="info-sub" data-i18n="planets.mercury.stats.1.sub">Fastest orbit in solar system</span>
+            
+            <span class="info-hint-badge" data-i18n="ui.tap_kids_explainer">💡 Tap for Kids Explainer</span>
+        </div>
+        <div class="info-card " role="button" tabindex="0" aria-haspopup="dialog" aria-label="Day Length: 175.9 Earth days. Click for kids science explanation" data-stat-idx="2" data-body="mercury" title="Click for kids science explanation">
+            <span class="info-label" data-i18n="planets.mercury.stats.2.label">Day Length</span>
+            <span class="info-val" data-i18n="planets.mercury.stats.2.value">175.9 Earth days</span>
+            <span class="info-sub" data-i18n="planets.mercury.stats.2.sub">Rotation: 58.6 days</span>
+            
+            <span class="info-hint-badge" data-i18n="ui.tap_kids_explainer">💡 Tap for Kids Explainer</span>
+        </div>
+        <div class="info-card " role="button" tabindex="0" aria-haspopup="dialog" aria-label="Equatorial Radius: 2,439.7 km. Click for kids science explanation" data-stat-idx="3" data-body="mercury" title="Click for kids science explanation">
+            <span class="info-label" data-i18n="planets.mercury.stats.3.label">Equatorial Radius</span>
+            <span class="info-val" data-i18n="planets.mercury.stats.3.value">2,439.7 km</span>
+            <span class="info-sub" data-i18n="planets.mercury.stats.3.sub">0.383 × Earth</span>
+            
+            <span class="info-hint-badge" data-i18n="ui.tap_kids_explainer">💡 Tap for Kids Explainer</span>
+        </div>
+        <div class="info-card " role="button" tabindex="0" aria-haspopup="dialog" aria-label="Mass: 3.30 × 10²³ kg. Click for kids science explanation" data-stat-idx="4" data-body="mercury" title="Click for kids science explanation">
+            <span class="info-label" data-i18n="planets.mercury.stats.4.label">Mass</span>
+            <span class="info-val" data-i18n="planets.mercury.stats.4.value">3.30 × 10²³ kg</span>
+            <span class="info-sub" data-i18n="planets.mercury.stats.4.sub">0.055 × Earth</span>
+            
+            <span class="info-hint-badge" data-i18n="ui.tap_kids_explainer">💡 Tap for Kids Explainer</span>
+        </div>
+        <div class="info-card " role="button" tabindex="0" aria-haspopup="dialog" aria-label="Surface Temperature: −180°C to 430°C. Click for kids science explanation" data-stat-idx="5" data-body="mercury" title="Click for kids science explanation">
+            <span class="info-label" data-i18n="planets.mercury.stats.5.label">Surface Temperature</span>
+            <span class="info-val" data-i18n="planets.mercury.stats.5.value">−180°C to 430°C</span>
+            <span class="info-sub" data-i18n="planets.mercury.stats.5.sub">Day is 4 times boiling water; night is 9 times colder than a freezer</span>
+            
+            <span class="info-hint-badge" data-i18n="ui.tap_kids_explainer">💡 Tap for Kids Explainer</span>
+        </div>
+        <div class="info-card " role="button" tabindex="0" aria-haspopup="dialog" aria-label="Moons & Rings: 0 Moons · 0 Rings. Click for kids science explanation" data-stat-idx="6" data-body="mercury" title="Click for kids science explanation">
+            <span class="info-label" data-i18n="planets.mercury.stats.6.label">Moons & Rings</span>
+            <span class="info-val" data-i18n="planets.mercury.stats.6.value">0 Moons · 0 Rings</span>
+            <span class="info-sub" data-i18n="planets.mercury.stats.6.sub">Mercury has no moons or natural satellites</span>
+            
+            <span class="info-hint-badge" data-i18n="ui.tap_kids_explainer">💡 Tap for Kids Explainer</span>
+        </div>
+        <div class="info-card " role="button" tabindex="0" aria-haspopup="dialog" aria-label="Atmosphere: Exosphere. Click for kids science explanation" data-stat-idx="7" data-body="mercury" title="Click for kids science explanation">
+            <span class="info-label" data-i18n="planets.mercury.stats.7.label">Atmosphere</span>
+            <span class="info-val" data-i18n="planets.mercury.stats.7.value">Exosphere</span>
+            <span class="info-sub" data-i18n="planets.mercury.stats.7.sub">Trace Oxygen, Sodium, Hydrogen</span>
+            
+            <span class="info-hint-badge" data-i18n="ui.tap_kids_explainer">💡 Tap for Kids Explainer</span>
+        </div>
+                </section>
+
+                <nav class="subpage-controls" aria-label="Planet navigation" data-i18n-attr="aria-label:ui.planet_nav_aria">
+                    <div class="subpage-arrows">
+                        <a id="subpage-btn-prev" class="subpage-nav-link" href="sun.html" data-prev-slug="sun" aria-label="Previous: The Sun (Sol)">← The Sun (Sol)</a>
+                        <span class="subpage-counter" data-i18n="ui.counter" data-i18n-params='{"current":2,"total":10}'>2 / 10</span>
+                        <a id="subpage-btn-next" class="subpage-nav-link" href="venus.html" data-next-slug="venus" aria-label="Next: Venus">Venus →</a>
+                    </div>
+                    <div class="subpage-tabs" role="tablist" aria-label="Direct celestial body selector" data-i18n-attr="aria-label:ui.selector_aria">
+                        
+        <a class="tab-link " href="sun.html" title="The Sun (Sol)" aria-label="The Sun (Sol)"></a>
+        <a class="tab-link active" href="mercury.html" title="Mercury" aria-label="Mercury"></a>
+        <a class="tab-link " href="venus.html" title="Venus" aria-label="Venus"></a>
+        <a class="tab-link " href="earth.html" title="Earth" aria-label="Earth"></a>
+        <a class="tab-link " href="luna.html" title="Luna (The Moon)" aria-label="Luna (The Moon)"></a>
+        <a class="tab-link " href="mars.html" title="Mars" aria-label="Mars"></a>
+        <a class="tab-link " href="jupiter.html" title="Jupiter" aria-label="Jupiter"></a>
+        <a class="tab-link " href="saturn.html" title="Saturn" aria-label="Saturn"></a>
+        <a class="tab-link " href="uranus.html" title="Uranus" aria-label="Uranus"></a>
+        <a class="tab-link " href="neptune.html" title="Neptune" aria-label="Neptune"></a>
+                    </div>
+                </nav>
+            </div>
+
+            <!-- Floating Cosmic Explorer Lab & Kids Mission Corner -->
+            <aside class="space-calc-sidebar is-minimized" id="space-calc-sidebar" data-gravity="0.38" data-body="Mercury" data-slug="mercury">
+                <div class="calc-header" id="calc-header" role="button" tabindex="0" aria-expanded="false" aria-controls="sidebar-body" aria-label="Expand Cosmic Explorer Lab" title="Click to minimize or expand" data-i18n-attr="aria-label:ui.expand_lab">
+                    <div class="calc-header-left">
+                        <span class="calc-icon" id="calc-astronaut-icon" role="button" tabindex="0" aria-label="Toggle astronaut avatar" title="Click to switch astronaut avatar">👨‍🚀</span>
+                        <div class="calc-header-text">
+                            <h3 data-i18n="ui.lab_title">Cosmic Explorer Lab</h3>
+                            <p class="calc-physics-desc" data-i18n="ui.lab_physics" data-i18n-params='{"gravity":"0.38"}'>Gravity: 0.38× Earth &bull; Live Physics</p>
+                            <div class="calc-min-stats" id="calc-min-stats">
+                                <span class="min-stat-chip">
+                                    <span class="min-stat-icon">⚖️</span>
+                                    <span class="min-stat-label" data-i18n="ui.weight_short">Weight:</span>
+                                    <strong id="min-weight-val">26.6 kg</strong>
+                                </span>
+                                <span class="min-stat-divider">•</span>
+                                <span class="min-stat-chip">
+                                    <span class="min-stat-icon">🦘</span>
+                                    <span class="min-stat-label" data-i18n="ui.jump_short">Jump:</span>
+                                    <strong id="min-jump-val">116 cm</strong>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="sidebar-toggle-btn" id="sidebar-toggle-btn" aria-label="Expand Cosmic Explorer Lab" title="Expand Cosmic Explorer Lab" aria-expanded="false" data-i18n-attr="aria-label:ui.expand_lab">
+                        <span class="toggle-icon">+</span>
+                    </button>
+                </div>
+
+                <div class="sidebar-body" id="sidebar-body">
+                    <form class="calc-form" onsubmit="return false;">
+                        <div class="calc-field calc-field-avatar">
+                            <div class="field-label-row">
+                                <label data-i18n="ui.choose_astronaut">Explorer Avatar</label>
+                                <div class="unit-toggle avatar-toggle" id="avatar-toggle" role="radiogroup" aria-label="Choose astronaut avatar">
+                                    <button type="button" class="unit-btn avatar-btn active" data-avatar="male" data-i18n="ui.astronaut_male">👨‍🚀 Male</button>
+                                    <button type="button" class="unit-btn avatar-btn" data-avatar="female" data-i18n="ui.astronaut_female">👩‍🚀 Female</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="calc-field">
+                            <div class="field-label-row">
+                                <label for="input-weight" data-i18n="ui.your_weight">Your Weight</label>
+                                <div class="unit-toggle" id="weight-unit-toggle">
+                                    <button type="button" class="unit-btn active" data-unit="kg">kg</button>
+                                    <button type="button" class="unit-btn" data-unit="lbs">lbs</button>
+                                </div>
+                            </div>
+                            <div class="input-wrap">
+                                <input type="number" id="input-weight" min="5" max="500" step="1" value="45" placeholder="Weight" data-i18n-attr="placeholder:ui.weight_placeholder" />
+                                <span class="input-suffix" id="weight-suffix">kg</span>
+                            </div>
+                            <div class="calc-presets">
+                                <button type="button" class="preset-btn" data-target="weight" data-val-kg="25" data-val-lbs="55" data-i18n="ui.preset_kid">Kid (25kg/55lb)</button>
+                                <button type="button" class="preset-btn" data-target="weight" data-val-kg="50" data-val-lbs="110" data-i18n="ui.preset_teen">Teen (50kg/110lb)</button>
+                                <button type="button" class="preset-btn" data-target="weight" data-val-kg="70" data-val-lbs="154" data-i18n="ui.preset_adult">Adult (70kg/154lb)</button>
+                            </div>
+                        </div>
+
+                        <div class="calc-field">
+                            <div class="field-label-row">
+                                <label for="input-height" data-i18n="ui.your_height">Your Height</label>
+                                <div class="unit-toggle" id="height-unit-toggle">
+                                    <button type="button" class="unit-btn active" data-unit="cm">cm</button>
+                                    <button type="button" class="unit-btn" data-unit="in">in</button>
+                                </div>
+                            </div>
+                            <div class="input-wrap">
+                                <input type="number" id="input-height" min="40" max="260" step="1" value="140" placeholder="Height" data-i18n-attr="placeholder:ui.height_placeholder" />
+                                <span class="input-suffix" id="height-suffix">cm</span>
+                            </div>
+                            <div class="calc-presets">
+                                <button type="button" class="preset-btn" data-target="height" data-val-cm="120" data-val-in="47" data-i18n="ui.preset_7yr">7 yr (120cm)</button>
+                                <button type="button" class="preset-btn" data-target="height" data-val-cm="138" data-val-in="54" data-i18n="ui.preset_10yr">10 yr (138cm)</button>
+                                <button type="button" class="preset-btn" data-target="height" data-val-cm="170" data-val-in="67" data-i18n="ui.preset_adult_h">Adult (170cm)</button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <div class="calc-results">
+                        <div class="result-card primary">
+                            <span class="result-label" data-i18n="ui.weight_on" data-i18n-params='{"name":"Mercury"}'>Your Weight on Mercury</span>
+                            <div class="result-value-row">
+                                <span class="result-number" id="output-weight">—</span>
+                                <span class="result-unit" id="output-weight-unit">kg</span>
+                            </div>
+                            <p class="result-comparison" id="output-weight-comparison" data-i18n="ui.prompt_enter_weight">Calculating cosmic scale...</p>
+                        </div>
+
+                        <div class="result-card secondary">
+                            <span class="result-label" data-i18n="ui.jump_on" data-i18n-params='{"name":"Mercury"}'>Your Jump Height on Mercury</span>
+                            <div class="result-value-row">
+                                <span class="result-number" id="output-jump">—</span>
+                                <span class="result-unit" id="output-jump-unit">cm</span>
+                            </div>
+                            <p class="result-comparison" id="output-jump-comparison" data-i18n="ui.prompt_enter_height">Calculating leap power...</p>
+                        </div>
+                    </div>
+
+                    <div class="kids-corner">
+                        <span class="kids-badge" data-i18n="planets.mercury.kids.badge">🚀 Kids Mission</span>
+                        <h4 class="kids-title" data-i18n="planets.mercury.kids.title">Moon-Boots Playground!</h4>
+                        <p class="kids-item">🦘 <strong>Super Jump:</strong> <span data-i18n="planets.mercury.kids.jump">You can leap nearly 3× higher than on Earth! One small hop would launch you clean over your bed.</span></p>
+                        <p class="kids-item">💡 <strong>Cosmic Wonder:</strong> <span data-i18n="planets.mercury.kids.fact">A year on Mercury is super fast (88 days), but one single daytime lasts longer than a whole year!</span></p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Kid-Friendly Science Explanation Popup Modal -->
+    <div id="stat-modal-backdrop" class="stat-modal-backdrop" aria-hidden="true">
+        <div id="stat-modal" class="stat-modal" role="dialog" aria-modal="true" aria-labelledby="stat-modal-label">
+            <div class="stat-modal-header">
+                <div class="stat-modal-badge" data-i18n="ui.kids_guide_badge">🚀 Explainer</div>
+                <button type="button" class="stat-modal-close" id="stat-modal-close" aria-label="Close dialog">✕</button>
+            </div>
+            <div class="stat-modal-body">
+                <span class="stat-modal-icon" id="stat-modal-icon">🌟</span>
+                <div class="stat-modal-titles">
+                    <h4 class="stat-modal-label" id="stat-modal-label">Surface Temperature</h4>
+                    <div class="stat-modal-val" id="stat-modal-val">5,500°C</div>
+                </div>
+                <div class="stat-modal-explainer-box">
+                    <p class="stat-modal-text" id="stat-modal-text"></p>
+                </div>
+            </div>
+            <div class="stat-modal-footer">
+                <button type="button" class="stat-modal-btn-ok" id="stat-modal-btn-ok" data-i18n="ui.close_popup">Got it!</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
