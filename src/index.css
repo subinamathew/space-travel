@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Outfit', sans-serif;
+    background-color: #030712;
+    color: #F8FAFC;
+  }
+  
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+/* Custom pulse and glow utilities */
+@keyframes cosmic-pulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.05);
+  }
+}
+
+.animate-cosmic-glow {
+  animation: cosmic-pulse 4s ease-in-out infinite;
+}
+
+/* Star twinkle */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.9; }
+}
+
+.star-twinkle {
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+/* Custom Range Slider */
+input[type="range"] {
+  accent-color: #38BDF8;
+}
+
+/* Smooth custom scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0B132B;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1E2D4A;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #38BDF8;
+}

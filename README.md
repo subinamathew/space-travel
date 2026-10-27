@@ -1,8 +1,8 @@
-# RocketRun — Solar System Tour (Android)
+# RocketRun — Solar System Tour (React)
 
 Interactive 3D Solar System exploration and space flight simulator featuring authentic Keplerian orbital physics, planetary science metrics, gravity & jump height calculator, and kids space missions.
 
-Rewritten from the original web application into a modern native **Android (Kotlin + Jetpack Compose)** app.
+Rewritten as a modern, high-performance **React + TypeScript + Vite + Tailwind CSS** application.
 
 ---
 
@@ -11,8 +11,8 @@ Rewritten from the original web application into a modern native **Android (Kotl
 ### 1. Interactive 2D & 3D Solar System Orrery
 - Real-time Keplerian planetary orbits for the Sun, Mercury, Venus, Earth (+ Moon), Mars (+ Phobos, Deimos), Asteroid Belt, Jupiter (+ Galilean moons), Saturn (+ iconic rings, Titan), Uranus, and Neptune.
 - Toggle between planar 2D and tilted 3D perspective views.
-- Speed controls (0.5×, 1×, 2×, 5×) and Play/Pause orbital simulation.
-- Pinch-to-zoom and pan gestures across the solar system with touch detection on celestial bodies.
+- Speed controls (1×, 2×, 5×) and Play/Pause orbital simulation.
+- Smooth mouse wheel zoom, drag pan, and touch gestures across the solar system with clickable celestial bodies.
 - Live Galactic HUD telemetry: Milky Way Orion Arm sector, galactic coordinates, distance to the galactic core (26,000 light-years), and Earth UTC clock.
 
 ### 2. Planetary Atlas & Specifications
@@ -48,25 +48,22 @@ Rewritten from the original web application into a modern native **Android (Kotl
 
 ---
 
-## 🛠️ Architecture & Tech Stack
+## 🛠️ Tech Stack
 
-- **Target OS**: Android 8.0+ (API Level 26–36)
-- **Language**: Kotlin 2.2
-- **UI Framework**: Jetpack Compose with Material Design 3 (M3)
-- **Build System**: Gradle 9.3.1 with Android Gradle Plugin 9.1.1
-- **Architecture**: MVVM (Model-View-ViewModel) with unidirectional data flow and Kotlin Coroutines/StateFlow
-- **Theme**: Deep Space theme (`#030712`, `#0B132B`, `#38BDF8`, `#FBBF24`)
-- **Assets**: Adaptive vector & high-resolution planetary illustrations with launcher icon
+- **Framework**: React 19 + TypeScript
+- **Bundler**: Vite
+- **Styling**: Tailwind CSS v4
+- **Icons**: Lucide React
+- **Animations**: Canvas + CSS Transitions + Confetti
 
 ---
 
-## 🚀 Building & Running
-
-To build the debug APK:
+## 🚀 Development & Building
 
 ```bash
-gradle :app:assembleDebug
-```
+# Start development server on port 3000
+npm run dev
 
-The compiled APK will be generated at:
-`app/build/outputs/apk/debug/app-debug.apk`
+# Build for production
+npm run build
+```
